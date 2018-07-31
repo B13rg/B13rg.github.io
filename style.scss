@@ -30,6 +30,24 @@ body {
   width: 100%;
 }
 
+.container .left-col {
+  width: 23%;
+  position: fixed;
+  height: 100%;
+}
+
+.container .mid-col {
+  position: absolute;
+  right: 0;
+  min-height: 100%;
+  width: 77%;
+  background: #fff;
+}
+
+.left-col .intrude-less {
+  width: 80%;
+}
+
 h1, h2, h3, h4, h5, h6 {
   font-family: $helveticaNeue;
   color: $darkerGray;
