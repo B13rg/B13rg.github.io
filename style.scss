@@ -32,18 +32,18 @@ body {
   width: 23%;
   position: fixed;
   height: 100%;
+  padding: 20px;
 }
 
 .container .mid-col {
   position: absolute;
   right: 0;
   min-height: 100%;
-  width: 77%;
+  width: 70%;
   background: #fff;
 }
 
 .left-col .intrude-less {
-  width: 80%;
   height: 100%;
   background-color: #444;
 }
@@ -294,7 +294,7 @@ nav {
   margin-top: 50px;
   border-top: 1px solid #ddd;
   border-bottom: 1px solid #ddd;
-  background-color: $lightGray;
+  font-size: .5em;
 }
 
 footer {
