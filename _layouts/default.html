@@ -16,7 +16,6 @@
   </head>
 
   <body>
-    <div class="wrapper-masthead">
       <div class="container">
         <div class="left-col">
           <div class="intrude-less">
@@ -27,10 +26,12 @@
                 <h1 class="site-name"><a href="{{ site.baseurl }}/">{{ site.name }}</a></h1>
                 <p class="site-description">{{ site.description }}</p>
               </div>
-
-              <nav>
-                <a href="{{ site.baseurl }}/">Blog</a>
-                <a href="{{ site.baseurl }}/about">About</a>
+              <nav id="main-nav">
+                <a class="btn btn-outline" href="{{ site.baseurl }}/">Blog</a>
+                <a class="btn btn-outline" href="{{ site.baseurl }}/about">About</a>
+              </nav>
+              <nav id="sub-nav">
+                {% include svg-icons.html %}
               </nav>
             </header>
           </div>
@@ -43,16 +44,13 @@
           <div class="wrapper-footer">
             <div class="container">
               <footer class="footer">
-                {% include svg-icons.html %}
+                
               </footer>
             </div>
           </div>
         
           {% include analytics.html %}
         </div>
-      </div>
-    </div>
-
-    
+      </div>    
   </body>
 </html>
