@@ -5,9 +5,11 @@ title: Making a Webpage out of an XML file
 
 XML is traditionally used to store and transport data in a way that is readable to both computers and people.  At my job as an engineering intern at [Open Dental](https://www.opendental.com/), we save our database schema as an XML file for each minor version we produce.  Between versions there will be new columns, new tables and other differences.  We post each version of the schema online as a plain XML file.  This post describes how I used an XSL file to impliment an webpage with some simple QOL additions.
 
-The result of this post can be found at: ![https://opendental.com/OpenDentalDocumentation18-2.xml](https://opendental.com/OpenDentalDocumentation18-2.xml)
+The result of this post can be found at: [https://opendental.com/OpenDentalDocumentation18-2.xml](https://opendental.com/OpenDentalDocumentation18-2.xml)
 
-The method used to display the webpage is unusual to say the least.  Each version of documentation is stored as an XML file on the server.  When a web request is made, the XML file is served in addition to an XSL file, which controls how the XML file is displayed.  This is usually used to embedd XML data in a webpage.  The XSL is a style sheet much like CSS, where is describes how an XML file should be displayed.  ![A good summary of XSL functionality is here](https://www.w3.org/Style/XSL/WhatIsXSL.html)
+The method used to display the webpage is unusual to say the least.  Each version of documentation is stored as an XML file on the server.  When a web request is made, the XML file is served in addition to an XSL file, which controls how the XML file is displayed.  This is usually used to embedd XML data in a webpage.  The XSL is a style sheet much like CSS, where is describes how an XML file should be displayed.  
+
+[A good summary of XSL functionality is here](https://www.w3.org/Style/XSL/WhatIsXSL.html)
 
 ---
 
@@ -15,18 +17,19 @@ Before I made the changes, it was much more difficult to find the information yo
 
 ![Scrolling Galore]({{ site.baseurl }}/images/XmlWebpage/oldLayout1.PNG)
 
-![Page Down is you friend]({{ site.baseurl }}/images/XmlWebpage/oldLayout2.PNG)
+
 
 Below the enourmous list of tables was the descriptions of the tables themselves.  Each database table was constructed as a table, titled with the name of the table and the general description underneath.  Below that each column was listed, and the order, name, type and summary were listed.  If you wanted to find a specific table, you either had to find the table name in the list of tables, or scroll until you found it.  Looking up a table for reference took a long time and really gave the scroll wheel a workout.
 
-Once you found the table you were looking for if you wanted to compare it to a previous version, 
+![Page Down is you friend]({{ site.baseurl }}/images/XmlWebpage/oldLayout2.PNG)
+
+Once you found the table you were looking for if you wanted to compare it to a previous version, you had to navigate back, select the version, then scroll to the table in question.  To me this workflow was absolutly infuriating, so I set out to fix it.
 
 ---
 
 When I was designing the page I wanted to obviously make it much easier to use.  I decided to split the page into a navigation pane and a table pane, with the list of table names on the left and the tables themselves on the right.  I also wanted them to scroll independently so searching for a table name wouldn't screw with what was displayed in the tables pane.  
-{% comment %}
+
 ![Initial Design]({{ site.baseurl }}/images/XmlWebpage/Initial_Design.jpg)
-{% endcomment %}
 
 Additionally, I wanted to add a filter function to the navigation pane to make finding a specific table quicker.  Instead of needing to find the table you wanted in a block of text, I wanted the list of tables to change as the filter term was typed in.  So if a user filtered  on the string "code", only tables containing the term as a substring would be shown.  In our case, it would show table names like "proccodenote","codesystem" and "zipcode".  
 
