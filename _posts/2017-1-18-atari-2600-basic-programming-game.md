@@ -3,7 +3,7 @@ layout: post
 title: Atari 2600 "Basic Programming" Game
 ---
 
-An interesting game of the Atari 2600 era was the game “Basic programming”, written by Warren Robinett.  This game was released in 1979, and was touted to allow the player to talk to their computer, and program a variety of things.  Though it may seem like it would allow players to write in BASIC code, it instead used its own limited instruction set.
+An interesting game of the Atari 2600 era was “Basic programming”, written by Warren Robinett.  This game was released in 1979, and was touted to allow the player to talk to their computer, and program a variety of things.  Though it may seem like it would allow players to write in BASIC code, it instead used its own limited instruction set.
 
 ![Ad from Atari Game Catalog]({{ site.baseurl }}/images/Atari_Basic_Programming_Leaflet.jpg)
 
