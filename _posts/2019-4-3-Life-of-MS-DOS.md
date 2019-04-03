@@ -14,7 +14,7 @@ I hope to use it in other articles to walk through the history of Digital Resear
 
 The code for the chart can be found in my `Projects` repository, under the `Dos Lineage Cladogram` folder.
 
-![MS-DOS Family Tree](images/MSDOS/MSDOS_family_tree.png){:width="700px"}
+![MS-DOS Family Tree](/images/MSDOS/MSDOS_family_tree.png){:width="700px"}
 
 ---
 
