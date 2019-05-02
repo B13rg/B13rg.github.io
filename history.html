@@ -8,31 +8,26 @@ title: Home
 	{% assign randomNumber = "now" | date: "%N" | modulo: diff | plus: 1 %}
 	{%for post in site.posts %}
 	<div class="listbox">
-		{% case randomNumber %}
-		{% when 0 %}
-		<img class="titlecon" src="{{ site.baseurl }}/public/images/VBONLINE.ICO"></img>
-		{% when 1 %}
-		<img class="titlecon" src="{{ site.baseurl }}/public/images/TPX.ICO"></img>
-		{% when 2 %}
-		<img class="titlecon" src="{{ site.baseurl }}/public/images/TURBO.ICO"></img>
-		{% when 3 %}
-		<img class="titlecon" src="{{ site.baseurl }}/public/images/computer.png"></img>
-		{% when 4 %}
-		<img class="titlecon" src="{{ site.baseurl }}/public/images/file.png"></img>
-		{% when 5 %}
-		<img class="titlecon" src="{{ site.baseurl }}/public/images/globe.png"></img>
-		{% when 6 %}
-		<img class="titlecon" src="{{ site.baseurl }}/public/images/magnifying.png"></img>
-		{% when 7 %}
-		<img class="titlecon" src="{{ site.baseurl }}/public/images/microchip.png"></img>
-		{% endcase %}
-
-
-
-
-		{% assign randomNumber = randomNumber | plus: 1 | modulo: diff %}
-
 		<h2 class="post-list">
+			{% case randomNumber %}
+			{% when 0 %}
+			<img class="titlecon" src="{{ site.baseurl }}/public/images/VBONLINE.ICO"></img>
+			{% when 1 %}
+			<img class="titlecon" src="{{ site.baseurl }}/public/images/TPX.ICO"></img>
+			{% when 2 %}
+			<img class="titlecon" src="{{ site.baseurl }}/public/images/TURBO.ICO"></img>
+			{% when 3 %}
+			<img class="titlecon" src="{{ site.baseurl }}/public/images/computer.png"></img>
+			{% when 4 %}
+			<img class="titlecon" src="{{ site.baseurl }}/public/images/file.png"></img>
+			{% when 5 %}
+			<img class="titlecon" src="{{ site.baseurl }}/public/images/globe.png"></img>
+			{% when 6 %}
+			<img class="titlecon" src="{{ site.baseurl }}/public/images/magnifying.png"></img>
+			{% when 7 %}
+			<img class="titlecon" src="{{ site.baseurl }}/public/images/microchip.png"></img>
+			{% endcase %}
+
 			<a href="{{ site.baseurl }}{{ post.url }}">
 				{{ post.title }}
 			</a>

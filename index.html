@@ -7,25 +7,20 @@ title: Home
 	{% assign randomNumber = "now" | date: "%N" | modulo: diff | plus: 1 %}
 	{%for post in site.posts limit:5 %}
 	<div class="listbox">
-		
-
-
-		{% case randomNumber %}
-		{% when 1 %}
-		<img class="titlecon" src="{{ site.baseurl }}/public/images/TPX.ICO"></img>
-		{% when 2 %}
-		<img class="titlecon" src="{{ site.baseurl }}/public/images/TURBO.ICO"></img>
-		{% when 3 %}
-		<img class="titlecon" src="{{ site.baseurl }}/public/images/computer.png"></img>
-		{% when 4 %}
-		<img class="titlecon" src="{{ site.baseurl }}/public/images/file.png"></img>
-		{% when 0 %}
-		<img class="titlecon" src="{{ site.baseurl }}/public/images/VBONLINE.ICO"></img>
-		{% endcase %}
-
-		{% assign randomNumber = randomNumber | plus: 1 | modulo: diff %}
-
 		<h2 class="post-list">
+			{% case randomNumber %}
+			{% when 1 %}
+			<img class="titlecon" src="{{ site.baseurl }}/public/images/TPX.ICO"></img>
+			{% when 2 %}
+			<img class="titlecon" src="{{ site.baseurl }}/public/images/TURBO.ICO"></img>
+			{% when 3 %}
+			<img class="titlecon" src="{{ site.baseurl }}/public/images/computer.png"></img>
+			{% when 4 %}
+			<img class="titlecon" src="{{ site.baseurl }}/public/images/file.png"></img>
+			{% when 0 %}
+			<img class="titlecon" src="{{ site.baseurl }}/public/images/VBONLINE.ICO"></img>
+			{% endcase %}
+			
 			<a href="{{ site.baseurl }}{{ post.url }}">
 				{{ post.title }}
 			</a>
@@ -53,7 +48,7 @@ title: Home
 	{% endfor %}
 </div>
 
-<div class="pagination">	
+<div class="pagination">
 	{% if paginator.previous_page %}
 	{% if paginator.page == 2 %}
 	<a class="pagination-item newer" href="{{ site.baseurl }}/">Newer</a>
