@@ -4,11 +4,17 @@ title: About
 permalink: /about/
 ---
 
-Some information about you!
+![Hey, that's me](/images/profile.jpg)
 
-### More Information
+Hi, my name is Brendan Byers.
+I am a programmer who is interested in old computers.
+Some of my favorites include
 
-TBD.
+* Atari 400/800
+* Commodore 64
+* IBM PC
+
+In my free time I enjoy sailing, Counter-Strike and playing with my home lab.
 
 ### Contact me
 
