@@ -82,6 +82,7 @@ exclude:
   - LICENSE
   - README.md
   - CNAME
+  - In_Progress
 
 #relative_permalinks:  false
 
