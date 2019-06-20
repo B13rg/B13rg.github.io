@@ -11,6 +11,7 @@
 		 <nav class="sidebar-nav">
 			<a class="sidebar-nav-item{% if page.url == site.baseurl %} active{% endif %}" href="{{ site.baseurl }}/">Home</a>
 			<a class="sidebar-nav-item" href="{{ site.baseurl }}/history">History</a>
+			<a class="sidebar-nav-item" href="{{ site.baseurl }}/categories">Categories</a>
 			<a class="sidebar-nav-item" href="{{ site.baseurl }}/about">About</a>
 			<a class="sidebar-nav-item" href="{{ site.baseurl }}/resume/Brendan Byers Resume.pdf">Resume</a>
 			<span class="sidebar-nav-item">Currently v{{ site.version }}</span>
@@ -23,7 +24,7 @@
 	  
 		 <div class="sidebar-item">
 			<p>
-			  &copy; {{ site.time | date: '%Y' }}. All rights reserved.
+			  Copyright &copy; {{ site.time | date: '%Y' }} {{ site.author.name }}
 			</p>
 		 </div>
 	  </div>

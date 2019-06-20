@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Notes on building and testing the QUIC protocol
+categories: [Networking]
 ---
 This is the process I went through to setup and test QUIC protocol.
 I did this as part of a project for my Networking 476 course at OSU.

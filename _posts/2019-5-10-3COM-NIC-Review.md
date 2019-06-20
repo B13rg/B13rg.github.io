@@ -1,7 +1,7 @@
 ---
 layout: post
 title:	"Checking out a 3COM 3C996B-T Gigabit NIC"
-
+categories: [Networking]
 ---
 
 3Com was a networking product manufacturer that sold networking gear such as switches, routers, access points, and network interface cards.

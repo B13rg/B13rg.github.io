@@ -1,7 +1,7 @@
 ---
 layout: post
 title:	"The Life of MS-DOS"
-
+categories: [DOS]
 ---
 First released on August 12, 1981, MS-DOS became the foundation for business computing for almost two decades.
 MS-DOS stood for Microsoft Disk Operating System and was often referred to simply as "DOS".
@@ -12,7 +12,7 @@ Before I talk about MS-DOS proper, I talk about it's "grandparents" if you will,
 In addition to writing this article, I also made the following cladogram chart showing the realtionships of different DOS "flavors".
 I hope to use it in other articles to walk through the history of Digital Research's DOS, DR DOS and the many transformations it went through.
 
-The code for the chart can be found in my `Projects` repository, under the `Dos Lineage Cladogram` folder.
+The code for the chart can be found in my `Projects` repository, under the [Dos Lineage Cladogram](https://github.com/B13rg/Projects/tree/master/Dos%20Lineage%20Cladogram) folder.
 
 ![MS-DOS Family Tree](/images/MSDOS/MSDOS_family_tree.png){:width="700px"}
 

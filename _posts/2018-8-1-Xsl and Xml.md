@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Making a Webpage out of an XML file
+categories: [Programming]
 ---
 
 XML is traditionally used to store and transport data in a way that is readable to both computers and people.  At my job as an engineering intern at [Open Dental](https://www.opendental.com/), we save our database schema as an XML file for each minor version we produce.  Between versions there will be new columns, new tables and other differences.  We post each version of the schema online as a plain XML file.  This post describes how I used an XSL file to impliment an webpage with some simple QOL additions.

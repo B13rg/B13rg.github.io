@@ -6,8 +6,9 @@ permalink: /about/
 
 ![Hey, that's me](/images/profile.jpg)
 
-Hi, my name is Brendan Byers.
-I am a programmer who is interested in old computers.
+Hi, my name is Brendan Byers.  At Oregon State Univeristy, I studied Computer Science and History with an emphasis on the Soviet Union.
+
+I am a programmer who is especially interested in old computers.
 Some of my favorites include
 
 * Atari 400/800
@@ -18,4 +19,4 @@ In my free time I enjoy sailing, Counter-Strike and playing with my home lab.
 
 ### Contact me
 
-[IcebergByers@protonmail.com](mailto:IcebergByers@protonmail.com)
+[{{ site.footer-links.email }}](mailto:{{ site.footer-links.email }})

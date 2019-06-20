@@ -1,7 +1,7 @@
 ---
 layout: post
 title:	"Simple Ansible Project"
-
+categories: [Programming]
 ---
 <!-- 
 Image example 
