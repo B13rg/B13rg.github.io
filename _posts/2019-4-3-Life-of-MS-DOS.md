@@ -86,7 +86,7 @@ Windows XP moved to the NT kernel, whose primary difference was moving away from
 With MS-DOS, the kernel and operating system exists completly within the kernel space.
 Windows NT uses a safer structure, where the kernel is split between the kernel space and the user space.
 
-![](/images/MSDOS/win9xKernel.gif)
+![Windows 9.x Kernel Design](/images/MSDOS/win9xKernel.gif)
 
 A diagram of Windows 95 Kernel Structure
 
