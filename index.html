@@ -45,7 +45,7 @@ title: Home
 				{{ post.title }}
 			</a>
 		</h2>
-		<span class="post-date">{{ post.date | date_to_string }}</span>
+		<span class="post-date">{{ post.date | date_to_string }} | &nbsp; {%- include readTime.html -%}</span>
 	</div>
 	{% endfor %}
 </div>
@@ -61,7 +61,7 @@ title: Home
 			</a>
 		</h1>
 
-		<span class="post-date">{{ post.date | date_to_string }}</span>
+		<span class="post-date">{{ post.date | date_to_string }} | &nbsp; {%- include readTime.html -%}</span>
 
 		{{ post.content }}
 	</div>
