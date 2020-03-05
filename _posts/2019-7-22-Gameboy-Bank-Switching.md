@@ -156,7 +156,7 @@ This chip contains much more SRAM than the cartridge header specifies oddly enou
 I was unable to determine why.
 The data is preserved in the chip by using the coin battery to make sure the SRAM always has power.
 The RAM protector manages the power going into the SRAM from the battery, allowing the data to be preserved.
-[Cart Information][3]
+[Cart Information][2]
 
 The later generations of Pokemon (Gold/Silver/Crystal) were similarly designed, but suffered from battery issues sooner than Red and Blue.
 This was because these games had an internal clock that kept the time.
