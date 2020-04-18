@@ -1,6 +1,6 @@
-{%- capture words -%} 
-{{ content | number_of_words | minus: 180 }}
-{%- endcapture -%} 
-{%- unless words contains '-' -%}
-{{ words | plus: 150 | divided_by: 150 | append: ' minutes to read' }} 
-{%- endunless -%}
+{% assign words = post.content | strip_html | number_of_words | divided_by: 180 | ceil%}
+{% if words == 0 %}
+{% assign words = page.content | strip_html | number_of_words | divided_by: 180 | ceil %}
+{% endif %}
+
+{{ words | append: ' minutes to read' }}
