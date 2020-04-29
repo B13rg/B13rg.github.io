@@ -152,6 +152,7 @@ h1, h2, h3, h4, h5, h6 {
   font-size: .875rem; /* 15px */
   color: rgba(255,255,255,.6);
   background-color: #202020;
+  background-image: url("../images/Bubbles.bmp");
   -webkit-transition: all .3s ease-in-out;
           transition: all .3s ease-in-out;
 }
@@ -161,12 +162,22 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
+.sidebar-group {
+  background-color: rgb(32, 32, 32);
+}
+
+.sidebar-fade {
+  height: 4em;
+  background-image: linear-gradient(to bottom,  rgba(32, 32, 32,1),rgba(32, 32, 32, 0));
+}
+
 /* Sidebar content */
 .sidebar a {
   font-weight: normal;
   color: #fff;
 }
 .sidebar-item {
+  text-align: center;
   padding: 1rem;
 }
 .sidebar-item p:last-child {
