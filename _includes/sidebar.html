@@ -1,30 +1,37 @@
 <!-- Target for toggling the sidebar `.sidebar-checkbox` is for regular
      styles, `#sidebar-checkbox` for behavior. -->
-	  <input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox">
+<input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox">
 
-	  <!-- Toggleable sidebar -->
-	  <div class="sidebar" id="sidebar">
-		 <div class="sidebar-item">
+<!-- Toggleable sidebar -->
+<div class="sidebar" id="sidebar">
+	<div class="sidebar-group">
+		<div class="sidebar-item">
 			<p>{{ site.description }}</p>
-		 </div>
-	  
-		 <nav class="sidebar-nav">
-			<a class="sidebar-nav-item{% if page.url == site.baseurl %} active{% endif %}" href="{{ site.baseurl }}/">Home</a>
+		</div>
+
+		<nav class="sidebar-nav">
+			<a class="sidebar-nav-item{% if page.url == site.baseurl %} active{% endif %}"
+				href="{{ site.baseurl }}/">Home</a>
 			<a class="sidebar-nav-item" href="{{ site.baseurl }}/history">History</a>
 			<a class="sidebar-nav-item" href="{{ site.baseurl }}/categories">Categories</a>
 			<a class="sidebar-nav-item" href="{{ site.baseurl }}/about">About</a>
 			<a class="sidebar-nav-item" href="{{ site.baseurl }}/resume/Brendan Byers Resume.pdf">Resume</a>
 			<span class="sidebar-nav-item">Currently v{{ site.version }}</span>
 			<span class="sidebar-nav-item">
-				{% if site.footer-links.rss %}<a href="{{ site.baseurl }}/feed.xml"><i class="svg-icon rss"></i></a>{% endif %}
-				{% if site.footer-links.email %}<a href="mailto:{{ site.footer-links.email }}"><i class="svg-icon email"></i></a>{% endif %}
-				{% if site.footer-links.github %}<a href="https://github.com/{{ site.footer-links.github }}"><i class="svg-icon github"></i></a>{% endif %}
+				{% if site.footer-links.rss %}<a href="{{ site.baseurl }}/feed.xml"><i
+						class="svg-icon rss"></i></a>{% endif %}
+				{% if site.footer-links.email %}<a href="mailto:{{ site.footer-links.email }}"><i
+						class="svg-icon email"></i></a>{% endif %}
+				{% if site.footer-links.github %}<a href="https://github.com/{{ site.footer-links.github }}"><i
+						class="svg-icon github"></i></a>{% endif %}
 			</span>
-		 </nav>
-	  
-		 <div class="sidebar-item">
+		</nav>
+
+		<div class="sidebar-item">
 			<p>
-			  Copyright &copy; {{ site.time | date: '%Y' }} {{ site.author.name }}
+				Copyright &copy; {{ site.time | date: '%Y' }} {{ site.author.name }}
 			</p>
-		 </div>
-	  </div>
+		</div>
+	</div>
+	<div class="sidebar-fade"></div>
+</div>

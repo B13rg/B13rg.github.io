@@ -1,0 +1,30 @@
+<div class="container related">
+	<MAP NAME="navPanel"> 
+		<AREA SHAPE="RECT" COORDS=" 17,39,107,57" HREF="{{ site.baseurl }}/index.html"> 
+		<AREA SHAPE="RECT" COORDS=" 118,39,205,57" HREF="{{ site.baseurl }}/about"> 
+		<AREA SHAPE="RECT" COORDS="17,66,107,86" HREF="{{ site.baseurl }}/categories"> 
+		<AREA SHAPE="RECT" COORDS="118,66,207,86" HREF="{{ site.baseurl }}/feed.xml"> 
+		<AREA SHAPE="RECT" COORDS="241,38,268,83" HREF="https://github.com/B13rg/B13rg.github.io"> 
+		<AREA SHAPE="RECT" COORDS="280,42,322,81" HREF="{{ site.baseurl }}/resume/Brendan Byers Resume.pdf"> 
+		
+		<!- up/prev/next locations ->
+		<AREA SHAPE="RECT" COORDS="340,31,368,82" HREF="#top"> 
+
+		{% if paginator.previous_page %}
+		{% if paginator.page == 2 %}
+		<AREA SHAPE="RECT" COORDS="392,46,422,78" HREF="{{ site.baseurl }}/">
+		{% else %}
+		<AREA SHAPE="RECT" COORDS="392,46,422,78" HREF="{{ site.baseurl }}/page{{paginator.previous_page}}">
+		{% endif %}
+		{% else %}
+		<AREA SHAPE="RECT" COORDS="392,46,422,78" HREF="">
+		{% endif %}
+		{% if paginator.next_page %}
+		<AREA SHAPE="RECT" COORDS="435,46,465,78" HREF="{{ site.baseurl }}/page{{paginator.next_page}}">
+		{% else %}
+		<AREA SHAPE="RECT" COORDS="435,46,465,78" HREF="">
+		{% endif %}
+	</MAP>
+
+	<IMG SRC="../public/images/navigation.png" class="footer" ISMAP USEMAP="#navPanel" BORDER="0"></A>
+</div>
