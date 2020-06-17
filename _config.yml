@@ -83,6 +83,7 @@ exclude:
   - README.md
   - CNAME
   - In_Progress
+  - tools
 
 #relative_permalinks:  false
 
