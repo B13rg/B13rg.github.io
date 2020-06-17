@@ -75,6 +75,7 @@ h1, h2, h3, h4, h5, h6 {
 .container {
   max-width: 28rem;
 }
+
 @media (min-width: 38em) {
   .container {
     max-width: 32rem;
@@ -83,6 +84,27 @@ h1, h2, h3, h4, h5, h6 {
 @media (min-width: 56em) {
   .container {
     max-width: 38rem;
+  }
+}
+
+.container-wide {
+  max-width: 28rem;
+}
+
+@media (min-width: 38em) {
+  .container-wide {
+    max-width: 32rem;
+  }
+}
+@media (min-width: 56em) {
+  .container-wide {
+    max-width: 50rem;
+  }
+}
+
+@media (min-width: 80em) {
+  .container-wide {
+    max-width: 70rem;
   }
 }
 
@@ -152,7 +174,7 @@ h1, h2, h3, h4, h5, h6 {
   font-size: .875rem; /* 15px */
   color: rgba(255,255,255,.6);
   background-color: #202020;
-  background-image: url("../images/Bubbles.bmp");
+  background-image: url("../images/bkg/bubbles.bmp");
   -webkit-transition: all .3s ease-in-out;
           transition: all .3s ease-in-out;
 }
@@ -182,6 +204,16 @@ h1, h2, h3, h4, h5, h6 {
 }
 .sidebar-item p:last-child {
   margin-bottom: 0;
+}
+
+.sidebar-bottom {
+  position: absolute;
+  bottom: 0;
+}
+
+.sidebar-button {
+  display: block;
+  margin-left: 1rem;
 }
 
 /* Sidebar nav */
@@ -270,6 +302,25 @@ a.sidebar-nav-item:focus {
   .sidebar-toggle {
     display: none;
   }
+}
+
+div.imageboard {
+  display: flex;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+img.imageboard {
+  display: inline-block;
+  margin: 1px;  
+  max-height: none;
+}
+
+.linker {
+  display: inline-block;
+  margin: 1px;
 }
 
 /* Slide effect

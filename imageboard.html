@@ -1,0 +1,37 @@
+---
+layout: wide
+title: Imageboard
+---
+<div>	
+	<div class="imageboard">
+		{% for image in site.static_files %}
+			{% if image.path contains 'public/images/titleimage' %}
+				<img class="linker" src="{{ site.baseurl }}{{ image.path }}" alt="image" />
+			{% endif %}
+		{% endfor %}
+	</div>
+	<hr class="separator">
+	<div class="imageboard">
+		{% for image in site.static_files %}
+			{% if image.path contains 'public/images/linkers/regular' %}
+				<img class="linker" src="{{ site.baseurl }}{{ image.path }}" alt="image" />
+			{% endif %}
+		{% endfor %}
+	</div>
+	<hr class="separator">
+	<div class="imageboard">
+		{% for image in site.static_files %}
+			{% if image.path contains 'public/images/linkers/large' %}
+				<img class="linker" src="{{ site.baseurl }}{{ image.path }}" alt="image" />
+			{% endif %}
+		{% endfor %}
+	</div>
+	<hr class="separator">
+	<div class="imageboard">
+		{% for image in site.static_files %}
+			{% if image.path contains 'public/images/buttons' %}
+				<img class="imageboard" src="{{ site.baseurl }}{{ image.path }}" alt="image" />
+			{% endif %}
+		{% endfor %}
+	</div>
+</div>
