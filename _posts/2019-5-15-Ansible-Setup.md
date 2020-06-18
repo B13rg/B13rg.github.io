@@ -3,15 +3,6 @@ layout: post
 title:	"Simple Ansible Project"
 categories: [Programming]
 ---
-<!-- 
-Image example 
-![MS-DOS Family Tree](/images/MSDOS/MSDOS_family_tree.png){:width="700px"}
-
-Link example
-[Link to full-size image](/images/MSDOS/MSDOS_family_tree.png)
-
-Separator -->
----
 
 [Ansible](https://www.ansible.com/) makes deployment of software and configuration to multiple servers easy.
 A deployment process is described in a yaml file and is used by Ansible as instructions for what to do.
@@ -127,9 +118,9 @@ vars:
 To show how to replace values in files, I did it two different ways.
 The first (and better) way to insert runtime variables is be referencing the variable within the file using {% raw %}`{{ variable_name }}`{% endraw %}.
 In the `index.html` file, I added the line {% raw %}`{{ template_run_date }}`{% endraw %}.
-When Ansible is ran, it will fetch the varaible and replace it in the file.
+When Ansible is ran, it will fetch the variable and replace it in the file.
 I could have also used the `ansible_facts` variable instead of defining my own.
-For this method, the modifications take place within the file that wants the varaible, not the playbook file.
+For this method, the modifications take place within the file that wants the variable, not the playbook file.
 
 Another method is to use the `replace` command and regex.
 To make it easy, I placed the text `##repl##` in the `index.html` file.

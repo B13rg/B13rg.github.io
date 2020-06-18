@@ -2,14 +2,16 @@
 layout: post
 title:	"The Life of MS-DOS"
 categories: [DOS]
+excerpt: First released on August 12, 1981, MS-DOS became the foundation for business computing for almost two decades.  This article details different versions and releases that all stemmed from Gary Kildall's QDOS.
+image: /images/MSDOS/MSDOS_family_tree.png
 ---
 First released on August 12, 1981, MS-DOS became the foundation for business computing for almost two decades.
 MS-DOS stood for Microsoft Disk Operating System and was often referred to simply as "DOS".
 It is the software that helped build Microsoft, becoming the foundation Microsoft built the Windows operating system on.
-It went through 8 (and a half-ish) mahor revisions, with the final version being shipped with Windows ME in September, 2000.
+It went through 8 (and a half-ish) major revisions, with the final version being shipped with Windows ME in September, 2000.
 Before I talk about MS-DOS proper, I talk about it's "grandparents" if you will, Digital Research's CP/M and Seattle Computer Product's 86-DOS.
 
-In addition to writing this article, I also made the following cladogram chart showing the realtionships of different DOS "flavors".
+In addition to writing this article, I also made the following cladogram chart showing the relationships of different DOS "flavors".
 I hope to use it in other articles to walk through the history of Digital Research's DOS, DR DOS and the many transformations it went through.
 
 The code for the chart can be found in my `Projects` repository, under the [Dos Lineage Cladogram](https://github.com/B13rg/Projects/tree/master/Dos%20Lineage%20Cladogram) folder.
@@ -26,9 +28,9 @@ CP/M was a operating system designed by Gary Kildall for Digital Research.
 It was designed for 8-Bit computers, so it ran on Intel 8080/85 and Z80 processors.
 CP/M originally stood for "Control Program/Monitor" and later "Control Program for Microcomputers".
 CP/M 1.4 was the first major version released, later followed by version 2.2.
-CP/M was even able to run on the Commodore 64, though it required a specialized cartiridge that housed a Z80 processor.
+CP/M was even able to run on the Commodore 64, though it required a specialized cartridge that housed a Z80 processor.
 At the time, IBM was looking for an operating system to use with their IBM PC line of products.
-IBM discussed lcensing CP/M from Digital Research, but they were unable to come to an agreement.
+IBM discussed licensing CP/M from Digital Research, but they were unable to come to an agreement.
 IBM looked elsewhere for an operating system and in July of 1980 began talks with Microsoft about their development of MS-DOS, which was based on 86-DOS by Seattle Computer Products.
 
 While IBM moved on, Digital Research went on to develop their own version of DOS based on CP/M 86 that eventually became DR DOS.
@@ -42,14 +44,14 @@ More about this project can be found [here](https://web.archive.org/web/20160425
 86-DOS was originally developed by Seattle Computer Products (SCP) beginning in April of 1980.
 It was originally named QDOS (Quick and Dirty Operating System), but was changed to 86-DOS once they began shipping in August of 1980.
 It was first developed to be packaged with CPM's 8086 computer kit.
-SCP originally wanted to simply use Digital Reasearch's 8086 version of CP/M, but with an uncertain release date SCP made the decision to develop an OS themselves.
+SCP originally wanted to simply use Digital Research's 8086 version of CP/M, but with an uncertain release date SCP made the decision to develop an OS themselves.
 While writing it, the programmer Tim Paterson referenced the manual for CP/M-80 which explains why CP/M and QDOS were so alike.
-Because of its simularity to CP/M, it was easy to port programs orginally designed for CP/M on 8080 and Z80 processors to QDOS, which targeted 8086 processors.
+Because of its similarity to CP/M, it was easy to port programs originally designed for CP/M on 8080 and Z80 processors to QDOS, which targeted 8086 processors.
 Development of the software ended up taking only 6 weeks.
 
-QDOS 0.11 was released in August of 1980, which is when it was renamed to bettern known 86-DOS.
+QDOS 0.11 was released in August of 1980, which is when it was renamed to 86-DOS.
 Microsoft ended up licensing it from SCP in December of 1980 and in May of the following year hired Tim Patterson to assist in porting it to the IBM PC.
-A month before Microsofts new operating system was release, they purchased all rights to 86-DOS from SCP for only $50,000.
+A month before Microsoft's new operating system was release, they purchased all rights to 86-DOS from SCP for only $50,000.
 After settling a lawsuit over the deal with SCP, Microsoft later ended up paying a total $1 million.
 Microsoft took it's adapted 86-DOS 1.14, created MS-DOS 1.10/1.14, and licensed it to IBM who sold by IBM under the name PC DOS 1.0.
 
@@ -78,12 +80,12 @@ This was the version that was also rebranded as PC DOS 4.0 for IBM.
 MS-DOS 6.3 was the last version that was released as a stand alone program.
 The next version, MS-DOS 7.0 was released as part of Windows 95.
 Both Windows 95 Revision 2 and the first release of Windows 98 were equipped with MS-DOS 7.1 running things behind the scenes.
-These were the first major versions of MS-DOS that were completly separate from PC DOS, whose version 7.0 was developed by IBM alone.
+These were the first major versions of MS-DOS that were completely separate from PC DOS, whose version 7.0 was developed by IBM alone.
 
 The final version of MS-DOS was released as a part of Windows ME in September of 2000.
 This was the last version of windows that used MS-DOS as a foundation.
 Windows XP moved to the NT kernel, whose primary difference was moving away from a monolithic kernel to a hybrid kernel.
-With MS-DOS, the kernel and operating system exists completly within the kernel space.
+With MS-DOS, the kernel and operating system exists completely within the kernel space.
 Windows NT uses a safer structure, where the kernel is split between the kernel space and the user space.
 
 ![Windows 9.x Kernel Design](/images/MSDOS/win9xKernel.gif)

@@ -2,6 +2,8 @@
 layout: post
 title:	"Checking out a 3COM 3C996B-T Gigabit NIC"
 categories: [Networking]
+excerpt: The 3C996B-T Network Interface Card (NIC) was put on the market in late 2001/early 2002.  This article takes a look at the card and explores it's capabilities.
+image: /images/3ComGigNic/card_shot.jpg
 ---
 
 3Com was a networking product manufacturer that sold networking gear such as switches, routers, access points, and network interface cards.
@@ -21,10 +23,10 @@ Inside was actually a 3C996B-T, which is the (much) cheaper ethernet model.
 ![NIC(e) card](/images/3ComGigNic/card_shot.jpg){:width="500px"}
 
 When first released, the SX model sold for $695.00, while the ethernet model was only $169.
-Today, the cards arn't quite in demand as they once may have been.
+Today, the cards aren't quite in demand as they once may have been.
 I was able to find the card on ebay selling for ~$10 + shipping.
 The internet archive has an archive of 3Com's original product page for the cards which can be seen [here][1]
-When I bought it the box was still sealed in plastic wrap, which had a label with the correct model on it so I figure it was either misboxed or the card was reboxed and sealed.
+When I bought it the box was still sealed in plastic wrap, which had a label with the correct model on it so I figure it was either mis-boxed or the card was reboxed and sealed.
 
 ![Whatcha get](/images/3ComGigNic/box_contents.jpg){:width="500px"}
 

@@ -2,6 +2,7 @@
 layout: post
 title: Notes on building and testing the QUIC protocol
 categories: [Networking]
+excerpt: This is the process I went through to setup and test QUIC protocol, which is a transport protocol that runs on top of UDP.
 ---
 This is the process I went through to setup and test QUIC protocol.
 I did this as part of a project for my Networking 476 course at OSU.
@@ -35,7 +36,7 @@ To build quinn, you will need to install rust version >= 1.32.
 There are some changes to how rust handles const released in version 1.31, and updating to 1.32 fixed the issues I was having.
 I performed my tests on the WSL running on windows 10.
 Installing rustc from apt gave me only version 1.30, so to properly install is you need to uninstall cargo and rust from WSL, and use the command: `curl https://sh.rustup.rs -sSf | sh`.
-Once that is complete and installed, you need to eithre restart the terminal or use the command `source $HOME/.cargo/bin` to add cargo and rustc to the PATH.
+Once that is complete and installed, you need to either restart the terminal or use the command `source $HOME/.cargo/bin` to add cargo and rustc to the PATH.
 Once I had rust properly installed, I was able to build and run the client and server.
 For recording performance metrics, it is important to build them in release mode.
 
@@ -53,22 +54,22 @@ Look at the test files section to see how I created them.
 
 Before building the client code, I made two modifications to the source.
 My tests mostly focused on transfer speeds, so I generated random-filled files of different sizes.
-The client is coded as to output the files it recieves to STDOUT, which it does not like.
+The client is coded as to output the files it receives to STDOUT, which it does not like.
 To stop the client from output text, you'll just need to comment out two lines in `quinn/examples/client.rs`, 149 and 150.
 When building you will get a warning about line 7, but is ok to ignore.
 
-To build the clinet, I used `cargo build --release --example client`.
+To build the client, I used `cargo build --release --example client`.
 This will build the client code and place it in `./target/release/examples/`.
 
 When running the client, you only need to supply the address to request.
 Even though `127.0.0.1` was supplied to the server, when running the client is important to use `localhost`.
-This is because the client will to a DNS lookup on the address, and it will fail with the plain ip octects.
+This is because the client will to a DNS lookup on the address, and it will fail with the plain ip octets.
 
 To run the client, I called `target/release/examples/client https://localhost:4433/www/250mb.file`.
 I had previously created a folder named `www` with a few test files in it.  
 The path after the port number is based on the path given to the server when you start it.
 
-The client will download the file, then give a summary consisting of when it connected, requested, and recieved a response.
+The client will download the file, then give a summary consisting of when it connected, requested, and received a response.
 Here is some example output:
 
 ```()
@@ -90,7 +91,7 @@ https://www.wireshark.org/download.html
 To capture packets, I used wireshark.  In order to be able to capture quic packets, you will need to download version >= 3.0.0.
 My copy of wireshark is at 3.0.0rc1 (v3.0.0rc1-0-g8ec01dea).
 
-When capturing those packets, be sure to filter the traffice to quic only by typing in `quic` in the filter bar.
+When capturing those packets, be sure to filter the traffic to quic only by typing in `quic` in the filter bar.
 This is how I captured the pcaps.
 
 ### Spindump

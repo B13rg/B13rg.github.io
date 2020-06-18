@@ -2,6 +2,8 @@
 layout: post
 title:	"My Tmux Setup"
 category: [Programming]
+excerpt: Tmux is a "Terminal Multiplexer", meaning you can create and use multiple terminals in one window at the same time. This article describes the various customizations I have made to make my life in the terminal easier.
+image: /images/tmux/squareSelect.PNG
 ---
 
 Tmux is a "Terminal Multiplexer", meaning you can create and use multiple terminals in one window at the same time.
