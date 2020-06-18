@@ -2,6 +2,8 @@
 layout: post
 title:	"A Look at the Gameboy DMG"
 category: [Games]
+excerpt: The original Gameboy DMG truly began Nintendo's line of modern handheld gaming consoles. With it's tiny screen and 4 colors it opened up a new world of games to millions of people around the world.
+image: /images/GBDMG/Gameboy_DMG.jpg
 ---
 
 ![The Gameboy DMG](/images/GBDMG/Gameboy_DMG.jpg){:target="_blank"}

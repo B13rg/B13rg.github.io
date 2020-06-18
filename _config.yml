@@ -93,6 +93,8 @@ title:  "Brendan's Website"
 
 tagline:  'Interesting articles about interesting things'
 
+image: /public/favicon.ico
+
 paginate:            1
 
 # About/contact
