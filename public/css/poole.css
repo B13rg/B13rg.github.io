@@ -295,6 +295,13 @@ table {
     width: 100%;
     border: 1px solid #e5e5e5;
     border-collapse: collapse;
+    overflow: auto; 
+    display: block;
+}
+
+.table-side-scroll {
+    overflow: auto;
+    height: 100px;
 }
 
 td,
