@@ -8,7 +8,7 @@ image: /images/OldPC/Processor.JPG
 
 ![Array of Carts](/images/MBC/header.JPG)
 
-Memory Bank Controllers were a part of many cartridge games produced for the Gameboy and Gmeboy color.
+Memory Bank Controllers were a part of many cartridge games developed for the Gameboy and Gmeboy color.
 It allowed the cartridge to have additional hardware that the Gameboy could utilize.
 The most common addition was external RAM, but different MBC's also allowed the use of timers, rumble, and even a light sensor.
 
@@ -29,7 +29,7 @@ This allowed for very simple PCB layouts, as the single ROM chip would be direct
 RAM banks behaved similarly, instead only mounting 8KB at a time from `0xA000-0xBFFF` and was able to be read and written to.
 For a deeper dive into how games performed bank switches, check out my article here: [Gameboy DMG ROM and RAM Bank Switching](Gameboy-Bank-Switching/).
 
-When producing a game, it was important to consider the size of the final product.
+When developing a game, it was important to consider the size of the final product.
 The size of the game and add-ons like RAM controlled what type of memory bank controller would be required.
 The following types of memory bank controllers were usually available for use:
 
@@ -53,54 +53,90 @@ Gameboy cartridges primarily used the first 5 MBC types, with MBC6 and 7  reserv
 The different types enabled developers to use hardware like real time clocks, RAM, batteries for saving, rumble, and even a light sensor.
 Multiple memory controllers were made to help control the cost of producing the cartridge.
 While it would be convenient to have a "One size fits all" controller that could dynamically accomodate add-ons and varying amounts of ROM and RAM, it would have been an expensive chip to produce.
-By producing a variety of types, game producers could select the MBC that would best accommodate their game.
+By producing a variety of types, game developers could select the MBC that would best accommodate their game.
 
 The [Game Boy hardware database](https://gbhwdb.gekkio.fi) is a community-created database of gameboy cartridges.
-I grabbed a data dump and ran some queries over it to get some more information about what types of bank controllers were used over time.
+It contains detailed information about cartridges and their internal componenets.
+There are 316 distinct game entries, out of 1,049 DMG + 576 GBC games (1,625 total).
+There are many games missing, but I figure it should be a random enough sample that we should at least be able to discern some trends from the data.
+
+I grabbed a data dump of it all and ran some queries over it to get some more information about what types of bank controllers were used over time.
 The query counted how many distinct game titles used each MBC type by year.
 It gives a rough view of both the number of games released and the controller types used in those games each year.
 
 ![Chart of ](/images/MBC/MBC_Types_Year.png)
+[Full size](/images/MBC/MBC_Types_Year.png)
 
-|Year|None|MBC1A|MBC1B|MBC1B1|MBC2A|MBC3|MBC30|MBC3A|MBC3B|MBC5|MBC6|MBC7|TAMA5|MMM01|HuC-1|HuC-1A|HuC-3|
-|1989|4|2|1||1|||||||||||||
-|1990|9|2|12||2|||||||||||||
-|1991|3||21||1|||||||||||||
-|1992|||11|2||||||||||||||
-|1993|||4|7|2|||||||||||||
-|1994|||5|1||||||||||||||
-|1995|||7|8||||||||||||||
-|1996|1||9|6|1|||||||||1||||
-|1997|2||7|20|3|1|||||||1||1|||
-|1998|||15|12|1|6||7||6|||1||1|1|3|
-|1999|||2|1||||3||21|||||1||1|
-|2000|2||||||1|4|3|32||2||||||
-|2001|1||||||||9|13|1|1||||||
-|2002|||||||||2|4||||||||
-|2003|||||||||1|||||||||
+|Year|None|MBC1A|MBC1B|MBC1B1|MBC2A|MBC3|MBC30|MBC3A|MBC3B|MBC5|MBC6|MBC7|TAMA5|MMM01|HuC-1|HuC-1A|HuC-3|Year|
+|1989|4|2|1||1|||||||||||||1989|
+|1990|9|2|12||2|||||||||||||1990|
+|1991|3||21||1|||||||||||||1991|
+|1992|||11|2||||||||||||||1992|
+|1993|||4|7|2|||||||||||||1993|
+|1994|||5|1||||||||||||||1994|
+|1995|||7|8||||||||||||||1995|
+|1996|1||9|6|1|||||||||1||||1996|
+|1997|2||7|20|3|1|||||||1||1|||1997|
+|1998|||15|12|1|6||7||6|||1||1|1|3|1998|
+|1999|||2|1||||3||21|||||1||1|1999|
+|2000|2||||||1|4|3|32||2||||||2000|
+|2001|1||||||||9|13|1|1||||||2001|
+|2002|||||||||2|4||||||||2002|
+|2003|||||||||1|||||||||2003|
 
 [Datasource](/files/MBC/cartridges.csv)
 
 Query: `SELECT COUNT(DISTINCT "name"), COALESCE(NULLIF("mapper_kind",''), 'None'), "board_year" FROM cart WHERE DISTINCT "name" GROUP BY "mapper_kind", "board_year" ORDER BY "board_year", "mapper_kind";`
 
-Each game will be represented only once, 
-Some games are more common than others in the database, so this limits the effect of duplicate entries in the final chart.
-Keep in mind that the data source is incomplete.
-There are many games missing, but I figure it should be a random enough sample that we should at least be able to discern some trends from the data.
+For the first 7 years, we really only see the MBC1 and MBC2 used.
+The MBC2 was used sparingly.
+It had 1/8th the ROM space of the MBC1, and only 128 Bytes of RAM that was split into 4-byte chunks.
+It seems that it was the simplest MBC available to game developers, meant for games that required more than just a ROM chip, but didn't need all the capablilties of MBC1.
+
+Even though it had a larger amount of RAM, it had limited ROM space compared to
 
 
-316 entries for the mbc types
-total of 1,049 for original gameboy, 576 gameboy color.
+Between the different revisions of the MBC1, the MBC1B was used the most.
+There are a few MBC1A entries, but they were only present in Japanese titles during the first two years of the gameboy.
+The MBC1B probably fixed issues in the MBC1A, but I haven't been able to find any concrete evidence describing what those issues might be.
+I think the difference between the MBC1B and MBC1B1 was less severe, possibly something to do with power consumption or speed since it is only a "minor version" improvement.
+The other revision, MBC1B1, seemed to be used interchangebly with the normal MBC1B, as shown by the mapper type entries for `Donkey Kong Land III (USA, Europe) (Rev 1) (SGB Enhanced)`:
 
-MBC3 only started to be used in 1998, the same year the gameboy color was released.
+|MBC|PCB Date|
+|---|---|
+|MBC1B|Jul/1998|
+|MBC1B1|Jul/1998|
+|MBC1B1|Aug/1998|
+|MBC1B|Jun/1999|
+
+The MBC3 only started to be used in 1998, the same year the gameboy color was released.
 Before that point, we really only see none, MBC1 and MBC2 types used.
+Once it was released, it was used primarily for newer Gameboy Color games, but it also saw some use in Gameboy-first type games, like [Mary Kate and Ashley's Pocket Planner](https://www.youtube.com/watch?v=jbbMLLPZNnU).
 
-Usually the year after a handheld is released, there's a jump in use of the new technology.
-takes time for companies to start using new hardware
+At the same time, we can also see hardware lifecycle events for the MBC3 over the years it was used.
+It seems that the change from MBC3 -> MBC3A -> MBC3B was much more absolute than MBC1A -> MBC1B -> MBC1B1.
+After 1998, we don't see any MBC3 entries and after 2000, no MBC3A entries.
+The fact that we don't see any use of a previous version in the year following the introduction of newer version makes me think that the new versions fixed bugs in the hardware, instead of performance improvements like the MBC1B -> MBC1B1 update.
 
-MBC1A only used first two years, 
+When a new console is released, it usually takes a little while for game developers to start using it to it's fullest potential.
+We are able to see a similar trend here with the MBC1 and MBC5 in the two years following each of their releases.
 
+In 1990, you can see an increase of the available MBC types: "None" type, MBC1, and MBC2.
+Part of the growth in the year following the Gameboy DMG release can be contributed to the release dates of the Gameboy in April (JP), late July (USA), and late September (EU).
+I assume that by waiting until the year following the release, developers have a bit more time with the hardware and can apply more polish to their games.
+In 1991, we see a sharp dropoff in games with just a ROM, and a large increase of MBC1 type games.
 
+We can see a similar trend in 1998-2000.
+Between 1998 and 1999, there was a large drop in MBC1 use, and a humoungous increase in MBC5.
+The MBC5 was a big improvement over the MBC1, and also had support for additional hardware additions to the cartridge.
+The MBC5 became availble with the release of the Gameboy color, and the sharp increase in use in 1999 and 2000.
+
+In 2001, the Gameboy Advance was released, and with it a completly new cartridge.
+The new cartridge was incompatible with the old type, mostly because the Gameboy Advance used an ARM processor instead of a Z-80 clone in the Gameboy DMG and color.
+This is the same reason the Nintendo DS is only able to play Advance games, nothing prior.
+
+With the release of the Gameboy Advance, we see a sharp decline in the number of titles released, though games were still released up until 2003 for the Gameboy Color.
+Suprisingly, Gameboy DMG games were released up until 2001, though only in Japan, over a decade after the handheld first was released.
 
 
 
