@@ -3,7 +3,7 @@ layout: post
 title: "Gameboy Cart Memory Bank Controller Analysis"
 category: [Games]
 excerpt: This computer is very interesting because it bridges the divide between new and old system technologies present during the 90s.  It's a time capsule of tech during a time when hardware and software were swiftly changing.
-image: /images/OldPC/Processor.JPG
+image: /images/MBC/header.JPG
 ---
 
 ![Array of Carts](/images/MBC/header.JPG)
@@ -13,8 +13,7 @@ It allowed the cartridge to have additional hardware that the Gameboy could util
 The most common addition was external RAM, but different MBC's also allowed the use of timers, rumble, and even a light sensor.
 
 The MBC allowed the gameboy to use larger amounts of storage and ram than it's addressing would usually allow.
-
-It had 16 address lines, allowing it to theoretically address a maximum of 64KB.
+The cartridge had 16 address lines, allowing the Gameboy to address a maximum of 64KB of ROM on the cartridge.
 In practice, much of that address space was taken up by other functions of the system, like 8KB of VRAM, 8KB of WRAM, and I/O registers.
 
 Data on a cartridge's ROM would be split into 16KB "banks".
@@ -48,6 +47,7 @@ The following types of memory bank controllers were usually available for use:
 ||||[Source](https://mgba-emu.github.io/gbdoc)|
 
 MMM01 is a “metamapper” in that it is used in game collection (Momotarō Collection 2 and Taito Variety Pack) to provide a boot menu before locking itself down into a separate “normal” mapper mode that only exposes certain banks to the game inside the collection.
+To read more about the specifics, including a VHDL design, check out this [wiki page](https://wiki.tauwasser.eu/view/MMM01).
 
 Gameboy cartridges primarily used the first 5 MBC types, with MBC6 and 7  reserved for special circumstances.
 The different types enabled developers to use hardware like real time clocks, RAM, batteries for saving, rumble, and even a light sensor.
@@ -135,15 +135,17 @@ In 2001, the Gameboy Advance was released, and with it a completly new cartridge
 The new cartridge was incompatible with the old type, mostly because the Gameboy Advance used an ARM processor instead of a Z-80 clone in the Gameboy DMG and color.
 This is the same reason the Nintendo DS is only able to play Advance games, nothing prior.
 
-With the release of the Gameboy Advance, we see a sharp decline in the number of titles released, though games were still released up until 2003 for the Gameboy Color.
-Suprisingly, Gameboy DMG games were released up until 2001, though only in Japan, over a decade after the handheld first was released.
-
-
-
+With the release of the Gameboy Advance, we see a sharp decline in the number of titles released.
+Games were still released for the Gameboy Color up until 2003.
+Suprisingly the last Gameboy DMG games were released in Japan in 2001, over a decade since the handheld was first released.
 
 ---
 
-In the header of the cartridge, the cartridge type is stored as a hex code at address `0x147`.
+When preparing a game to be placed on a cartridge, a header is placed at the start of the ROM.
+This header is present on all cartridges from addresses `0x100-0x14F`.
+It's the first thing that is read by the Gameboy, and contains bits of information describing different properties of software and hardware.
+
+The cartridge type is stored as a hex code at address `0x147`.
 The hex code described the hardware configuration of the game cartridge.
 Not only did it accommodate all the MBC plus hardware configurations, it also had codes for special cartridges like the pocket camera and 
 
@@ -213,25 +215,48 @@ fd
 $ # Bandai Tama5 (Built in alarm for when to feed your Tamagotchi!)
 ```
 
----
 
-In this next section we'll look at a few different cartridges and identify what type they are.
-In addition to just looking at the type, we'll also compare differences between carts that are the same type.
-
-
-
-
-simularities
-
-differences
-
-production cycles
-
-standardization vs provided by game producer
-
-label format (DMG-BSA-0)
 
 ---
+## Hardware
+
+In this next section, I took pictures of most of my Gameboy games and recorded the different chips on the cart.
+They've been split into sections based on the MBC type the cartridge uses.
+For each game, there is a picture of the cartridge and the PCB.
+For webpage size reasons, there is a link below each image to the full size original.
+There is also a table below each game that notates the board and chip labels.
+
+
+
+The cases contain two bits of interesting info: the game ID and a case stamp.
+The game ID is in the format `[Handheld type]{3}-[Game identifier]{3,4}-[Region]{2,3}-[Revision]{0,1}`.
+For the games below, the handheld type is usually `DMG` for the original Gameboy and `CGB` for the Gameboy Color.
+The game identifier is usually 3 or 4 characters long, and is similar to the ID on the ROM chip.
+It uniquely identifies what game it is.
+The region is 2 or 3 charcters and describes the intended region of the game.
+The most common that I've seen is `USA` and `JP`, but `EUR` for Europe and `AUS` for Australia also exist.
+Some carts also include a optional number at the end, most likely corresponding to the revision number of the game.
+
+The case stamp is a label imprinted on the label of the case consisting of two digits and a letter.
+It can be hard to see in some cases, but I've done my best to record it here.
+I'm not sure what it means, but I suspect it may have something to do with the cartridge manufacturing.
+They follow the format `[0-3]{1}[0-4]{1}[A-D]{0,1}`
+
+Inside the cart, the PCB also has special marking on both the PCB itself and the ROM chip that contains the game code.
+PCB board is in the format `[Handheld type]{3}-[PCB type]{4}-[Revision]{2}`.
+The handheld type on the case, cartridge and ROM chip should all match.
+The PCB type depends on the hardware configuration required by the game.
+Games that had the same MBC and extra hardware usually had the same type, but not always.
+Finally, the revision declared what revision the board was.
+For example, [Frogger](#frogger) (revision `10`) and [Super Mario Land](#super-mario-land) (revision `01`) and see that despite having the same MBC and hardware, the boards are slightly different.
+Only revisions I've seen here and in the Gameboy hardware database are `01` and `10`, binary 1 and 2.
+
+The ROM chips follow a similar format to the game cartridge, only leaving off the region code.
+ROM chips use the format `[Handheld type]{3}-[Game identifier]{3,4}-[Revision]{1}`.
+
+
+
+
 
 ## No MBC
 
@@ -241,12 +266,14 @@ label format (DMG-BSA-0)
 [Original](/images/MBC/originals/alleyway_case.JPG)
 
 Release: DMG-AW-USA
+
 Case Stamp: 05
 
 ![DMG-AAA-03](/images/MBC/alleyway_pcb.JPG){:width="500px"}
 [Original](/images/MBC/originals/alleyway_pcb.JPG)
 
 Board Type: DMG-AAA-03
+
 ROM Type: DMG-AWA-0
 
 ||Chip|Board Label|Mfr.|Date|Chip Label|
@@ -259,12 +286,14 @@ ROM Type: DMG-AWA-0
 [Original](/images/MBC/originals/dr_mario_case.JPG)
 
 Release: DMG-VU-USA
+
 Case Stamp: -
 
 ![DMG-AAA-03](/images/MBC/dr_mario_pcb.JPG){:width="500px"}
 [Original](/images/MBC/originals/dr_mario_pcb.JPG)
 
 Board Type: DMG-AAA-03
+
 ROM Type: DMG-VUA-0
 
 ||Chip|Board Label|Mfr.|Date|Chip Label|
@@ -279,12 +308,14 @@ ROM Type: DMG-VUA-0
 [Original](/images/MBC/originals/tetris_case_1.JPG)
 
 Release: DMG-TR-USA
+
 Case Stamp: 23 A
 
 ![DMG-AAA-03](/images/MBC/tetris_pcb_1.JPG){:width="500px"}
 [Original](/images/MBC/originals/tetris_pcb_1.JPG)
 
 Board Type: DMG-AAA-03
+
 ROM Type: DMG-TRA-1
 
 ||Chip|Board Label|Mfr.|Date|Chip Label|
@@ -297,12 +328,14 @@ ROM Type: DMG-TRA-1
 [Original](/images/MBC/originals/tetris_case_2.JPG)
 
 Release: DMG-TR-USA
+
 Case Stamp: 23 A
 
 ![DMG-AAA-03](/images/MBC/tetris_pcb_2.JPG){:width="500px"}
 [Original](/images/MBC/originals/tetris_pcb_2.JPG)
 
 Board Type: DMG-AAA-03
+
 ROM Type: DMG-TRA-1
 
 ||Chip|Board Label|Mfr.|Date|Label|
@@ -315,12 +348,14 @@ ROM Type: DMG-TRA-1
 [Original](/images/MBC/originals/yakuman_case.JPG)
 
 Release: DMG-MJJ
+
 Case Stamp: 22 A
 
 ![DMG-AAA-03](/images/MBC/yakuman_pcb.JPG){:width="500px"}
 [Original](/images/MBC/originals/yakuman_pcb.JPG)
 
 Board Type: DMG-AAA-03
+
 ROM Type: DMG-MJJ-1
 
 ||Chip|Board Label|Mfr.|Date|Chip Label|
@@ -335,12 +370,14 @@ ROM Type: DMG-MJJ-1
 [Original](/images/MBC/originals/baseball_case.JPG)
 
 Release: DMG-BS-USA
+
 Case Stamp: 22
 
 ![DMG-BBA-02](/images/MBC/baseball_pcb.JPG){:width="500px"}
 [Original](/images/MBC/originals/baseball_pcb.JPG)
 
 Board Type: DMG-BBA-02
+
 ROM Type: DMG-BSA-0
 
 ||Chip|Board Label|Mfr.|Date|Chip Label|
@@ -354,12 +391,14 @@ ROM Type: DMG-BSA-0
 [Original](/images/MBC/originals/frogger_case.JPG)
 
 Release: DMG-AFGE-USA
+
 Case Stamp: 12
 
 ![DMG-BEAN-10](/images/MBC/frogger_pcb.JPG){:width="500px"}
 [Original](/images/MBC/originals/frogger_pcb.JPG)
 
 Board Type: DMG-BEAN-10
+
 ROM Type: 
 
 ||Chip|Board Label|Mfr.|Date|Chip Label|
@@ -373,12 +412,14 @@ ROM Type:
 [Original](/images/MBC/originals/super_mario_land_case.JPG)
 
 Release: DMG-ML-USA
+
 Case Stamp: 23 A
 
 ![DMG-BEAN-01](/images/MBC/super_mario_land_pcb.JPG){:width="500px"}
 [Original](/images/MBC/originals/super_mario_land_pcb.JPG)
 
 Board Type: DMG-BEAN-01
+
 ROM Type: DMG-MLA-1
 
 ||Chip|Board Label|Mfr.|Date|Chip Label|
@@ -394,12 +435,14 @@ ROM Type: DMG-MLA-1
 [Original](/images/MBC/originals/pokemon_gold_case.JPG)
 
 Release: GMD-AAUE-USA
+
 Case Stamp: 20
 
 ![DMG-KGDU-10](/images/MBC/pokemon_gold_pcb.JPG){:width="500px"}
 [Original](/images/MBC/originals/pokemon_gold_pcb.JPG)
 
 Board Type: DMG-KGDU-10
+
 ROM Type: 
 
 ||Chip|Board Label|Mfr.|Date|Chip Label|
@@ -407,7 +450,7 @@ ROM Type:
 |U1|ROM|PRG|MX|Date|DMG-AAUE-0|
 |U2|Mapper|MBC3A|Nintendo|Date|MBC3 A|
 |U3|RAM|RAM|Hyundai|Week 29 2000|GM76C256CLLFW70|
-|U4|RAM Protector|MM1134|---|Week 7 1973|6735|
+|U4|RAM Protector|MM1134|Mitsumi|Week 7 1973|6735|
 
 ### Pokemon Silver Version USA
 
@@ -415,12 +458,14 @@ ROM Type:
 [Original](/images/MBC/originals/pokemon_crystal_usa_case.JPG)
 
 Release: DMG-AAXE-USA
+
 Case Stamp: 13
 
 ![DMG-KGDU-10](/images/MBC/pokemon_crystal_usa_pcb.JPG){:width="500px"}
 [Original](/images/MBC/originals/pokemon_crystal_usa_pcb.JPG)
 
 Board Type: DMG-KGDU-10
+
 ROM Type: DMG-AAXE-0
 
 ||Chip|Board Label|Mfr.|Date|Chip Label|
@@ -428,7 +473,7 @@ ROM Type: DMG-AAXE-0
 |U1|ROM|PRG|MX|---|DMG-AAXE-0|
 |U2|Mapper|MBC3A|Nintendo|---|MBC-3 B|
 |U3|RAM|RAM|BSI|Week 42 2000|BS62LV256SC-70|
-|U4|RAM Protector|MM1134|---|---|6735|
+|U4|RAM Protector|MM1134|Mitsumi|---|6735|
 
 ### Pokemon Silver Version JP
 
@@ -436,12 +481,14 @@ ROM Type: DMG-AAXE-0
 [Original](/images/MBC/originals/pokemon_silver_jp_case.JPG)
 
 Release: DMG-AAXJ-JPN
+
 Case Stamp: 12 A
 
 ![Cart](/images/MBC/pokemon_silver_jp_pcb.JPG){:width="500px"}
 [Original](/images/MBC/originals/pokemon_silver_jp_pcb.JPG)
 
 Board Type: DMG-KFDN-10
+
 ROM Type: 
 
 ||Chip|Board Label|Mfr.|Date|Chip Label|
@@ -449,7 +496,7 @@ ROM Type:
 |U1|ROM|PRG|MX|---|MX23C8003-20 DMG-AAXJ-1|
 |U2|Mapper|MBC3A|Nintendo|---|MBC-3 A|
 |U3|RAM|RAM|Sharp|Week 5 2000|LH52256CN-10LL|
-|U4|RAM Protector|MM1134|---|Week 40 1990|6735|
+|U4|RAM Protector|MM1134|Mitsumi|Week 40 1990|6735|
 
 ## MBC5
 
@@ -459,12 +506,14 @@ ROM Type:
 [Original](/images/MBC/originals/monster_rancher_case.JPG)
 
 Release: DMG-A6TE-USA
+
 Case Stamp: 00
 
 ![DMG-A08-01](/images/MBC/monster_rancher_pcb.JPG){:width="500px"}
 [Original](/images/MBC/originals/monster_rancher_pcb.JPG)
 
 Board Type: DMG-A08-01
+
 ROM Type: DMG-A6TE-0
 
 ||Chip|Board Label|Mfr.|Date|Chip Label|
@@ -483,12 +532,14 @@ ROM Type: DMG-A6TE-0
 [Original](/images/MBC/originals/pokemon_pinball_case_back.JPG)
 
 Release: DMG-VPHE-USA
+
 Case Stamp: 22
 
 ![DMG-A04-01](/images/MBC/pokemon_pinball_pcb.JPG){:width="500px"}
 [Original](/images/MBC/originals/pokemon_pinball_pcb.JPG)
 
 Board Type: DMG-A04-01
+
 ROM Type: 
 
 ||Chip|Board Label|Mfr.|Date|Label|
@@ -500,23 +551,7 @@ ROM Type:
 
 
 
-
-
-
-
-
-
-
 ---
-
----
-
-
-
-
-
-
-
 
 
 
@@ -530,12 +565,14 @@ Get picture of case and cartridge
 [Original](/images/MBC/originals/)
 
 Release: CGB-BY5J-JPN
+
 Case Stamp: 
 
 ![DMG-A08-10](/images/MBC/){:width="500px"}
 [Original](/images/MBC/originals/)
 
 Board Type: DMG-A08-10
+
 ROM Type: CGB-BY5J-0
 
 ||Chip|Board Label|Mfr.|Date|Chip Label|Datasheet|
@@ -556,6 +593,7 @@ I was lucky enough to find two copies at my local used game store, so we can com
 ![CGB-ARNE-USA](/images/MBC5Cart/mickey_racing_vlw.png){:width="500px"}
 
 Release: 
+
 Case Stamp: 
 
 #### Cart 1
@@ -563,6 +601,7 @@ Case Stamp:
 ![Cartridge 1](/images/MBC5Cart/mickey_racing_vuw.png){:width="500px"}
 
 Board Type: 
+
 ROM Type: 
 
 ||Chip|Type|Mfr.|Date|Label|Datasheet|
@@ -577,6 +616,7 @@ ROM Type:
 ![Cartridge 2](/images/MBC5Cart/mickey_racing_hoppe_cart.png){:width="500px"}
 
 Board Type: 
+
 ROM Type: 
 
 ||Chip|Type|Mfr.|Date|Label|Datasheet|
@@ -602,11 +642,13 @@ ROM Type:
 ![](/images/MBC/){:width="500px"}
 
 Release: 
+
 Case Stamp: 
 
 ![Cart](/images/MBC/){:width="500px"}
 
 Board Type: 
+
 ROM Type: 
 
 ||Chip|Board Label|Mfr.|Date|Chip Label|Datasheet|
