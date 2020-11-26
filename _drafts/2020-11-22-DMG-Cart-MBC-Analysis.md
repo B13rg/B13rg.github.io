@@ -8,7 +8,39 @@ image: /images/MBC/header.JPG
 
 ![Array of Carts](/images/MBC/header.JPG)
 
-Memory Bank Controllers were a part of many cartridge games developed for the Gameboy and Gmeboy color.
+Intro paragraph here
+
+- [The MBC](#the-mbc)
+- [Usage Statistics](#usage-statistics)
+- [The Cartridge Header](#the-cartridge-header)
+- [Cartridge Hardware](#cartridge-hardware)
+- [No MBC](#no-mbc)
+	- [Alleyway](#alleyway)
+	- [Dr. Mario](#dr-mario)
+	- [Tetris](#tetris)
+		- [Cart 1](#cart-1)
+		- [Cart 2](#cart-2)
+	- [Yakuman](#yakuman)
+- [MBC1](#mbc1)
+	- [Baseball](#baseball)
+	- [Frogger](#frogger)
+	- [Super Mario Land](#super-mario-land)
+- [MBC3](#mbc3)
+	- [Pokemon Gold Version](#pokemon-gold-version)
+	- [Pokemon Silver Version USA](#pokemon-silver-version-usa)
+	- [Pokemon Silver Version JP](#pokemon-silver-version-jp)
+- [MBC5](#mbc5)
+	- [Monster Rancher Battle Card GB](#monster-rancher-battle-card-gb)
+	- [Pokemon Pinball](#pokemon-pinball)
+	- [Yu-Gi-Oh 4](#yu-gi-oh-4)
+	- [Mickey's Racing Adventure](#mickeys-racing-adventure)
+		- [Cart 1](#cart-1-1)
+		- [Cart 2](#cart-2-1)
+	- [](#)
+
+## The MBC
+
+Memory Bank Controllers were a part of many cartridge games developed for the Gameboy and Gameboy color.
 It allowed the cartridge to have additional hardware that the Gameboy could utilize.
 The most common addition was external RAM, but different MBC's also allowed the use of timers, rumble, and even a light sensor.
 
@@ -52,11 +84,13 @@ To read more about the specifics, including a VHDL design, check out this [wiki 
 Gameboy cartridges primarily used the first 5 MBC types, with MBC6 and 7  reserved for special circumstances.
 The different types enabled developers to use hardware like real time clocks, RAM, batteries for saving, rumble, and even a light sensor.
 Multiple memory controllers were made to help control the cost of producing the cartridge.
-While it would be convenient to have a "One size fits all" controller that could dynamically accomodate add-ons and varying amounts of ROM and RAM, it would have been an expensive chip to produce.
+While it would be convenient to have a "One size fits all" controller that could dynamically accommodate add-ons and varying amounts of ROM and RAM, it would have been an expensive chip to produce.
 By producing a variety of types, game developers could select the MBC that would best accommodate their game.
 
+## Usage Statistics
+
 The [Game Boy hardware database](https://gbhwdb.gekkio.fi) is a community-created database of gameboy cartridges.
-It contains detailed information about cartridges and their internal componenets.
+It contains detailed information about cartridges and their internal components.
 There are 316 distinct game entries, out of 1,049 DMG + 576 GBC games (1,625 total).
 There are many games missing, but I figure it should be a random enough sample that we should at least be able to discern some trends from the data.
 
@@ -91,16 +125,13 @@ Query: `SELECT COUNT(DISTINCT "name"), COALESCE(NULLIF("mapper_kind",''), 'None'
 For the first 7 years, we really only see the MBC1 and MBC2 used.
 The MBC2 was used sparingly.
 It had 1/8th the ROM space of the MBC1, and only 128 Bytes of RAM that was split into 4-byte chunks.
-It seems that it was the simplest MBC available to game developers, meant for games that required more than just a ROM chip, but didn't need all the capablilties of MBC1.
-
-Even though it had a larger amount of RAM, it had limited ROM space compared to
-
+It seems that it was the simplest MBC available to game developers, meant for games that required more than just a ROM chip, but didn't need all the capabilities of MBC1.
 
 Between the different revisions of the MBC1, the MBC1B was used the most.
 There are a few MBC1A entries, but they were only present in Japanese titles during the first two years of the gameboy.
 The MBC1B probably fixed issues in the MBC1A, but I haven't been able to find any concrete evidence describing what those issues might be.
 I think the difference between the MBC1B and MBC1B1 was less severe, possibly something to do with power consumption or speed since it is only a "minor version" improvement.
-The other revision, MBC1B1, seemed to be used interchangebly with the normal MBC1B, as shown by the mapper type entries for `Donkey Kong Land III (USA, Europe) (Rev 1) (SGB Enhanced)`:
+The other revision, MBC1B1, seemed to be used interchangeably with the normal MBC1B, as shown by the mapper type entries for `Donkey Kong Land III (USA, Europe) (Rev 1) (SGB Enhanced)`:
 
 |MBC|PCB Date|
 |---|---|
@@ -124,22 +155,24 @@ We are able to see a similar trend here with the MBC1 and MBC5 in the two years 
 In 1990, you can see an increase of the available MBC types: "None" type, MBC1, and MBC2.
 Part of the growth in the year following the Gameboy DMG release can be contributed to the release dates of the Gameboy in April (JP), late July (USA), and late September (EU).
 I assume that by waiting until the year following the release, developers have a bit more time with the hardware and can apply more polish to their games.
-In 1991, we see a sharp dropoff in games with just a ROM, and a large increase of MBC1 type games.
+In 1991, we see a sharp drop off in games with just a ROM, and a large increase of MBC1 type games.
 
 We can see a similar trend in 1998-2000.
-Between 1998 and 1999, there was a large drop in MBC1 use, and a humoungous increase in MBC5.
+Between 1998 and 1999, there was a large drop in MBC1 use, and a humongous increase in MBC5.
 The MBC5 was a big improvement over the MBC1, and also had support for additional hardware additions to the cartridge.
-The MBC5 became availble with the release of the Gameboy color, and the sharp increase in use in 1999 and 2000.
+The MBC5 became available with the release of the Gameboy color, and the sharp increase in use in 1999 and 2000.
 
-In 2001, the Gameboy Advance was released, and with it a completly new cartridge.
+In 2001, the Gameboy Advance was released, and with it a completely new cartridge.
 The new cartridge was incompatible with the old type, mostly because the Gameboy Advance used an ARM processor instead of a Z-80 clone in the Gameboy DMG and color.
 This is the same reason the Nintendo DS is only able to play Advance games, nothing prior.
 
 With the release of the Gameboy Advance, we see a sharp decline in the number of titles released.
 Games were still released for the Gameboy Color up until 2003.
-Suprisingly the last Gameboy DMG games were released in Japan in 2001, over a decade since the handheld was first released.
+Surprisingly the last Gameboy DMG games were released in Japan in 2001, over a decade since the handheld was first released.
 
 ---
+
+## The Cartridge Header
 
 When preparing a game to be placed on a cartridge, a header is placed at the start of the ROM.
 This header is present on all cartridges from addresses `0x100-0x14F`.
@@ -182,7 +215,7 @@ Not only did it accommodate all the MBC plus hardware configurations, it also ha
 
 Given a cartridge ROM and this chart, it is very simple to find the cartridge type a game would have ran on by grabbing bytes at the right addresses.
 The cartridge header stores information like the first 16 characters of the game's title (`0x134-0x143`), cartridge type (`0x147`), region (`0x14a`), and even the nintendo logo (`0x104-0x133`).
-This is the same logo that is stored in the gameboy's boot loader, and is used to check if the cartridge is legitamant.
+This is the same logo that is stored in the Gameboy's boot loader, and is used to check if the cartridge is legitimate.
 If it is not correct, the game won't load.
 It also allowed Nintendo to have a stronger case against 3rd party companies making their own cartridges, as the nintendo logo is copyrighted.
 If you have ROMs of games, you can peek these values on the command line.
@@ -192,33 +225,42 @@ Here are some examples of the cart title and type:
 ```
 $ xxd -seek 0x134 -len 16  pokecrystal.gbc 
 00000134: 504d 5f43 5259 5354 414c 0042 5954 45c0  PM_CRYSTAL.BYTE.
+
 $ xxd -plain -seek 0x147 -len 1 pokecrystal.gbc 
 10
 $ # MBC3+TIMER+RAM+BATTERY
+```
 
+```
 $ xxd -seek 0x134 -len 16  'Pokemon Trading Card Game (U) [C][!].gbc' 
 00000134: 504f 4b45 4341 5244 0000 0041 5851 4580  POKECARD...AXQE.
+
 $ xxd -plain -seek 0x147 -len 1 'Pokemon Trading Card Game (U) [C][!].gbc' 
 1b
 $ # MBC5 + RAM + Battery
+```
 
+```
 $ xxd -seek 0x134 -len 16  'SpongeBob SquarePants - Legend of the Lost Spatula (USA).gbc' 
 00000134: 5342 5350 204c 4f54 4c53 2142 5150 45c0  SBSP LOTLS!BQPE.
+
 $ xxd -plain -seek 0x147 -len 1 'SpongeBob SquarePants - Legend of the Lost Spatula (USA).gbc' 
 19
 $ # MBC5
+```
 
+```
 $ xxd -seek 0x134 -len 16  'Game de Hakken!! Tamagotchi - Osutchi to Mesutchi (Japan) (SGB Enhanced).gb' 
 00000134: 4742 2054 414d 4147 4f54 4348 4920 3300  GB TAMAGOTCHI 3.
+
 $ xxd -plain -seek 0x147 -len 1 'Game de Hakken!! Tamagotchi - Osutchi to Mesutchi (Japan) (SGB Enhanced).gb' 
 fd
 $ # Bandai Tama5 (Built in alarm for when to feed your Tamagotchi!)
 ```
 
-
-
 ---
-## Hardware
+
+## Cartridge Hardware
 
 In this next section, I took pictures of most of my Gameboy games and recorded the different chips on the cart.
 They've been split into sections based on the MBC type the cartridge uses.
@@ -233,7 +275,7 @@ The game ID is in the format `[Handheld type]{3}-[Game identifier]{3,4}-[Region]
 For the games below, the handheld type is usually `DMG` for the original Gameboy and `CGB` for the Gameboy Color.
 The game identifier is usually 3 or 4 characters long, and is similar to the ID on the ROM chip.
 It uniquely identifies what game it is.
-The region is 2 or 3 charcters and describes the intended region of the game.
+The region is 2 or 3 characters and describes the intended region of the game.
 The most common that I've seen is `USA` and `JP`, but `EUR` for Europe and `AUS` for Australia also exist.
 Some carts also include a optional number at the end, most likely corresponding to the revision number of the game.
 
@@ -338,7 +380,7 @@ Board Type: DMG-AAA-03
 
 ROM Type: DMG-TRA-1
 
-||Chip|Board Label|Mfr.|Date|Label|
+||Chip|Board Label|Mfr.|Date|Chip Label|
 |---|---|---|---|---|---|
 |U1|ROM|PRG|Sharp|Week 9 1991|DMG-TRA-1|
 
@@ -484,12 +526,12 @@ Release: DMG-AAXJ-JPN
 
 Case Stamp: 12 A
 
-![Cart](/images/MBC/pokemon_silver_jp_pcb.JPG){:width="500px"}
+![DMG-KFDN-10](/images/MBC/pokemon_silver_jp_pcb.JPG){:width="500px"}
 [Original](/images/MBC/originals/pokemon_silver_jp_pcb.JPG)
 
 Board Type: DMG-KFDN-10
 
-ROM Type: 
+ROM Type: DMG-AAXJ-1
 
 ||Chip|Board Label|Mfr.|Date|Chip Label|
 |---|---|---|---|---|---|
@@ -540,9 +582,9 @@ Case Stamp: 22
 
 Board Type: DMG-A04-01
 
-ROM Type: 
+ROM Type: DMG-VPHE-0
 
-||Chip|Board Label|Mfr.|Date|Label|
+||Chip|Board Label|Mfr.|Date|Chip Label|
 |---|---|---|---|---|---|
 |U1|ROM|4M/8M MROM|MX|---|DMG-VPHE-0|
 |U2|MBC|MBC5|---|Week 33 1999|LZ9GB31|
@@ -604,7 +646,7 @@ Board Type:
 
 ROM Type: 
 
-||Chip|Type|Mfr.|Date|Label|Datasheet|
+||Chip|Type|Mfr.|Date|Chip Label|Datasheet|
 |---|---|---|---|---|---|---|
 |U1|ROM|LHMN5MT8|Sharp|---|CGB-ARNE-0 LHMN5MT8 Japan H2 9946 D|---|
 |U2|Mapper|MBC5 P-1 941U7M|---|---|MBC5 P-1 941U7M|---|
@@ -619,7 +661,7 @@ Board Type:
 
 ROM Type: 
 
-||Chip|Type|Mfr.|Date|Label|Datasheet|
+||Chip|Type|Mfr.|Date|Chip Label|Datasheet|
 |---|---|---|---|---|---|---|
 |U1|ROM|LHMN5MT8|Sharp|---|CGB-ARNE-0 LHMN5MT8 JAPAN H2 9946 D|---|
 |U2|Mapper|MBC5 P-1 942U7M|---|---|MBC5 P-1 941U7M|---|
@@ -659,7 +701,7 @@ ROM Type:
 |U4|RAM Protector|Board Label|Mfr.|Date|Chip Label|Datasheet|
 
 
-|Type|Mfr.|Date|Label|Datasheet|
+|Type|Mfr.|Date|Chip Label|Datasheet|
 
 
 
