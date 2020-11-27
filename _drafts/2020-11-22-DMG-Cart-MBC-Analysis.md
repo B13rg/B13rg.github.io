@@ -1,14 +1,25 @@
 ---
 layout: post
-title: "Gameboy Cart Memory Bank Controller Analysis"
+title: "Exploring the Gameboy Memory Bank Controller"
 category: [Games]
-excerpt: This computer is very interesting because it bridges the divide between new and old system technologies present during the 90s.  It's a time capsule of tech during a time when hardware and software were swiftly changing.
+excerpt: "Without a game cart, a Gameboy is just displays part of the Nintendo logo.  The bits and bytes contained within a cartridge created countless worlds and memories.  How did the Gameboy cartridges store such a wide variety of games, while also enabling things like save files, rumble, and even infrared communication?"
 image: /images/MBC/header.JPG
 ---
 
 ![Array of Carts](/images/MBC/header.JPG)
 
-Intro paragraph here
+Without a game cart, a Gameboy is just displays part of the Nintendo logo.
+The bits and bytes contained within a cartridge created countless worlds and memories.
+How did the Gameboy cartridges store such a wide variety of games, while also enabling things like save files, rumble, and even infrared communication?
+
+In this article, we will examine the Memory Bank Controllers (MBC) contained inside the cartridge, and how they enabled the worlds of Pokemon, Zelda, and countless other to become a reality in the hands of children and adults everywhere.
+
+To start, we will define what exactly a Memory Bank Controller is, and the different types that were available.
+We'll also analyze some usage statistics about how common they were in cartridges, and what types were used the most.
+
+Next we'll look at how the Gameboy determined the cartridge type by examining the game ROM header.
+Finally, we'll take a look at some real examples from my own game collection.
+
 
 - [The MBC](#the-mbc)
 - [Usage Statistics](#usage-statistics)
@@ -32,11 +43,6 @@ Intro paragraph here
 - [MBC5](#mbc5)
 	- [Monster Rancher Battle Card GB](#monster-rancher-battle-card-gb)
 	- [Pokemon Pinball](#pokemon-pinball)
-	- [Yu-Gi-Oh 4](#yu-gi-oh-4)
-	- [Mickey's Racing Adventure](#mickeys-racing-adventure)
-		- [Cart 1](#cart-1-1)
-		- [Cart 2](#cart-2-1)
-	- [](#)
 
 ## The MBC
 
@@ -211,7 +217,7 @@ Not only did it accommodate all the MBC plus hardware configurations, it also ha
 |FDh|BANDAI TAMA5|
 |FEh|HuC3|
 |FFh|HuC1+RAM+BATTERY|
-||Source: [https://gbdev.io/pandocs/#_0147-cartridge-type](https://gbdev.io/pandocs/#_0147-cartridge-type)|
+||[Source](https://gbdev.io/pandocs/#_0147-cartridge-type)|
 
 Given a cartridge ROM and this chart, it is very simple to find the cartridge type a game would have ran on by grabbing bytes at the right addresses.
 The cartridge header stores information like the first 16 characters of the game's title (`0x134-0x143`), cartridge type (`0x147`), region (`0x14a`), and even the nintendo logo (`0x104-0x133`).
@@ -268,8 +274,6 @@ For each game, there is a picture of the cartridge and the PCB.
 For webpage size reasons, there is a link below each image to the full size original.
 There is also a table below each game that notates the board and chip labels.
 
-
-
 The cases contain two bits of interesting info: the game ID and a case stamp.
 The game ID is in the format `[Handheld type]{3}-[Game identifier]{3,4}-[Region]{2,3}-[Revision]{0,1}`.
 For the games below, the handheld type is usually `DMG` for the original Gameboy and `CGB` for the Gameboy Color.
@@ -296,9 +300,7 @@ Only revisions I've seen here and in the Gameboy hardware database are `01` and 
 The ROM chips follow a similar format to the game cartridge, only leaving off the region code.
 ROM chips use the format `[Handheld type]{3}-[Game identifier]{3,4}-[Revision]{1}`.
 
-
-
-
+Now on to the pictures!
 
 ## No MBC
 
@@ -441,7 +443,7 @@ Case Stamp: 12
 
 Board Type: DMG-BEAN-10
 
-ROM Type: 
+ROM Type: DMG-AFGE-0
 
 ||Chip|Board Label|Mfr.|Date|Chip Label|
 |---|---|---|---|---|---|---|
@@ -485,7 +487,7 @@ Case Stamp: 20
 
 Board Type: DMG-KGDU-10
 
-ROM Type: 
+ROM Type: DMG-AAUE-0
 
 ||Chip|Board Label|Mfr.|Date|Chip Label|
 |---|---|---|---|---|---|
@@ -590,130 +592,3 @@ ROM Type: DMG-VPHE-0
 |U2|MBC|MBC5|---|Week 33 1999|LZ9GB31|
 |U3|RAM|64K SRAM|Sharp|Week 9 1999|LH5164AN-10L|
 |U4|RAM Protector|MM1134A|Atmel|---|---|
-
-
-
----
-
-
-
-
-
-### Yu-Gi-Oh 4
-
-Get picture of case and cartridge
-
-![CGB-BY5J-JPN](/images/MBC5Cart/yu_gi_oh_4.JPG){:width="700px"}
-[Original](/images/MBC/originals/)
-
-Release: CGB-BY5J-JPN
-
-Case Stamp: 
-
-![DMG-A08-10](/images/MBC/){:width="500px"}
-[Original](/images/MBC/originals/)
-
-Board Type: DMG-A08-10
-
-ROM Type: CGB-BY5J-0
-
-||Chip|Board Label|Mfr.|Date|Chip Label|Datasheet|
-|---|---|---|---|---|---|---|
-|U1|ROM|16M/32M/MROM|MX|Date|LH5164AN-10L|---|
-|U2|Mapper|MBC-5|Nintendo|---|MBC5|---|
-|U3|RAM|64K-SRAM|Sharp|Week 37 2000|CGB-BY5J-0|---|
-|U4|RAM Protector|MM1134A|---|---|6735|---|W
-
-### Mickey's Racing Adventure
-
-Mickey's Racing Adventrue came out in
-It uses an MBC5 with 8Kb of RAM.
-
-I was lucky enough to find two copies at my local used game store, so we can compare them directly.
-
-
-![CGB-ARNE-USA](/images/MBC5Cart/mickey_racing_vlw.png){:width="500px"}
-
-Release: 
-
-Case Stamp: 
-
-#### Cart 1
-
-![Cartridge 1](/images/MBC5Cart/mickey_racing_vuw.png){:width="500px"}
-
-Board Type: 
-
-ROM Type: 
-
-||Chip|Type|Mfr.|Date|Chip Label|Datasheet|
-|---|---|---|---|---|---|---|
-|U1|ROM|LHMN5MT8|Sharp|---|CGB-ARNE-0 LHMN5MT8 Japan H2 9946 D|---|
-|U2|Mapper|MBC5 P-1 941U7M|---|---|MBC5 P-1 941U7M|---|
-|U3|RAM|LH5164AN-10L|Sharp|---|LH5164AN-10L SHARP A9944 1CB|[Link](https://media.digikey.com/pdf/Data%20Sheets/Sharp%20PDFs/LH5164A_AH.pdf)|
-|U4|RAM Protector|MM1134A|Atmel|---|941 134A|---|
-
-#### Cart 2
-
-![Cartridge 2](/images/MBC5Cart/mickey_racing_hoppe_cart.png){:width="500px"}
-
-Board Type: 
-
-ROM Type: 
-
-||Chip|Type|Mfr.|Date|Chip Label|Datasheet|
-|---|---|---|---|---|---|---|
-|U1|ROM|LHMN5MT8|Sharp|---|CGB-ARNE-0 LHMN5MT8 JAPAN H2 9946 D|---|
-|U2|Mapper|MBC5 P-1 942U7M|---|---|MBC5 P-1 941U7M|---|
-|U3|RAM|HY6264A|Hynix|---|HY6264A LJ-70 9936B KOREA|[Link](http://pdf.datasheetcatalog.com/datasheet/hynix/HY6264A-15.pdf)|
-|U4|RAM Protector|MM1134A|Atmel|941 134A|---|---|
-
-
-
-----
-[^1] https://gbdev.gg8.se/wiki/articles/The_Cartridge_Header
-
-
-
-
-
-----
-
-### 
-
-![](/images/MBC/){:width="500px"}
-
-Release: 
-
-Case Stamp: 
-
-![Cart](/images/MBC/){:width="500px"}
-
-Board Type: 
-
-ROM Type: 
-
-||Chip|Board Label|Mfr.|Date|Chip Label|Datasheet|
-|---|---|---|---|---|---|---|
-|U1|ROM|Board Label|Mfr.|Date|Chip Label|Datasheet|
-|U2|Mapper|Board Label|Mfr.|Date|Chip Label|Datasheet|
-|U3|RAM|Board Label|Mfr.|Date|Chip Label|Datasheet|
-|U4|RAM Protector|Board Label|Mfr.|Date|Chip Label|Datasheet|
-
-
-|Type|Mfr.|Date|Chip Label|Datasheet|
-
-
-
-
-
----
-
-<!-- Image example 
-![MS-DOS Family Tree](/images/folder/filename.png){:width="700px"}
--->
-<!-- Link example 
-[Link to full-size image](/images/folder/filename.png)
--->
-<!-- Separator -->
----
