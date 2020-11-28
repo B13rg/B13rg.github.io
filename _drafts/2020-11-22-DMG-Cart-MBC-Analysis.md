@@ -2,23 +2,22 @@
 layout: post
 title: "Exploring the Gameboy Memory Bank Controller"
 category: [Games]
-excerpt: "Without a game cart, a Gameboy is just displays part of the Nintendo logo.  The bits and bytes contained within a cartridge created countless worlds and memories.  How did the Gameboy cartridges store such a wide variety of games, while also enabling things like save files, rumble, and even infrared communication?"
+excerpt: Without a game cartridge, a Gameboy is just displays "Gameboy" and freezes.  Once slotted in, the bits and bytes contained within a cartridge created countless worlds and memories.  How did a Gameboy cartridges store such a wide variety of games, while also enabling things like save files, rumble, and even infrared communication?
 image: /images/MBC/header.JPG
 ---
 
 ![Array of Carts](/images/MBC/header.JPG)
 
-Without a game cart, a Gameboy is just displays part of the Nintendo logo.
-The bits and bytes contained within a cartridge created countless worlds and memories.
-How did the Gameboy cartridges store such a wide variety of games, while also enabling things like save files, rumble, and even infrared communication?
+Without a game cartridge, a Gameboy is just displays "Gameboy" and freezes.
+Once slotted in, the bits and bytes contained within a cartridge created countless worlds and memories.
+How did a Gameboy cartridges store such a wide variety of games, while also enabling things like save files, rumble, and even infrared communication?
 
 In this article, we will examine the Memory Bank Controllers (MBC) contained inside the cartridge, and how they enabled the worlds of Pokemon, Zelda, and countless other to become a reality in the hands of children and adults everywhere.
-
 To start, we will define what exactly a Memory Bank Controller is, and the different types that were available.
 We'll also analyze some usage statistics about how common they were in cartridges, and what types were used the most.
 
 Next we'll look at how the Gameboy determined the cartridge type by examining the game ROM header.
-Finally, we'll take a look at some real examples from my own game collection.
+Finally, we'll take a look at some real examples from my own game collection and see how the MBC was applied in practice.
 
 
 - [The MBC](#the-mbc)
@@ -46,27 +45,26 @@ Finally, we'll take a look at some real examples from my own game collection.
 
 ## The MBC
 
-Memory Bank Controllers were a part of many cartridge games developed for the Gameboy and Gameboy color.
-It allowed the cartridge to have additional hardware that the Gameboy could utilize.
-The most common addition was external RAM, but different MBC's also allowed the use of timers, rumble, and even a light sensor.
+Memory Bank Controller were a part of many cartridge games developed for the Gameboy and Gameboy color.
+It allowed the cartridge to not only address larger amounts of RAM and ROM, but to also have additional hardware that the Gameboy could utilize.
+The MBCs were most commonly paired with larger ROM and additional RAM, but different MBC's also allowed the use of real time clocks, rumble, and even a light sensor.
 
-The MBC allowed the gameboy to use larger amounts of storage and ram than it's addressing would usually allow.
-The cartridge had 16 address lines, allowing the Gameboy to address a maximum of 64KB of ROM on the cartridge.
-In practice, much of that address space was taken up by other functions of the system, like 8KB of VRAM, 8KB of WRAM, and I/O registers.
-
-Data on a cartridge's ROM would be split into 16KB "banks".
-The first bank, `00`, would be always mounted at `0x0000-0x3FFF`.
-This first bank usually contained code that was used commonly, as it would always be present and accessible by the program.
-The game would be able to swap out any additional banks by sending a few special instructions.
-The selected bank would be mounted from `0x4000-0x7FFF`.
-
-Games like Tetris and Dr. Mario were 32KB or less in size, so didn't require a MBC to operate.
+A normal cartridge had 16 address lines, allowing the Gameboy to address a maximum of 64KB of ROM on the cartridge without an MBC.
+In practice the maximum ROM size of a game without an MBC was 32KB.
+Games like [Tetris](#tetris) and [Dr. Mario](#dr-mario) were 32KB or less in size, so didn't require a MBC to operate.
 This allowed for very simple PCB layouts, as the single ROM chip would be directly connected to the cartridge pins.
+By placing an MBC between the console and the cartridge ROM/RAM, it could translate special reads and writes to facilitate the bank switching.
 
-RAM banks behaved similarly, instead only mounting 8KB at a time from `0xA000-0xBFFF` and was able to be read and written to.
-For a deeper dive into how games performed bank switches, check out my article here: [Gameboy DMG ROM and RAM Bank Switching](Gameboy-Bank-Switching/).
+ROM data on a cartridge would be split into 16KB "banks" that could be swapped out at will by the game.
+The first bank, `00`, would be always mounted at `0x0000-0x3FFF` in the Gameboy's memory map.
+This first bank usually contained code that was used commonly, as it would always be present and accessible by the program.
+The game would be able to swap out any additional banks by writing values to special areas of the memory map, which would instruct the MBC what bank to switch to.
+The selected bank would be mounted from `0x4000-0x7FFF`, right next to the area of memory that was bank `00`.
 
-When developing a game, it was important to consider the size of the final product.
+RAM banks behaved similarly, though it only mounted 8KB at a time at addresses `0xA000-0xBFFF` and was able to be read and written to.
+For a deeper dive into the specifics of how games performed bank switches, check out my article here: [Gameboy DMG ROM and RAM Bank Switching](Gameboy-Bank-Switching/).
+
+When developing a game, it was and still is important to consider the size of the final product (unless you're Call of Duty).
 The size of the game and add-ons like RAM controlled what type of memory bank controller would be required.
 The following types of memory bank controllers were usually available for use:
 
@@ -84,10 +82,12 @@ The following types of memory bank controllers were usually available for use:
 |HuC-3|?|?|Customer MBC designed by Hudson that adds a RTC and piezo buzzer to the HuC-1|
 ||||[Source](https://mgba-emu.github.io/gbdoc)|
 
-MMM01 is a “metamapper” in that it is used in game collection (Momotarō Collection 2 and Taito Variety Pack) to provide a boot menu before locking itself down into a separate “normal” mapper mode that only exposes certain banks to the game inside the collection.
-To read more about the specifics, including a VHDL design, check out this [wiki page](https://wiki.tauwasser.eu/view/MMM01).
+A note about the MMM01, it is a “metamapper” that is used in the game collection (Momotarō Collection 2 and Taito Variety Pack).
+It provides a boot menu that allows the user to select a game before locking itself down into a separate “normal” mapper mode that only exposes certain banks to the game inside the collection.
+To read more about the specifics, including an interesting VHDL design, check out this [wiki page](https://wiki.tauwasser.eu/view/MMM01).
 
-Gameboy cartridges primarily used the first 5 MBC types, with MBC6 and 7  reserved for special circumstances.
+Most of the time, Gameboy cartridges either had no MBC at all or used MBC type 1,2, and 5.
+MBC 3, 6 and 7 were usually reserved for special circumstances and didn't see as much use.
 The different types enabled developers to use hardware like real time clocks, RAM, batteries for saving, rumble, and even a light sensor.
 Multiple memory controllers were made to help control the cost of producing the cartridge.
 While it would be convenient to have a "One size fits all" controller that could dynamically accommodate add-ons and varying amounts of ROM and RAM, it would have been an expensive chip to produce.
@@ -96,12 +96,13 @@ By producing a variety of types, game developers could select the MBC that would
 ## Usage Statistics
 
 The [Game Boy hardware database](https://gbhwdb.gekkio.fi) is a community-created database of gameboy cartridges.
-It contains detailed information about cartridges and their internal components.
-There are 316 distinct game entries, out of 1,049 DMG + 576 GBC games (1,625 total).
-There are many games missing, but I figure it should be a random enough sample that we should at least be able to discern some trends from the data.
+It contains detailed information about various cartridges and their internal components.
+There are 316 distinct Gameboy game entries, out of 1,049 DMG + 576 GBC games (1,625 total).
+There are many games missing, but I figure it should be a good enough sample that we should at least be able to discern some trends from the data.
 
 I grabbed a data dump of it all and ran some queries over it to get some more information about what types of bank controllers were used over time.
-The query counted how many distinct game titles used each MBC type by year.
+You can view the same dataset I used [here](/files/MBC/cartridges.csv), or grab the most up-to-date copy from [here](https://gbhwdb.gekkio.fi/static/export/cartridges.csv).
+The query I used counted how many distinct game titles used each MBC type by year.
 It gives a rough view of both the number of games released and the controller types used in those games each year.
 
 ![Chart of ](/images/MBC/MBC_Types_Year.png)
@@ -124,8 +125,6 @@ It gives a rough view of both the number of games released and the controller ty
 |2002|||||||||2|4||||||||2002|
 |2003|||||||||1|||||||||2003|
 
-[Datasource](/files/MBC/cartridges.csv)
-
 Query: `SELECT COUNT(DISTINCT "name"), COALESCE(NULLIF("mapper_kind",''), 'None'), "board_year" FROM cart WHERE DISTINCT "name" GROUP BY "mapper_kind", "board_year" ORDER BY "board_year", "mapper_kind";`
 
 For the first 7 years, we really only see the MBC1 and MBC2 used.
@@ -134,7 +133,7 @@ It had 1/8th the ROM space of the MBC1, and only 128 Bytes of RAM that was split
 It seems that it was the simplest MBC available to game developers, meant for games that required more than just a ROM chip, but didn't need all the capabilities of MBC1.
 
 Between the different revisions of the MBC1, the MBC1B was used the most.
-There are a few MBC1A entries, but they were only present in Japanese titles during the first two years of the gameboy.
+There are a few MBC1A entries, but they were only present sin Japanese titles during the first two years of the gameboy.
 The MBC1B probably fixed issues in the MBC1A, but I haven't been able to find any concrete evidence describing what those issues might be.
 I think the difference between the MBC1B and MBC1B1 was less severe, possibly something to do with power consumption or speed since it is only a "minor version" improvement.
 The other revision, MBC1B1, seemed to be used interchangeably with the normal MBC1B, as shown by the mapper type entries for `Donkey Kong Land III (USA, Europe) (Rev 1) (SGB Enhanced)`:
@@ -147,7 +146,7 @@ The other revision, MBC1B1, seemed to be used interchangeably with the normal MB
 |MBC1B|Jun/1999|
 
 The MBC3 only started to be used in 1998, the same year the gameboy color was released.
-Before that point, we really only see none, MBC1 and MBC2 types used.
+Before that point, we really only see games use no MBC, or the MBC1 and MBC2 types.
 Once it was released, it was used primarily for newer Gameboy Color games, but it also saw some use in Gameboy-first type games, like [Mary Kate and Ashley's Pocket Planner](https://www.youtube.com/watch?v=jbbMLLPZNnU).
 
 At the same time, we can also see hardware lifecycle events for the MBC3 over the years it was used.
