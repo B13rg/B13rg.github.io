@@ -45,7 +45,7 @@ Table of Contents
 - [MBC5](#mbc5)
 	- [Monster Rancher Battle Card GB](#monster-rancher-battle-card-gb)
 	- [Pokemon Pinball](#pokemon-pinball)
-- [Links and Sources](#links-and-sources)
+- [Further Reading](#further-reading)
 
 ---
 
@@ -598,9 +598,9 @@ ROM Type: DMG-VPHE-0
 |U4|RAM Protector|MM1134A|Atmel|---|---|
 
 
-## Links and Sources
+## Further Reading
 
-* [My other article on Gameboy Bank Switching](Gameboy-Bank-Switching/)
+* [My article on Gameboy Bank Switching](Gameboy-Bank-Switching/)
 * [My article on the Gameboy DMG](Gameboy_DMG/)
 
 * [Info about MBC6](https://gbdev.gg8.se/forums/viewtopic.php?id=544)
