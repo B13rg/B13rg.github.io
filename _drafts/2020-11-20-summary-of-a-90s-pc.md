@@ -80,7 +80,7 @@ It would have been only useful for making beeping noises, which is why a sound c
 The only fan exhaust seems to be in the front.
 While there is a grille in the back,  the front has a spot where a use could mount a small fan.
 It wouldn't be too effective though, the cutouts for air on the front of the case wouldn't have allowed much air to pass through.
-While probably not too much of a problem back then, computer's today would absolutly suffocate in a case like this unless some modifications were made.
+While probably not too much of a problem back then, computer's today would absolutely suffocate in a case like this unless some modifications were made.
 
 Sadly, there are no "maker marks" for the case except for a "Made in China" sticker that was stuck on the bottom of the case.
 
@@ -217,6 +217,8 @@ Here's a quick summary of the remaining bells and whistles present on the board.
 ## Processor: AMD-K6-2
 
 ![AMD-K6-2 Processor lid](/images/OldPC/Processor.JPG)
+
+![AMD-K6-2 Processor back](/images/OldPC/Processor_back.JPG)
 
 Text on processor:
 
