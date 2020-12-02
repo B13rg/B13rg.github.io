@@ -19,6 +19,9 @@ We'll also analyze some usage statistics about how common they were in cartridge
 Next we'll look at how the Gameboy determined the cartridge type by examining the game ROM header.
 Finally, we'll take a look at some real examples from my own game collection and see how the MBC was applied in practice.
 
+---
+
+Table of Contents
 
 - [The MBC](#the-mbc)
 - [Usage Statistics](#usage-statistics)
@@ -42,12 +45,15 @@ Finally, we'll take a look at some real examples from my own game collection and
 - [MBC5](#mbc5)
 	- [Monster Rancher Battle Card GB](#monster-rancher-battle-card-gb)
 	- [Pokemon Pinball](#pokemon-pinball)
+- [Links and Sources](#links-and-sources)
+
+---
 
 ## The MBC
 
 Memory Bank Controller were a part of many cartridge games developed for the Gameboy and Gameboy color.
 It allowed the cartridge to not only address larger amounts of RAM and ROM, but to also have additional hardware that the Gameboy could utilize.
-The MBCs were most commonly paired with larger ROM and additional RAM, but different MBC's also allowed the use of real time clocks, rumble, and even a light sensor.
+The MBCs were most commonly paired with larger ROM and additional RAM, but different MBCs also allowed the use of real time clocks, rumble, and even a light sensor.
 
 A normal cartridge had 16 address lines, allowing the Gameboy to address a maximum of 64KB of ROM on the cartridge without an MBC.
 In practice the maximum ROM size of a game without an MBC was 32KB.
@@ -61,32 +67,35 @@ This first bank usually contained code that was used commonly, as it would alway
 The game would be able to swap out any additional banks by writing values to special areas of the memory map, which would instruct the MBC what bank to switch to.
 The selected bank would be mounted from `0x4000-0x7FFF`, right next to the area of memory that was bank `00`.
 
-RAM banks behaved similarly, though it only mounted 8KB at a time at addresses `0xA000-0xBFFF` and was able to be read and written to.
-For a deeper dive into the specifics of how games performed bank switches, check out my article here: [Gameboy DMG ROM and RAM Bank Switching](Gameboy-Bank-Switching/).
+RAM banks behaved similarly, though it only mounted 8KB at a time.
+That data was mounted at addresses `0xA000-0xBFFF` and was able to be both read and written to (as one would expect).
+Many games took advantage of having extra RAM on the cartridge because the Gameboy DMG only had 8KB available internally.
+The Gameboy color bumped that to 32KB, but that could still be constraining for larger titles.
+For a deeper dive into the specifics of how games performed ROM and RAM bank switching, check out my article here: [Gameboy DMG ROM and RAM Bank Switching](Gameboy-Bank-Switching/).
 
 When developing a game, it was and still is important to consider the size of the final product (unless you're Call of Duty).
 The size of the game and add-ons like RAM controlled what type of memory bank controller would be required.
 The following types of memory bank controllers were usually available for use:
 
 |Type|Max ROM|Max RAM|Info|
-|None|32KB|0|No bank controller, just a ROM chip|
+|None|32KB|8KB|No bank controller, just a ROM chip and potentially 1 bank's worth of RAM|
 |MBC1|2MB|32KB|The basic Gameboy MBC|
 |MBC2|256KB|512x4 bits|Data in RAM consists of 4 bit values|
-|MBC3|2MB|64KB|Supported addition of a real time clock|
-|MBC5|8MB|128KB|Supported the light sensor, and a rumble motor|
-|MBC6|8KB+8KB|4KB|Only used for one game: Net de Get: Minigame @ 100|
-|MBC7|?|?|Contained additional EEPROM and 2-axis accelerometer|
-|MMM01|?|?|A "metamapper" for a game collection, which switches between sets of banks|
-|Tama5|?|?|Customer MBC designed by Bandai|
+|MBC3|2MB|64KB|Similar to MBC1, also included addition of a real time clock|
+|MBC5|8MB|1MB|Supported the light sensor, and a rumble motor|
+|MBC6|1MB|32KB|Only used for one game: Net de Get: Minigame @ 100.  Had separate, switchable ROM and RAM sets plus flash memory.  ROM banks were 8KB and RAM banks were 4KB|
+|MBC7|8MB|1MB|Contained additional 256 byte EEPROM and 2-axis accelerometer.  Similar to MBC5|
+|MMM01|2MB|32KB|A "metamapper" for a game collection, which switches between sets of banks|
+|Tama5|?|?|Custom MBC designed by Bandai for a single game, Tamagotchi 3|
 |HuC-1|2MB|32KB|Customer MBC designed by Hudson, supports infrared LED input.|
-|HuC-3|?|?|Customer MBC designed by Hudson that adds a RTC and piezo buzzer to the HuC-1|
-||||[Source](https://mgba-emu.github.io/gbdoc)|
+|HuC-3|2MB|32KB|Customer MBC designed by Hudson that adds a RTC and piezo buzzer to the HuC-1|
+||||[Source 1](https://mgba-emu.github.io/gbdoc) [Source 2](https://gbdev.io/pandocs/#memory-bank-controllers)|
 
 A note about the MMM01, it is a “metamapper” that is used in the game collection (Momotarō Collection 2 and Taito Variety Pack).
 It provides a boot menu that allows the user to select a game before locking itself down into a separate “normal” mapper mode that only exposes certain banks to the game inside the collection.
 To read more about the specifics, including an interesting VHDL design, check out this [wiki page](https://wiki.tauwasser.eu/view/MMM01).
 
-Most of the time, Gameboy cartridges either had no MBC at all or used MBC type 1,2, and 5.
+Gameboy cartridges most commonly used no MBC at all, or MBC type 1,2, and 5.
 MBC 3, 6 and 7 were usually reserved for special circumstances and didn't see as much use.
 The different types enabled developers to use hardware like real time clocks, RAM, batteries for saving, rumble, and even a light sensor.
 Multiple memory controllers were made to help control the cost of producing the cartridge.
@@ -96,11 +105,11 @@ By producing a variety of types, game developers could select the MBC that would
 ## Usage Statistics
 
 The [Game Boy hardware database](https://gbhwdb.gekkio.fi) is a community-created database of gameboy cartridges.
-It contains detailed information about various cartridges and their internal components.
+It contains detailed information and photos of various cartridges and their internal components.
 There are 316 distinct Gameboy game entries, out of 1,049 DMG + 576 GBC games (1,625 total).
 There are many games missing, but I figure it should be a good enough sample that we should at least be able to discern some trends from the data.
 
-I grabbed a data dump of it all and ran some queries over it to get some more information about what types of bank controllers were used over time.
+I grabbed a data dump, loaded it into sqlite3 and ran some queries over it to get some more information about what types of bank controllers were used over time.
 You can view the same dataset I used [here](/files/MBC/cartridges.csv), or grab the most up-to-date copy from [here](https://gbhwdb.gekkio.fi/static/export/cartridges.csv).
 The query I used counted how many distinct game titles used each MBC type by year.
 It gives a rough view of both the number of games released and the controller types used in those games each year.
@@ -129,14 +138,15 @@ Query: `SELECT COUNT(DISTINCT "name"), COALESCE(NULLIF("mapper_kind",''), 'None'
 
 For the first 7 years, we really only see the MBC1 and MBC2 used.
 The MBC2 was used sparingly.
-It had 1/8th the ROM space of the MBC1, and only 128 Bytes of RAM that was split into 4-byte chunks.
-It seems that it was the simplest MBC available to game developers, meant for games that required more than just a ROM chip, but didn't need all the capabilities of MBC1.
+In terms of ROM space, it had 1/8th the space of the MBC1 but 8x the space of just a ROM with no MBC.
+It also had 128 Bytes of RAM that was split into 4-byte chunks.
+It seems that it was the simplest MBC available to game developers, meant for games that required more storage than just a ROM chip, but didn't need all the capabilities of MBC1.
 
 Between the different revisions of the MBC1, the MBC1B was used the most.
-There are a few MBC1A entries, but they were only present sin Japanese titles during the first two years of the gameboy.
-The MBC1B probably fixed issues in the MBC1A, but I haven't been able to find any concrete evidence describing what those issues might be.
+There are a few MBC1A entries, but they were only present in Japanese titles during the first two years of the gameboy.
+The MBC1B probably fixed bugs present in the MBC1A, but I haven't been able to find any concrete evidence describing what those issues might be, I'm just going of the naming scheme.
 I think the difference between the MBC1B and MBC1B1 was less severe, possibly something to do with power consumption or speed since it is only a "minor version" improvement.
-The other revision, MBC1B1, seemed to be used interchangeably with the normal MBC1B, as shown by the mapper type entries for `Donkey Kong Land III (USA, Europe) (Rev 1) (SGB Enhanced)`:
+The MBC1B1 seemed to be used interchangeably with the normal MBC1B, as shown by the mapper type entries for `Donkey Kong Land III (USA, Europe) (Rev 1) (SGB Enhanced)`, where we can see it using both types over a period of two years:
 
 |MBC|PCB Date|
 |---|---|
@@ -145,87 +155,83 @@ The other revision, MBC1B1, seemed to be used interchangeably with the normal MB
 |MBC1B1|Aug/1998|
 |MBC1B|Jun/1999|
 
-The MBC3 only started to be used in 1998, the same year the gameboy color was released.
-Before that point, we really only see games use no MBC, or the MBC1 and MBC2 types.
-Once it was released, it was used primarily for newer Gameboy Color games, but it also saw some use in Gameboy-first type games, like [Mary Kate and Ashley's Pocket Planner](https://www.youtube.com/watch?v=jbbMLLPZNnU).
+The MBC3 only started to be used in 1998, the same year the Gameboy Color was released.
+Before that point, we really only see games use an MBC1, MBC2, or no MBC at all.
+Once the MBC3 was released, it was used primarily for newer Gameboy Color games, but it also saw some use in games targeted for the Gameboy DMG, like [Mary Kate and Ashley's Pocket Planner](https://www.youtube.com/watch?v=jbbMLLPZNnU).
 
-At the same time, we can also see hardware lifecycle events for the MBC3 over the years it was used.
+Similar to the MBC1, we can also see hardware lifecycle events for the MBC3 over the years it was used.
 It seems that the change from MBC3 -> MBC3A -> MBC3B was much more absolute than MBC1A -> MBC1B -> MBC1B1.
-After 1998, we don't see any MBC3 entries and after 2000, no MBC3A entries.
-The fact that we don't see any use of a previous version in the year following the introduction of newer version makes me think that the new versions fixed bugs in the hardware, instead of performance improvements like the MBC1B -> MBC1B1 update.
+After 1998, Nintendo seemed to transition fully to the MBC3A, as we don't see any MBC3 entries;  after 2000 we see the same trend with the MBC3A and MBC3B.
+The fact that we don't see any use of a previous version in the year following the introduction of newer version leads me reason that the new versions fixed bugs in the hardware, instead of performance improvements like the MBC1B -> MBC1B1 update.
 
 When a new console is released, it usually takes a little while for game developers to start using it to it's fullest potential.
-We are able to see a similar trend here with the MBC1 and MBC5 in the two years following each of their releases.
+We are able to see that practice here with the MBC1 and MBC5 in the two years following each of their releases.
 
-In 1990, you can see an increase of the available MBC types: "None" type, MBC1, and MBC2.
+In 1990, you can see an increase of use across the available MBC types: "None", MBC1, and MBC2.
 Part of the growth in the year following the Gameboy DMG release can be contributed to the release dates of the Gameboy in April (JP), late July (USA), and late September (EU).
 I assume that by waiting until the year following the release, developers have a bit more time with the hardware and can apply more polish to their games.
 In 1991, we see a sharp drop off in games with just a ROM, and a large increase of MBC1 type games.
+From 1992 to 1995, all the games end up using an MBC. with MBC1B and MBC1B1 seeing the bulk of the action.
 
-We can see a similar trend in 1998-2000.
+There is a similar trend with the adoption of the MBC5 between 1998 and 2000.
 Between 1998 and 1999, there was a large drop in MBC1 use, and a humongous increase in MBC5.
 The MBC5 was a big improvement over the MBC1, and also had support for additional hardware additions to the cartridge.
-The MBC5 became available with the release of the Gameboy color, and the sharp increase in use in 1999 and 2000.
+1998 had about 50% of the games use a MBC1 style controller, with varied use across the other types.
+In 1999 however, there is a huge drop in MBC1 use and a large jump in MBC5 use.
+The MBC5 became available with the release of the Gameboy color (1998), and the sharp increase in use in 1999 and 2000 show how valuable the extra capabilities of the controller were.
+After 1999, we don't see any more of the MBC1 and just a smattering of use of ROMs without an MBC.
 
-In 2001, the Gameboy Advance was released, and with it a completely new cartridge.
-The new cartridge was incompatible with the old type, mostly because the Gameboy Advance used an ARM processor instead of a Z-80 clone in the Gameboy DMG and color.
+In 2001, the Gameboy Advance was released, and with it a completely new cartridge called the GamePak.
+The new cartridge was incompatible with the old type, primarily because the Gameboy Advance used an ARM processor instead of a Z-80 clone like the Gameboy DMG and CGB.
 This is the same reason the Nintendo DS is only able to play Advance games, nothing prior.
+The new cartridge had 24 address lines instead of 16, and the entire cartridge ROM was in the memory map presented to the game, removing the need for bank switching.
+You can read more about the GamePak cartridge [here](https://reinerziegler.de.mirrors.gg8.se/GBA/gba.htm).
 
 With the release of the Gameboy Advance, we see a sharp decline in the number of titles released.
 Games were still released for the Gameboy Color up until 2003.
-Surprisingly the last Gameboy DMG games were released in Japan in 2001, over a decade since the handheld was first released.
+Surprisingly, the last Gameboy DMG games were released in Japan in 2001, over a decade since the handheld was first released.
 
 ---
 
 ## The Cartridge Header
 
+When a cartridge is inserted into a Gameboy, it needs some way to communicate it's hardware properties to the boot loader.
+This is done through the cartridge header.
 When preparing a game to be placed on a cartridge, a header is placed at the start of the ROM.
-This header is present on all cartridges from addresses `0x100-0x14F`.
-It's the first thing that is read by the Gameboy, and contains bits of information describing different properties of software and hardware.
+This header is present on all cartridges at addresses `0x100-0x14F`.
+It's the first thing that is read by the Gameboy and contains bits of information describing different properties of software and hardware.
 
-The cartridge type is stored as a hex code at address `0x147`.
-The hex code described the hardware configuration of the game cartridge.
-Not only did it accommodate all the MBC plus hardware configurations, it also had codes for special cartridges like the pocket camera and 
-
-|Code|Type|
-|00h|ROM ONLY|
-|01h|MBC1|
-|02h|MBC1+RAM|
-|03h|MBC1+RAM+BATTERY|
-|05h|MBC2|
-|06h|MBC2+BATTERY|
-|08h|ROM+RAM|
-|09h|ROM+RAM+BATTERY|
-|0Bh|MMM01|
-|0Ch|MMM01+RAM|
-|0Dh|MMM01+RAM+BATTERY|
-|0Fh|MBC3+TIMER+BATTERY|
-|10h|MBC3+TIMER+RAM+BATTERY|
-|11h|MBC3|
-|12h|MBC3+RAM|
-|13h|MBC3+RAM+BATTERY|
-|19h|MBC5|
-|1Ah|MBC5+RAM|
-|1Bh|MBC5+RAM+BATTERY|
-|1Ch|MBC5+RUMBLE|
-|1Dh|MBC5+RUMBLE+RAM|
-|1Eh|MBC5+RUMBLE+RAM+BATTERY|
-|20h|MBC6|
-|22h|MBC7+SENSOR+RUMBLE+RAM+BATTERY|
-|FCh|POCKET CAMERA|
-|FDh|BANDAI TAMA5|
-|FEh|HuC3|
-|FFh|HuC1+RAM+BATTERY|
-||[Source](https://gbdev.io/pandocs/#_0147-cartridge-type)|
-
-Given a cartridge ROM and this chart, it is very simple to find the cartridge type a game would have ran on by grabbing bytes at the right addresses.
-The cartridge header stores information like the first 16 characters of the game's title (`0x134-0x143`), cartridge type (`0x147`), region (`0x14a`), and even the nintendo logo (`0x104-0x133`).
+The cartridge header stores information like the first 16 characters of the game's title (`0x134-0x143`), region (`0x14a`), and even the nintendo logo (`0x104-0x133`).
 This is the same logo that is stored in the Gameboy's boot loader, and is used to check if the cartridge is legitimate.
 If it is not correct, the game won't load.
 It also allowed Nintendo to have a stronger case against 3rd party companies making their own cartridges, as the nintendo logo is copyrighted.
-If you have ROMs of games, you can peek these values on the command line.
 
-Here are some examples of the cart title and type:
+The cartridge type is stored as a hex code at address `0x147`.
+The hex code described the hardware configuration of the game cartridge.
+Not only did it accommodate all the MBC plus hardware configurations, it also had codes for special cartridges like the pocket camera and 3rd party MBCs.
+
+|Code|Type|Code|Type
+|00h|ROM Only|19h|MBC5|
+|01h|MBC1|1Ah|MBC5+RAM|
+|02h|MBC1+RAM|1Bh|MBC5+RAM+Battery|
+|03h|MBC1+RAM+Battery|1Ch|MBC5+Rumble|
+|05h|MBC2|1Dh|MBC5+Rumble+RAM|
+|06h|MBC2+Battery|1Eh|MBC5+Rumble+RAM+Battery|
+|08h|ROM+RAM|20h|MBC6|
+|09h|ROM+RAM+Battery|22h|MBC7+Sensor+Rumble+RAM+Battery|
+|0Bh|MMM01|||
+|0Ch|MMM01+RAM|||
+|0Dh|MMM01+RAM+Battery|||
+|0Fh|MBC3+Timer+Battery|||
+|10h|MBC3+Timer+RAM+Battery|FCh|Pocket Camera|
+|11h|MBC3|FDh|BANDAI TAMA5|
+|12h|MBC3+RAM|FEh|HuC3|
+|13h|MBC3+RAM+Battery|FFh|HuC1+RAM+Battery|
+||[Source](https://gbdev.io/pandocs/#_0147-cartridge-type)|||
+
+Given a cartridge ROM and this chart, it is very easy to find the cartridge type of a game by grabbing bytes at the right addresses.
+If you have ROMs of games, you can peek these values using `xxd` in the terminal.
+Here are some examples of the cart title and type from a few different games:
 
 ```
 $ xxd -seek 0x134 -len 16  pokecrystal.gbc 
@@ -330,7 +336,7 @@ ROM Type: DMG-AWA-0
 
 Release: DMG-VU-USA
 
-Case Stamp: -
+Case Stamp: 22
 
 ![DMG-AAA-03](/images/MBC/dr_mario_pcb.JPG){:width="500px"}
 [Original](/images/MBC/originals/dr_mario_pcb.JPG)
@@ -554,7 +560,6 @@ Case Stamp: 00
 
 ![DMG-A08-01](/images/MBC/monster_rancher_pcb.JPG){:width="500px"}
 [Original](/images/MBC/originals/monster_rancher_pcb.JPG)
-
 Board Type: DMG-A08-01
 
 ROM Type: DMG-A6TE-0
@@ -591,3 +596,20 @@ ROM Type: DMG-VPHE-0
 |U2|MBC|MBC5|---|Week 33 1999|LZ9GB31|
 |U3|RAM|64K SRAM|Sharp|Week 9 1999|LH5164AN-10L|
 |U4|RAM Protector|MM1134A|Atmel|---|---|
+
+
+## Links and Sources
+
+* [My other article on Gameboy Bank Switching](Gameboy-Bank-Switching/)
+* [My article on the Gameboy DMG](Gameboy_DMG/)
+
+* [Info about MBC6](https://gbdev.gg8.se/forums/viewtopic.php?id=544)
+* [Info about MBC7](https://gbdev.gg8.se/forums/viewtopic.php?id=448)
+* [Info about MMM01](https://wiki.tauwasser.eu/view/MMM01)
+* [Info about HuC-3](https://gbdev.gg8.se/forums/viewtopic.php?id=744)
+* [Official Nintendo Gameboy family technical data](https://www.nintendo.co.uk/Support/Game-Boy-Pocket-Color/Product-information/Technical-data/Technical-data-619585.html)
+* [Open Gameboy Documentation](https://mgba-emu.github.io/gbdoc/#memory-bank-controllers)
+* [Pan Docs cart info](https://gbdev.io/pandocs/#the-cartridge-header)
+* [GiiBii Advance emulator docs](https://github.com/AntonioND/giibiiadvance/tree/master/docs)
+* [Gameboy Hardware Database](https://gbhwdb.gekkio.fi/)
+* [Gameboy Architecture](https://www.copetti.org/projects/consoles/game-boy/)
