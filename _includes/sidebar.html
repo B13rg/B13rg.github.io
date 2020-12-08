@@ -18,12 +18,10 @@
 			<a class="sidebar-nav-item" href="{{ site.baseurl }}/resume/Brendan Byers Resume.pdf">Resume</a>
 			<span class="sidebar-nav-item">Currently v{{ site.version }}</span>
 			<span class="sidebar-nav-item">
-				{% if site.footer-links.rss %}<a href="{{ site.baseurl }}/feed.xml"><i
-						class="svg-icon rss"></i></a>{% endif %}
-				{% if site.footer-links.email %}<a href="mailto:{{ site.footer-links.email }}"><i
-						class="svg-icon email"></i></a>{% endif %}
-				{% if site.footer-links.github %}<a href="https://github.com/{{ site.footer-links.github }}"><i
-						class="svg-icon github"></i></a>{% endif %}
+				{% if site.footer-links.rss %}<a href="{{ site.baseurl }}/feed.xml"><i class="svg-icon rss"></i></a>{% endif %}
+				{% if site.footer-links.email %}<a href="mailto:{{ site.footer-links.email }}"><i class="svg-icon email"></i></a>{% endif %}
+				{% if site.footer-links.github %}<a href="https://github.com/{{ site.footer-links.github }}"><i class="svg-icon github"></i></a>{% endif %}
+				{% if site.footer-links.mastodon %}<a rel="me" href="{{site.footer-links.mastodon}}"><i class="svg-icon mastodon"></i></a>{% endif %}
 			</span>
 		</nav>
 
