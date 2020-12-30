@@ -2,7 +2,23 @@
 
 ## Publish your a blog post
 
-Edit `/_posts/<year>-<month>-<day>-<title>.md` to publish your first blog post.
+Filename format: `/_posts/<year>-<month>-<day>-<title>.md` 
+
+Front matter format:
+
+```
+---
+layout: post
+title:	"Title"
+category: [Games, Programming, Networking, DOS]
+excerpt: A short description of the article
+image: public/images/buttons/large/ahmygod.gif
+comment_id: 72374862398476
+---
+```
+
+[Post template](_drafts/Template.md)
+
 This [Markdown Cheatsheet](http://www.jekyllnow.com/Markdown-Style-Guide/) might come in handy.
 
 > You can add additional posts in the browser on GitHub.com too!
@@ -16,6 +32,17 @@ This [Markdown Cheatsheet](http://www.jekyllnow.com/Markdown-Style-Guide/) might
 3. Serve the site and watch for markup/sass changes `jekyll serve`
 4. View your website at `http://127.0.0.1:4000/`
 5. Commit any changes and push everything to the master branch of your GitHub user repository. GitHub Pages will then rebuild and serve your website.
+
+## Useful commands
+
+* Test site locally: `jekyll s`
+* Load draft posts: `jekyll s --drafts`
+* Testing on WSL: `jekyll s --force_polling`
+* Generate future posts: `jekyll s --future`
+
+[Other userful commands](tools/useful_commands.md)
+
+
 
 ## Credits
 
