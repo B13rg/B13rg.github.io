@@ -104,5 +104,9 @@ author:
   url:               https://b13rg.github.io
   email:             IcebergByers@protonmail.com
 
+mastadon:
+  host: mastodon.social
+  username: iceberg_00
+
 # Custom vars
 version: 2.1.0

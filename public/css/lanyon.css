@@ -422,6 +422,33 @@ img.imageboard {
   color: inherit;
 }
 
+.mastodon-comment {
+  background-color: #d3d3d3;
+  border-radius: 10px;
+  padding: 1rem;
+  margin-bottom:1rem;
+  display:flex
+}
+.mastodon-comment .content {
+  flex-grow:2
+}
+.mastodon-comment .avatar img {
+  margin-right:1rem;
+  min-width:60px
+}
+.mastodon-comment .author {
+  padding-top:0;
+  display:flex
+}
+.mastodon-comment .author .date {
+  margin-left:auto
+}
+.mastodon-comment .disabled {
+  color: #34495e;
+}
+.mastodon-comment-content p:first-child {
+  margin-top:0
+}
 
 /*
  * Pagination
