@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Exploring the Gameboy Memory Bank Controller"
-category: [Games]
+category: [Games, Gameboy]
 excerpt: Without a game cartridge, a Gameboy is just displays "Gameboy" and freezes.  Once slotted in, the bits and bytes contained within a cartridge created countless worlds and memories.  How did a Gameboy cartridges store such a wide variety of games, while also enabling things like save files, rumble, and even infrared communication?
 image: /images/MBC/header.JPG
 comment_id: 105467824633648656

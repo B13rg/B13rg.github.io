@@ -1,7 +1,7 @@
 ---
 layout: post
 title:	"Gameboy DMG ROM and RAM Bank Switching"
-categories: [Games]
+categories: [Games, Gameboy]
 excerpt: The original Gameboy DMG used a CPU similar to the Zilog Z-80. It utilized bank switching to allow the CPU, with a static memory map, the ability to address additional data than what would usually be able to be addressed.
 image: /images/GameboyBankSwitching/memoryMap.PNG
 comment_id: 105477614670790727

@@ -63,7 +63,13 @@ title: Home
 
 		<span class="post-date">{{ post.date | date_to_string }} | &nbsp; {%- include readTime.html -%}</span>
 
-		{{ post.content }}
+		{{ post.excerpt }}
+
+		<h3 class="post-list">
+			<a href="{{ site.baseurl }}{{ post.url }}">
+				Full article ->
+			</a>
+		</h3>
 	</div>
 	{% endfor %}
 </div>
