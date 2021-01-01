@@ -4,6 +4,7 @@ title:	"The Life of MS-DOS"
 categories: [DOS]
 excerpt: First released on August 12, 1981, MS-DOS became the foundation for business computing for almost two decades.  This article details different versions and releases that all stemmed from Gary Kildall's QDOS.
 image: /images/MSDOS/MSDOS_family_tree.png
+comment_id: 105477644244489198
 ---
 First released on August 12, 1981, MS-DOS became the foundation for business computing for almost two decades.
 MS-DOS stood for Microsoft Disk Operating System and was often referred to simply as "DOS".
