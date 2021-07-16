@@ -366,8 +366,8 @@ This board fits sideways in a space between the battery compartment and the side
 Board Labels: `©1989 Nintendo`, `DMG Jack 03`
 
 This board is attached directly to the case with two screws.
-It is a very simple board, only containing 3 resistors, 2 capacitors, and the audio jack.
-It provides stereo sound
+It is a very simple board, only containing 3 inductors, 2 capacitors, and the audio jack.
+It provides stereo sound (take that, Gameboy SP!).
 
 It acts as a breakout board, all the heavy lifting is done on the logic board through the audio amp.
 The components on it are there to regulate the output and protect the logic board from damage, in case someone connects a headphone jack to some charge.
