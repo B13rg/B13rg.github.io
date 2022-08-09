@@ -18,7 +18,7 @@
 
 /* //-- yui-grids style overrides -- */
 body { font-family: Helvetica, Arial, sans-serif; color: #444; }
-#inner { padding: 10px 80px; margin-bottom: 80px auto; background: #f5f5f5; border: solid #666; border-width: 8px 0 2px 0; }
+#inner { padding: 10px 50px; margin-bottom: 80px auto; background: #f5f5f5; border: solid #666; border-width: 8px 0 2px 0; }
 .yui-gf { margin-bottom: 2em; padding-bottom: 1em; border-bottom: 1px solid #ccc; }
 
 /* //-- header, body, footer -- */
@@ -39,7 +39,7 @@ p { font-size: 100%; line-height: 18px; padding-right: 3em; }
 a { color: #990003 }
 a:hover { text-decoration: none; }
 strong { font-weight: bold; }
-li { line-height: 24px; border-bottom: 1px solid #ccc; }
+li { line-height: 20px; border-bottom: 1px solid #ccc; }
 p.enlarge { font-size: 144%; padding-right: 6.5em; line-height: 24px; }
 p.enlarge span { color: #000 }
 .contact-info { margin-top: 7px; }
@@ -63,12 +63,17 @@ a#pdf:hover { background: #222; }
 .skills-list li span { font-size: 152%; display: block; margin-bottom: -2px; padding: 0 }
 .talent { width: 32%; float: left }
 .talent h2 { margin-bottom: 6px; }
+.company{ width: 20%; float: left }
+.company-desc { width: 60%; float: left }
+.company-time { width: 20%; float: left }
 
 #srt-ttab { margin-bottom: 100px; text-align: center;  }
 #srt-ttab img.last { margin-top: 20px }
 
 /* --// override to force 1/8th width grids -- */
-.yui-gf .yui-u{width:80.2%;}
-.yui-gf div.first{width:12.3%;}
+.yui-gf .yui-u{width:97%;}
+.yui-gf div.first{width:12%;}
+
+.job .yui-u{float: left; width:100%}
 
 
