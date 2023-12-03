@@ -23,7 +23,7 @@ body { font-family: Helvetica, Arial, sans-serif; color: #444; }
 
 /* //-- header, body, footer -- */
 #hd { margin: .5em 0 1.5em 0; padding-bottom: 1em; border-bottom: 1px solid #ccc }
-#hd h2 { text-transform: uppercase; letter-spacing: 2px; }
+#hd h2 { text-transform: uppercase; }
 #bd, #ft { margin-bottom: .5em; }
 
 /* //-- footer -- */
