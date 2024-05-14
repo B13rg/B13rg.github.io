@@ -10,7 +10,7 @@ comment_id: 72374862398476
 ![MS-DOS Family Tree](/images/folder/filename.png){:width="700px"}
 -->
 <!-- Link example -->
-[Link to full-size image](public/images/buttons/large/ahmygod.gif)
+[Link to full-size image](/images/buttons/large/ahmygod.gif)
 
 Footnote[^1]
 
