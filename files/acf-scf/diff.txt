@@ -1,0 +1,1162 @@
+diff --color -u --suppress-common-lines -b -r ./advanced-custom-fields-6.3.6/acf.php ./advanced-custom-fields-6.3.6.2/acf.php
+--- ./advanced-custom-fields-6.3.6/acf.php	2024-08-28 07:35:13.000000000 -0700
++++ ./advanced-custom-fields-6.3.6.2/acf.php	2024-10-12 17:25:59.560336291 -0700
+@@ -1,17 +1,13 @@
+ <?php
+ /**
+- * Advanced Custom Fields
++ * Secure Custom Fields
+  *
+- * @package       ACF
+- * @author        WP Engine
+- *
+- * @wordpress-plugin
+- * Plugin Name:       Advanced Custom Fields
+- * Plugin URI:        https://www.advancedcustomfields.com
+- * Description:       Customize WordPress with powerful, professional and intuitive fields.
+- * Version:           6.3.6
+- * Author:            WP Engine
+- * Author URI:        https://wpengine.com/?utm_source=wordpress.org&utm_medium=referral&utm_campaign=plugin_directory&utm_content=advanced_custom_fields
++ * Plugin Name:       Secure Custom Fields
++ * Plugin URI:        http://wordpress.org/plugins/advanced-custom-fields/
++ * Description:       Secure Custom Fields is a fork of the Advanced Custom Fields plugin, which will be maintained by WordPress.org, for security and functionality updates.
++ * Version:           6.3.6.2
++ * Author:            WordPress.org
++ * Author URI:        https://wordpress.org/
+  * Text Domain:       acf
+  * Domain Path:       /lang
+  * Requires PHP:      7.4
+@@ -35,7 +31,7 @@
+ 		 *
+ 		 * @var string
+ 		 */
+-		public $version = '6.3.6';
++		public $version = '6.3.6.2';
+ 
+ 		/**
+ 		 * The plugin settings array.
+@@ -229,10 +225,6 @@
+ 			// Include PRO.
+ 			acf_include( 'pro/acf-pro.php' );
+ 
+-			if ( is_admin() && function_exists( 'acf_is_pro' ) && ! acf_is_pro() ) {
+-				acf_include( 'includes/admin/admin-options-pages-preview.php' );
+-			}
+-
+ 			// Add actions.
+ 			add_action( 'init', array( $this, 'register_post_status' ), 4 );
+ 			add_action( 'init', array( $this, 'init' ), 5 );
+@@ -775,10 +767,6 @@
+ 					do_action( 'acf/first_activated' );
+ 				}
+ 			}
+-
+-			if ( acf_is_pro() ) {
+-				do_action( 'acf/activated_pro' );
+-			}
+ 		}
+ 	}
+ 
+diff --color -u --suppress-common-lines -b -r ./advanced-custom-fields-6.3.6/includes/acf-bidirectional-functions.php ./advanced-custom-fields-6.3.6.2/includes/acf-bidirectional-functions.php
+--- ./advanced-custom-fields-6.3.6/includes/acf-bidirectional-functions.php	2024-08-28 07:35:13.000000000 -0700
++++ ./advanced-custom-fields-6.3.6.2/includes/acf-bidirectional-functions.php	2024-10-12 17:25:59.656335999 -0700
+@@ -269,6 +269,6 @@
+  */
+ function acf_get_bidirectional_field_settings_instruction_text() {
+ 	/* translators: %s the URL to ACF's bidirectional relationship documentation */
+-	$message = '<p class="acf-feature-notice with-warning-icon">' . sprintf( __( 'Enabling the bidirectional setting allows you to update a value in the target fields for each value selected for this field, adding or removing the Post ID, Taxonomy ID or User ID of the item being updated. For more information, please read the <a href="%s" target="_blank">documentation</a>.', 'acf' ), acf_add_url_utm_tags( 'https://www.advancedcustomfields.com/resources/bidirectional-relationships/', 'docs', 'bidirectional' ) ) . '</p>';
++	$message = '<p class="acf-feature-notice with-warning-icon">' . __( 'Enabling the bidirectional setting allows you to update a value in the target fields for each value selected for this field, adding or removing the Post ID, Taxonomy ID or User ID of the item being updated.', 'acf'  ) . '</p>';
+ 	return $message;
+ }
+diff --color -u --suppress-common-lines -b -r ./advanced-custom-fields-6.3.6/includes/acf-helper-functions.php ./advanced-custom-fields-6.3.6.2/includes/acf-helper-functions.php
+--- ./advanced-custom-fields-6.3.6/includes/acf-helper-functions.php	2024-08-28 07:35:13.000000000 -0700
++++ ./advanced-custom-fields-6.3.6.2/includes/acf-helper-functions.php	2024-10-12 17:25:59.660335986 -0700
+@@ -510,7 +510,7 @@
+ 	$medium     = ! empty( $medium ) ? $medium : 'insideplugin';
+ 
+ 	if ( empty( $source ) ) {
+-		$source = acf_is_pro() ? 'ACF PRO' : 'ACF Free';
++		$source = 'ACF Free';
+ 	}
+ 
+ 	$query = http_build_query(
+@@ -665,7 +665,7 @@
+  * @return boolean True if the current install is ACF PRO
+  */
+ function acf_is_pro() {
+-	return defined( 'ACF_PRO' ) && ACF_PRO;
++	return false;
+ }
+ 
+ /**
+diff --color -u --suppress-common-lines -b -r ./advanced-custom-fields-6.3.6/includes/acf-value-functions.php ./advanced-custom-fields-6.3.6.2/includes/acf-value-functions.php
+--- ./advanced-custom-fields-6.3.6/includes/acf-value-functions.php	2024-08-28 07:35:13.000000000 -0700
++++ ./advanced-custom-fields-6.3.6.2/includes/acf-value-functions.php	2024-10-12 17:25:59.660335986 -0700
+@@ -372,10 +372,9 @@
+ 	}
+ 
+ 	$error_text = sprintf(
+-		/* translators: %1 plugin name, %2 the URL to the documentation on this error */
+-		__( '<strong>%1$s</strong> - We\'ve detected one or more calls to retrieve ACF field values before ACF has been initialized. This is not supported and can result in malformed or missing data. <a href="%2$s" target="_blank">Learn how to fix this</a>.', 'acf' ),
++		/* translators: %1 plugin name */
++		__( '<strong>%1$s</strong> - We\'ve detected one or more calls to retrieve ACF field values before ACF has been initialized. This is not supported and can result in malformed or missing data.', 'acf' ),
+ 		acf_get_setting( 'name' ),
+-		acf_add_url_utm_tags( 'https://www.advancedcustomfields.com/resources/acf-field-functions/', 'docs', 'early_init_warning' )
+ 	);
+ 	_doing_it_wrong( esc_html( $function ), acf_esc_html( $error_text ), '5.11.1' );
+ }
+diff --color -u --suppress-common-lines -b -r ./advanced-custom-fields-6.3.6/includes/admin/admin-internal-post-type-list.php ./advanced-custom-fields-6.3.6.2/includes/admin/admin-internal-post-type-list.php
+--- ./advanced-custom-fields-6.3.6/includes/admin/admin-internal-post-type-list.php	2024-08-28 07:35:13.000000000 -0700
++++ ./advanced-custom-fields-6.3.6.2/includes/admin/admin-internal-post-type-list.php	2024-10-12 17:25:59.660335986 -0700
+@@ -68,7 +68,6 @@
+ 		 */
+ 		public function __construct() {
+ 			add_action( 'current_screen', array( $this, 'current_screen' ) );
+-			add_action( 'admin_footer', array( $this, 'include_pro_features' ) );
+ 
+ 			// Handle post status change events.
+ 			add_action( 'trashed_post', array( $this, 'trashed_post' ) );
+@@ -77,23 +76,6 @@
+ 		}
+ 
+ 		/**
+-		 * Renders HTML for the ACF PRO features upgrade notice.
+-		 */
+-		public function include_pro_features() {
+-			// Bail if not the edit screen
+-			if ( ! acf_is_screen( 'edit-' . $this->post_type ) ) {
+-				return;
+-			}
+-
+-			// Bail if on PRO.
+-			if ( acf_is_pro() && acf_pro_is_license_active() ) {
+-				return;
+-			}
+-
+-			acf_get_view( 'acf-field-group/pro-features' );
+-		}
+-
+-		/**
+ 		 * Add any menu items required for post types.
+ 		 *
+ 		 * @since 6.1
+diff --color -u --suppress-common-lines -b -r ./advanced-custom-fields-6.3.6/includes/admin/admin.php ./advanced-custom-fields-6.3.6.2/includes/admin/admin.php
+--- ./advanced-custom-fields-6.3.6/includes/admin/admin.php	2024-08-28 07:35:13.000000000 -0700
++++ ./advanced-custom-fields-6.3.6.2/includes/admin/admin.php	2024-10-12 17:25:59.664335975 -0700
+@@ -107,76 +107,11 @@
+ 				add_action( 'in_admin_header', array( $this, 'in_admin_header' ) );
+ 				add_filter( 'admin_footer_text', array( $this, 'admin_footer_text' ) );
+ 				add_filter( 'update_footer', array( $this, 'admin_footer_version_text' ) );
+-				$this->setup_help_tab();
+ 				$this->maybe_show_import_from_cptui_notice();
+ 			}
+ 		}
+ 
+ 		/**
+-		 * Sets up the admin help tab.
+-		 *
+-		 * @date    20/4/20
+-		 * @since   5.9.0
+-		 *
+-		 * @param   void
+-		 * @return  void
+-		 */
+-		public function setup_help_tab() {
+-			$screen = get_current_screen();
+-
+-			// Overview tab.
+-			$screen->add_help_tab(
+-				array(
+-					'id'      => 'overview',
+-					'title'   => __( 'Overview', 'acf' ),
+-					'content' =>
+-						'<p><strong>' . __( 'Overview', 'acf' ) . '</strong></p>' .
+-						'<p>' . __( 'The Advanced Custom Fields plugin provides a visual form builder to customize WordPress edit screens with extra fields, and an intuitive API to display custom field values in any theme template file.', 'acf' ) . '</p>' .
+-						'<p>' . sprintf(
+-							__( 'Before creating your first Field Group, we recommend first reading our <a href="%s" target="_blank">Getting started</a> guide to familiarize yourself with the plugin\'s philosophy and best practises.', 'acf' ),
+-							acf_add_url_utm_tags( 'https://www.advancedcustomfields.com/resources/getting-started-with-acf/', 'docs', 'help-tab' )
+-						) . '</p>' .
+-						'<p>' . __( 'Please use the Help & Support tab to get in touch should you find yourself requiring assistance.', 'acf' ) . '</p>' .
+-						'',
+-				)
+-			);
+-
+-			// Help tab.
+-			$screen->add_help_tab(
+-				array(
+-					'id'      => 'help',
+-					'title'   => __( 'Help & Support', 'acf' ),
+-					'content' =>
+-						'<p><strong>' . __( 'Help & Support', 'acf' ) . '</strong></p>' .
+-						'<p>' . __( 'We are fanatical about support, and want you to get the best out of your website with ACF. If you run into any difficulties, there are several places you can find help:', 'acf' ) . '</p>' .
+-						'<ul>' .
+-							'<li>' . sprintf(
+-								__( '<a href="%s" target="_blank">Documentation</a>. Our extensive documentation contains references and guides for most situations you may encounter.', 'acf' ),
+-								acf_add_url_utm_tags( 'https://www.advancedcustomfields.com/resources/', 'docs', 'help-tab' )
+-							) . '</li>' .
+-							'<li>' . sprintf(
+-								__( '<a href="%s" target="_blank">Discussions</a>. We have an active and friendly community on our Community Forums who may be able to help you figure out the \'how-tos\' of the ACF world.', 'acf' ),
+-								acf_add_url_utm_tags( 'https://support.advancedcustomfields.com/', 'docs', 'help-tab' )
+-							) . '</li>' .
+-							'<li>' . sprintf(
+-								__( '<a href="%s" target="_blank">Help Desk</a>. The support professionals on our Help Desk will assist with your more in depth, technical challenges.', 'acf' ),
+-								acf_add_url_utm_tags( 'https://www.advancedcustomfields.com/support/', 'docs', 'help-tab' )
+-							) . '</li>' .
+-						'</ul>',
+-				)
+-			);
+-
+-			// Sidebar.
+-			$screen->set_help_sidebar(
+-				'<p><strong>' . __( 'Information', 'acf' ) . '</strong></p>' .
+-				'<p><span class="dashicons dashicons-admin-plugins"></span> ' . sprintf( __( 'Version %s', 'acf' ), ACF_VERSION ) . '</p>' .
+-				'<p><span class="dashicons dashicons-wordpress"></span> <a href="https://wordpress.org/plugins/advanced-custom-fields/" target="_blank">' . __( 'View details', 'acf' ) . '</a></p>' .
+-				'<p><span class="dashicons dashicons-admin-home"></span> <a href="' . acf_add_url_utm_tags( 'https://www.advancedcustomfields.com/', 'docs', 'help-tab' ) . '" target="_blank" target="_blank">' . __( 'Visit website', 'acf' ) . '</a></p>' .
+-				''
+-			);
+-		}
+-
+-		/**
+ 		 * Shows a notice to import post types and taxonomies from CPTUI if that plugin is active.
+ 		 *
+ 		 * @since 6.1
+@@ -315,15 +250,7 @@
+ 		 * @return  string
+ 		 */
+ 		public function admin_footer_text( $text ) {
+-			$wp_engine_link = acf_add_url_utm_tags( 'https://wpengine.com/', 'bx_prod_referral', acf_is_pro() ? 'acf_pro_plugin_footer_text' : 'acf_free_plugin_footer_text', false, 'acf_plugin', 'referral' );
+-			$acf_link       = acf_add_url_utm_tags( 'https://www.advancedcustomfields.com/', 'footer', 'footer' );
+-
+-			return sprintf(
+-				/* translators: This text is prepended by a link to ACF's website, and appended by a link to WP Engine's website. */
+-				'<a href="%1$s" target="_blank">' . ( acf_is_pro() ? 'ACF PRO' : 'ACF' ) . '</a> ' . __( 'is developed and maintained by', 'acf' ) . ' <a href="%2$s" target="_blank">WP Engine</a>.',
+-				$acf_link,
+-				$wp_engine_link
+-			);
++			return '';
+ 		}
+ 
+ 		/**
+@@ -335,23 +262,7 @@
+ 		 * @return  string
+ 		 */
+ 		public function admin_footer_version_text( $text ) {
+-			$documentation_link = acf_add_url_utm_tags( 'https://www.advancedcustomfields.com/resources/', 'footer', 'footer' );
+-			$support_link       = acf_add_url_utm_tags( 'https://www.advancedcustomfields.com/support/', 'footer', 'footer' );
+-			$feedback_link      = acf_add_url_utm_tags( 'https://www.advancedcustomfields.com/feedback/', 'footer', 'footer' );
+-			$version_link       = acf_add_url_utm_tags( 'https://www.advancedcustomfields.com/changelog/', 'footer', 'footer' );
+-
+-			return sprintf(
+-				'<a href="%s" target="_blank">%s</a> &#8729; <a href="%s" target="_blank">%s</a> &#8729; <a href="%s" target="_blank">%s</a> &#8729; <a href="%s" target="_blank">%s %s</a>',
+-				$documentation_link,
+-				__( 'Documentation', 'acf' ),
+-				$support_link,
+-				__( 'Support', 'acf' ),
+-				$feedback_link,
+-				__( 'Feedback', 'acf' ),
+-				$version_link,
+-				acf_is_pro() ? __( 'ACF PRO', 'acf' ) : __( 'ACF', 'acf' ),
+-				ACF_VERSION
+-			);
++			return '';
+ 		}
+ 
+ 		/**
+diff --color -u --suppress-common-lines -b -r ./advanced-custom-fields-6.3.6/includes/admin/post-types/admin-field-group.php ./advanced-custom-fields-6.3.6.2/includes/admin/post-types/admin-field-group.php
+--- ./advanced-custom-fields-6.3.6/includes/admin/post-types/admin-field-group.php	2024-08-28 07:35:13.000000000 -0700
++++ ./advanced-custom-fields-6.3.6.2/includes/admin/post-types/admin-field-group.php	2024-10-12 17:25:59.664335975 -0700
+@@ -238,28 +238,10 @@
+ 		 * @since 5.3.2
+ 		 */
+ 		public function admin_footer() {
+-			$this->include_pro_features();
+ 			do_action( 'acf/field_group/admin_footer' );
+ 		}
+ 
+ 		/**
+-		 * Renders HTML for the ACF PRO features upgrade notice.
+-		 */
+-		public function include_pro_features() {
+-			// Bail if on PRO.
+-			if ( acf_is_pro() && acf_pro_is_license_active() ) {
+-				return;
+-			}
+-
+-			// Bail if not the edit field group screen.
+-			if ( ! acf_is_screen( 'acf-field-group' ) ) {
+-				return;
+-			}
+-
+-			acf_get_view( 'acf-field-group/pro-features' );
+-		}
+-
+-		/**
+ 		 * Screen settings html output
+ 		 *
+ 		 * @since   3.6.0
+@@ -411,15 +393,6 @@
+ 		}
+ 
+ 		/**
+-		 * This function will render the HTML for the metabox 'acf-field-group-pro-features'
+-		 *
+-		 * @since 6.0.0
+-		 */
+-		public function mb_pro_features() {
+-			acf_get_view( $this->post_type . '/pro-features' );
+-		}
+-
+-		/**
+ 		 * This function will render the HTML for the metabox 'acf-field-group-options'
+ 		 *
+ 		 * @since 5.0.0
+diff --color -u --suppress-common-lines -b -r ./advanced-custom-fields-6.3.6/includes/admin/views/acf-field-group/field.php ./advanced-custom-fields-6.3.6.2/includes/admin/views/acf-field-group/field.php
+--- ./advanced-custom-fields-6.3.6/includes/admin/views/acf-field-group/field.php	2024-08-28 07:35:13.000000000 -0700
++++ ./advanced-custom-fields-6.3.6.2/includes/admin/views/acf-field-group/field.php	2024-10-12 17:25:59.668335962 -0700
+@@ -29,19 +29,6 @@
+ $inactive_field_class = '';
+ $inactive_field_title = '';
+ 
+-if ( acf_is_pro() && acf_get_field_type_prop( $field['type'], 'pro' ) ) {
+-	$div_attrs['class'] .= ' acf-pro-field-object';
+-}
+-
+-if ( acf_is_pro() && acf_get_field_type_prop( $field['type'], 'pro' ) && ! acf_pro_is_license_active() ) {
+-	$field_type_label .= '<span class="acf-pro-label-field-type"><img src="' . esc_url( acf_get_url( 'assets/images/pro-chip.svg' ) ) . '" alt="' . esc_attr__( 'ACF PRO Logo', 'acf' ) . '"></span>';
+-
+-	if ( ! acf_pro_is_license_expired() ) {
+-		$inactive_field_class = ' acf-js-tooltip';
+-		$inactive_field_title = __( 'PRO fields cannot be edited without an active license.', 'acf' );
+-	}
+-}
+-
+ if ( ! isset( $num_field_groups ) ) {
+ 	$num_field_groups = 0;
+ }
+diff --color -u --suppress-common-lines -b -r ./advanced-custom-fields-6.3.6/includes/admin/views/global/header.php ./advanced-custom-fields-6.3.6.2/includes/admin/views/global/header.php
+--- ./advanced-custom-fields-6.3.6/includes/admin/views/global/header.php	2024-08-28 07:35:13.000000000 -0700
++++ ./advanced-custom-fields-6.3.6.2/includes/admin/views/global/header.php	2024-10-12 17:25:59.672335950 -0700
+@@ -38,7 +38,7 @@
+ 	<?php
+ 	if ( ! empty( $post_type_object ) && current_user_can( $post_type_object->cap->create_posts ) ) {
+ 		$class = 'acf-btn acf-btn-sm';
+-		if ( 'acf-ui-options-page' === $post_type && acf_is_pro() && ! acf_pro_is_license_active() ) {
++		if ( 'acf-ui-options-page' === $post_type ) {
+ 			$class .= ' disabled';
+ 		}
+ 
+diff --color -u --suppress-common-lines -b -r ./advanced-custom-fields-6.3.6/includes/admin/views/global/navigation.php ./advanced-custom-fields-6.3.6.2/includes/admin/views/global/navigation.php
+--- ./advanced-custom-fields-6.3.6/includes/admin/views/global/navigation.php	2024-08-28 07:35:13.000000000 -0700
++++ ./advanced-custom-fields-6.3.6.2/includes/admin/views/global/navigation.php	2024-10-12 17:25:59.676335939 -0700
+@@ -80,26 +80,6 @@
+ 	}
+ }
+ 
+-if ( ! acf_get_setting( 'pro' ) ) {
+-	$acf_more_items[] = array(
+-		'url'    => 'edit.php?post_type=acf-field-group&page=acf_options_preview',
+-		'text'   => __( 'Options Pages', 'acf' ) . '<span class="acf-requires-pro">' . __( 'PRO', 'acf' ) . '</span>',
+-		'target' => '_self',
+-	);
+-}
+-
+-if ( ! defined( 'PWP_NAME' ) ) {
+-	$acf_wpengine_logo     = acf_get_url( 'assets/images/wp-engine-horizontal-black.svg' );
+-	$acf_wpengine_logo     = sprintf( '<span><img class="acf-wp-engine-pro" src="%s" alt="WP Engine" /></span>', $acf_wpengine_logo );
+-	$utm_content           = acf_is_pro() ? 'acf_pro_plugin_topbar_dropdown_cta' : 'acf_free_plugin_topbar_dropdown_cta';
+-	$wpengine_more_items[] = array(
+-		'url'      => acf_add_url_utm_tags( 'https://wpengine.com/plans/?coupon=freedomtocreate', 'bx_prod_referral', $utm_content, false, 'acf_plugin', 'referral' ),
+-		'text'     => $acf_wpengine_logo . '<span class="acf-wp-engine-upsell-pill">' . __( '4 Months Free', 'acf' ) . '</span>',
+-		'target'   => '_blank',
+-		'li_class' => 'acf-wp-engine',
+-	);
+-}
+-
+ /**
+  * Filters the admin navigation more items.
+  *
+@@ -114,15 +94,6 @@
+ 	return;
+ }
+ 
+-$acf_wpengine_logo_link = acf_add_url_utm_tags(
+-	'https://wpengine.com/',
+-	'bx_prod_referral',
+-	acf_is_pro() ? 'acf_pro_plugin_topbar_logo' : 'acf_free_plugin_topbar_logo',
+-	false,
+-	'acf_plugin',
+-	'referral'
+-);
+-
+ /**
+  * Helper function for looping over the provided menu items
+  * and echoing out the necessary markup.
+@@ -172,15 +143,9 @@
+ <div class="acf-admin-toolbar">
+ 	<div class="acf-admin-toolbar-inner">
+ 		<div class="acf-nav-wrap">
+-			<?php if ( acf_is_pro() && acf_pro_is_license_active() ) { ?>
+-				<a href="<?php echo esc_url( admin_url( 'edit.php?post_type=acf-field-group' ) ); ?>" class="acf-logo pro">
+-					<img src="<?php echo esc_url( acf_get_url( 'assets/images/acf-pro-logo.svg' ) ); ?>" alt="<?php esc_attr_e( 'Advanced Custom Fields logo', 'acf' ); ?>">
+-				</a>
+-			<?php } else { ?>
+ 				<a href="<?php echo esc_url( admin_url( 'edit.php?post_type=acf-field-group' ) ); ?>" class="acf-logo">
+ 					<img src="<?php echo esc_url( acf_get_url( 'assets/images/acf-logo.svg' ) ); ?>" alt="<?php esc_attr_e( 'Advanced Custom Fields logo', 'acf' ); ?>">
+ 				</a>
+-			<?php } ?>
+ 
+ 			<h2><?php echo esc_html( acf_get_setting( 'name' ) ); ?></h2>
+ 			<?php acf_print_menu_section( $core_tabs, 'core' ); ?>
+@@ -207,37 +172,6 @@
+ 				</div>
+ 			<?php } ?>
+ 		</div>
+-		<div class="acf-nav-upgrade-wrap">
+-			<?php
+-			if ( ! acf_is_pro() || ! acf_pro_is_license_active() ) {
+-				$unlock_url    = acf_add_url_utm_tags( 'https://www.advancedcustomfields.com/pro/', 'ACF upgrade', 'header' );
+-				$unlock_target = '_blank';
+-				$unlock_text   = __( 'Unlock Extra Features with ACF PRO', 'acf' );
+-
+-				if ( acf_is_pro() ) {
+-					if ( acf_pro_is_updates_page_visible() ) {
+-						$unlock_url    = admin_url( 'edit.php?post_type=acf-field-group&page=acf-settings-updates#acf_pro_license' );
+-						$unlock_target = '';
+-					}
+-
+-					if ( acf_pro_is_license_expired() ) {
+-						$unlock_url    = acf_add_url_utm_tags( acf_pro_get_manage_license_url(), 'ACF renewal', 'header' );
+-						$unlock_target = '_blank';
+-						$unlock_text   = __( 'Renew ACF PRO License', 'acf' );
+-					}
+-				}
+-				?>
+-				<a target="<?php echo esc_attr( $unlock_target ); ?>" href="<?php echo esc_url( $unlock_url ); ?>" class="btn-upgrade acf-admin-toolbar-upgrade-btn">
+-					<i class="acf-icon acf-icon-stars"></i>
+-					<p><?php echo esc_html( $unlock_text ); ?></p>
+-				</a>
+-				<?php
+-			}
+-			?>
+-			<a href="<?php echo $acf_wpengine_logo_link; ?>" target="_blank" class="acf-nav-wpengine-logo"><?php //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- escaped on generation. ?>
+-				<img src="<?php echo esc_url( acf_get_url( 'assets/images/wp-engine-horizontal-white.svg' ) ); ?>" alt="<?php esc_html_e( 'WP Engine logo', 'acf' ); ?>" />
+-			</a>
+-		</div>
+ 	</div>
+ </div>
+ 
+@@ -251,8 +185,6 @@
+ 		$acf_page_title = __( 'Tools', 'acf' );
+ 	} elseif ( $plugin_page == 'acf-settings-updates' ) {
+ 		$acf_page_title = __( 'Updates', 'acf' );
+-	} elseif ( $plugin_page == 'acf_options_preview' && ! acf_is_pro() ) {
+-		$acf_page_title = __( 'Options Pages', 'acf' );
+ 	}
+ 	acf_get_view( 'global/header' );
+ }
+diff --color -u --suppress-common-lines -b -r ./advanced-custom-fields-6.3.6/includes/admin/views/tools/tools.php ./advanced-custom-fields-6.3.6.2/includes/admin/views/tools/tools.php
+--- ./advanced-custom-fields-6.3.6/includes/admin/views/tools/tools.php	2024-08-28 07:35:13.000000000 -0700
++++ ./advanced-custom-fields-6.3.6.2/includes/admin/views/tools/tools.php	2024-10-12 17:25:59.676335939 -0700
+@@ -19,9 +19,4 @@
+ 		<?php do_meta_boxes( $screen_id, 'normal', '' ); ?>
+ 	</div>
+ 
+-	<?php
+-	if ( ! acf_is_pro() ) {
+-		acf_get_view( 'acf-field-group/pro-features' );
+-	}
+-	?>
+ </div>
+diff --color -u --suppress-common-lines -b -r ./advanced-custom-fields-6.3.6/includes/assets.php ./advanced-custom-fields-6.3.6.2/includes/assets.php
+--- ./advanced-custom-fields-6.3.6/includes/assets.php	2024-08-28 07:35:13.000000000 -0700
++++ ./advanced-custom-fields-6.3.6.2/includes/assets.php	2024-10-12 17:25:59.680335926 -0700
+@@ -474,7 +474,7 @@
+ 				'post_id'     => acf_get_form_data( 'post_id' ),
+ 				'validation'  => acf_get_form_data( 'validation' ),
+ 				'editor'      => acf_is_block_editor() ? 'block' : 'classic',
+-				'is_pro'      => acf_is_pro(),
++				'is_pro'      => false,
+ 				'debug'       => acf_is_beta() || ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ),
+ 			);
+ 
+diff --color -u --suppress-common-lines -b -r ./advanced-custom-fields-6.3.6/includes/class-acf-site-health.php ./advanced-custom-fields-6.3.6.2/includes/class-acf-site-health.php
+--- ./advanced-custom-fields-6.3.6/includes/class-acf-site-health.php	2024-08-28 07:35:13.000000000 -0700
++++ ./advanced-custom-fields-6.3.6.2/includes/class-acf-site-health.php	2024-10-12 17:25:59.680335926 -0700
+@@ -151,24 +151,6 @@
+ 		public function add_activation_event() {
+ 			$event_name = 'first_activated';
+ 
+-			if ( acf_is_pro() ) {
+-				$event_name = 'first_activated_pro';
+-
+-				if ( 'acf/first_activated' !== current_filter() ) {
+-					$site_health = $this->get_site_health();
+-
+-					/**
+-					 * We already have an event for when pro was first activated,
+-					 * so we don't need to log an additional event here.
+-					 */
+-					if ( ! empty( $site_health[ 'event_' . $event_name ] ) ) {
+-						return false;
+-					}
+-
+-					$event_name = 'activated_pro';
+-				}
+-			}
+-
+ 			return $this->add_site_health_event( $event_name );
+ 		}
+ 
+@@ -266,9 +248,9 @@
+ 			global $wpdb;
+ 
+ 			$fields         = array();
+-			$is_pro         = acf_is_pro();
+-			$license        = $is_pro ? acf_pro_get_license() : array();
+-			$license_status = $is_pro ? acf_pro_get_license_status() : array();
++			$is_pro         = false;
++			$license        = array();
++			$license_status = array();
+ 			$field_groups   = acf_get_field_groups();
+ 			$post_types     = acf_get_post_types();
+ 			$taxonomies     = acf_get_taxonomies();
+@@ -283,42 +265,10 @@
+ 
+ 			$fields['plugin_type'] = array(
+ 				'label' => __( 'Plugin Type', 'acf' ),
+-				'value' => $is_pro ? __( 'PRO', 'acf' ) : __( 'Free', 'acf' ),
+-				'debug' => $is_pro ? 'PRO' : 'Free',
+-			);
+-
+-			if ( $is_pro ) {
+-				$fields['activated'] = array(
+-					'label' => __( 'License Activated', 'acf' ),
+-					'value' => ! empty( $license ) ? $yes : $no,
+-					'debug' => ! empty( $license ),
++				'value' => __( 'Free', 'acf' ),
++				'debug' => 'Free',
+ 				);
+ 
+-				$fields['activated_url'] = array(
+-					'label' => __( 'Licensed URL', 'acf' ),
+-					'value' => ! empty( $license['url'] ) ? $license['url'] : '',
+-				);
+-
+-				$fields['license_type'] = array(
+-					'label' => __( 'License Type', 'acf' ),
+-					'value' => $license_status['name'],
+-				);
+-
+-				$fields['license_status'] = array(
+-					'label' => __( 'License Status', 'acf' ),
+-					'value' => $license_status['status'],
+-				);
+-
+-				$expiry = ! empty( $license_status['expiry'] ) ? $license_status['expiry'] : '';
+-				$format = get_option( 'date_format', 'F j, Y' );
+-
+-				$fields['subscription_expires'] = array(
+-					'label' => __( 'Subscription Expiry Date', 'acf' ),
+-					'value' => is_numeric( $expiry ) ? date_i18n( $format, $expiry ) : '',
+-					'debug' => $expiry,
+-				);
+-			}
+-
+ 			$fields['wp_version'] = array(
+ 				'label' => __( 'WordPress Version', 'acf' ),
+ 				'value' => get_bloginfo( 'version' ),
+diff --color -u --suppress-common-lines -b -r ./advanced-custom-fields-6.3.6/includes/fields.php ./advanced-custom-fields-6.3.6.2/includes/fields.php
+--- ./advanced-custom-fields-6.3.6/includes/fields.php	2024-08-28 07:35:13.000000000 -0700
++++ ./advanced-custom-fields-6.3.6.2/includes/fields.php	2024-10-12 17:25:59.692335890 -0700
+@@ -328,7 +328,6 @@
+ 		'relational' => __( 'Relational', 'acf' ),
+ 		'advanced'   => __( 'Advanced', 'acf' ),
+ 		'layout'     => __( 'Layout', 'acf' ),
+-		'pro'        => __( 'PRO', 'acf' ),
+ 	);
+ 
+ 	return apply_filters( 'acf/localized_field_categories', $categories_i18n );
+@@ -410,46 +409,5 @@
+  * @return array An array of all the pro field types and their field type selection required meta data.
+  */
+ function acf_get_pro_field_types() {
+-	return array(
+-		'clone'            => array(
+-			'name'          => 'clone',
+-			'label'         => _x( 'Clone', 'noun', 'acf' ),
+-			'doc_url'       => acf_add_url_utm_tags( 'https://www.advancedcustomfields.com/resources/clone/', 'docs', 'field-type-selection' ),
+-			'preview_image' => acf_get_url() . '/assets/images/field-type-previews/field-preview-clone.png',
+-			'description'   => __( 'This allows you to select and display existing fields. It does not duplicate any fields in the database, but loads and displays the selected fields at run-time. The Clone field can either replace itself with the selected fields or display the selected fields as a group of subfields.', 'acf' ),
+-			'tutorial_url'  => acf_add_url_utm_tags( 'https://www.advancedcustomfields.com/resources/how-to-use-the-clone-field/', 'docs', 'field-type-selection' ),
+-			'category'      => 'layout',
+-			'pro'           => true,
+-		),
+-		'flexible_content' => array(
+-			'name'          => 'flexible_content',
+-			'label'         => __( 'Flexible Content', 'acf' ),
+-			'doc_url'       => acf_add_url_utm_tags( 'https://www.advancedcustomfields.com/resources/flexible-content/', 'docs', 'field-type-selection' ),
+-			'preview_image' => acf_get_url() . '/assets/images/field-type-previews/field-preview-flexible-content.png',
+-			'description'   => __( 'This provides a simple, structured, layout-based editor. The Flexible Content field allows you to define, create and manage content with total control by using layouts and subfields to design the available blocks.', 'acf' ),
+-			'tutorial_url'  => acf_add_url_utm_tags( 'https://www.advancedcustomfields.com/resources/building-layouts-with-the-flexible-content-field-in-a-theme/', 'docs', 'field-type-selection' ),
+-			'category'      => 'layout',
+-			'pro'           => true,
+-		),
+-		'gallery'          => array(
+-			'name'          => 'gallery',
+-			'label'         => __( 'Gallery', 'acf' ),
+-			'doc_url'       => acf_add_url_utm_tags( 'https://www.advancedcustomfields.com/resources/gallery/', 'docs', 'field-type-selection' ),
+-			'preview_image' => acf_get_url() . '/assets/images/field-type-previews/field-preview-gallery.png',
+-			'description'   => __( 'This provides an interactive interface for managing a collection of attachments. Most settings are similar to the Image field type. Additional settings allow you to specify where new attachments are added in the gallery and the minimum/maximum number of attachments allowed.', 'acf' ),
+-			'tutorial_url'  => acf_add_url_utm_tags( 'https://www.advancedcustomfields.com/resources/how-to-use-the-gallery-field/', 'docs', 'field-type-selection' ),
+-			'category'      => 'content',
+-			'pro'           => true,
+-		),
+-		'repeater'         => array(
+-			'name'          => 'repeater',
+-			'label'         => __( 'Repeater', 'acf' ),
+-			'doc_url'       => acf_add_url_utm_tags( 'https://www.advancedcustomfields.com/resources/repeater/', 'docs', 'field-type-selection' ),
+-			'preview_image' => acf_get_url() . '/assets/images/field-type-previews/field-preview-repeater.png',
+-			'description'   => __( 'This provides a solution for repeating content such as slides, team members, and call-to-action tiles, by acting as a parent to a set of subfields which can be repeated again and again.', 'acf' ),
+-			'tutorial_url'  => acf_add_url_utm_tags( 'https://www.advancedcustomfields.com/resources/repeater/how-to-use-the-repeater-field/', 'docs', 'field-type-selection' ),
+-			'category'      => 'layout',
+-			'pro'           => true,
+-		),
+-	);
++	return array();
+ }
+diff --color -u --suppress-common-lines -b -r ./advanced-custom-fields-6.3.6/includes/post-types/class-acf-post-type.php ./advanced-custom-fields-6.3.6.2/includes/post-types/class-acf-post-type.php
+--- ./advanced-custom-fields-6.3.6/includes/post-types/class-acf-post-type.php	2024-08-28 07:35:13.000000000 -0700
++++ ./advanced-custom-fields-6.3.6.2/includes/post-types/class-acf-post-type.php	2024-10-12 17:25:59.704335853 -0700
+@@ -528,9 +528,9 @@
+ 				$args['supports'] = $supports;
+ 			}
+ 
+-			// Handle register meta box callbacks if set from an import.
++			// Handle register meta box callbacks safely
+ 			if ( ! empty( $post['register_meta_box_cb'] ) ) {
+-				$args['register_meta_box_cb'] = (string) $post['register_meta_box_cb'];
++				$args['register_meta_box_cb'] = array( $this, 'build_safe_context_for_metabox_cb' );
+ 			}
+ 
+ 			// WordPress doesn't register any default taxonomies.
+@@ -620,6 +620,48 @@
+ 		}
+ 
+ 		/**
++		 * Ensure the metabox being called does not perform any unsafe operations.
++		 *
++		 * @since 6.3.8
++		 *
++		 * @param WP_Post $post The post being rendered.
++		 * @return mixed The callback result.
++		 */
++		public function build_safe_context_for_metabox_cb( $post ) {
++			$post_types = $this->get_posts();
++			$this_post  = array_filter(
++				$post_types,
++				function ( $post_type ) use ( $post ) {
++					return $post_type['post_type'] === $post->post_type;
++				}
++			);
++			if ( empty( $this_post ) || ! is_array( $this_post ) ) {
++				// Unable to find the ACF post type. Don't do anything.
++				return;
++			}
++			$acf_post_type = array_shift( $this_post );
++			$original_cb   = isset( $acf_post_type['register_meta_box_cb'] ) ? $acf_post_type['register_meta_box_cb'] : false;
++
++			// Prevent access to any wp_ prefixed functions in a callback.
++			if ( apply_filters( 'acf/post_type/prevent_access_to_wp_functions_in_meta_box_cb', true ) && substr( strtolower( $original_cb ), 0, 3 ) === 'wp_' ) {
++				// Don't execute register meta box callbacks if an internal wp function by default.
++				return;
++			}
++
++			$original_post    = $_POST; //phpcs:ignore -- Only used as temporary storage to prevent CSRFs in callbacks.
++			$original_request = $_REQUEST;
++			$_POST            = array();
++			$_REQUEST         = array();
++			$return           = false;
++			if ( is_callable( $original_cb ) ) {
++				$return = call_user_func( $original_cb, $post );
++			}
++			$_POST    = $original_post;
++			$_REQUEST = $original_request;
++			return $return;
++		}
++
++		/**
+ 		 * Returns a string that can be used to create a post type in PHP.
+ 		 *
+ 		 * @since 6.1
+diff --color -u --suppress-common-lines -b -r ./advanced-custom-fields-6.3.6/includes/post-types/class-acf-taxonomy.php ./advanced-custom-fields-6.3.6.2/includes/post-types/class-acf-taxonomy.php
+--- ./advanced-custom-fields-6.3.6/includes/post-types/class-acf-taxonomy.php	2024-08-28 07:35:13.000000000 -0700
++++ ./advanced-custom-fields-6.3.6.2/includes/post-types/class-acf-taxonomy.php	2024-10-12 17:25:59.708335841 -0700
+@@ -423,7 +423,7 @@
+ 			$meta_box = isset( $post['meta_box'] ) ? (string) $post['meta_box'] : 'default';
+ 
+ 			if ( 'custom' === $meta_box && ! empty( $post['meta_box_cb'] ) ) {
+-				$args['meta_box_cb'] = (string) $post['meta_box_cb'];
++				$args['meta_box_cb'] = array( $this, 'build_safe_context_for_metabox_cb' );
+ 
+ 				if ( ! empty( $post['meta_box_sanitize_cb'] ) ) {
+ 					$args['meta_box_sanitize_cb'] = (string) $post['meta_box_sanitize_cb'];
+@@ -505,6 +505,49 @@
+ 		}
+ 
+ 		/**
++		 * Ensure the metabox being called does not perform any unsafe operations.
++		 *
++		 * @since 6.3.8
++		 *
++		 * @param WP_Post $post The post being rendered.
++		 * @param array   $tax  The provided taxonomy information required for callback render.
++		 * @return mixed The callback result.
++		 */
++		public function build_safe_context_for_metabox_cb( $post, $tax ) {
++			$taxonomies = $this->get_posts();
++			$this_tax   = array_filter(
++				$taxonomies,
++				function ( $taxonomy ) use ( $tax ) {
++					return $taxonomy['taxonomy'] === $tax['args']['taxonomy'];
++				}
++			);
++			if ( empty( $this_tax ) || ! is_array( $this_tax ) ) {
++				// Unable to find the ACF taxonomy. Don't do anything.
++				return;
++			}
++			$acf_taxonomy = array_shift( $this_tax );
++			$original_cb  = isset( $acf_taxonomy['meta_box_cb'] ) ? $acf_taxonomy['meta_box_cb'] : false;
++
++			// Prevent access to any wp_ prefixed functions in a callback.
++			if ( apply_filters( 'acf/taxonomy/prevent_access_to_wp_functions_in_meta_box_cb', true ) && substr( strtolower( $original_cb ), 0, 3 ) === 'wp_' ) {
++				// Don't execute register meta box callbacks if an internal wp function by default.
++				return;
++			}
++
++			$original_post = $_POST; //phpcs:ignore -- Only used as temporary storage to prevent CSRFs in callbacks.
++			$original_request = $_REQUEST;
++			$_POST            = array();
++			$_REQUEST         = array();
++			$return           = false;
++			if ( is_callable( $original_cb ) ) {
++				$return = call_user_func( $original_cb, $post, $tax );
++			}
++			$_POST    = $original_post;
++			$_REQUEST = $original_request;
++			return $return;
++		}
++
++		/**
+ 		 * Returns a string that can be used to create a taxonomy in PHP.
+ 		 *
+ 		 * @since 6.1
+diff --color -u --suppress-common-lines -b -r ./advanced-custom-fields-6.3.6/README.md ./advanced-custom-fields-6.3.6.2/README.md
+--- ./advanced-custom-fields-6.3.6/README.md	2024-08-28 07:35:13.000000000 -0700
++++ ./advanced-custom-fields-6.3.6.2/README.md	2024-10-12 17:25:59.560336291 -0700
+@@ -1,27 +1,20 @@
+-# Advanced Custom Fields
++# Secure Custom Fields
+ 
+-Welcome to the official Advanced Custom Fields repository on GitHub. ACF is a WordPress plugin used to take full control of your edit screens & custom field data.
++Welcome to the official Secure Custom Fields repository on GitHub. SCF is a WordPress plugin used to take full control of your edit screens & custom field data.
+ 
+ ## Documentation
+ 
+-Do you need help getting started with ACF, or do you have questions about one of the ACF features? You can [search through our documentation here](https://www.advancedcustomfields.com/resources/). If you don't find the answers you're looking for, you can start a new forum thread in the [support forum](https://support.advancedcustomfields.com/) or contact our [support team](https://www.advancedcustomfields.com/contact/)
+-
+-If you've got feedback or a feature suggestion for ACF, please use our [feedback board](https://www.advancedcustomfields.com/feedback/)
++Do you need help getting started with SCF, or do you have questions about one of the SCF features? Please use the [support forums](https://wordpress.org/support/plugin/advanced-custom-fields/) on WordPress.org.
+ 
+ ## Support
+ 
+ This repository is not suitable for support. Please don't use our issue tracker for support requests, but for core issues only. 
+-Support can take place in the appropriate channels:
+-
+-* Community forum
+-* Email based ticket system 
+-
+-These channels can be accessed from our [support website](https://support.advancedcustomfields.com/).
++Support can take place in forums.
+ 
+ ## Contributing
+ 
+-If you have a patch, or stumbled upon an issue with ACF core, you can contribute this back to the code. Please create a new github issue with as much information as possible, and a PR if appropriate.
++If you have a patch, or stumbled upon an issue with SCF core, you can contribute this back to the code. Please create a new github issue with as much information as possible, and a PR if appropriate.
+ 
+ ## Translations
+ 
+-If you're looking to translate ACF, you can submit new PRO translations via a PR on this repo. Any strings from the free version are imported from [translate.wordpress.org](https://translate.wordpress.org/projects/wp-plugins/advanced-custom-fields/stable/). For more information, please view our [translation guide](https://www.advancedcustomfields.com/resources/how-to-help-translate-acf-into-other-languages/)
+\ No newline at end of file
++If you're looking to translate SCF, please use [translate.wordpress.org](https://translate.wordpress.org/projects/wp-plugins/advanced-custom-fields/stable/).
+diff --color -u --suppress-common-lines -b -r ./advanced-custom-fields-6.3.6/readme.txt ./advanced-custom-fields-6.3.6.2/readme.txt
+--- ./advanced-custom-fields-6.3.6/readme.txt	2024-08-28 07:35:13.000000000 -0700
++++ ./advanced-custom-fields-6.3.6.2/readme.txt	2024-10-12 17:25:59.804335548 -0700
+@@ -1,37 +1,35 @@
+-=== Advanced Custom Fields (ACF) ===
+-Contributors: deliciousbrains, wpengine, elliotcondon, mattshaw, lgladdy, antpb, johnstonphilip, dalewilliams, polevaultweb
+-Tags: acf, fields, custom fields, meta, repeater
++=== Secure Custom Fields ===
++Contributors: wordpressdotorg, deliciousbrains, wpengine, elliotcondon, mattshaw, lgladdy, antpb, johnstonphilip, dalewilliams, polevaultweb
++Tags: acf, fields, custom fields, meta, repeater, scf
+ Requires at least: 6.0
+ Tested up to: 6.6
+ Requires PHP: 7.4
+-Stable tag: 6.3.6
++Stable tag: 6.3.6.2
+ License: GPLv2 or later
+ License URI: https://www.gnu.org/licenses/gpl-2.0.html
+ 
+-ACF helps customize WordPress with powerful, professional and intuitive fields. Proudly powering over 2 million sites, WordPress developers love ACF.
++Secure Custom Fields is a free fork of the Advanced Custom Fields plugin created originally for security updates, but now includes functionality improvements to make this plugin non-commercial in the plugin directory. If you'd like to get involved, submit some code! We want the 2M+ sites that will receive this update to have the best code and functionality possible.
+ 
+ == Description ==
+ 
+-Advanced Custom Fields (ACF) turns WordPress sites into a fully-fledged content management system by giving you all the tools to do more with your data.
++Secure Custom Fields (SCF) turns WordPress sites into a fully-fledged content management system by giving you all the tools to do more with your data.
+ 
+-Use the ACF plugin to take full control of your WordPress edit screens, custom field data, and more.
+-
+-https://www.youtube.com/watch?v=9C6_roqghZQ&rel=0
++Use the SCF plugin to take full control of your WordPress edit screens, custom field data, and more.
+ 
+ **Add fields on demand.**
+-The ACF field builder allows you to quickly and easily add fields to WP edit screens with only the click of a few buttons! Whether it's something simple like adding an “author” field to a book review post, or something more complex like the structured data needs of an ecommerce site or marketplace, ACF makes adding fields to your content model easy.
++The SCF field builder allows you to quickly and easily add fields to WP edit screens with only the click of a few buttons! Whether it's something simple like adding an “author” field to a book review post, or something more complex like the structured data needs of an ecommerce site or marketplace, SCF makes adding fields to your content model easy.
+ 
+ **Add them anywhere.**
+ Fields can be added all over WordPress including posts, pages, users, taxonomy terms, media, comments and even custom options pages! It couldn't be simpler to bring structure to the WordPress content creation experience.
+ 
+ **Show them everywhere.**
+-Load and display your custom field values in any theme template file with our hassle-free, developer friendly functions! Whether you need to display a single value or generate content based on a more complex query, the out-of-the-box functions of ACF make templating a dream for developers of all levels of experience.
++Load and display your custom field values in any theme template file with our hassle-free, developer friendly functions! Whether you need to display a single value or generate content based on a more complex query, the out-of-the-box functions of SCF make templating a dream for developers of all levels of experience.
+ 
+ **Any Content, Fast.**
+-Turning WordPress into a true content management system is not just about custom fields. Creating new custom post types and taxonomies is an essential part of building custom WordPress sites. Registering post types and taxonomies is now possible right in the ACF UI, speeding up the content modeling workflow without the need to touch code or use another plugin.
++Turning WordPress into a true content management system is not just about custom fields. Creating new custom post types and taxonomies is an essential part of building custom WordPress sites. Registering post types and taxonomies is now possible right in the SCF UI, speeding up the content modeling workflow without the need to touch code or use another plugin.
+ 
+ **Simply beautiful and intentionally accessible.**
+-For content creators and those tasked with data entry, the field user experience is as intuitive as they could desire while fitting neatly into the native WordPress experience. Accessibility standards are regularly reviewed and applied, ensuring ACF is able to empower as close to anyone as possible.
++For content creators and those tasked with data entry, the field user experience is as intuitive as they could desire while fitting neatly into the native WordPress experience. Accessibility standards are regularly reviewed and applied, ensuring SCF is able to empower as close to anyone as possible.
+ 
+ **Documentation and developer guides.**
+ Over 10 plus years of vibrant community contribution alongside an ongoing commitment to clear documentation means that you'll be able to find the guidance you need to build what you want.
+@@ -43,41 +41,6 @@
+ * Extensive Documentation
+ * Millions of Users
+ 
+-= Links =
+-* [Website](https://www.advancedcustomfields.com/?utm_source=wordpress.org&utm_medium=free%20plugin%20listing&utm_campaign=ACF%20Website)
+-* [Documentation](https://www.advancedcustomfields.com/resources/?utm_source=wordpress.org&utm_medium=free%20plugin%20listing&utm_campaign=ACF%20Website)
+-* [Support](https://support.advancedcustomfields.com)
+-* [ACF PRO](https://www.advancedcustomfields.com/pro/?utm_source=wordpress.org&utm_medium=free%20plugin%20listing&utm_campaign=ACF%20Pro%20Upgrade)
+-
+-= PRO =
+-The Advanced Custom Fields plugin is also available in a professional version which includes more fields, more functionality, and more flexibility. The ACF PRO plugin features:
+-
+-* The [Repeater Field](https://www.advancedcustomfields.com/resources/repeater/?utm_source=wordpress.org&utm_medium=free%20plugin%20listing&utm_campaign=ACF%20Pro%20Upgrade) allows you to create a set of sub fields which can be repeated again, and again, and again.
+-* [ACF Blocks](https://www.advancedcustomfields.com/resources/blocks/?utm_source=wordpress.org&utm_medium=free%20plugin%20listing&utm_campaign=ACF%20Pro%20Upgrade), a powerful PHP-based framework for developing custom block types for the WordPress Block Editor (aka Gutenberg).
+-* Define, create, and manage content with the [Flexible Content Field](https://www.advancedcustomfields.com/resources/flexible-content/?utm_source=wordpress.org&utm_medium=free%20plugin%20listing&utm_campaign=ACF%20Pro%20Upgrade), which provides for multiple layout and sub field options.
+-* Use the [Options Page](https://www.advancedcustomfields.com/resources/options-page/?utm_source=wordpress.org&utm_medium=free%20plugin%20listing&utm_campaign=ACF%20Pro%20Upgrade) feature to add custom admin pages to edit ACF fields.
+-* Build fully customisable image galleries with the [Gallery Field](https://www.advancedcustomfields.com/resources/gallery/?utm_source=wordpress.org&utm_medium=free%20plugin%20listing&utm_campaign=ACF%20Pro%20Upgrade).
+-* Unlock a more efficient workflow for managing field settings by reusing existing fields and field groups on demand with the [Clone Field](https://www.advancedcustomfields.com/resources/clone/?utm_source=wordpress.org&utm_medium=free%20plugin%20listing&utm_campaign=ACF%20Pro%20Upgrade).
+-
+-[Upgrade to ACF PRO](https://www.advancedcustomfields.com/pro/?utm_source=wordpress.org&utm_medium=free%20plugin%20listing&utm_campaign=ACF%20Pro%20Upgrade)
+-
+-== Installation ==
+-
+-From your WordPress dashboard
+-
+-1. **Visit** Plugins > Add New
+-2. **Search** for "Advanced Custom Fields" or “ACF”
+-3. **Install and Activate** Advanced Custom Fields from your Plugins page
+-4. **Click** on the new menu item "ACF" and create your first custom field group, or register a custom post type or taxonomy.
+-5. **Read** the documentation to [get started](https://www.advancedcustomfields.com/resources/getting-started-with-acf/?utm_source=wordpress.org&utm_medium=free%20plugin%20listing&utm_campaign=ACF%20Website)
+-
+-
+-== Frequently Asked Questions ==
+-
+-= What kind of support do you provide? =
+-
+-**Support Forums.** Our ACF Community Forums provide a great resource for searching and finding previously answered and asked support questions. You may create a new thread on these forums, however, it is not guaranteed that you will receive an answer from our support team. This is more of an area for ACF developers to talk to one another, post ideas, plugins and provide basic help. [View the Support Forum](https://support.advancedcustomfields.com/)
+-
+ 
+ == Screenshots ==
+ 
+@@ -93,269 +56,13 @@
+ 
+ 
+ == Changelog ==
++= 6.3.6.2 =
++*Release Date 12th October 2024*
+ 
+-= 6.3.6 =
+-*Release Date 28th August 2024*
+-
+-* Security - Newly added fields now have to be explicitly set to allow access in the content editor (when using the ACF shortcode or Block Bindings) to increase the security around field permissions. [See the release notes for more details](https://www.advancedcustomfields.com/blog/acf-6-3-6/#field-value-access-editor)
+-* Security Fix - Field labels are now correctly escaped when rendered in the Field Group editor, to prevent a potential XSS issue. Thanks to Ryo Sotoyama of Mitsui Bussan Secure Directions, Inc. for the responsible disclosure
+-* Fix - Validation and Block AJAX requests nonces will no longer be overridden by third party plugins
+-* Fix - Detection of third party select2 libraries will now default to v4 rather than v3
+-* Fix - Block previews will now display an error if the render template PHP file is not found
+-
+-= 6.3.5 =
+-*Release Date 1st August 2024*
+-
+-* Fix - The ACF Shortcode now correctly outputs a comma separated list of values for arrays
+-* Fix - ACF Blocks rendered in auto mode now correctly re-render their previews after editing fields
+-* Fix - ACF Block validation no longer raises required validation messages if HTML will automatically select the first value when rendered
+-* Fix - ACF Block validation no longer raises required validation messages if a default value will be rendered as the field value
+-* Fix - ACF Block validation no longer raises required validation messages for fields hidden by conditional logic when adding a new block
+-
+-= 6.3.4 =
+-*Release Date 18th July 2024*
+-
+-* Security Fix - The ACF shortcode now prevents access to fields from different private posts by default. View the [release notes](https://www.advancedcustomfields.com/blog/acf-6-3-4) for more information
+-* Fix - Users without the `edit_posts` capability but with custom capabilities for a editing a custom post type, can now correctly load field groups loaded via conditional location rules
+-* Fix - Block validation no longer validates a field’s sub fields on page load, only on edit. This resolves inconsistent validation errors on page load or when first adding a block
+-* Fix - Deactivating an ACF PRO license will now remove the license key even if the server call fails
+-* Fix - Field types returning objects no longer cause PHP warnings and errors when output via `the_field`, `the_sub_field` or the ACF shortcode, or when retrieved by a `get_` function with the escape html parameter set
+-* Fix - Server side errors during block rendering now gracefully displays an error to the editor
+-
+-= 6.3.3 =
+-*Release Date 27th June 2024*
+-
+-* Enhancement - All dashicons are now available to the icon picker field type
+-* Fix - The True/False field now correctly shows it’s description message beside the switch when using the Stylized UI setting
+-* Fix - Conditional logic values now correctly load options when loaded over AJAX
+-* Fix - ACF PRO will no longer trigger license validation calls when loading a front-end page
+-* i18n - Fixed an untranslatable string on Option Page previews
+-
+-= 6.3.2.1 =
+-*Release Date 24th June 2024*
+-*PRO Only Release*
+-
+-* Fix - ACF Blocks no longer trigger a JavaScript error when fetched via AJAX
+-
+-= 6.3.2 =
+-*Release Date 24th June 2024*
+-
+-* Security Fix - ACF now generates different nonces for each AJAX-enabled field, preventing subscribers or front-end form users from querying other field results
+-* Security Fix - ACF now correctly verifies permissions for certain editor only actions, preventing subscribers performing those actions
+-* Security Fix - Deprecated a legacy private internal field type (output) to prevent it being able to output unsafe HTML
+-* Security Fix - Improved handling of some SQL filters and other internal functions to ensure output is always correctly escaped
+-* Security Fix - ACF now includes blank index.php files in all folders to prevent directory listing of ACF plugin folders for incorrectly configured web servers
+-
+-= 6.3.1.2 =
+-*Release Date 6th June 2024*
+-*PRO Only Release*
+-
+-* Fix - ACF Blocks in widget areas no longer cause a fatal error when no context is available
+-* Fix - ACF Blocks with no fields assigned no longer show a gap in the sidebar where the form would render
+-
+-= 6.3.1.1 =
+-*Release Date 6th June 2024*
+-*PRO Only Release*
+-
+-* Fix - Repeater and Flexible Content fields no longer error when duplicating or removing rows containing Icon Picker subfields
+-* Fix - ACF Blocks containing Flexible Content fields now correctly load their edit form
+-* Fix - ACF Blocks no longer have a race condition where the data store is not initialized when read
+-* Fix - ACF Blocks no longer trigger a JS error for blocks without fields and with an empty no-fields message
+-* Fix - ACF Block preloading now works correctly for fields consuming custom block context
+-* Fix - ACF Block JavaScript debug messages now correctly appear when SCRIPT_DEBUG is true
+-
+-= 6.3.1 =
+-*Release Date 4th June 2024*
+-
+-* Enhancement - Options Pages registered in the UI can now be duplicated
+-* Fix - ACF Block validation now correctly validates Repeater, Group, and Flexible Content fields
+-* Fix - ACF Block validation now correctly validates when a field is using a non-default return type
+-* Fix - Fields moved between field groups now correctly updates both JSON files
+-* Fix - Icon Picker fields now render correctly when using left-aligned labels
+-* Fix - Icon Picker fields no longer renders tabs if only one tab is selected for display
+-* Fix - Icon Picker fields no longer crash the post editor if no icon picker tabs are selected for displayed
+-* Fix - True/False field now better handles longer On/Off labels
+-* Fix - Select2 results loaded by AJAX for multi-select Taxonomy fields no longer double encode HTML entities
+-
+-= 6.3.0.1 =
+-*Release Date 22nd May 2024*
+-
+-* Fix - A possible fatal error no longer occurs in the new site health functionality for ACF PRO users
+-* Fix - A possible undefined index error no longer occurs in ACF Blocks for ACF PRO users
+-
+-= 6.3.0 =
+-*Release Date 22nd May 2024*
+-
+-* New - ACF now requires WordPress version 6.0 or newer, and PHP 7.4 or newer.
+-* New - ACF Blocks now support validation rules for fields. View the [release notes](https://www.advancedcustomfields.com/blog/acf-6-3-0-released) for more information
+-* New - ACF Blocks now supports storing field data in the postmeta table rather than in the post content
+-* New - Conditional logic rules for fields now support selecting specific values for post objects, page links, taxonomies, relationships and users rather than having to enter the ID
+-* New - New Icon Picker field type for ACF and ACF PRO
+-* New - Icon selection for a custom post type menu icon
+-* New - Icon selection for an options page menu icon
+-* New - ACF now surfaces debug and status information in the WordPress Site Health area
+-* New - The escaped html notice can now be permanently dismissed
+-* Enhancement - Tab field now supports a `selected` attribute to specify which should be selected by default, and support class attributes
+-* Fix - Block Preloading now works reliably in WordPress 6.5 or newer
+-* Fix - Select2 results loaded by AJAX for post object fields no longer double encode HTML entities
+-* Fix - Custom post types registered with ACF will now have custom field support enabled by default to better support revisions
+-* Fix - The first preview after publishing a post in the classic editor now displays ACF fields correctly
+-* Fix - ACF fields and Flexible Content layouts are now correctly positioned while dragging
+-* Fix - Copying the title of a field inside a Flexible Content layout no longer adds whitespace to the copied value
+-* Fix - Flexible Content layout names are no longer converted to lowercase when edited
+-* Fix - ACF Blocks with attributes without a default now correctly register
+-* Fix - User fields no longer trigger a 404 when loading results if the nonce generated only contains numbers
+-* Fix - Description fields for ACF items now support being solely numeric characters
+-* Fix - The field group header no longer appears above the WordPress admin menu on small screens
+-* Fix - The `acf/json/save_file_name` filter now correctly applies when deleting JSON files
+-* i18n - All errors raised during ACF PRO license or update checks are now translatable
+-* Other - The ACF Shortcode is now disabled by default for new installations of ACF as discussed in the [ACF 6.2.7 release notes](https://www.advancedcustomfields.com/blog/acf-6-2-7-security-release/#security-and-the-acf-shortcode)
+-
+-= 6.2.10 =
+-*Release Date 15th May 2024*
+-
+-* Security Fix - ACF Blocks no longer allow render templates, or render or asset callbacks to be overridden in the block's attributes. For full information, please read [the release blog post](https://www.advancedcustomfields.com/blog/acf-pro-6-2-10-security-release/)
+-
+-= 6.2.9 =
+-*Release Date 8th April 2024*
+-
+-* Enhancement - The Select2 escapeMarkup function can now be overridden when initializing a custom Select2
+-* Fix - “Hide on Screen” settings are now correctly applied when using conditionally loaded field groups
+-* Fix - Field names are no longer converted to lowercase when editing the name
+-* Fix - Field group titles will no longer convert HTML entities into their encoded form
+-
+-= 6.2.8 =
+-*Release Date 2nd April 2024*
+-
+-* New - Support for the Block Bindings API in WordPress 6.5 with a new `acf/field` source. For more information on how to use this, please read [the release blog post](https://www.advancedcustomfields.com/blog/acf-6-2-8)
+-* New - Support for performance improvements for translations in WordPress 6.5
+-* Enhancement - A new JS filter, `select2_escape_markup` now allows fields to customize select2's HTML escaping behavior
+-* Fix - Options pages can no longer set to have a parent of themselves
+-* Fix - ACF PRO license activations on multisite subsite installs will now use the correct site URL
+-* Fix - ACF PRO installed on multisite installs will no longer try to check for updates resulting in 404 errors when the updates page is not visible
+-* Fix - ACF JSON no longer produces warnings on Windows servers when no ACF JSON folder is found
+-* Fix - Field and layout names can now contain valid non-ASCII characters
+-* Other - ACF PRO now requires a valid license to be activated in order to use PRO features. [Learn more](https://www.advancedcustomfields.com/resources/license-activations/)
+-
+-= 6.2.7 =
+-*Release Date 27th February 2024*
+-
+-* Security Fix - `the_field` now escapes potentially unsafe HTML as notified since ACF 6.2.5. For full information, please read [the release blog post](https://www.advancedcustomfields.com/blog/acf-6-2-7-security-release/)
+-* Security Fix - Field and Layout names are now enforced to alphanumeric characters, resolving a potential XSS issue
+-* Security Fix - The default render template for select2 fields no longer allows HTML to be rendered resolving a potential XSS issue
+-* Security Enhancement - A `acf/shortcode/prevent_access` filter is now available to limit what data the ACF shortcode is allowed to access
+-* Security Enhancement - i18n translated strings are now escaped on output
+-* Enhancement - ACF now universally uses WordPress file system functions rather than native PHP functions
+-
+-= 6.2.6.1 =
+-*Release Date 7th February 2024*
+-
+-* Fix - Fatal JS error no longer occurs when editing fields in the classic editor when Yoast or other plugins which load block editor components are installed
+-* Fix - Using `$escape_html` on get functions for array returning field types no longer produces an Array to string conversion error
+-
+-= 6.2.6 =
+-*Release Date 6th February 2024*
+-
+-* Enhancement - The `get_field()` and other `get_` functions now support an `escape_html` parameter which return an HTML safe field value
+-* Enhancement - The URL field will be now escaped with `esc_url` rather than `wp_kses_post` when returning an HTML safe value
+-* Fix - ACF fields will now correctly save into the WordPress created revision resolving issues with previews of drafts on WordPress 6.4 or newer
+-* Fix - Multisite subsites will now correctly be activated by the main site where the ACF PRO license allows, hiding the updates page on those subsites
+-* Fix - Field types in which the `required` property would have no effect (such as the tab, or accordion) will no longer show the option
+-* Fix - Duplicating a field group now maintains the current page of field groups being displayed
+-* Fix - Fields in ACF Blocks in edit mode in hybrid themes will now use ACF's styling, rather than some attributes being overridden by the theme
+-* Fix - Text in some admin notices will no longer overlap the dismiss button
+-* Fix - The word `link` is now prohibited from being used as a CPT name to avoid a WordPress core conflict
+-* Fix - Flexible content layouts can no longer be duplicated over their maximum count limit
+-* Fix - All ACF notifications shown outside of ACF's admin screens are now prefixed with the plugin name
+-* Fix - ACF no longer checks if a polyfill is needed for <PHP7 and the polyfill has been removed
+-
+-= 6.2.5 =
+-*Release Date 16th January 2024*
+-
+-* Security Fix - The ACF shortcode will now run all output through `wp_kses`, escaping unsafe HTML. This may be a breaking change to your site but is required for security, a message will be shown in WordPress admin if you are affected. Please see the [blog post for this release for more information.](https://www.advancedcustomfields.com/blog/acf-6-2-5-security-release/) Thanks to Francesco Carlucci via Wordfence for the responsible disclosure
+-* Security - ACF now warns via an admin message, when upcoming changes to `the_field` and `the_sub_field` may require theme changes to your site to avoid stripping unsafe HTML. Please see the [blog post for this release for more information](https://www.advancedcustomfields.com/blog/acf-6-2-5-security-release/)
+-* Security - Users may opt in to automatically escaping unsafe HTML via a new filter `acf/the_field/escape_html_optin` when using `the_field` and `the_sub_field` before this becomes default in an upcoming ACF release.
+-
+-= 6.2.4 =
+-*Release Date 28th November 2023*
+-
+-* Fix - Custom Post Types labels now match the WordPress 6.4 behavior for "Add New" labels
+-* Fix - When exporting both post types and taxonomies as PHP, taxonomies will now appear before post types, matching the order ACF registers them. This resolves issues where taxonomy slugs will not work in post type permalinks
+-* Fix - Advanced Settings for Taxonomies, Post Types or Options Pages now display with the correct top padding when toggled on
+-* Fix - When a parent option page is set to "Redirect to Child Page", the child page will now correctly show it's parent setting
+-* Fix - When activated as a must-use plugin, the ACF PRO "Updates" page is now visible. Use the existing `show_updates` setting to hide
+-* Fix - When activated as a must-use plugin, ACF PRO licenses defined in code will now correctly activate sites
+-* Fix - When `show_updates` is set or filtered to false, ACF PRO will now automatically still activate defined licenses
+-* i18n - Maintenance and internal upstream messages from the ACF PRO activation server are now translatable
+-
+-= 6.2.3 =
+-*Release Date 15th November 2023*
+-
+-* [View Release Post](https://www.advancedcustomfields.com/blog/acf-6-2-3/)
+-* New - An ACF Blocks specific JSON schema for block.json is now available on [GitHub](https://github.com/AdvancedCustomFields/schemas)
+-* New - Flexible Content fields now show the layout name in the layout's header bar and supports click-to-copy
+-* New - Duplicating Flexible Content layouts now appends "Copy" to their name and label, matching the behavior of field group duplication
+-* Enhancement - ACF PRO will now automatically attempt license reactivation when the site URL changes, e.g. after a site migration. This resolves issues where updates may fail
+-* Enhancement - Presentation setting for "High" placement of the Field Group made clear that it's not supported in the block editor
+-* Fix - `acf_format_date` now ensures the date parameter is valid to prevent fatal errors if other data types are passed in
+-* Fix - CPTs with a custom icon URL now display the posts icon in the location column of the field groups screen
+-* Fix - The ACF JSON import form will now disable on first submit resolving an issue where you could submit the form twice
+-* Fix - The "Add Row" button in the Flexible Content field now displays correctly when using nested layouts
+-* Fix - Warning and Error notices no longer flicker on ACF admin pages load
+-* i18n - ACF PRO license activation success and error messages are now translatable
+-
+-= 6.2.2 =
+-*Release Date 25th October 2023*
+-
+-* Enhancement - ACF Blocks which have not been initialized by the editor will now render correctly
+-* Enhancement - Added a new `acf/filesize` filter to allow third party media plugins to bypass ACF calling `filesize()` on attachments with uncached file sizes, which may result in a remote download if offloaded
+-* Enhancement - ACF PRO license status and subscription expiry dates are now displayed on the “Updates” page
+-* Fix - Product pages for WooCommerce version 8.2 or newer now correctly support field group location rules
+-* Fix - Relationship field items can now be removed on mobile devices
+-* Fix - Color picker fields no longer autocomplete immediately after typing 3 valid hex characters
+-* Fix - Field settings no longer appear misaligned when the viewport is something other than 100%
+-* Fix - Select fields without an aria-label no longer throw a warning
+-* Fix - CPTs and Taxonomies with a custom text domain now export correctly when using PHP export
+-
+-= 6.2.1.1 =
+-*Release Date 8th September 2023*
+-
+-* Fix - Editing a field group no longer generates an error when UI options pages are disabled
+-
+-= 6.2.1 =
+-*Release Date 7th September 2023*
+-
+-* New - Options Pages created in the admin UI can now be assigned as child pages for any top-level menu item
+-* New - Added a "Title Placeholder" setting to ACF Post Types which filters the "Add title" text when editing posts
+-* Enhancement - ACF PRO will now warn when it can't update due to PHP version incompatibilities
+-* Enhancement - ACF PRO will now work correctly with WordPress automatic updates
+-* Enhancement - The internal ACF Blocks template attribute parser function `parseNodeAttr` can now be shortcut with the new `acf_blocks_parse_node_attr` filter.
+-* Enhancement - Removed legacy code for supporting WordPress versions under 5.8
+-* Fix - The "Menu Position" setting is no longer hidden for child options pages
+-* Fix - The tabs for the "Advanced" settings in Post Types and Taxonomies are now rendered inside a wrapper div
+-* Fix - Options pages will no longer display as a child page in the list view when set to a top level page after previously being a child
+-* Fix - Conflict with Elementor CSS breaking the ACF PRO banner
+-* Fix - Errors generated during the block editor's `savePost` function will no longer be caught and ignored by ACF
+-
+-= 6.2.0 =
+-*Release Date 9th August 2023*
+-
+-* [View Release Post](https://www.advancedcustomfields.com/blog/acf-6-2-0-released/)
+-* New - ACF now requires WordPress version 5.8 or newer, and PHP 7.0 or newer. View the [release post](https://www.advancedcustomfields.com/blog/acf-6-2-0-released/#version-requirements) for more information
+-* New - Bidirectional Relationships now supported for Relationship, Post Object, User and Taxonomy fields. View the [release post](https://www.advancedcustomfields.com/blog/acf-6-2-0-released/#bidirectional-relationships) for more information
+-* New - [Options Pages](https://www.advancedcustomfields.com/resources/options-page/) can now be registered and managed by the admin UI in ACF PRO
+-* New - Link to the [product feedback board](https://www.advancedcustomfields.com/feedback/) added to the plugin footer
+-* Enhancement - ACF JSON now supports multiple save locations (props Freddy Leitner)
+-* Enhancement - ACF Post Types and Taxonomies can now be duplicated
+-* Enhancement - The filename for JSON files can now be customized with the `acf/json/save_file_name` filter
+-* Fix - REST updates of fields with choices containing integer or mixed keys now behave correctly
+-* Fix - Using the `block_type_metadata_settings` PHP filter to add usesContext values no longer breaks ACF blocks
+-* Fix - Notice to import post types/taxonomies from CPTUI no longer flashes on page load
+-* Fix - Various buttons for fields in blocks now display correctly
+-* Fix - The settings for the DateTime field are no longer cut off when nested in several fields in the field group editor
+-* Fix - The newline added to the end of JSON files will now use `PHP_EOL` to detect the correct newline character with a filter `acf/json/eof_newline` to alter it.
+-* i18n - Updated French and Portuguese translations (Thanks to pedro-mendonca and maximebj)
++* Security - Harden fix in 6.3.6.1 to cover $_REQUEST as well.
++* Fork - Change name of plugin to Secure Custom Fields.
+ 
+-[View the full changelog](https://www.advancedcustomfields.com/changelog/)
++= 6.3.6.1 =
++*Release Date 7th October 2024*
+ 
+-== Upgrade Notice ==
+\ No newline at end of file
++* Security - ACF defined Post Type and Taxonomy metabox callbacks no longer have access to $_POST data. (Thanks to the Automattic Security Team for the disclosure)
