@@ -4,9 +4,9 @@
 	<h2>Comments</h2>
 	<!-- Source: https://carlschwan.eu/2020/12/29/adding-comments-to-your-static-blog-with-mastodon/ -->
 	<p>You can use your Mastodon account to reply to this <a class="link"
-			href="https://{{ site.mastadon.host }}/@{{ site.mastadon.username }}/{{ page.comment_id }}">post</a>.</p>
-	<p><a class="button" href="https://{{ site.mastadon.host }}/interact/{{ page.comment_id }}?type=reply">Reply</a></p>
-	<a href="https://{{ site.mastadon.host }}/@{{ site.mastadon.username }}/{{ page.comment_id }}">View comments</a>
+			href="https://{{ site.footer-links.mastodon.host }}/@{{ site.footer-links.mastodon.username }}/{{ page.comment_id }}">post</a>.</p>
+	<p><a class="button" href="https://{{ site.footer-links.mastodon.host }}/interact/{{ page.comment_id }}?type=reply">Reply</a></p>
+	<a href="https://{{ site.footer-links.mastodon.host }}/@{{ site.footer-links.mastodon.username }}/{{ page.comment_id }}">View comments</a>
 	<p id="mastodon-comments-list"><button id="load-comment">Load comments</button></p>
 	<noscript>
 		<p>You need JavaScript to view the comments.</p>
@@ -24,7 +24,7 @@
 
 		document.getElementById("load-comment").addEventListener("click", function () {
 			document.getElementById("load-comment").innerHTML = "Loading";
-			fetch('https://{{ site.mastadon.host }}/api/v1/statuses/{{ page.comment_id }}/context')
+			fetch('https://{{ site.footer-links.mastodon.host }}/api/v1/statuses/{{ page.comment_id }}/context')
 				.then(function (response) {
 					return response.json();
 				})

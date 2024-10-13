@@ -14,6 +14,14 @@ comment_id: 72374862398476
 
 Footnote[^1]
 
+<details>
+  <summary>One more quick hack? 🎭</summary>
+  
+  → Easy  
+  → And simple
+</details>
+
+
 <!-- Separator -->
 ---
 

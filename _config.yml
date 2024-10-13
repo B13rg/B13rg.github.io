@@ -11,6 +11,20 @@ description: Stuff about old code, vintage computers, and anything else
 # URL of your avatar or profile pic (you could use your GitHub profile pic)
 avatar: https://avatars0.githubusercontent.com/u/13488329?s=400&u=e7b28730c67dfc00ae4caec9a25e887908c402fa&v=4
 
+#Setup
+# Setup
+title:  "B's Website"
+tagline:  'Interesting articles about interesting things'
+
+# About/contact
+author:
+  name:              Brendan Byers
+  url:               https://b13rg.github.io
+  email:             IcebergByers@protonmail.com
+
+# Custom vars
+version: 2.1.0
+
 #
 # Flags below are optional
 #
@@ -30,7 +44,10 @@ footer-links:
   stackoverflow: # your stackoverflow profile, e.g. "users/50476/bart-kiers"
   youtube: # channel/<your_long_string> or user/<user-name>
   googleplus: # anything in your profile username that comes after plus.google.com/
-  mastodon:  https://mastodon.social/@iceberg_00
+  mastodon:
+    link: https://mastodon.social/@iceberg_00
+    host: mastodon.social
+    username: iceberg_00
 
 
 # Enter your Disqus shortname (not your username) to enable commenting on posts
@@ -88,25 +105,5 @@ exclude:
 
 #relative_permalinks:  false
 
-#Setup
-# Setup
-title:  "Brendan's Website"
-
-tagline:  'Interesting articles about interesting things'
-
 image: /public/favicon.ico
-
 paginate:            1
-
-# About/contact
-author:
-  name:              Brendan Byers
-  url:               https://b13rg.github.io
-  email:             IcebergByers@protonmail.com
-
-mastadon:
-  host: mastodon.social
-  username: iceberg_00
-
-# Custom vars
-version: 2.1.0

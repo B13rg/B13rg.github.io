@@ -8,10 +8,10 @@ permalink: /about/
 
 Hi, my name is Brendan Byers.  At Oregon State Univeristy, I studied Computer Science and History with an emphasis on the Soviet Union.
 
-I currently work at Apptio as a Infrastructure Engineer.
+I currently work at IBM as an SRE for Apptio.
 
 I am a programmer who is especially interested in old computers/consoles.
-Some of my favorites include
+Some of my favorites include:
 
 * Atari 400/800
 * Commodore 64
