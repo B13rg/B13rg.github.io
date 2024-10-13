@@ -35,8 +35,11 @@ Downloaded version `6.3.6.2` of secure custom fields from wordpress: [https://wo
 <details>
   <summary>List of changed files between the two plugins</summary>
 
-<code>
+<div markdown="1">
+
 The metadata for the Advanced Custom Fields plugin has been updated along with the package
+
+```sh
 diff -qr ./advanced-custom-fields-6.3.6/ ./advanced-custom-fields-6.3.6.2/
 Files ./advanced-custom-fields-6.3.6/acf.php and ./advanced-custom-fields-6.3.6.2/acf.php differ
 Files ./advanced-custom-fields-6.3.6/includes/acf-bidirectional-functions.php and ./advanced-custom-fields-6.3.6.2/includes/acf-bidirectional-functions.php differ
@@ -56,14 +59,17 @@ Files ./advanced-custom-fields-6.3.6/includes/post-types/class-acf-post-type.php
 Files ./advanced-custom-fields-6.3.6/includes/post-types/class-acf-taxonomy.php and ./advanced-custom-fields-6.3.6.2/includes/post-types/class-acf-taxonomy.php differ
 Files ./advanced-custom-fields-6.3.6/README.md and ./advanced-custom-fields-6.3.6.2/README.md differ
 Files ./advanced-custom-fields-6.3.6/readme.txt and ./advanced-custom-fields-6.3.6.2/readme.txt differ
-</code>
+```
+</div>
 </details>
 
 
 <details>
   <summary>Plugin Manifest changes</summary>
 
-<code>
+<div markdown="1">
+
+```diff
 diff --color -u --suppress-common-lines -b -r ./advanced-custom-fields-6.3.6/acf.php ./advanced-custom-fields-6.3.6.2/acf.php
 --- ./advanced-custom-fields-6.3.6/acf.php	2024-08-28 07:35:13.000000000 -0700
 +++ ./advanced-custom-fields-6.3.6.2/acf.php	2024-10-12 17:25:59.560336291 -0700
@@ -92,7 +98,8 @@ diff --color -u --suppress-common-lines -b -r ./advanced-custom-fields-6.3.6/acf
   * Text Domain:       acf
   * Domain Path:       /lang
   * Requires PHP:      7.4
-</code>
+```
+</div>
 </details>
 
 ## Notes about changes
@@ -116,7 +123,9 @@ diff --color -u --suppress-common-lines -b -r ./advanced-custom-fields-6.3.6/acf
 <details>
   <summary>Changelog Replacements</summary>
   
-<code>
+<div markdown="1">
+
+```diff
 += 6.3.6.2 =
 +*Release Date 12th October 2024*
 +* Security - Harden fix in 6.3.6.1 to cover $_REQUEST as well.
@@ -129,12 +138,13 @@ diff --color -u --suppress-common-lines -b -r ./advanced-custom-fields-6.3.6/acf
 -== Upgrade Notice ==
 \ No newline at end of file
 +* Security - ACF defined Post Type and Taxonomy metabox callbacks no longer have access to $_POST data. (Thanks to the Automattic Security Team for the disclosure)
-</code>
+```
+</div>
 </details>
 
 <details>
   <summary>Latest [Relevant] Release notes</summary>
-
+<div markdown="1">
 Release notes for 6.3.8, from https://github.com/AdvancedCustomFields/acf/blob/6.3.8/readme.txt :
 
 ```diff
@@ -159,7 +169,8 @@ Release notes for 6.3.8, from https://github.com/AdvancedCustomFields/acf/blob/6
 * Fix - Validation and Block AJAX requests nonces will no longer be overridden by third party plugins
 * Fix - Detection of third party select2 libraries will now default to v4 rather than v3
 * Fix - Block previews will now display an error if the render template PHP file is not found
-</code>
+```
+</div>
 </details>
 
 The security fix in question is related to how `advanced-custom-fields` processes GET and POST requests.
@@ -175,7 +186,8 @@ Security fix references version `6.3.8`, despite the changelog referenceing `POS
   <summary>Comparing fix to referenced `6.3.8` from acf</summary>
 
 
-<code>
+<div markdown="1">
+```diff
 > \diff -u --suppress-common-lines -b ./class-acf-post-type-6.3.8.php ./advanced-custom-fields-6.3.6.2/includes/post-types/class-acf-post-type.php
 --- ./class-acf-post-type-6.3.8.php     2024-10-12 19:26:56.058355194 -0700
 +++ ./advanced-custom-fields-6.3.6.2/includes/post-types/class-acf-post-type.php        2024-10-12 17:25:59.704335853 -0700
@@ -194,5 +206,8 @@ Security fix references version `6.3.8`, despite the changelog referenceing `POS
 +                       $_REQUEST = $original_request;
                         return $return;
                 }
-</code>
+```
+</div>
 </details>
+
+Not a good look.
