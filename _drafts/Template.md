@@ -16,9 +16,10 @@ Footnote[^1]
 
 <details>
   <summary>One more quick hack? 🎭</summary>
-  
+  <div markdown="1">
   → Easy  
   → And simple
+  </div>
 </details>
 
 
