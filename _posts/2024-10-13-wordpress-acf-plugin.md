@@ -23,9 +23,8 @@ Good summary of events with links: https://anderegg.ca/2024/10/13/acf-has-been-h
 | Aug. 28 | ACF `6.3.6` released|[link](https://github.com/AdvancedCustomFields/acf/releases/tag/6.3.6)|
 | Oct. 2/3 | ACF `6.3.7` released.  Changelog: `Security - ACF Free now uses its own update mechanism from WP Engine servers`|[link](https://github.com/AdvancedCustomFields/acf/releases/tag/6.3.7)|
 | Oct. 7 | ACF `6.3.8`.  Changelog: `Security - ACF defined Post Type and Taxonomy metabox callbacks no longer have access to $_POST data. (Thanks to the Automattic Security Team for the disclosure)` | [link](https://github.com/AdvancedCustomFields/acf/releases/tag/6.3.8)|
-| Oct. 12 | ACF becomes SCF ||
-| Oct. 12 | Wordpress announcement of taking over acf: [blog post](https://wordpress.org/news/2024/10/secure-custom-fields/)|
-
+| Oct. 12 17:47 | ACF becomes SCF | [Zip file metadata](https://wordpress.org/plugins/advanced-custom-fields/) |
+| Oct. 12 18:26 | Wordpress announcement of taking over acf: [blog post](https://wordpress.org/news/2024/10/secure-custom-fields/)|
 
 ![screenshot of now secure custom fields plugin](files/acf-scf/acf-scf-2024-10-12-17-27.png)
 
