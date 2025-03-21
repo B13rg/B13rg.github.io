@@ -3,7 +3,7 @@
 #
 
 # Name of your site (displayed in the header)
-name: 'Brendan Byers'
+name: 'Brooke Byers'
 
 # Short bio or description (displayed in the header)
 description: Stuff about old code, vintage computers, and anything else
@@ -18,9 +18,9 @@ tagline:  'Interesting articles about interesting things'
 
 # About/contact
 author:
-  name:              Brendan Byers
+  name:              Brooke Byers
   url:               https://b13rg.github.io
-  email:             IcebergByers@protonmail.com
+  email:             ByersBr@pm.me
 
 # Custom vars
 version: 2.1.0
@@ -32,7 +32,7 @@ version: 2.1.0
 # Includes an icon in the footer for each username you enter
 footer-links:
   dribbble:
-  email: IcebergByers@protonmail.com
+  email: ByersBr@pm.me
   facebook:
   flickr:
   github: B13rg

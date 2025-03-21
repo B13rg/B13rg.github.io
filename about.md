@@ -6,9 +6,9 @@ permalink: /about/
 
 ![Hey, that's me](/images/profile.jpg)
 
-Hi, my name is Brendan Byers.  At Oregon State Univeristy, I studied Computer Science and History with an emphasis on the Soviet Union.
+Hi, my name is Brooke Byers.  At Oregon State Univeristy, I studied Computer Science and History with an emphasis on the Soviet Union.
 
-I currently work at IBM as an SRE for Apptio.
+I have worked at Apptio and IBM as an SRE and network engineer.
 
 I am a programmer who is especially interested in old computers/consoles.
 Some of my favorites include:
@@ -18,7 +18,7 @@ Some of my favorites include:
 * IBM PC
 * Gameboy
 
-In my free time I enjoy sailing, Counter-Strike and playing with my home lab.
+In my free time I enjoy sailing, Counter-Strike and playing with my homelab.
 
 ### Contact me
 
