@@ -63,6 +63,7 @@ a#pdf:hover { background: #222; }
 .skills-list li span { font-size: 152%; display: block; margin-bottom: -2px; padding: 0 }
 .talent { width: 32%; float: left }
 .talent h2 { margin-bottom: 6px; }
+.talent li{border: unset;}
 .company-container { overflow: hidden; }
 .company{ margin: 0; width: 20%; float: left; font-size: 20px; line-height: 20px; }
 .company-desc { margin: 0; width: 60%; float: left; font-size: 16px; line-height: 20px; }
@@ -78,5 +79,8 @@ a#pdf:hover { background: #222; }
 .yui-gf div.first{width:12%;}
 
 .job .yui-u{float: left; width:100%}
+
+.list-unset {padding-left: 40px;}
+.list-unset li{list-style: unset; border:unset;}
 
 
