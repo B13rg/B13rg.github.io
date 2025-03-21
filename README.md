@@ -1,5 +1,12 @@
 # Jekyll Now
 
+```sh
+brew install ruby
+gem install bundler
+bundler install
+bundle exec jekyll b
+```
+
 ## Publish your a blog post
 
 Filename format: `/_posts/<year>-<month>-<day>-<title>.md` 
