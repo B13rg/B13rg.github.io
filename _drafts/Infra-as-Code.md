@@ -70,8 +70,11 @@ Separate "tiers" of cluster networks statically define network with varying leve
 ### Layer 2: Permissions
 
 Setup authentication and _operational_ access to cloud resources.
+This set of access permissions allow API access for yourself and automation.
+It is distinct from the operational access permissions in Layer 1 in that this layer focuses on _operational_ access rather than management access.
 
-Setup API access for yourself and automation.
+This encompasses managing authentication and authorization for your cloud resources and applications.
+It usually ends up being a conglomeration of a few different tools that manage different pieces of that auth like SSH keys, SSO, and IAM roles.
 
 Centralize authentication, authorization, accounting.
 
@@ -84,7 +87,7 @@ Holistically, this can be anything that transforms an input to output but practi
 * Physical Nodes: Servers, Raspberry Pis, Android phones
 * Virtual Machines: EC2 Instances, Droplets, VMs
 * Cluster-as a service: EKS, GKE, AKS
-* Serverless: Lambda, 
+* Serverless: Lambda, FaaS
 
 Organize work to minimize resources needed to complete task.
 Consolidate or split up nodes to keep average utilization high while also absorbing spikes.
