@@ -8,21 +8,25 @@ image: public/images/buttons/large/ahmygod.gif
 
 ## Layers
 
-The OSI is the usual model for network
+The Open Systems Interconnection (OSI) model is a conceptual model created by ISO that describes how information flows through different layers in a network system.
+The layers do not correspond 1-1 to tools and practices used today, but they provide a useful guide for understanding how different aspects of a networked application.
 
-As part of every layer there are monitoring, security
-
+This post describes a similar layered model for Infrastructure as Code (IaC) at scale.
+By partitioning IaC into layers, we can better understand how different aspects of are configured,  monitored, and secured.
+Each layer will have a difference balance of manual vs. "codified" actions.
+IaC created should aim to be ergonomic and scalable for the operators and maintainers.
 
 ### Layer -1: Billing
 
 Someone's getting paid somewhere.
 The billing underlies all the layers.
-Most of the time this requires a credit card, but there are growing crypto-backed options.
+Most of the time this requires a credit card, but there are growing crypto-backed operations that have greater separation from the traditional financial systems.
 This will include:
 
 * Cloud provider accounts
 * Domain name registry
-* AS/IP Registry
+* ASN/IP Registry
+* Self-hosted electricity and internet
 
 #### Monitoring / Security
 
@@ -119,7 +123,7 @@ Storage resources are located:
 2. Cluster cluster - Clusters managed by you, backed by raw provider 
 3. Managed service - DB-as-a-Service
 
-Keeping data close to where it's needed also helps reduce costs, as you aren't burning egress fees shipping data around needlessly.
+Keeping data close to where it's needed also helps reduce costs, as you aren't burning egress fees shipping bits around needlessly.
 
 Depending on your planned applications, this layer can include:
 
@@ -169,7 +173,6 @@ Application awareness
 
 ## Architectural Design Considerations
 
-
 ### Security
 
 Each layer has it's own security considerations.
@@ -194,18 +197,28 @@ As that data is replicated further from the source, funneling the data is import
 The amount of log traffic can be funneled/reduced by various means:
 
 * Minimize logging: Who needs debug?  Make it easy to enable, but if no ones looking then limiting logging to warning and above reduces log chatter
-* Deduplication / Summarization: Capture logs in a window and summarize changes.  Only pass on logs outside a 
-* Summarization: 
-* sampling: pass on n% of logs, 
-
+* Deduplication: Capture logs in a window only pass on changes in values. 
+* Summarization: Collect sets of logs and perform light 
+* Sampling: pass on a percentage of logs, simply dropping anything thats not passed on.  This is under tha assumption that the logs are not critical and can be lost without consequence.
 
 ### Lifecycle
 
+All applications and resources will have a lifecycle.
+Anything you create will probably be 
 
 
-### Rate of Change
+#### Rate of Change
 
 ### Source of Truth
+
+Idempotent definitions.
+Take advantage and templating and configuration management to minimize the amount of manual intervention required.
+
+Flatten abstractions
+
+References instead of copies.
+
+
 
 
 
