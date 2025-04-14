@@ -32,11 +32,41 @@ attributing
 
 licenses
 
-releasing
-homebrew tap
-github
+## Releasing
 
-automation
+### Setting up homebrew tap
+
+
+### configuraing goreleaser
+
+https://webinstall.dev/goreleaser/
+
+#### Github Personal Access Token (PAT)
+
+Fine-grained.
+
+Read access to:
+
+* actions
+* variables
+* environments
+* issues
+* metadata
+* secrets
+
+Read and Write access to:
+
+* actions
+* code
+* commit statuses
+* pull requests 
+
+Also limited repository access to just the repos that matter
+
+### Actions and Workflows Automation
+
+
+
 
 
 
