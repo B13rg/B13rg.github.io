@@ -59,7 +59,7 @@ Traditionally IPSec tunnels were used, but more recently Wireguard tunnels have 
 * [Netmaker](https://docs.netmaker.io/docs/about)
 * [Aviatrix](https://docs.aviatrix.com/documentation/latest/getting-started/platform-overview/index.html?expand=true)
 
-#### Monitoring/Security
+#### Structure
 
 Separate "tiers" of cluster networks statically define network with varying levels of internal and external access.
 
@@ -86,6 +86,8 @@ Holistically, this can be anything that transforms an input to output but practi
 * Cluster-as a service: EKS, GKE, AKS
 * Serverless: Lambda, 
 
+Organize work to minimize resources needed to complete task.
+Consolidate or split up nodes to keep average utilization high while also absorbing spikes.
 
 
 Uptime
@@ -94,13 +96,23 @@ CPU mitigations (or not).
 
 ### Layer 4: Storage
 
+Applications often need to persist data beyond the lifetime of the program.
+Each one has it's own special way and practices.
+
+Replication but not duplication.
+
+Keep backups as snapshot layers instead of distinct copies.
+
+Deduplication Zfs or Btrfs.
+
+
 Data locality is a key concern for performance and security.
 Data locality is the practice of keeping data close to where it's needed, reducing latency and improving efficiency.
 Storage resources are located:
 
 1. Node/cluster local - Share compute with application
-2. Cluster cluster - Clusters managed by you
-3. Managed service - SaaS
+2. Cluster cluster - Clusters managed by you, backed by raw provider 
+3. Managed service - DB-as-a-Service
 
 Keeping data close to where it's needed also helps reduce costs, as you aren't burning egress fees shipping data around needlessly.
 
@@ -109,6 +121,7 @@ Depending on your planned applications, this layer can include:
 * Block/object storage (cluster local or managed)
 * databases
 * backup+restore process
+* caching
 
 ### Layer 5: Application Network
 
@@ -147,10 +160,21 @@ As much of the configuration as possible should be statically defined.
 ### Layer 7: Integrating Applications Together
 
 Applications can be integrated together
+Application awareness
 
 ## Architectural Design Considerations
 
 ### Monitoring
+
+Lossy logging.
+High volume close to the source
+As that data is replicated further from the source, funneling the data is important.
+The amount of log traffic can be funneled/reduced by various means:
+
+* Minimize logging: Who needs debug?  Make it easy to enable, but if no ones looking then limiting logging to warning and above reduces log chatter
+* Deduplication / Summarization: Capture logs in a window and summarize changes.  Only pass on logs outside a 
+* Summarization: 
+* sampling: pass on n% of logs, 
 
 ### Security
 
