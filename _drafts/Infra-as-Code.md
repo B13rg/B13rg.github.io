@@ -52,6 +52,8 @@ Constructing a tree of least-privilege.
 This network is used for private communication between nodes and resources.
 For very simple deployments this may be contained within a single node or VPC.
 
+When architecting a system,
+
 For anything more complex you'll start using tunnels to create your network.
 Traditionally IPSec tunnels were used, but more recently Wireguard tunnels have become popular for being simpler and more efficient.
 
@@ -167,10 +169,27 @@ Application awareness
 
 ## Architectural Design Considerations
 
+
+### Security
+
+Each layer has it's own security considerations.
+Typically for an application to be at all usable there needs to be some sort of information exchanged two it.
+The challenge is balancing usability and security.
+
+Management of the infrastructures security should follow [Tenants of Zero Trust](https://web.archive.org/web/20210421022121/https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-207.pdf):
+
+* **Data and compute are resources**:  The raw data and compute are treated the same as application from a security perspective.  Properties like region and provider are aspects to be considered.
+* **All communication is secured**: All communication between data and compute should utilize secured communication at multiple layers with Wireguard tunnels, network policy, https etc.
+* **Per-resource, per-session access**: The trust boundary should be as close to the application as possible.  
+* **Determine access through collection of client and env properties**: Raw credentials should obviously be considered, but additional bits of information can be used to make a more informed determination like source IP or session event timings.
+* **Monitor the security**: Red team yourself to constantly verify the protections in place are operational and effective.  In that vein, security pieces that do have issues should most often fail closed.
+* **Security is a cycle of scanning, analysis, adjustment**: Threats are constantly evolving, and your security needs to as well. Patching should automated to the point of approval to make it as frictionless as possible.
+* **Use system state information to improve security posture**: At a minimum all auth should be logged.  Collect what you will use.  While it may be inviting to mirror, decrypt and analyze complete netflow data, that quickly becomes cost-prohibitive.  There are sharp diminishing returns, so the volume should be calibrated to your security posture.
+
 ### Monitoring
 
-Lossy logging.
-High volume close to the source
+Unless there are regulatory or contract requirements, "lossy logging" .
+High volume logging close to the source and pass on less information as the logs are transferred within the system.
 As that data is replicated further from the source, funneling the data is important.
 The amount of log traffic can be funneled/reduced by various means:
 
@@ -179,17 +198,10 @@ The amount of log traffic can be funneled/reduced by various means:
 * Summarization: 
 * sampling: pass on n% of logs, 
 
-### Security
-
-Each layer has it's own security considerations.
-Typically for an application to be at all usable there needs to be some sort of information exchanged two it.
-The challenge is balancing usability and security.
-
-Deeper layers 
-
-Leads into...
 
 ### Lifecycle
+
+
 
 ### Rate of Change
 
