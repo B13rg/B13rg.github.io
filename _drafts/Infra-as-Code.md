@@ -6,27 +6,34 @@ excerpt: A short description of the article
 image: public/images/buttons/large/ahmygod.gif
 ---
 
-## Layers
-
 The Open Systems Interconnection (OSI) model is a conceptual model created by ISO that describes how information flows through different layers in a network system.
-The layers do not correspond 1-1 to tools and practices used today, but they provide a useful guide for understanding how different aspects of a networked application.
+This post describes a similar model that applies to architecting Infrastructure as Code (IaC) at scale.
+The layers do not correspond 1-1 to tools and practices used today, but they provide a useful guide for deploying and managing a diverse set of of applications with conflicting needs.
 
-This post describes a similar layered model for Infrastructure as Code (IaC) at scale.
+This is meant to be applied to large deployments, beyond a cluster or two.
+A "normal" deployment under this model could have `n regions * m types * r replicas * z Disaster Recovery ratio`.
+Outside of the deployment there are undoubtedly regulatory and contractual requirements that also influence the design.
+Despite this, the same principles and considerations can be applied to simpler deployments to simplify complexity.
+
 By partitioning IaC into layers, we can better understand how different aspects of are configured,  monitored, and secured.
 Each layer will have a difference balance of manual vs. "codified" actions.
-IaC created should aim to be ergonomic and scalable for the operators and maintainers.
+IaC should aim to be ergonomic and scalable for the operators and maintainers.
+It's about building a string, solid foundation for applications to be built on top of.
 
 ### Layer -1: Billing
 
 Someone's getting paid somewhere.
 The billing underlies all the layers.
+To cost to participate in modern "IP Networks" can vary wildly depending on your needs and how you execute.
 Most of the time this requires a credit card, but there are growing crypto-backed operations that have greater separation from the traditional financial systems.
-This will include:
+There is always self-hosted intranet options, but there are still raw resource requirements.
+
+This will include things like:
 
 * Cloud provider accounts
 * Domain name registry
 * ASN/IP Registry
-* Self-hosted electricity and internet
+* Self-hosted electricity/internet/hardware
 
 #### Monitoring / Security
 
@@ -38,7 +45,7 @@ Strong passwords are extremely important.
 Make them as long as possible, and use a password manager.
 
 You should also take advantage of Whois (now [RDAP](https://openrdap.org/)) privacy and [RPKI services](https://www.arin.net/resources/manage/rpki/).
-With enough of a reason these can be self hosted.
+With enough justification, these can be self-hosted but this is not a common approach.
 
 ### Layer 0: Privilege
 
@@ -68,8 +75,9 @@ Traditionally IPSec tunnels were used, but more recently Wireguard tunnels have 
 #### Structure
 
 Separate "tiers" of cluster networks statically define network with varying levels of internal and external access.
+Resources in the other layers should be able to reference these tiers for baseline configuration.  
 
-* Core - Command and Control resources, includeing internal-facing [Application Networks](#layer-5-application-network)
+* Core - Command and Control resources, including internal-facing [Application Networks](#layer-5-application-network)
 * Internal - [Applications](#layer-6-application) and client services
 * External - DMZ-type tier, containing external-facing [Application Network](#layer-5-application-network) pieces 
 
@@ -90,32 +98,28 @@ Centralize authentication, authorization, accounting.
 Raw instances and services that run your applications.
 Holistically, this can be anything that transforms an input to output but practically it's an internet-connected CPU with some amount of usable RAM.
 
-* Physical Nodes: Servers, Raspberry Pis, Android phones
-* Virtual Machines: EC2 Instances, Droplets, VMs
-* Cluster-as a service: EKS, GKE, AKS
-* Serverless: Lambda, FaaS
+* Physical Nodes - Servers, Raspberry Pis, Android phones
+* Virtual Machines - EC2 Instances, Droplets, VMs
+* Cluster-as a service - EKS, GKE, AKS
+* Serverless - Lambda, FaaS
 
-Organize work to minimize resources needed to complete task.
-Consolidate or split up nodes to keep average utilization high while also absorbing spikes.
+Broadly organize work to minimize resources needed to complete task, but don't over-optimize.
+For clusters, consider consolidate or split up nodes to keep average utilization high while also absorbing spikes.
 
-
-Uptime
-memory pressure
-CPU mitigations (or not).
+With modern cloud computing, the bottleneck is often memory but this is directly tied to workloads being ran.
+With enough integration of information about the infrastructure, you can optimize for $/mem, $/cpu, or $/egress.
 
 ### Layer 4: Storage
 
 Applications often need to persist data beyond the lifetime of the program.
-Each one has it's own special way and practices.
+Each one has it's own special way and practices, but they can be roughly grouped into:
 
-Replication but not duplication.
+* Block/File/Object storage (cluster-local or managed)
+* Databases
+* Backup+Restore process
+* Caching
 
-Keep backups as snapshot layers instead of distinct copies.
-
-Deduplication Zfs or Btrfs.
-
-
-Data locality is a key concern for performance and security.
+Data locality is also a key concern for performance and security.
 Data locality is the practice of keeping data close to where it's needed, reducing latency and improving efficiency.
 Storage resources are located:
 
@@ -125,12 +129,22 @@ Storage resources are located:
 
 Keeping data close to where it's needed also helps reduce costs, as you aren't burning egress fees shipping bits around needlessly.
 
-Depending on your planned applications, this layer can include:
+#### Persistence
 
-* Block/object storage (cluster local or managed)
-* databases
-* backup+restore process
-* caching
+Data is large, arbitrary, and often unstructured.
+Data should be stored in a way that is scalable, durable, and secure.
+It should also attempt to minimize duplication.
+Filesystems like Zfs or Btrfs can be configured to deduplicate and compress data at the block level.
+Backups should also follow the incremental "snapshot" paradigm, with full backups being taken at regular intervals.
+
+When storing the data long-term, `3-2-1` principle should be followed:
+
+* 3 copies of the data 
+* across 2 mediums
+* with 1 copy off site
+
+This ensures data is available even if one of the mediums fails.
+Of course in the event of some incident, the issue becomes is restoring data in a timely predictable manner.
 
 ### Layer 5: Application Network
 
@@ -139,19 +153,14 @@ selectively links parts of the application available to external networks.
 You "target audience" may be the wider internet, internal clients/teams, or other cluster applications.
 
 This is separate from [Cluster Network](#layer-1-cluster-network), in that it's focused on the application itself, rather than supporting the core communication of the cluster as a whole.
-
-These pieces are deployed at levels in relation to the application they're supporting.
-
-Configuration should be derived from the applications needs in a standard way to minimize snowflakes.
-Applications should "opt-in" to sets of properties instead being assigned a single type to .
+These pieces are usually deployed alongside the application resources they are supporting.
 
 Here are some examples of components in this layer:
-
 
 * Application DNS - Usually `A` and `AAAA` records, but includes `MX`, `TXT` and others
 * Load balancers - Distributed balancers to route traffic to backend nodes
 * Ingress gateways - Manages routing rules at L3(Layer 3) and L4(TCP/UDP/etc.) + L7(HTTP(S)/DNS)
-* Proxy / Firewalls / Filtering Policy: Manages traffic flow and security at the application level 
+* Proxy / Firewalls / Filtering Policy - Manages traffic flow and security at the application level 
 
 
 ([Anubis](https://github.com/TecharoHQ/anubis/#setting-up-anubis))
@@ -197,17 +206,9 @@ As that data is replicated further from the source, funneling the data is import
 The amount of log traffic can be funneled/reduced by various means:
 
 * Minimize logging: Who needs debug?  Make it easy to enable, but if no ones looking then limiting logging to warning and above reduces log chatter
-* Deduplication: Capture logs in a window only pass on changes in values. 
-* Summarization: Collect sets of logs and perform light 
-* Sampling: pass on a percentage of logs, simply dropping anything thats not passed on.  This is under tha assumption that the logs are not critical and can be lost without consequence.
-
-### Lifecycle
-
-All applications and resources will have a lifecycle.
-Anything you create will probably be 
-
-
-#### Rate of Change
+* Deduplication - Capture logs in a window only pass on changes in values. 
+* Summarization - Collect sets of logs and perform light 
+* Sampling - pass on a percentage of logs, simply dropping anything thats not passed on.  This is under tha assumption that the logs are not critical and can be lost without consequence.
 
 ### Source of Truth
 
@@ -217,6 +218,22 @@ Take advantage and templating and configuration management to minimize the amoun
 Flatten abstractions
 
 References instead of copies.
+
+Configuration should be derived from the applications needs in a standard way to **minimize snowflakes**.
+Applications should "opt-in" to sets of properties instead of being assigned a single application type.
+By defining the properties as sets, features from [set theory algebra](https://en.wikipedia.org/wiki/Set_(mathematics)#Basic_operations) can be applied.
+
+### Lifecycle
+
+All applications and resources will have a lifecycle.
+Anything you create will be different in a year.
+It will probably be different in 3 months, if not the application itself then the supporting infrastructure around it.
+
+Resources are in a constant state of flux, and the IaC should strive to describe and codify these changes.
+
+#### Rate of Change
+
+## Conclusion
 
 
 
