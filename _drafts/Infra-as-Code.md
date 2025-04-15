@@ -162,21 +162,22 @@ Here are some examples of components in this layer:
 * Ingress gateways - Manages routing rules at L3(Layer 3) and L4(TCP/UDP/etc.) + L7(HTTP(S)/DNS)
 * Proxy / Firewalls / Filtering Policy - Manages traffic flow and security at the application level 
 
-
-([Anubis](https://github.com/TecharoHQ/anubis/#setting-up-anubis))
-
 ### Layer 6: Application
 
 These are the actual applications that run on the infrastructure.
 There is an extreme variety of deployment methods, so it is usually best to focus on a way that is ergonomic for both the application and maintainer.
 
+The application itself is beyond the purview of this article, but it should aim to be encapsulated in a easy-to-consume manner.
 Docker containers seem to have become the most popular, but can be overkill depending on the purpose of the application deployment.
+Whatever solution used, as much of the configuration as possible should be statically defined.
 
-As much of the configuration as possible should be statically defined.
+Documentation **needs** to be included.
+If something isn't documented, it doesn't exist.
+The same configuration used to prep and deploy the application can be used to provide greater documentation context.
 
+### Layer 7: Inter-Applications Integration
 
-### Layer 7: Integrating Applications Together
-
+Beyond the application is 
 Applications can be integrated together
 Application awareness
 
