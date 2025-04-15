@@ -18,7 +18,9 @@ Despite this, the same principles and considerations can be applied to simpler d
 By partitioning IaC into layers, we can better understand how different aspects of are configured,  monitored, and secured.
 Each layer will have a difference balance of manual vs. "codified" actions.
 IaC should aim to be ergonomic and scalable for the operators and maintainers.
-It's about building a string, solid foundation for applications to be built on top of.
+It's about weaving together different aspects of infrastructure into a cohesive fabric, providing a stable foundation for applications to be built on.
+
+## IaC Reference Model
 
 ### Layer -1: Billing
 
@@ -62,10 +64,9 @@ Constructing a tree of least-privilege.
 
 This network is used for private communication between nodes and resources.
 For very simple deployments this may be contained within a single node or VPC.
+For larger deployments, this will encompass multiple nodes, networks, and cloud providers.
 
-When architecting a system,
-
-For anything more complex you'll start using tunnels to create your network.
+For anything more complex than a single VPC you will need to start using tunnels to create your network.
 Traditionally IPSec tunnels were used, but more recently Wireguard tunnels have become popular for being simpler and more efficient.
 
 * [Tailscale](https://tailscale.com/kb/1151/what-is-tailscale)
@@ -91,7 +92,6 @@ This encompasses managing authentication and authorization for your cloud resour
 It usually ends up being a conglomeration of a few different tools that manage different pieces of that auth like SSH keys, SSO, and IAM roles.
 
 Centralize authentication, authorization, accounting.
-
 
 ### Layer 3: Compute
 
@@ -134,7 +134,7 @@ Keeping data close to where it's needed also helps reduce costs, as you aren't b
 Data is large, arbitrary, and often unstructured.
 Data should be stored in a way that is scalable, durable, and secure.
 It should also attempt to minimize duplication.
-Filesystems like Zfs or Btrfs can be configured to deduplicate and compress data at the block level.
+Filesystems like ZFS or Btrfs can be configured to deduplicate and compress data at the block level.
 Backups should also follow the incremental "snapshot" paradigm, with full backups being taken at regular intervals.
 
 When storing the data long-term, `3-2-1` principle should be followed:
@@ -201,7 +201,7 @@ Management of the infrastructures security should follow [Tenants of Zero Trust]
 
 ### Monitoring
 
-Unless there are regulatory or contract requirements, "lossy logging" .
+Unless there are regulatory or contract requirements, "lossy logging" can be an effective way to extract value from logs while minimizing the volume processed and stored.
 High volume logging close to the source and pass on less information as the logs are transferred within the system.
 As that data is replicated further from the source, funneling the data is important.
 The amount of log traffic can be funneled/reduced by various means:
@@ -216,33 +216,43 @@ The amount of log traffic can be funneled/reduced by various means:
 Idempotent definitions.
 Take advantage and templating and configuration management to minimize the amount of manual intervention required.
 
-Flatten abstractions
+There are innumerable methods to organize code, whether it a mono-repo, component repos, or monoliths.
+The key is to choose one that fits your organization's needs and stick with it.
 
-References instead of copies.
 
 Configuration should be derived from the applications needs in a standard way to **minimize snowflakes**.
-Applications should "opt-in" to sets of properties instead of being assigned a single application type.
+Code should be built on references to standard pieces instead of copies to minimize drift and decay.
+
+For shared, application-level configurations resources should "opt-in" to sets of properties instead of being assigned a single application type.
 By defining the properties as sets, features from [set theory algebra](https://en.wikipedia.org/wiki/Set_(mathematics)#Basic_operations) can be applied.
 
 ### Lifecycle
 
-All applications and resources will have a lifecycle.
-Anything you create will be different in a year.
-It will probably be different in 3 months, if not the application itself then the supporting infrastructure around it.
+All applications and resources will have a lifecycle scale and rate.
+Like documentation, any resource deployed is almost immediately out of date.
+Resources are in a constant state of flux making IaC a dynamic and evolving process.
 
-Resources are in a constant state of flux, and the IaC should strive to describe and codify these changes.
+While it is impossible to capture all aspects of a system as code, getting things "good enough" is good enough.
+By virtue of being code, it can also be updated and improved over time.
+Writing (describing?) resources is no different than writing regular business-logic-type code.
 
-#### Rate of Change
+* Keep it organized - flatten abstractions behind configurable, sensible defaults
+* Keep it simple - Minimize complex dependencies that cross resource boundaries.
+* Use tools available - linting, perf analysis, and testing.
+* Design for scale - Consider how the system will grow and adapt to change.
+
 
 ## Conclusion
 
 
 
+## Further Reading
 
+* [Lee Briggs - Structuring IaC](
+https://leebriggs.co.uk/blog/2023/08/17/structuring-iac)
+* [Nathan Peck - Rethinking Infrastructure as Code from Scratch](https://nathanpeck.com/rethinking-infrastructure-as-code-from-scratch/)
+* [Hacker](https://news.ycombinator.com/item?id=30904019) [News](https://news.ycombinator.com/item?id=36812848) [Comments](https://news.ycombinator.com/item?id=19652376)
 
----
-
-https://leebriggs.co.uk/blog/2023/08/17/structuring-iac
 ---
 
 <!-- Image example
