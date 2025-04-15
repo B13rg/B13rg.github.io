@@ -11,7 +11,7 @@ This post describes a similar model that applies to architecting Infrastructure 
 The layers do not correspond 1-1 to tools and practices used today, but they provide a useful guide for deploying and managing a diverse set of of applications with conflicting needs.
 
 This is meant to be applied to large deployments, beyond a cluster or two.
-A "normal" deployment under this model could have `n regions * m types * r replicas * z Disaster Recovery ratio`.
+A "normal" deployment under this model could have `n regions * m stack types * a applications * r replicas * z Disaster Recovery ratio`.
 Outside of the deployment there are undoubtedly regulatory and contractual requirements that also influence the design.
 Despite this, the same principles and considerations can be applied to simpler deployments to simplify complexity.
 
@@ -72,11 +72,13 @@ Traditionally IPSec tunnels were used, but more recently Wireguard tunnels have 
 * [Tailscale](https://tailscale.com/kb/1151/what-is-tailscale)
 * [Netmaker](https://docs.netmaker.io/docs/about)
 * [Aviatrix](https://docs.aviatrix.com/documentation/latest/getting-started/platform-overview/index.html?expand=true)
+* [Raw Wireguard](https://www.wireguard.com/quickstart/#command-line-interface)
 
 #### Structure
 
 Separate "tiers" of cluster networks statically define network with varying levels of internal and external access.
-Resources in the other layers should be able to reference these tiers for baseline configuration.  
+Resources in the other layers should be able to reference these tiers for baseline configuration.
+The tiers should help reinforce secure resource isolation to limit attack surface.  
 
 * Core - Command and Control resources, including internal-facing [Application Networks](#layer-5-application-network)
 * Internal - [Applications](#layer-6-application) and client services
@@ -91,7 +93,7 @@ It is distinct from the operational access permissions in Layer 1 in that this l
 This encompasses managing authentication and authorization for your cloud resources and applications.
 It usually ends up being a conglomeration of a few different tools that manage different pieces of that auth like SSH keys, SSO, and IAM roles.
 
-Centralize authentication, authorization, accounting.
+Centralize management of authentication, authorization, accounting.
 
 ### Layer 3: Compute
 
@@ -175,11 +177,17 @@ Documentation **needs** to be included.
 If something isn't documented, it doesn't exist.
 The same configuration used to prep and deploy the application can be used to provide greater documentation context.
 
-### Layer 7: Inter-Applications Integration
+### Layer 6.5: Inter-Applications Integrations
 
-Beyond the application is 
-Applications can be integrated together
-Application awareness
+Beyond the application is the interaction of applications with each other.
+This layer encodes the services and resources an application makes available, and how they can be consumed.
+This configuration is highly application-dependent and involves creating "glue" configuration between applications, often through a service mesh or API gateway.
+
+Resources in this layer can encroach deeply into the applications and infrastructure, making them difficult to manage.
+The configuration may also end up located with the application UI, and not easily accessible via IaC config.
+
+If there is a lot of investment in this area of configuration, it may be worth considering "pushing down" the configuration into lower layers so that it can be more easily managed and maintained.
+
 
 ## Architectural Design Considerations
 
@@ -218,12 +226,12 @@ Take advantage and templating and configuration management to minimize the amoun
 
 There are innumerable methods to organize code, whether it a mono-repo, component repos, or monoliths.
 The key is to choose one that fits your organization's needs and stick with it.
-
+What's really important is that it is consistent and repeatable.
 
 Configuration should be derived from the applications needs in a standard way to **minimize snowflakes**.
 Code should be built on references to standard pieces instead of copies to minimize drift and decay.
 
-For shared, application-level configurations resources should "opt-in" to sets of properties instead of being assigned a single application type.
+Shared, application-level configurations should additive, allowing resources to selectively "opt-in" to sets of properties instead of being assigned a single, restrictive application type.
 By defining the properties as sets, features from [set theory algebra](https://en.wikipedia.org/wiki/Set_(mathematics)#Basic_operations) can be applied.
 
 ### Lifecycle
@@ -234,23 +242,38 @@ Resources are in a constant state of flux making IaC a dynamic and evolving proc
 
 While it is impossible to capture all aspects of a system as code, getting things "good enough" is good enough.
 By virtue of being code, it can also be updated and improved over time.
-Writing (describing?) resources is no different than writing regular business-logic-type code.
+Writing (describing?) resources is no different than writing regular business-logic-type code, there are just a lot more moving pieces.
 
 * Keep it organized - flatten abstractions behind configurable, sensible defaults
 * Keep it simple - Minimize complex dependencies that cross resource boundaries.
 * Use tools available - linting, perf analysis, and testing.
 * Design for scale - Consider how the system will grow and adapt to change.
 
-
 ## Conclusion
 
+The easy part is deploying the service.
+The application developer environment has changed greatly since even just a decade ago.
+There are many more tools, libraries, and frameworks available to developers leading to more standard, predictable applications.
+The advent of broader generative AI has made it easier to write code, but also more difficult to reason about the system as a whole.
 
+Architecting the platform and integrations around the service is the real challenge.
+The platform is like any other product, and needs to provide guarantees to the applications running on it.
+It does not operate in a vacuum, it is a living system that needs to be maintained and adapted over time.
+Like growing a tree, it takes care and patience to create a solid system.
+Unlike a tree, everything is moldable, replicate-able, and roll-back-able (mostly).
+By keeping the lifecycle of the resource in mind you can better anticipate and negate issues that may arise.
+
+Everything is vague, and often things fall into multiple categories.
+Use it as a model to apply ideas against, t
+
+Reduce complexity through separation
 
 ## Further Reading
 
 * [Lee Briggs - Structuring IaC](
 https://leebriggs.co.uk/blog/2023/08/17/structuring-iac)
 * [Nathan Peck - Rethinking Infrastructure as Code from Scratch](https://nathanpeck.com/rethinking-infrastructure-as-code-from-scratch/)
+* [OWASP - Cloud Architecture Cheatsheet](https://cheatsheetseries.owasp.org/cheatsheets/Secure_Cloud_Architecture_Cheat_Sheet.html)
 * [Hacker](https://news.ycombinator.com/item?id=30904019) [News](https://news.ycombinator.com/item?id=36812848) [Comments](https://news.ycombinator.com/item?id=19652376)
 
 ---
