@@ -3,7 +3,7 @@ layout: post
 title:	"Infrastructure as Code at Scale"
 category: [Programming]
 excerpt: A layered model for describing Infrastructure as Code (IaC) at scale.
-image: public/images/buttons/large/ahmygod.gif
+image: /images/iac/bmc_software.jpg
 ---
 
 The Open Systems Interconnection (OSI) model is a conceptual model created by ISO that describes how information flows through different layers in a network system.
