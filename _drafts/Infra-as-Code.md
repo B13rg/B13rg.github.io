@@ -2,23 +2,23 @@
 layout: post
 title:	"Infrastructure as Code at Scale"
 category: [Programming]
-excerpt: A short description of the article
+excerpt: A layered model for describing Infrastructure as Code (IaC) at scale.
 image: public/images/buttons/large/ahmygod.gif
 ---
 
 The Open Systems Interconnection (OSI) model is a conceptual model created by ISO that describes how information flows through different layers in a network system.
-This post describes a similar model that applies to architecting Infrastructure as Code (IaC) at scale.
-The layers do not correspond 1-1 to tools and practices used today, but they provide a useful guide for deploying and managing a diverse set of of applications with conflicting needs.
+This post describes a similar model that applies to architecting Infrastructure as Code (IaC) at Scale.
+The layers do not correspond 1-1 to tools and practices used today, but they provide a useful guide for deploying and managing a diverse set of of applications with distinct compute and data requirements.
 
-This is meant to be applied to large deployments, beyond a cluster or two.
+This is meant to be applied to large deployments, beyond a single cluster or two.
+The model attempts to encompass most aspects of managing complex deployments of applications and services across multiple environments.
 A "normal" deployment under this model could have `n regions * m stack types * a applications * r replicas * z Disaster Recovery ratio`.
-Outside of the deployment there are undoubtedly regulatory and contractual requirements that also influence the design.
-Despite this, the same principles and considerations can be applied to simpler deployments to simplify complexity.
+Beyond the deployment there are also security, regulatory and contractual requirements that influence the design.
 
 By partitioning IaC into layers, we can better understand how different aspects of are configured,  monitored, and secured.
 Each layer will have a difference balance of manual vs. "codified" actions.
 IaC should aim to be ergonomic and scalable for the operators and maintainers.
-It's about weaving together different aspects of infrastructure into a cohesive fabric, providing a stable foundation for applications to be built on.
+It should be thought of as weaving together different threads of infrastructure into a cohesive fabric that provides a stable foundation for applications to be built on.
 
 ## IaC Reference Model
 
@@ -179,9 +179,9 @@ The same configuration used to prep and deploy the application can be used to pr
 
 ### Layer 6.5: Inter-Applications Integrations
 
-Beyond the application is the interaction of applications with each other.
+With multiple applications comes the interaction of applications with each other.
 This layer encodes the services and resources an application makes available, and how they can be consumed.
-This configuration is highly application-dependent and involves creating "glue" configuration between applications, often through a service mesh or API gateway.
+The configuration is highly application-dependent and involves creating "glue" configuration between applications, often through a service mesh or API gateway.
 
 Resources in this layer can encroach deeply into the applications and infrastructure, making them difficult to manage.
 The configuration may also end up located with the application UI, and not easily accessible via IaC config.
@@ -263,11 +263,6 @@ Like growing a tree, it takes care and patience to create a solid system.
 Unlike a tree, everything is moldable, replicate-able, and roll-back-able (mostly).
 By keeping the lifecycle of the resource in mind you can better anticipate and negate issues that may arise.
 
-Everything is vague, and often things fall into multiple categories.
-Use it as a model to apply ideas against, t
-
-Reduce complexity through separation
-
 ## Further Reading
 
 * [Lee Briggs - Structuring IaC](
@@ -275,27 +270,3 @@ https://leebriggs.co.uk/blog/2023/08/17/structuring-iac)
 * [Nathan Peck - Rethinking Infrastructure as Code from Scratch](https://nathanpeck.com/rethinking-infrastructure-as-code-from-scratch/)
 * [OWASP - Cloud Architecture Cheatsheet](https://cheatsheetseries.owasp.org/cheatsheets/Secure_Cloud_Architecture_Cheat_Sheet.html)
 * [Hacker](https://news.ycombinator.com/item?id=30904019) [News](https://news.ycombinator.com/item?id=36812848) [Comments](https://news.ycombinator.com/item?id=19652376)
-
----
-
-<!-- Image example
-![MS-DOS Family Tree](/images/folder/filename.png){:width="700px"}
--->
-<!-- Link example -->
-[Link to full-size image](/images/buttons/large/ahmygod.gif)
-
-Footnote[^1]
-
-<details>
-  <summary>One more quick hack? 🎭</summary>
-  <div markdown="1">
-  → Easy  
-  → And simple
-  </div>
-</details>
-
-
-<!-- Separator -->
----
-
-[^1]: Further information here
