@@ -9,24 +9,44 @@ comment_id: 72374862398476
 
 Notes on developing and releasing a package.
 
-building
+Based on things done to setup [kr8+](https://github.com/ice-bergtech/kr8).
 
-scripting common tasks
 
-generating documentation
+## Building
 
-generate further documentation
+### scripting common tasks
 
-write comments to document
+Setup taskfile to capture setup and common commands.
+Similar to a makefile, but a little more verbose.
 
-writing tests.
+### Generating documentation
+
+Writing documentation is difficult because of how quickly it can become out of date.
+By generating documentation directly from source code it will accurately reflect the current state of the code.
+
+[Godoc]() is useful for documenting go code, extracts descriptions via comments.
+Lots of tools in how it parses, [reference docs]()
+
+
+generate further documentation for specific modules, like cobra command line.
+
+package all documentation up and publish into docs site for easy consumption.
+
+### Tests
+
 go test.
 integration tests.
 examples generated with tool
 
 organizing code
 
-formatting
+## formatting
+
+`.editorconfig` to standardize spacing.
+
+automated formatters in editors and part of build process.
+
+## linting
 
 attributing
 
@@ -36,8 +56,11 @@ licenses
 
 ### Setting up homebrew tap
 
+official docs
 
-### configuraing goreleaser
+repo naming convention
+
+### configuring goreleaser
 
 https://webinstall.dev/goreleaser/
 
