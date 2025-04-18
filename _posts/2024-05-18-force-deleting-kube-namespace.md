@@ -1,34 +1,17 @@
 ---
 layout: post
-title:	"Title"
-category: [Games, Programming, Networking, DOS]
-excerpt: A short description of the article
-image: public/images/buttons/large/ahmygod.gif
-comment_id: 72374862398476
----
-<!-- Image example
-![MS-DOS Family Tree](/images/folder/filename.png){:width="700px"}
--->
-<!-- Link example -->
-[Link to full-size image](/images/buttons/large/ahmygod.gif)
-
-Footnote[^1]
-
-<details>
-  <summary>One more quick hack? 🎭</summary>
-  <div markdown="1">
-  → Easy  
-  → And simple
-  </div>
-</details>
-
-
-<!-- Separator -->
+title:	"Force Deleting Kube Namespaces"
+category: [Programming]
+excerpt: Notes about deleting kube namespaces
 ---
 
-[^1]: Further information here
+Sometimes there are finalizers blocking the deletion of a namespace through kubectl or k9s.
 
-Force-deleting a namespace
+To force the deletion, we can update the resource through the kube api server directly.
+
+<detail>
+
+<summary> kubectl proxy --help</summary>
 
 ```sh
 kubectl proxy --help 
@@ -111,12 +94,27 @@ Usage:
 Use "kubectl options" for a list of global command-line options (applies to all commands).
 
 ```
+</detail>
 
+Start kubectl proxy in background:
 
 ```sh
-kubectl proxy --port 8886 &                                                                                      ─╯
-kubectl get namespace $NAMESPACE -o json |jq '.spec = {"finalizers":[]}' >temp.json
+kubectl proxy --port 8886 &
+```
+
+Fetch our resource, patch finalizers spec, and push to api server
+
+```sh
+NAMESPACE=NamespaceToDelete
+kubectl get namespace $NAMESPACE -o json | jq '.spec = {"finalizers":[]}' > temp.json
+# note the @ in front of temp.json
 curl -k -H "Content-Type: application/json" -X PUT --data-binary @temp.json 127.0.0.1:8886/api/v1/namespaces/$NAMESPACE/finalize
+```
+
+<detail>
+<summary>Example Output</summary>
+
+```sh
 [2] 2801266
 Starting to serve on 127.0.0.1:8886
 {
@@ -172,3 +170,4 @@ Starting to serve on 127.0.0.1:8886
   }
 }
 ```
+</detail>
