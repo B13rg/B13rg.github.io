@@ -24,7 +24,9 @@ Similar to a makefile, but a little more verbose.
 Writing documentation is difficult because of how quickly it can become out of date.
 By generating documentation directly from source code it will accurately reflect the current state of the code.
 
-[Godoc]() is useful for documenting go code, extracts descriptions via comments.
+[Godoc](https://pkg.go.dev/golang.org/x/tools/cmd/godoc) is useful for documenting Golang code.
+It extracts comments and formats then into a friendly html file.
+
 Lots of tools in how it parses, [reference docs]()
 
 
@@ -32,14 +34,43 @@ generate further documentation for specific modules, like cobra command line.
 
 package all documentation up and publish into docs site for easy consumption.
 
+## Organizing Code
 
-### Formatting
+Organize into logical partitions.
+Group similar funcitnality together, and 
+Create clear boundaries of ownership within the code.
 
-`.editorconfig` to standardize spacing.
+Separate user-facing code from internal logic.
+
+Extract functions
+Keep functio
+
+### Tests
+
+Tests ensure the program is doing what you think it does.
+They should be created at different points horizontally across functions and vertically across code layers.
+
+* Go tests - Focus on root and leaf functions and work your way in
+* Integration tests - Make sure the built tool operates as expected on a basic level
+* Examples generated with tool - For kr8+, it also useful to 
+
+## Formatting
+
+
+Standard formatting makes it easier to read code through a consistent style throughout the codebase.
+It can also act as a "soft barrier" to change requests, ensuring basic checks have been made.
+
 
 Add automated formatters in editors and part of build process.
 
 Consistent function and variable naming.
+
+Automated formatters in editors and part of build process to keep things standard.
+It frees up the writer to focus on the code instead of properly balancing tabs and braces.
+
+An [.editorconfig](https://editorconfig.org/) file can help "maintain consistent coding styles for multiple developers working on the same project across various editors and IDEs".
+It is mostly editor-agnostic, though some like vscode require a [plugin](https://open-vsx.org/extension/EditorConfig/EditorConfig).
+
 
 ### Linting
 
@@ -90,6 +121,9 @@ Other projects.
 ### Licenses
 
 True OSS licenses are preferred.
+
+## Attributing/Licenses
+
 
 ## Releasing
 
