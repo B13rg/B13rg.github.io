@@ -5,7 +5,7 @@ category: [Programming]
 excerpt: This is a collection of notes and thoughts on developing and releasing an open source software package.
 ---
 
-![Le Quai des Pâquis à Genève - Jean-Baptiste-Camille Corot - 1842](images/softwarePkg/Le-Quai-des-Pâquis-à-Genève.jpg)
+![Le Quai des Pâquis à Genève - Jean-Baptiste-Camille Corot - 1842](/images/softwarePkg/Le-Quai-des-Pâquis-à-Genève.jpg)
 
 This is a collection of notes and thoughts on developing and releasing an open source software package.
 It is based on the process I went through releasing [kr8+](https://github.com/ice-bergtech/kr8), a golang tool that processes jsonnet into output files.
