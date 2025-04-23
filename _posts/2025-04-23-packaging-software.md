@@ -1,25 +1,34 @@
 ---
 layout: post
-title:	"Title"
+title:	"Packaging and Releasing a Software Project"
 category: [Programming]
-excerpt: A short description of the article
-image: public/images/buttons/large/ahmygod.gif
-comment_id: 72374862398476
+excerpt: This is a collection of notes and thoughts on developing and releasing an open source software package.
 ---
 
-Notes on developing and releasing a package.
+![Le Quai des Pâquis à Genève - Jean-Baptiste-Camille Corot - 1842](images/softwarePkg/Le-Quai-des-Pâquis-à-Genève.jpg)
 
-Based on things done to setup [kr8+](https://github.com/ice-bergtech/kr8), a golang tool that processes jsonnet into output files.
+This is a collection of notes and thoughts on developing and releasing an open source software package.
+It is based on the process I went through releasing [kr8+](https://github.com/ice-bergtech/kr8), a golang tool that processes jsonnet into output files.
 
 ## Readme.md
 
-Important sections:
+The readme is usually the first thing a module consumer sees.
 
-* About - what it is, what it does
-* User Installation and use - How to install and use
+It should provide a simple, succinct summary of what the tools does and who it is meant for.
+It should funnel the dense information from code and docs into an easy-to-understand format.
+Writing a readme is an entire process, beyond this article.
+
+[Art of README](https://github.com/hackergrrl/art-of-readme) describes the properties of a good readme and goals it should try to achieve.
+A useful guide/spec that digs into key element is [Richart Litt's standard-readme spec](https://github.com/RichardLitt/standard-readme/blob/main/spec.md).
+
+Form a high-level, the important sections are:
+
+* Description - what it is, what it does, what it solves
+* Background - why it exists
+* User Installation and usage - How to install and use
 * Documentation links - Where to learn more about functionality
 * Developer Setup - How to get the repo setup locally and contribute
-* License information
+* License information - Note licenses used by the code.
 
 ## Building
 
@@ -159,7 +168,19 @@ Once setup, users will reference the tap in the format `brew install <username>/
 
 ### Configuring GoReleaser
 
-https://goreleaser.com/customization/
+GoReleaser "is a release automation tool.
+It currently supports Go, Rust, Zig, and TypeScript (with Bun and Deno)."a tool that packages and releases Golang code in a variety of output formats."
+Documentation for configuring is [here](https://goreleaser.com/customization/).
+
+For kr8+ it was configured to produce:
+
+* Build packages for `linux` and `darwin`
+* `tar.gz` archives 
+* `rpm`, `deb`, and `apk` packages.
+* SBOM and Checksums
+* Publish package to homebrew
+
+Additionally, automation was setup to only run the full build+publish when a new git tag is added.
 
 [kr8+ example](https://github.com/ice-bergtech/kr8/blob/main/.goreleaser.yml)
 
@@ -196,6 +217,23 @@ Run same tests and checks a developer would run.
 Make sure everything checks out, especially after merging into main.
 In cases of formatting actions, it can be valuable to allow modifying PRs to provide quick fixes to an annoying issue.
 
+### Golang pkgsite
+
+Part of the golang ecosystem is part of the golang documentation system.
+It allows publishing package documentation in a central place.
+It will parse the project repo and extract documentation just like Godoc.
+You can learn more on it's [about page](https://pkg.go.dev/about).
+
+To add a package, navigate to https://pkg.go.dev/<repo> and you can click a button to have the repo scraped.
+You can also sync it by using `proxy.golang.org` as a proxy when fetching a module.
+For example:
+
+```sh
+GOPROXY=https://proxy.golang.org GO111MODULE=on go install github.com/ice-bergtech/kr8@v0.0.8
+```
+
+[kr8+ example](https://pkg.go.dev/github.com/ice-bergtech/kr8)
+
 ## Other Random Things
 
 * Project logo - A image to associate with the project
@@ -207,6 +245,14 @@ In cases of formatting actions, it can be valuable to allow modifying PRs to pro
 
 ## Conclusion
 
+Releasing a project includes a lot of things beyond the raw code.
+There are a lot of supporting pieces that should be in place to best service the end user.
+When preparing a project it is important to analyze it through different perspectives.
+You should consider all the types of end users that may view the project and what they find important.
+The added context and documentation helps users solve their issues faster and hopefully on their own.
+
+Finally, always be improving a project but also know when to move on.
+It is better to whole-ass one thing instead of half-assing two things.
 
 ## References
 
@@ -218,3 +264,4 @@ In cases of formatting actions, it can be valuable to allow modifying PRs to pro
 * [GoReleaser](https://goreleaser.com/customization/)
 * [Using GoReleaser - Carlos Becker](https://carlosbecker.com/posts/goreleaser-rust-zig/)
 * [Homebrew docs](https://docs.brew.sh/)
+
