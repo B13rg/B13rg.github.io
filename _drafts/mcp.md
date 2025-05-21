@@ -9,13 +9,30 @@ comment_id: 72374862398476
 
 ## MCP Goals
 
-https://modelcontextprotocol.io/docs/concepts/architecture
 
-* provide context to AI agents
-* local first (ish).
+https://modelcontextprotocol.io/specification/2025-03-26/architecture
+https://modelcontextprotocol.io/specification/2025-03-26
+
+* Enable seamless communication between LLM applications and external data sources and tools
+* Integrate with LLM applications (such as IDEs, chats, workflows)
+* Enable applications to connect to LLMs and share contextual information
+* Expose tools and capabilities to AI systems
 
 audience: non-technical builders (vibers).
 3rd-party hosted, but user-centric design (stdin).
+
+## The Spec
+
+
+https://modelcontextprotocol.io/docs/concepts/architecture
+
+Inspiration from https://microsoft.github.io/language-server-protocol/
+
+It is meant to be a 1-1, client-server architecture
+Applications create a "Client" for each MCP server
+I expect applications would create a client separate of the application features utilizing MCP, in order to group requests to a matching server.
+
+
 
 Should it target understanding for users or llm?
 How verbose should the endpoint be?
@@ -24,11 +41,16 @@ single "Query" endpoint or an endpoint for each thing?
 
 complexity - layers for layers sake
 
-"zero re-use of existing api surfaces"[^3]. - https://www.reddit.com/r/mcp/comments/1jr8if3/comment/mlfqkl7/
-
 
 can't use existing api, instead have to wrap in mcp.
 Even if there exists some swagger or openapi definition.
+
+## Transport
+
+Two primary methods:
+
+* STDIO
+* HTTP-based
 
 mixes transport (stdio, http+sse, ) and session protocol
 Initially meant to be local first, but more "RPC" type practices were bolted on.
@@ -71,11 +93,11 @@ Reasoning:
 
 > We're also avoiding making WebSocket an additional option in the spec, because we want to limit the number of transports officially specified for MCP, to avoid a combinatorial compatibility problem between clients and servers. (Although this does not prevent community adoption of a non-standard WebSocket transport.)
 
-It shouldn't matter how many transports are defined, it is used to simply pass `JSON-RPC 2.0` format messaged. [^5]
+It shouldn't matter how many transports are defined, it is used to simply pass `JSON-RPC 2.0` format messaged. [^6]
 
-some agents have independentaly implimented websockets:
+some agents have independently implemented websockets:
 
-Internal websicket upgrade for hiberation: [cloudflare/agents McpAgent](https://github.com/cloudflare/agents/issues/172)
+Internal websocket upgrade for hiberation: [cloudflare/agents McpAgent](https://github.com/cloudflare/agents/issues/172)
 
 
 ---
@@ -90,7 +112,35 @@ It really should be a set of 2 or 3 protocols to better define and delineate the
 Improper boundaries in the transport design don't properly separate the session data and transport method.
 The session taking place between the client and server should not care what transport is being used, at it's core it is meant to model `stdio`.
 
-authentication
+## Authentication and Authorization
+
+https://modelcontextprotocol.io/specification/2025-03-26/basic/authorization
+
+Authorization is designed for HTTP-based transports.
+STDIO should "retrieve credentials from the environment".
+Optional.
+
+OAuth 2.1 based, made up of multiple parts:
+
+* [OAuth 2.1 IETF Draft](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12)
+  * Required
+* OAuth 2.0 Authorization Server Metadata protocol ([RFC8414](https://datatracker.ietf.org/doc/html/rfc8414))
+  * Required for clients, optional for servers. If not implemented, then the "default URI schema" must be followed.
+* OAuth 2.0 Dynamic Client Registration Protocol, optional ([RFC7591](https://datatracker.ietf.org/doc/html/rfc7591))
+
+
+### Metadata Discovery and Default URI schema
+
+Use OAuth 2.0 Authorization Server Metadata to communicate 
+
+
+If OAuth 2.0 Auth Server Metadata is not implemented, then some endpoints must be created _relative to the authorization base URL_.
+
+
+
+
+
+
 
 Untrustworthy client, or untrustworthy server
 Prompt injection
@@ -157,11 +207,12 @@ codify way for software/other people to act in your stead.
 
 ## References
 
-[^1]: [MCP Transports](https://modelcontextprotocol.io/docs/concepts/transports)
+[^1]: [MCP Architecture](https://modelcontextprotocol.io/docs/concepts/architecture)
 [^2]: [MCP Message Spec](https://modelcontextprotocol.io/specification)
-[^3]: [Tao of Mac: Notes on MCP](https://taoofmac.com/space/notes/2025/03/22/1900)
+[^3]: [MCP Transports](https://modelcontextprotocol.io/docs/concepts/transports)
 [^4]: [The "S" in MCP stands for Security](https://elenacross7.medium.com/%EF%B8%8F-the-s-in-mcp-stands-for-security-91407b33ed6b) - [HN](https://news.ycombinator.com/item?id=43600192)
-[^5]: [A critical look at MCP](https://raz.sh/blog/2025-05-02_a_critical_look_at_mcp) - [HN](https://news.ycombinator.com/item?id=43945993)
+[^5]: [Tao of Mac: Notes on MCP](https://taoofmac.com/space/notes/2025/03/22/1900)
+[^6]: [A critical look at MCP](https://raz.sh/blog/2025-05-02_a_critical_look_at_mcp) - [HN](https://news.ycombinator.com/item?id=43945993)
 
 
 
