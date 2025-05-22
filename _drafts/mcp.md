@@ -18,7 +18,11 @@ https://modelcontextprotocol.io/specification/2025-03-26
 * Enable applications to connect to LLMs and share contextual information
 * Expose tools and capabilities to AI systems
 
-audience: non-technical builders (vibers).
+audience: 
+
+* consumers: (viber) technical users
+* builders: those creating SDK and integrations
+
 3rd-party hosted, but user-centric design (stdin).
 
 ## The Spec
@@ -70,7 +74,7 @@ HTTP+SSE:
 * initiated from:
   * empty GET to `/message`
   * Requests upgraded _by the server_
-* Does not support resumability
+* Does not support resume-ability
 * Requires the server to maintain a long-lived connection with high availability
 * Can only deliver server messages over SSE
 * mostly stateful
@@ -97,7 +101,7 @@ It shouldn't matter how many transports are defined, it is used to simply pass `
 
 some agents have independently implemented websockets:
 
-Internal websocket upgrade for hiberation: [cloudflare/agents McpAgent](https://github.com/cloudflare/agents/issues/172)
+Internal websocket upgrade for hibernation: [cloudflare/agents McpAgent](https://github.com/cloudflare/agents/issues/172)
 
 
 ---
