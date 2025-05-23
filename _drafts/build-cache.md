@@ -185,7 +185,7 @@ One example often seen in python and golang images is pre-loading libraries/modu
 The library references are usually modified less than the code itself, leading better caching and faster image builds.
 
 <details>
-<summary>Dockerfile examples</summary>
+<summary>Dockerfile bind mount examples</summary>
   <div markdown="1">
 
 ```dockerfile
@@ -221,6 +221,9 @@ RUN go build
 </div>
 </details>
 
+As part of the build-level caching, files are a core part of the cache.
+I found that not all aspects of the file are considered when cached.
+
 Specific to docker's file caching:
 
 * File contents
@@ -229,14 +232,21 @@ Specific to docker's file caching:
 * uid/gid, uname/gname
 * Any additional [GNU tar Extended File Attributes](https://www.gnu.org/software/tar/manual/html_node/Extended-File-Attributes.html) (custom name-value pairs associated with file)
 
-## General notes
+To help inform developers on how to best interact with the cache, the docker doc [Optimize cache usage in builds](https://docs.docker.com/build/cache/optimize/#keep-the-context-small) exists.
+It covers a few ways to improve cache performance, including:
 
-* hash all input files
-* hash output files?
-* process each file once
-* have way to clear/prune cache https://www.justanotherdot.com/posts/avoid-build-cache-bloat-by-sweeping-away-artifacts.html
+* [layer ordering](https://docs.docker.com/build/cache/optimize/#order-your-layers)- things with more frequent changes should be placed nearer to the end of the dockerfile.
+* [minimizing context](https://docs.docker.com/build/cache/optimize/#keep-the-context-small) - Use `.dockerignore` to minimize files included in the build context.
+* [use bind mounts](https://docs.docker.com/build/cache/optimize/#use-bind-mounts) - minimize extra copy instructions prepping files for later instructions
+* [Use cache mounts](https://docs.docker.com/build/cache/optimize/#use-cache-mounts) - cache mounts allow adding  specific files to the cache.  This cache is interesting because unlike the layer cache, it does not depend on previous layers.  It is stored outside the build, and sharable across multiple builds.
+* [Use external cache](https://docs.docker.com/build/cache/optimize/#use-an-external-cache) - By default, the cache is specific to the builder instance being used.  An external cache allows defining a remote cache source.  This is most often seen in CI/CD pipelines, and allows easy reuse across workflows.  More information can be found in the [Cache storage backends](https://docs.docker.com/build/cache/backends/) doc.
 
-https://rushjs.io/pages/maintainer/build_cache/
+## RushJS Build Caching
+
+Another build tool I investigated was [RushJS](https://rushjs.io/pages/intro/welcome/), a tool used to building and managing many NPM packages from a single repo.
+Along with managing dependencies, it uses caching and incremental builds to speed up building projects, especially those with complex dependency chains.
+
+The article [Enabling the build cache](https://rushjs.io/pages/maintainer/build_cache/) describes the caching design and methodology.
 
 Things I liked:
 
@@ -255,6 +265,18 @@ Things I liked:
 incremental builds: https://rushjs.io/pages/advanced/incremental_builds/
 
 * 
+
+
+## Additional thoughts
+
+* hash all input files
+* hash output files?
+* process each file once
+* have way to clear/prune cache https://www.justanotherdot.com/posts/avoid-build-cache-bloat-by-sweeping-away-artifacts.html
+
+https://rushjs.io/pages/maintainer/build_cache/
+
+
 
 ## Implementations in other languages
 
