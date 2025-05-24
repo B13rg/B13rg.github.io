@@ -2,7 +2,7 @@
 layout: post
 title:	"Build Caching Systems"
 category: [Programming]
-excerpt: A short description of the article
+excerpt: "This post explores Docker's build caching system using BuildKit and LLB to optimize layer reuse via metadata-based hashing, alongside RushJS's incremental builds and cache restoration for monorepos, emphasizing strategies to minimize redundant work. Key takeaways include metadata-driven caching, context management, and tools for efficient artifact reuse across complex projects."
 ---
 
 While working on [kr8+](https://github.com/ice-bergtech/kr8), I wanted to add a build cache to speed up building large projects, especially when changes only affect a small portion of the codebase.
@@ -174,7 +174,7 @@ Only once the header hash been generated then the file contents are hashed.
 
 ---
 
-### Docker Findings
+### Docker Takeaways
 
 Docker builds are processes by BuildKit, which creates a DAG of build steps and layers.
 The resources and properties required to generate the layer, including references to the previous layer, are included in the graph of a docker image build.
@@ -244,32 +244,81 @@ It covers a few ways to improve cache performance, including:
 ## RushJS Build Caching
 
 Another build tool I investigated was [RushJS](https://rushjs.io/pages/intro/welcome/), a tool used to building and managing many NPM packages from a single repo.
+It is part of the [Rush Stack](https://rushstack.io/) family of projects, which is managed by [Microsoft](https://github.com/microsoft/rushstack).
 Along with managing dependencies, it uses caching and incremental builds to speed up building projects, especially those with complex dependency chains.
 
 The article [Enabling the build cache](https://rushjs.io/pages/maintainer/build_cache/) describes the caching design and methodology.
+Rush uses two types of strategies for limiting build work:
 
-Things I liked:
+* [Incremental build](https://rushjs.io/pages/advanced/incremental_builds/) analyzer that enables skipping projects whose file contents have not changed since the last build.  This does not preserve build output.
+* "cache restoration", where tar archives of project build artifacts are restored from cache.
 
-
-* "output preservation" or "cache restoration".
-* output preservation handles by incremental build analyzer
-  * If no input files were modified compared to the previous build, then the project is skipped.
-  * Violated by tampering with output files
-* cache restoration
-  * query cache based on inputs to determine if output files can be replaced by cache 
-* separate cache folder, keeps it all in one place.
-* Store in a single targz file?
-* Also able to check in to source control
-* consumes gitignore
+### Incremental Builds
 
 incremental builds: https://rushjs.io/pages/advanced/incremental_builds/
 
-* 
+The incremental build system allows `rush build` to skip projects that are up to date.
+The "update to date" rules are:
 
+1. The project has already been built locally, AND
+2. Its input files and NPM dependencies have not changed since then, AND
+3. If the project depends on any other Rush projects, those projects are up to date as well, AND
+4. The command line parameters haven't changed. (For example, invoking `rush build --production` after `rush build` would require rebuilding.)
+
+It respects and `.gitignore` files in the project folder
+Configuration options are stored in [<your project>/config/rush-project.json](https://rushjs.io/pages/configs/rush-project_json/) 
+
+Changes to input files are determined by file content hashes.
+All other file metadata seems to be completely ignored.
+Since modifying a filename would require modifying the files that references it, creating a soft-requirement to have matching filenames.
+
+This feature does not concern itself with build outputs, so if all the inputs match the cache then the rest of the build for that piece is skipped.
+If the build artifacts are modified outside of the build process they will remain modified even if a build is skipped.
+
+### Cache Restoration
+
+The cache storage is file-based and stored separate from source control.
+It is default-disabled, and is configured by [common/config/rush/build-cache.json](https://rushjs.io/pages/configs/build-cache_json/).
+Since Rush is designed for large monorepos, the cache is stored in `common/temp/build-cache` by default.
+They do note that the folder can be manually placed outside the repository to share between projects.
+Cache is also able to be centrally stored in a "cloud-hosted storage container" that can be accessed by users.
+The options are `azure-blog-storage`, `amazon-s3`, and `http`.
+It seems to be compatible with any storage that speaks `aws-s3`.
+The `http` provider allows using a normal webserver to serve cache objects.
+
+The cache entry is keyed on various project inputs:
+
+* Hashes of source files that are under the project's folder, ignoring any files excluded by `.gitignore`
+* Hashes of source files under other workspace projects that are dependencies of the project. This applies to cache restoration strategy but not output preservation strategy
+* the versions of all external NPM packages that your project depends on, including indirect dependencies
+* the Rush command-line parameters used to perform the operation
+
+It also allows for fine-grained configuration of the cache key in the [<your project>/config/rush-project.json](https://rushjs.io/pages/configs/rush-project_json/) and [common/config/rush/build-cache.json](https://rushjs.io/pages/configs/build-cache_json/) files.
+This allows one to specify environment variables and additional files/glob patterns that should be considered.
+The `cacheEntryNamePattern`is able to configured to also include tokens such as `[os]` or`[arch]`, but must always contain a `[hash]` token.
+
+### RushJS Takeaways
+
+Things I liked:
+
+* multi-pronged approach to analyze different parts of the build
+  * separate incremental build and output caching actions
+* output preservation calculated by the incremental build analyzer, and applied by the build cache.
+  * If no _input_ files were modified compared to the previous build, then the project is skipped.
+  * Doesn't concern itself with build artifacts
+* cache restoration
+  * query cache based on inputs to determine if output files can be replaced by cached+compressed build artifacts
+* file-based cache storage
+  * separate cache folder that can be shared across projects
+  * provides integrations to remote storage options
+  * Also able to check in to source control
+  * Build cache artifacts stored in compressed tar files
+* Cache is keyed on input file hashes, lib versions, build parameters, and optional ENV vars.
+* respects `.gitignore` files
 
 ## Additional thoughts
 
-* hash all input files
+* hash all input files, ignoring most file metadata 
 * hash output files?
 * process each file once
 * have way to clear/prune cache https://www.justanotherdot.com/posts/avoid-build-cache-bloat-by-sweeping-away-artifacts.html
@@ -278,17 +327,9 @@ https://rushjs.io/pages/maintainer/build_cache/
 
 
 
-## Implementations in other languages
+## Other build caching systems of note
 
-CMake https://otero.gitbooks.io/cmake-complete-guide/content/chapter-3.html - 
-* stores at the variable level
-* 
-
-
-## What I Implemented
-
-
-
+* CMake https://otero.gitbooks.io/cmake-complete-guide/content/chapter-3.html - cache keyed to the variable level
 
 
 
