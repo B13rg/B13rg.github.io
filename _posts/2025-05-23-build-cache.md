@@ -316,45 +316,22 @@ Things I liked:
 * Cache is keyed on input file hashes, lib versions, build parameters, and optional ENV vars.
 * respects `.gitignore` files
 
-## Additional thoughts
+## Final Thoughts
 
-* hash all input files, ignoring most file metadata 
-* hash output files?
-* process each file once
-* have way to clear/prune cache https://www.justanotherdot.com/posts/avoid-build-cache-bloat-by-sweeping-away-artifacts.html
+A key part of creating cache is properly tracking the build context of input and output artifacts.
+At a minimum record the hash of file data, but metadata like timestamps can create unneeded cardinality.
+Files may also need to be minimally processed by the build system to extract libraries and other program references.
+The context should also includes build environment properties that are able to modify the output of the build, such as environment variables and system architecture.
 
-https://rushjs.io/pages/maintainer/build_cache/
+It can be valuable to also track and store output artifacts, which can be re-used when the inputs allow.
+User should never be interacting directly with cache files, so file compression can be used to both save disk space and obfuscate files from idle meddling.
+The storage location for cache files should consider how re-usable a cache entry is, scoping to project, repo, or system.
 
+Users should be provided a few levers to control the cache behavior, such as a build flag to ignore the cache.
+There should also be ways to filter things from being cached, either through flags, tool config, or existing config (`.gitignore`).
 
+## Further Reading
 
-## Other build caching systems of note
-
-* CMake https://otero.gitbooks.io/cmake-complete-guide/content/chapter-3.html - cache keyed to the variable level
-
-
-
-
-
-<!-- Image example
-![MS-DOS Family Tree](/images/folder/filename.png){:width="700px"}
--->
-<!-- Link example -->
-[Link to full-size image](/images/buttons/large/ahmygod.gif)
-
-Footnote[^1]
-
-<details>
-  <summary>One more quick hack? 🎭</summary>
-  <div markdown="1">
-  → Easy  
-  → And simple
-  </div>
-</details>
-
-
-<!-- Separator -->
----
-
-[^1]: Further information here
-
-
+* [CMake Complete Guide Chapter 3](https://otero.gitbooks.io/cmake-complete-guide/content/chapter-3.html) - cache entries keyed to the variable scope
+* [Avoid Cache Bloat](https://www.justanotherdot.com/posts/avoid-build-cache-bloat-by-sweeping-away-artifacts.html) - avoid keeping entries that are unlikely to be referenced
+* [Azure Caching Guidance](https://learn.microsoft.com/en-us/azure/architecture/best-practices/caching) - apply cloud architecture principles to software architecture
