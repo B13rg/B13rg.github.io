@@ -154,11 +154,11 @@ Ability to service Soviet war machine.
 
 ## Issues Faced
 
-### Insuffecient Railroad Transport
+### Insufficient Railroad Transport
 
 re-organization process
 
-### Insuffecient time
+### Insufficient time
 
 prioritization of industry and resources
 
@@ -169,7 +169,7 @@ proportion of youth to adults before and after
 
 reduction of skilled labor
 
-### Insuffecient Supplies
+### Insufficient Supplies
 
 Food
 Making up for resource losses to invaders
@@ -198,6 +198,12 @@ Industrial capacity, mobility and logistics vs. territorial control.
 5 years, 50 years, now
 
 
+# Bibliography
+
+[^Fassbender]: Fassbender, Michael.The Transfer of Soviet Factories during Work War II. [Website](https://michaeltfassbender.com/nonfiction/the-world-wars/big-picture/the-transfer-of-soviet-factories-during-world-war-ii/) [Archive](https://web.archive.org/web/20220419184611/https://michaeltfassbender.com/nonfiction/the-world-wars/big-picture/the-transfer-of-soviet-factories-during-world-war-ii/) 2014.
+
+
+---
 
 <!-- Image example
 ![MS-DOS Family Tree](/images/folder/filename.png){:width="700px"}
