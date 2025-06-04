@@ -9,9 +9,9 @@ comment_id: 72374862398476
 
 
 Title: RoFormer: Enhanced Transformer with Rotary Position Embedding
-Link: https://arxiv.org/abs/2104.09864
-Date: 20 Apr. 2021
-Subjects:  	Computation and Language (cs.CL); Artificial Intelligence (cs.AI); Machine Learning (cs.LG)
+Link: [Local Copy](/files/roformer/2104.09864v5.pdf) [Arxiv](https://arxiv.org/abs/2104.09864) [HuggingFace](https://huggingface.co/papers/2104.09864)
+Date: Submitted on 20 Apr 2021 (v1), last revised 8 Nov 2023 (this version, v5)
+Subjects: Computation and Language (cs.CL); Artificial Intelligence (cs.AI); Machine Learning (cs.LG)
 
 Originally referenced in https://github.com/kingoflolz/mesh-transformer-jax/ , which use Rotary position encodings (RoPE).
 
