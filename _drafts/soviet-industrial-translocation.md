@@ -108,11 +108,18 @@ Further towards rear mean more important.
 
 ### Worker/Population Mobilization
 
-In the years leading up to WWII, there was already significant amount of population movement.
-By the end of the 1930s, planning and regulation of population movement was managed by state institutions under the  
+In the years leading up to WWII, there was already significant amount of population movement and management.
+The late 1920s an idealogical rise of "resettlement as a means of mitigating agrarian overpopulation in the European part of the country" [^Moiseenko].
 
-Interesting aspect: "population migration" was not commonly used in publications.
-It was replaced by "territorial redistribution of population". 
+
+Most it was manifested in the course of an acute ideological struggle at the end of 20-ies regarding the role of resettlement as a means of mitigation agrarian overpopulation in the European part of the country, as well as labors State Colonization Institute, closed in 1930
+
+
+By the end of the 1930s, planning and regulation of population movement was managed by state institutions under 
+
+
+At the time the concept of "population migration" was not commonly used in Soviet publications.
+It was instead replaced by "territorial redistribution of population",  the party line of migration as a fundamental redistribution of labor.
 
 #### Passports and Population 
 
@@ -121,13 +128,18 @@ On the eve of 1933 the Central Executive Committee of the USSR established a "Un
 The passports contained information about the identity of citizens 16 and older, and was required for all persons residing in areas where the passport system was introduced.
 Those under 16 were listed as dependents on their caretakers documents.
 The passport contained extensive information about the owner, including Name, time/location of birth, nationality, social status, military service status, residence, and place of work.
-They were issued for a 3-year term
+They were issued for a 3-year term.
 
-Military paper
+In context of population labor organization, it was used as way to more closely manage and monitor population statistics.
+It also provided an alternate source of population data from the census, which occurred infrequently in 1920, 1926, 1937, and 1939.
+During the late 1930s, 
 
+Since a majority of the Soviet population lived in rural areas, the rollout began in larger urban areas where there were greater concentrations of people.
 The passports were required to be presented to "house management" upon arriving in a new locality.
 
-Since a majority of the Soviet population lived in rural areas, t began
+This "accounting of migration" 
+
+
 
 Human aspect.
 Movement of people, and all that they require.
@@ -137,6 +149,13 @@ Families
 Refugees
 
 ## The Moving Process (Follow a Factory)
+
+Kirovsky Zafact or Kirov Plant has a long history in Russia.
+It was originally 
+
+Plant that created the KV tank
+
+Combined with other factories in Chelyabinsk. 
 
 Perspective from factory owner and below.
 
@@ -238,8 +257,35 @@ Things weren't exactly going well famine-wise, so there was definitely a reason 
 
 [^Moiseenko]: Moiseenko V.M. Миграция населения в переписях России и СССР [Migration of the population in Russian censuses and the USSR]. Moscow: Faculty of Economics of the Moscow State University, TEIS. (in Russian) . [Website](https://www.demoscope.ru/weekly/2017/0719/nauka05.php) 1997.
 
+[^USSR-1]: Постановление ЦИК и СНК СССР от 27.12.1932 об установлении единой паспортной системы по Союзу ССР и обязательной прописки паспортов (About establishment of a unified passport system for the USSR and mandatory registration of passports). [Archive](https://ru.wikisource.org/wiki/%D0%9F%D0%BE%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5_%D0%A6%D0%98%D0%9A_%D0%B8_%D0%A1%D0%9D%D0%9A_%D0%A1%D0%A1%D0%A1%D0%A0_%D0%BE%D1%82_27.12.1932_%D0%BE%D0%B1_%D1%83%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B8_%D0%B5%D0%B4%D0%B8%D0%BD%D0%BE%D0%B9_%D0%BF%D0%B0%D1%81%D0%BF%D0%BE%D1%80%D1%82%D0%BD%D0%BE%D0%B9_%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D1%8B_%D0%BF%D0%BE_%D0%A1%D0%BE%D1%8E%D0%B7%D1%83_%D0%A1%D0%A1%D0%A0_%D0%B8_%D0%BE%D0%B1%D1%8F%D0%B7%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D0%BE%D0%B9_%D0%BF%D1%80%D0%BE%D0%BF%D0%B8%D1%81%D0%BA%D0%B8_%D0%BF%D0%B0%D1%81%D0%BF%D0%BE%D1%80%D1%82%D0%BE%D0%B2) 1932.
+
+Introduction of the ordinance:
+
+> In order to better account for the population of cities, workers' settlements and new buildings and the unloading of these settlements from persons not related to the production and work in institutions or schools and not engaged in socially useful work (with the exception of disabled persons and pensioners), as well as in order to clean these settlements from hiding kulak, criminal and other antisocial elements, the Central Executive Committee and the Council of People's Commissars of the USSR decide: <ordinances>
+
+The ordinance specifically targets "hiding kulak", a term reflecting their status as class enemies of the Committee.
+
+The noun Kulak (or Кула́к) stems from pre-revolutionary Russia, where it was used to describe peasants that owned land and engaged in personal enterprise.
+In May 1929 the USSR formally defined "kulak household" (кулацкое хозяйство) as part of "On the characteristics of kulak farms subject to the Labor Code" resolution.
+The criteria included:
+
+* Use of permanent hired labor
+* Ownership of a mill, a creamery (маслобойня, 'butter-making rig'), other processing equipment, or a complex machine with a motor.
+* Systematic renting out of agricultural facilities/equipment.
+* Involvement in trade, money-lending, commercial brokerage, or "other sources of non-labor income"
+
+This effectively encompassed any form of personal enterprise.
+The decree was made in the midst of collectivization in the USSR, which aimed to transfer private peasant farms and property into state-controlled collective enterprises.
 
 [^USSR-2]:Об утверждении Положения о паспортах (About approval of the Regulation on passports) [Archive](https://ru.wikisource.org/wiki/%D0%9F%D0%BE%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5_%D0%BE_%D0%BF%D0%B0%D1%81%D0%BF%D0%BE%D1%80%D1%82%D0%B0%D1%85_(1932))
+
+[^USSR-3]
+
+[^CIA-1]: CIA Information Report: Names and Locations of Industrial Plants. Declassified in Part 2013. [Source](https://www.cia.gov/readingroom/docs/CIA-RDP82-00047R000100160001-1.pdf) [Archive](files/soviet-factories/CIA-RDP82-00047R000100160001-1.pdf) 1952.
+
+[^KV-Tank]: The KV tank: Bunker buster and ugly duckling [Source](https://www.rbth.com/defence/2015/01/05/the_kv_tank_bunker_buster_and_ugly_duckling_42741.html)
+
+[^Shmakova]:Shmakova, N.P. КИРОВСКИЙ ЗАВОД наркомата танковой промышленности (Kirov Plant of the People's Commissariat of Tank Industry). [Archive](https://web.archive.org/web/20120317025348/http://www.book-chel.ru/ind.php?what=card&id=623) 2012.
 
 ---
 
