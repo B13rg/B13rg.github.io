@@ -200,8 +200,15 @@ Industrial capacity, mobility and logistics vs. territorial control.
 
 # Bibliography
 
-[^Fassbender]: Fassbender, Michael.The Transfer of Soviet Factories during Work War II. [Website](https://michaeltfassbender.com/nonfiction/the-world-wars/big-picture/the-transfer-of-soviet-factories-during-world-war-ii/) [Archive](https://web.archive.org/web/20220419184611/https://michaeltfassbender.com/nonfiction/the-world-wars/big-picture/the-transfer-of-soviet-factories-during-world-war-ii/) 2014.
+[^Fassbender]: Fassbender, Michael. The Transfer of Soviet Factories during Work War II. [Website](https://michaeltfassbender.com/nonfiction/the-world-wars/big-picture/the-transfer-of-soviet-factories-during-world-war-ii/) [Archive](https://web.archive.org/web/20220419184611/https://michaeltfassbender.com/nonfiction/the-world-wars/big-picture/the-transfer-of-soviet-factories-during-world-war-ii/) 2014.
 
+[^Isupov]: Isupov, Vladimir A. Migration of the USSR population in the pre-war years (1939-1940). Population and Economics 6(2): 70-87. doi: 10.3897/popecon.6.e81466. [Website](https://populationandeconomics.pensoft.net/article/81466/element/4/415/) 2022.
+
+
+[^Moiseenko]: Moiseenko V.M. Миграция населения в переписях России и СССР [Migration of the population in Russian censuses and the USSR]. Moscow: Faculty of Economics of the Moscow State University, TEIS. (in Russian) . [Website](https://www.demoscope.ru/weekly/2017/0719/nauka05.php) 1997.
+
+
+[^USSR-2]:Об утверждении Положения о паспортах (About approval of the Regulation on passports) [Archive](https://ru.wikisource.org/wiki/%D0%9F%D0%BE%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5_%D0%BE_%D0%BF%D0%B0%D1%81%D0%BF%D0%BE%D1%80%D1%82%D0%B0%D1%85_(1932))
 
 ---
 
