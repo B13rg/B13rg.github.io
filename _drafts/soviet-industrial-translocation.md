@@ -106,7 +106,28 @@ Further towards rear mean more important.
 
 ### Scientific Industry
 
-### Worker Mobilization
+### Worker/Population Mobilization
+
+In the years leading up to WWII, there was already significant amount of population movement.
+By the end of the 1930s, planning and regulation of population movement was managed by state institutions under the  
+
+Interesting aspect: "population migration" was not commonly used in publications.
+It was replaced by "territorial redistribution of population". 
+
+#### Passports and Population 
+
+On the eve of 1933 the Central Executive Committee of the USSR established a "Unified Passport System"[^USSR-1].
+
+The passports contained information about the identity of citizens 16 and older, and was required for all persons residing in areas where the passport system was introduced.
+Those under 16 were listed as dependents on their caretakers documents.
+The passport contained extensive information about the owner, including Name, time/location of birth, nationality, social status, military service status, residence, and place of work.
+They were issued for a 3-year term
+
+Military paper
+
+The passports were required to be presented to "house management" upon arriving in a new locality.
+
+Since a majority of the Soviet population lived in rural areas, t began
 
 Human aspect.
 Movement of people, and all that they require.
@@ -197,6 +218,16 @@ Industrial capacity, mobility and logistics vs. territorial control.
 
 5 years, 50 years, now
 
+## Limits to analysis
+
+Many sources are in russian or are not publicly available.
+Much of the foundational data and history population demographics is based on was released in the late 1980s and early 1990s as part of Glasnost policy.
+Many documents remain unpublished and are under the control of organizations like the Russian State Archive of Economics, Russian State Archive of Social and Political History, and Central State Historical Archive of the Russian Federation.
+
+Many terms and phrases are translated from russian, and often lose much of the cultural context around words and phrases.
+
+Statistical census data: mis-reported or mis-represent reality.
+Things weren't exactly going well famine-wise, so there was definitely a reason to 
 
 # Bibliography
 
