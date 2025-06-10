@@ -1,70 +1,77 @@
-SECRET/SECURITY INFORMATION JEGRE T
+SECRET/SECURITY INFORMATION SEGRE ]
 
-moe
-Neme of Plant or Organization
+men
+
+Name of Plant or Organization
+
+There Fe eee pe Sr
+
 Metallurgitchesky Zavod
+Zavod gormo=-zavodskogo oborudova-
+niya (former "Bosse")
+
 Zavod gorno=zavodskogo oborudova=
-
-niya (former "Bosse"}
-
-Zavod gomo-zavodskogo oborudova-
 niya
 
 Krivorozhsky Metallurgitchesky
-Konbinat
+Kombinat
 
-Zavod #12 (Explosives plant)
+gavod #12 (Explosives plant)
 
 Zavod Serp i Molot
+
 Meskovsky Elektrozavod
-
-Metallo-rafinermiy Zavod
-
-Voroshilovogradsky Parovozostroi-=
+Metallo-crafinermiy Zavod
+Voroshilovogradsky Parovozostroi-~
 telnhiy Zavod
 
 Kolomensky Mashinostroitelnhiy
+
 Zavod
 
-Uralsky Zavod Tyazhologo Mashi-
+Uralsky Zavod lyazhologo Mashi-~
 nostroeniya imeni Ordzhonikidze
 (0 Z TM imeni Ordzhonikidze)
 
 Orsky Zavod Tyazhologo Mashinostro~
-eniys.
+eniya
 
-Alme-atinsky Zavod Tyazhologo Ma-
+Alma-atinsky Zavod Tyazhologo Ma-
 shinostroeniya
 
-Irkutsky Zavod Tyazhcloge Mashino-=
+Irkutsky Zavod Tyazhologo Mashino-
 stroeniya
 
-Zavod imeni Yanvarskogo Vossteniva
+Zavod imeni Yanvarskogo Vosstaniva
+
 Zavod Nickel
 
-Zavod #256 (or #2577, not sure about
-number of plant} (the plant pro-
+Zavod #256 er not sure about
+t
+
+number of plan (the plant pro-
 
 duced non-ferreous alloys and copper)
 
 Zavod #342 (or #348, not sure about
 number of plant) (part of the
-Tulsky Oruzheinhiy Zavod)
+Tulsky Oruzheinhiy Zaved)
 
 Zavod Kreking
 
 Metallurgitchesky Kombinat
-Kharkovsky Turbozavod
+Kharkovaky Turbozaved
 
-Zavod Krasnhiy Metallist
+zZeavod Krasnhiy Metallist
 
-zZavod Krasnhiy Gidropress
+zavod Krasnhiy Gidropress
 
 Kharkovsky Parovozostroitelnhiy Zavod
 
-Poltavsky Parevozoremontnhiy Zavod
+Poltaveky Parovozoremontnhiy Zavod
 
-Location _
+Location
+
 Stalino in
 Donets Basin
 
@@ -74,7 +81,7 @@ Donets Basin
 Gorlovka in
 Donets Basin
 
-Krivoi Rog
+Krivol Rog
 in Ukraine
 
 Electrostal,
@@ -88,7 +95,6 @@ near Moscow
 
 Voroshilovgrad in
 Donets Basin
-
 Golutvino station
 near Kolomna, Moscow
 region
@@ -105,7 +111,7 @@ Orsk, Chkalov region
 Orsk, Chkalov region
 Orsk, Chkalov region
 
-Orsk, Chkalov region
+Orgsk, Chkalov region
 Orsk region
 
 Kharkov, Ukraine
@@ -124,13 +130,13 @@ Declassified in Part - Sanitized Copy Approved for Release @ 50-Yr2013/04/04 : C
 
 50X11
 
-Date of Knowledgs
+Date of Knowledge
 
 1930, 1931
 
-1930=1931
+1930-1931
 
-1933 and 1940
+19335 and 1940
 
 1936
 
@@ -141,7 +147,7 @@ Date of Knowledgs
 
 1932
 
-1941
+L941
 
 1942, 1946, 1947
 
@@ -161,9 +167,9 @@ Date of Knowledgs
 1942
 
 1942
-
-1942 end 1948
+1942 and 1948
 1941-1948
+
 1947
 
 1936
