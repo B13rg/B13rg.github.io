@@ -157,6 +157,8 @@ the people moved along with the factories roughly fit into three groups:
 * Families
 * Refugees
 
+
+
 ## The Moving Process (Follow a Factory)
 
 Kirovsky Zafact or Kirov Plant has a long history in Russia.
@@ -257,78 +259,41 @@ Many terms and phrases are translated from russian, and often lose much of the c
 Statistical census data: mis-reported or mis-represent reality.
 Things weren't exactly going well famine-wise, so there was definitely a reason to 
 
-# Bibliography
+---
 
 [^Fassbender]: Fassbender, Michael. The Transfer of Soviet Factories during Work War II. [Website](https://michaeltfassbender.com/nonfiction/the-world-wars/big-picture/the-transfer-of-soviet-factories-during-world-war-ii/) [Archive](https://web.archive.org/web/20220419184611/https://michaeltfassbender.com/nonfiction/the-world-wars/big-picture/the-transfer-of-soviet-factories-during-world-war-ii/) 2014.
 
 [^Isupov]: Isupov, Vladimir A. Migration of the USSR population in the pre-war years (1939-1940). Population and Economics 6(2): 70-87. doi: 10.3897/popecon.6.e81466. [Website](https://populationandeconomics.pensoft.net/article/81466/element/4/415/) 2022.
 
-
 [^Moiseenko]: Moiseenko V.M. Миграция населения в переписях России и СССР [Migration of the population in Russian censuses and the USSR]. Moscow: Faculty of Economics of the Moscow State University, TEIS. (in Russian) . [Website](https://www.demoscope.ru/weekly/2017/0719/nauka05.php) [Archive](https://www.demoscope.ru/weekly/2017/0719/nauka05.php) [Translation](files/soviet-factories/Миграция_населения_в_переписях_России_и_СССР-translation.md) 1997.
 
-[^USSR-1]: Постановление ЦИК и СНК СССР от 27.12.1932 об установлении единой паспортной системы по Союзу ССР и обязательной прописки паспортов (About establishment of a unified passport system for the USSR and mandatory registration of passports). [Archive](https://ru.wikisource.org/wiki/%D0%9F%D0%BE%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5_%D0%A6%D0%98%D0%9A_%D0%B8_%D0%A1%D0%9D%D0%9A_%D0%A1%D0%A1%D0%A1%D0%A0_%D0%BE%D1%82_27.12.1932_%D0%BE%D0%B1_%D1%83%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B8_%D0%B5%D0%B4%D0%B8%D0%BD%D0%BE%D0%B9_%D0%BF%D0%B0%D1%81%D0%BF%D0%BE%D1%80%D1%82%D0%BD%D0%BE%D0%B9_%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D1%8B_%D0%BF%D0%BE_%D0%A1%D0%BE%D1%8E%D0%B7%D1%83_%D0%A1%D0%A1%D0%A0_%D0%B8_%D0%BE%D0%B1%D1%8F%D0%B7%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D0%BE%D0%B9_%D0%BF%D1%80%D0%BE%D0%BF%D0%B8%D1%81%D0%BA%D0%B8_%D0%BF%D0%B0%D1%81%D0%BF%D0%BE%D1%80%D1%82%D0%BE%D0%B2) 1932.
+[^USSR-1]: 
+    Постановление ЦИК и СНК СССР от 27.12.1932 об установлении единой паспортной системы по Союзу ССР и обязательной прописки паспортов (About establishment of a unified passport system for the USSR and mandatory registration of passports). [Archive](https://ru.wikisource.org/wiki/%D0%9F%D0%BE%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5_%D0%A6%D0%98%D0%9A_%D0%B8_%D0%A1%D0%9D%D0%9A_%D0%A1%D0%A1%D0%A1%D0%A0_%D0%BE%D1%82_27.12.1932_%D0%BE%D0%B1_%D1%83%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B8_%D0%B5%D0%B4%D0%B8%D0%BD%D0%BE%D0%B9_%D0%BF%D0%B0%D1%81%D0%BF%D0%BE%D1%80%D1%82%D0%BD%D0%BE%D0%B9_%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D1%8B_%D0%BF%D0%BE_%D0%A1%D0%BE%D1%8E%D0%B7%D1%83_%D0%A1%D0%A1%D0%A0_%D0%B8_%D0%BE%D0%B1%D1%8F%D0%B7%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D0%BE%D0%B9_%D0%BF%D1%80%D0%BE%D0%BF%D0%B8%D1%81%D0%BA%D0%B8_%D0%BF%D0%B0%D1%81%D0%BF%D0%BE%D1%80%D1%82%D0%BE%D0%B2) 1932.
 
-Introduction of the ordinance:
+    Introduction of the ordinance:
 
-> In order to better account for the population of cities, workers' settlements and new buildings and the unloading of these settlements from persons not related to the production and work in institutions or schools and not engaged in socially useful work (with the exception of disabled persons and pensioners), as well as in order to clean these settlements from hiding kulak, criminal and other antisocial elements, the Central Executive Committee and the Council of People's Commissars of the USSR decide: <ordinances>
+      > In order to better account for the population of cities, workers' settlements and new buildings and the unloading of these settlements from persons not related to the production and work in institutions or schools and not engaged in socially useful work (with the exception of disabled persons and pensioners), as well as in order to clean these settlements from hiding kulak, criminal and other antisocial elements, the Central Executive Committee and the Council of People's Commissars of the USSR decide: <ordinances>
+    
+    The ordinance specifically targets "hiding kulak", a term reflecting their status as class enemies of the Committee.
+    The noun Kulak (or Кула́к) stems from pre-revolutionary Russia, where it was used to describe peasants that owned land and engaged in personal enterprise.
+    In May 1929 the USSR formally defined "kulak household" (кулацкое хозяйство) as part of "On the characteristics of kulak farms subject to the Labor Code" resolution.
+    The criteria included:
 
-The ordinance specifically targets "hiding kulak", a term reflecting their status as class enemies of the Committee.
+    * Use of permanent hired labor
+    * Ownership of a mill, a creamery (маслобойня, 'butter-making rig'), other processing equipment, or a complex machine with a motor.
+    * Systematic renting out of agricultural facilities/equipment.
+    * Involvement in trade, money-lending, commercial brokerage, or "other sources of non-labor income"
 
-The noun Kulak (or Кула́к) stems from pre-revolutionary Russia, where it was used to describe peasants that owned land and engaged in personal enterprise.
-In May 1929 the USSR formally defined "kulak household" (кулацкое хозяйство) as part of "On the characteristics of kulak farms subject to the Labor Code" resolution.
-The criteria included:
+    This effectively encompassed any form of personal enterprise.
+    The decree was made in the midst of collectivization in the USSR, which aimed to transfer private peasant farms and property into state-controlled collective enterprises.
 
-* Use of permanent hired labor
-* Ownership of a mill, a creamery (маслобойня, 'butter-making rig'), other processing equipment, or a complex machine with a motor.
-* Systematic renting out of agricultural facilities/equipment.
-* Involvement in trade, money-lending, commercial brokerage, or "other sources of non-labor income"
-
-This effectively encompassed any form of personal enterprise.
-The decree was made in the midst of collectivization in the USSR, which aimed to transfer private peasant farms and property into state-controlled collective enterprises.
-
-[^USSR-2]:Об утверждении Положения о паспортах (About approval of the Regulation on passports) [Archive](https://ru.wikisource.org/wiki/%D0%9F%D0%BE%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5_%D0%BE_%D0%BF%D0%B0%D1%81%D0%BF%D0%BE%D1%80%D1%82%D0%B0%D1%85_(1932))
-
-[^USSR-3]
+[^USSR-2]: Об утверждении Положения о паспортах (About approval of the Regulation on passports) [Archive](https://ru.wikisource.org/wiki/%D0%9F%D0%BE%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5_%D0%BE_%D0%BF%D0%B0%D1%81%D0%BF%D0%BE%D1%80%D1%82%D0%B0%D1%85_(1932))
 
 [^CIA-1]: CIA Information Report: Names and Locations of Industrial Plants. Declassified in Part 2013. [Source](https://www.cia.gov/readingroom/docs/CIA-RDP82-00047R000100160001-1.pdf) [Archive](files/soviet-factories/CIA-RDP82-00047R000100160001-1.pdf) [Table](files/soviet-factories/CIA-RDP82-00047R000100160001-1_table-data.csv) 1952.
 
 [^KV-Tank]: The KV tank: Bunker buster and ugly duckling [Source](https://www.rbth.com/defence/2015/01/05/the_kv_tank_bunker_buster_and_ugly_duckling_42741.html)
 
-[^Shmakova]:Shmakova, N.P. КИРОВСКИЙ ЗАВОД наркомата танковой промышленности (Kirov Plant of the People's Commissariat of Tank Industry). [Archive](https://web.archive.org/web/20120317025348/http://www.book-chel.ru/ind.php?what=card&id=623) 2012.
-
-<details>
-
-<summary> The text of the source and a Google translation</summary>
-
-Raw:
-
-```txt
-КИРОВСКИЙ ЗАВОД наркомата танковой промышленности
-
-КИРОВСКИЙ ЗАВОД наркомата танковой промышленности. За год до нач. Вел. Отеч. войны Политбюро ЦК ВКП(б) приняло решение об организации на ЧТЗпр-ва танков: уже в кон. 1940 здесь были собраны первые КВ. Война заставила эвакуировать из зап. областей страны большинство пром. предпр. Родств. и смежные заводы – Харьковский моторный и Ленингр. Кировский – были передислоциро-ваны в Чел. Здесь, т. о., было размещено мощ-ное предпр. по пр-ву танков. В связи с этим 6 окт. 1941 ЧТЗ был переименован в К. з. Коллективу завода удалось внедрить единую технологию массового поточного пр-ва и организовать крупносерийный выпуск танков. 7 нояб. 1941 чел. танки приняли участие в параде на Красной пл. и в боях под Москвой прошли первое испытание. За годы войны К. з. дал фронту 18 тыс. танков и самоходных артиллерийских установок (САУ), 48,5 тыс. танк. моторов, 85 тыс. комплектов топливной аппаратуры. Уже в авг. 1942 на заводе наряду с танками КВ выпускались Т-34. В февр. 1943 началось пр-во САУ, а в сент. того же года заработал конвейер по сборке тяжелого танка ИС (танк модификации ИС-3 обладал труднопробиваемой броней). Усовершенствованные нем. танки, появившиеся на фронте в 1944, так и не смогли конкурировать с сов. бронемашинами. Урал. разработчики танков под рук-вом Ж. Я. Котина (Н. Л. Духов, Л. С. Троянов, М. Ф. Балжи, А. И. Ермолаев, И. Я. Трашутин, Я. Е. Вихман и др.) дали фронту 13 типов боевых машин, в т. ч. артиллерийский самоход КВ-7, огнеметный танк КВ-8, тягач ССС-2Т. В 1945 КБ Танкограда было награждено орд. Ленина. На К. з. в Чел. впервые в отеч. танкостроении был применен метод термич. обработки деталей токами высокой частоты; впервые в мировой практике здесь стали отливать крупные стальные детали в металлич. формах вместо песочных. В короткий срок танкостроители освоили автоматич. электросварку по методу акад. Е. О. Патона. Завод 33 раза завоевывал 1-е место и переходящее Кр. знамя ГКО во Всесоюз. социалист. соревновании. За выдающиеся за­слуги в организации пр-ва и освоении новых типов танков, САУ и танк. дизелей завод в авг. 1944 был награжд. орд. Кр. Звезды. Труд челябинцев в годы войны отмечен также орд. Кутузова 1-й степ. 1 июня 1983 за заслуги в Вел. Отеч. войне и в пр-ве для нар. х-ва мощных гусеничных тракторов коллективу ЧТЗ был вручен орд. Труд. Кр. Знамени.
-
-Н. П. Шмакова
-
-Лит.: Комаров Л. С. Летопись Челябинского тракторного / Л. С. Комаров, Е. Г. Ховив, Н. И. Заржевский. М., 1972; Шмакова Н. П. Танкоград // Вопр. истории. 1984. № 12.
-```
-
-Translation:
-
-```txt
-KIROVSKIY ZAVOD narkomata tankovoy promyshlennosti KIROVSKIY ZAVOD narkomata tankovoy promyshlennosti. Za god do nach. Vel. Otech. voyny Politbyuro TSK VKP(b) prinyalo resheniye ob organizatsii na CHTZpr-va tankov: uzhe v kon. 1940 zdes' byli sobrany pervyye KV. Voyna zastavila evakuirovat' iz zap. oblastey strany bol'shinstvo prom. predpr. Rodstv. i smezhnyye zavody – Khar'kovskiy motornyy i Leningr. Kirovskiy – byli peredislotsiro-vany v Chel. Zdes', t. o., bylo razmeshcheno moshch-noye predpr. po pr-vu tankov. V svyazi s etim 6 okt. 1941 CHTZ byl pereimenovan v K. z. Kollektivu zavoda udalos' vnedrit' yedinuyu tekhnologiyu massovogo potochnogo pr-va i organizovat' krupnoseriynyy vypusk tankov. 7 noyab. 1941 chel. tanki prinyali uchastiye v parade na Krasnoy pl. i v boyakh pod Moskvoy proshli pervoye ispytaniye. Za gody voyny K. z. dal frontu 18 tys. tankov i samokhodnykh artilleriyskikh ustanovok (SAU), 48,5 tys. tank. motorov, 85 tys. komplektov toplivnoy apparatury. Uzhe v avg. 1942 na zavode naryadu s tankami KV vypuskalis' T-34. V fevr. 1943 nachalos' pr-vo SAU, a v sent. togo zhe goda zarabotal konveyyer po sborke tyazhelogo tanka IS (tank modifikatsii IS-3 obladal trudnoprobivayemoy broney). Usovershenstvovannyye nem. tanki, poyavivshiyesya na fronte v 1944, tak i ne smogli konkurirovat' s sov. bronemashinami. Ural. razrabotchiki tankov pod ruk-vom ZH. YA. Kotina (N. L. Dukhov, L. S. Troyanov, M. F. Balzhi, A. I. Yermolayev, I. YA. Trashutin, YA. Ye. Vikhman i dr.) dali frontu 13 tipov boyevykh mashin, v t. ch. artilleriyskiy samokhod KV-7, ognemetnyy tank KV-8, tyagach SSS-2T. V 1945 KB Tankograda bylo nagrazhdeno ord. Lenina. Na K. z. v Chel. vpervyye v otech. tankostroyenii byl primenen metod termich. obrabotki detaley tokami vysokoy chastoty; vpervyye v mirovoy praktike zdes' stali otlivat' krupnyye stal'nyye detali v metallich. formakh vmesto pesochnykh. V korotkiy srok tankostroiteli osvoili avtomatich. elektrosvarku po metodu akad. Ye. O. Patona. Zavod 33 raza zavoyevyval 1-ye mesto i perekhodyashcheye Kr. znamya GKO vo Vsesoyuz. sotsialist. sorevnovanii. Za vydayushchiyesya za­slugi v organizatsii pr-va i osvoyenii novykh tipov tankov, SAU i tank. dizeley zavod v avg. 1944 byl nagrazhd. ord. Kr. Zvezdy. Trud chelyabintsev v gody voyny otmechen takzhe ord. Kutuzova 1-y step. 1 iyunya 1983 za zaslugi v Vel. Otech. voyne i v pr-ve dlya nar. kh-va moshchnykh gusenichnykh traktorov kollektivu CHTZ byl vruchen ord. Trud. Kr. Znameni. N. P. Shmakova Lit.: Komarov L. S. Letopis' Chelyabinskogo traktornogo / L. S. Komarov, Ye. G. Khoviv, N. I. Zarzhevskiy. M., 1972; Shmakova N. P. Tankograd // Vopr. istorii. 1984. № 12.
-Show more
-2,536 / 5,000
-KIROV PLANT of the People's Commissariat of Tank Industry
-
-KIROV PLANT of the People's Commissariat of Tank Industry. A year before the start of the Great Patriotic War, the Politburo of the Central Committee of the All-Union Communist Party (Bolsheviks) decided to organize tank production at ChTZ: already at the end of 1940, the first KV tanks were assembled here. The war forced the evacuation of most industrial enterprises from the western regions of the country. Related and adjacent plants - the Kharkov Motor Plant and the Leningrad Kirov Plant - were relocated to Chelyabinsk. Here, therefore, a powerful tank production enterprise was located. In connection with this, on October 6, 1941, ChTZ was renamed K.Z. The plant's team managed to introduce a unified technology for mass flow production and organize large-scale production of tanks. On November 7, 1941, people The tanks took part in the parade on Red Square and underwent their first test in the battles near Moscow. During the war, K.Z. gave the front 18 thousand tanks and self-propelled artillery units (SPG), 48.5 thousand tank engines, 85 thousand sets of fuel equipment. Already in August 1942, the plant produced T-34 tanks along with KV tanks. In February 1943, production of SPGs began, and in September of the same year, the conveyor for assembling the IS heavy tank began to operate (the IS-3 modification tank had hard-to-penetrate armor). The improved German tanks that appeared on the front in 1944 were never able to compete with the Soviet armored vehicles. Ural. Tank developers under the leadership of Zh. Ya. Kotin (N. L. Dukhov, L. S. Troyanov, M. F. Balzhi, A. I. Ermolaev, I. Ya. Trashutin, Ya. E. Vikhman and others) gave the front 13 types of combat vehicles, including the KV-7 self-propelled artillery piece, the KV-8 flamethrower tank, and the SSS-2T tractor. In 1945, the Tankograd design bureau was awarded the Order of Lenin. At the KZ in Chelyabinsk, for the first time in domestic tank building, the method of heat treatment of parts with high-frequency currents was used; for the first time in world practice, large steel parts were cast here in metal molds instead of sand ones. In a short time, tank builders mastered automatic electric welding using the method of Academician E. O. Paton. The plant won 1st place 33 times and the transferable Krasnodar Territory. GKO banner in the All-Union socialist competition. For outstanding achievements in organizing the production and development of new types of tanks, self-propelled guns and tank diesels, the plant was awarded the Order of the Red Star in August 1944. The work of Chelyabinsk residents during the war was also recognized with the Order of Kutuzov, 1st degree. On June 1, 1983, for services in the Great Patriotic War and in the production of powerful tracked tractors for the people's economy, the ChTZ team was awarded the Order of Labor Red Banner.
-
-N. P. Shmakova
-
-Literature: Komarov L. S. Chronicle of the Chelyabinsk Tractor Plant / L. S. Komarov, E. G. Khoviv, N. I. Zarzhevsky. Moscow, 1972; Shmakova N. P. Tankograd // Questions of History. 1984. No. 12.
-Send feedback
-
-```
-</details>
+[^Shmakova]:Shmakova, N.P. КИРОВСКИЙ ЗАВОД наркомата танковой промышленности (Kirov Plant of the People's Commissariat of Tank Industry). [Archive](https://web.archive.org/web/20120317025348/http://www.book-chel.ru/ind.php?what=card&id=623) [Translation](files/soviet-factories/КИРОВСКИЙ_ЗАВОД_наркомата_танковой_промышленности-translation.md) 2012.
 
 ---
 
