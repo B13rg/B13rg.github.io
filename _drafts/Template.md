@@ -6,6 +6,8 @@ excerpt: A short description of the article
 image: public/images/buttons/large/ahmygod.gif
 comment_id: 72374862398476
 ---
+<!-- Kramdown syntax: https://kramdown.gettalong.org/syntax.html -->
+
 <!-- Image example
 ![MS-DOS Family Tree](/images/folder/filename.png){:width="700px"}
 -->
