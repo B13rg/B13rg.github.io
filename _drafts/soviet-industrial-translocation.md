@@ -262,7 +262,7 @@ Things weren't exactly going well famine-wise, so there was definitely a reason 
 [^Isupov]: Isupov, Vladimir A. Migration of the USSR population in the pre-war years (1939-1940). Population and Economics 6(2): 70-87. doi: 10.3897/popecon.6.e81466. [Website](https://populationandeconomics.pensoft.net/article/81466/element/4/415/) 2022.
 
 
-[^Moiseenko]: Moiseenko V.M. Миграция населения в переписях России и СССР [Migration of the population in Russian censuses and the USSR]. Moscow: Faculty of Economics of the Moscow State University, TEIS. (in Russian) . [Website](https://www.demoscope.ru/weekly/2017/0719/nauka05.php) 1997.
+[^Moiseenko]: Moiseenko V.M. Миграция населения в переписях России и СССР [Migration of the population in Russian censuses and the USSR]. Moscow: Faculty of Economics of the Moscow State University, TEIS. (in Russian) . [Website](https://www.demoscope.ru/weekly/2017/0719/nauka05.php) [Archive](https://www.demoscope.ru/weekly/2017/0719/nauka05.php) 1997.
 
 [^USSR-1]: Постановление ЦИК и СНК СССР от 27.12.1932 об установлении единой паспортной системы по Союзу ССР и обязательной прописки паспортов (About establishment of a unified passport system for the USSR and mandatory registration of passports). [Archive](https://ru.wikisource.org/wiki/%D0%9F%D0%BE%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5_%D0%A6%D0%98%D0%9A_%D0%B8_%D0%A1%D0%9D%D0%9A_%D0%A1%D0%A1%D0%A1%D0%A0_%D0%BE%D1%82_27.12.1932_%D0%BE%D0%B1_%D1%83%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B8_%D0%B5%D0%B4%D0%B8%D0%BD%D0%BE%D0%B9_%D0%BF%D0%B0%D1%81%D0%BF%D0%BE%D1%80%D1%82%D0%BD%D0%BE%D0%B9_%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D1%8B_%D0%BF%D0%BE_%D0%A1%D0%BE%D1%8E%D0%B7%D1%83_%D0%A1%D0%A1%D0%A0_%D0%B8_%D0%BE%D0%B1%D1%8F%D0%B7%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D0%BE%D0%B9_%D0%BF%D1%80%D0%BE%D0%BF%D0%B8%D1%81%D0%BA%D0%B8_%D0%BF%D0%B0%D1%81%D0%BF%D0%BE%D1%80%D1%82%D0%BE%D0%B2) 1932.
 
@@ -288,7 +288,7 @@ The decree was made in the midst of collectivization in the USSR, which aimed to
 
 [^USSR-3]
 
-[^CIA-1]: CIA Information Report: Names and Locations of Industrial Plants. Declassified in Part 2013. [Source](https://www.cia.gov/readingroom/docs/CIA-RDP82-00047R000100160001-1.pdf) [Archive](files/soviet-factories/CIA-RDP82-00047R000100160001-1.pdf) 1952.
+[^CIA-1]: CIA Information Report: Names and Locations of Industrial Plants. Declassified in Part 2013. [Source](https://www.cia.gov/readingroom/docs/CIA-RDP82-00047R000100160001-1.pdf) [Archive](files/soviet-factories/CIA-RDP82-00047R000100160001-1.pdf) [Table](files/soviet-factories/CIA-RDP82-00047R000100160001-1_table-data.csv) 1952.
 
 [^KV-Tank]: The KV tank: Bunker buster and ugly duckling [Source](https://www.rbth.com/defence/2015/01/05/the_kv_tank_bunker_buster_and_ugly_duckling_42741.html)
 
