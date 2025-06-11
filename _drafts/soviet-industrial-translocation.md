@@ -137,23 +137,25 @@ The passport contained extensive information about the owner, including Name, ti
 They were issued for a 3-year term.
 
 In context of population labor organization, it was used as way to more closely manage and monitor population statistics.
-It was an alternate population data source to the census, which occurred infrequently in 1920, 1926, (1933), 1937, and 1939.
-They never seemed to be particularly organized or accurate, [^Moiseenko].
-During the late 1930s, 
+It was an alternate population data source to the census, which occurred infrequently in 1920, 1926, (1932 trial), 1937, and 1939.
+They never seemed to be particularly organized or accurate, with "the results of the 1937 census showed a completely unsatisfactory arrangement of the current population records."[^Moiseenko].
+Without modern tools like computers, it was difficult for the census to capture an accurate and complete snapshot of population.
+the passports provided authorities a "live" and somewhat more accurate perspective of population distribution.
 
-Since a majority of the Soviet population lived in rural areas, the rollout began in larger urban areas where there were greater concentrations of people.
-The passports were required to be presented to "house management" upon arriving in a new locality.
+At the time the majority of the Soviet population lived in rural areas, and lessons from the census showed how difficult the  low population density made the process.
+The rollout this "modern" passport began in larger urban areas, where there were greater concentrations of people.
+Based on the city and density, different radii were defined for where passports were required.
+Upon arriving in one of these localities the law required the passport be presented to "house management" for verification and approval.
 
-This "accounting of migration" 
+This "accounting of migration" during the collectivization initiative meant that much of the systems and "mentality" required to undergo such a change were already ingrained in the cultural psyche of the soviet people.
 
+#### Populations related to the Factories
 
+the people moved along with the factories roughly fit into three groups:
 
-Human aspect.
-Movement of people, and all that they require.
-
-Trained factory workers
-Families
-Refugees
+* Trained factory workers
+* Families
+* Refugees
 
 ## The Moving Process (Follow a Factory)
 
@@ -262,7 +264,7 @@ Things weren't exactly going well famine-wise, so there was definitely a reason 
 [^Isupov]: Isupov, Vladimir A. Migration of the USSR population in the pre-war years (1939-1940). Population and Economics 6(2): 70-87. doi: 10.3897/popecon.6.e81466. [Website](https://populationandeconomics.pensoft.net/article/81466/element/4/415/) 2022.
 
 
-[^Moiseenko]: Moiseenko V.M. Миграция населения в переписях России и СССР [Migration of the population in Russian censuses and the USSR]. Moscow: Faculty of Economics of the Moscow State University, TEIS. (in Russian) . [Website](https://www.demoscope.ru/weekly/2017/0719/nauka05.php) [Archive](https://www.demoscope.ru/weekly/2017/0719/nauka05.php) 1997.
+[^Moiseenko]: Moiseenko V.M. Миграция населения в переписях России и СССР [Migration of the population in Russian censuses and the USSR]. Moscow: Faculty of Economics of the Moscow State University, TEIS. (in Russian) . [Website](https://www.demoscope.ru/weekly/2017/0719/nauka05.php) [Archive](https://www.demoscope.ru/weekly/2017/0719/nauka05.php) [Translation](files/soviet-factories/Миграция_населения_в_переписях_России_и_СССР-translation.md) 1997.
 
 [^USSR-1]: Постановление ЦИК и СНК СССР от 27.12.1932 об установлении единой паспортной системы по Союзу ССР и обязательной прописки паспортов (About establishment of a unified passport system for the USSR and mandatory registration of passports). [Archive](https://ru.wikisource.org/wiki/%D0%9F%D0%BE%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5_%D0%A6%D0%98%D0%9A_%D0%B8_%D0%A1%D0%9D%D0%9A_%D0%A1%D0%A1%D0%A1%D0%A0_%D0%BE%D1%82_27.12.1932_%D0%BE%D0%B1_%D1%83%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B8_%D0%B5%D0%B4%D0%B8%D0%BD%D0%BE%D0%B9_%D0%BF%D0%B0%D1%81%D0%BF%D0%BE%D1%80%D1%82%D0%BD%D0%BE%D0%B9_%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D1%8B_%D0%BF%D0%BE_%D0%A1%D0%BE%D1%8E%D0%B7%D1%83_%D0%A1%D0%A1%D0%A0_%D0%B8_%D0%BE%D0%B1%D1%8F%D0%B7%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D0%BE%D0%B9_%D0%BF%D1%80%D0%BE%D0%BF%D0%B8%D1%81%D0%BA%D0%B8_%D0%BF%D0%B0%D1%81%D0%BF%D0%BE%D1%80%D1%82%D0%BE%D0%B2) 1932.
 
