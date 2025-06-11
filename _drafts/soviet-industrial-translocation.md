@@ -137,7 +137,8 @@ The passport contained extensive information about the owner, including Name, ti
 They were issued for a 3-year term.
 
 In context of population labor organization, it was used as way to more closely manage and monitor population statistics.
-It also provided an alternate source of population data from the census, which occurred infrequently in 1920, 1926, 1937, and 1939.
+It was an alternate population data source to the census, which occurred infrequently in 1920, 1926, (1933), 1937, and 1939.
+They never seemed to be particularly organized or accurate, [^Moiseenko].
 During the late 1930s, 
 
 Since a majority of the Soviet population lived in rural areas, the rollout began in larger urban areas where there were greater concentrations of people.
