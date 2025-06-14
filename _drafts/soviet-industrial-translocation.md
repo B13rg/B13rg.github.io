@@ -149,6 +149,8 @@ Upon arriving in one of these localities the law required the passport be presen
 
 This "accounting of migration" during the collectivization initiative meant that much of the systems and "mentality" required to undergo such a change were already ingrained in the cultural psyche of the soviet people.
 
+> Determine how migrations from collectivization impacted the population's ability to migrate factories during WWII
+
 #### Populations related to the Factories
 
 the people moved along with the factories roughly fit into three groups:
