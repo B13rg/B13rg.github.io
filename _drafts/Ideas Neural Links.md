@@ -1,6 +1,16 @@
+---
+layout: post
+title:	"Neural thinks on Neural Links"
+category: [Computing]
+excerpt: A short description of the article
+---
+
+A neural link is a (somewhat) theoretical computing device that interacts directly or indirectly with "neurons", or a brain.
+
 ## What ever does the brain control?
 
-Whatever the brain controls we could potentially control or at least monitor with an advanced enough neural link.
+The brain is obviously the control center for much of the body.
+There is potential to monitor or control with an advanced enough neural link.
 
 Fully Mental:
 
@@ -35,32 +45,37 @@ Able to download, upload, offload work, save data from the neural link.
 
 
 ----
+
 ## Capabilities
 
-In this post, I consider two types of neural links:
+Capabilities can be grouped into two groups:
 
 * Read
-* Read/Write
+* Read+Write
 
-Just like digital technology, it is easier to simply read data than write and read.
-In order to be able to "write" to the brain, we need to understand how to read information from it.
-
-We already are able to read limited amounts of information from the brain through various methods.
-It's enough that we are able to 
+Just like with digital technology, it simpler read data than to write.
+To even consider"writing" to the brain in a reliable manner, we must first have the ability to read information.
 
 ### Read-Only Link
+
+We already are able to read limited amounts of information from the brain through methods like X-Ray and MRI.
+
 
 Reading information from the brain is much easier than writing it.
 You only need to be able to monitor neurons and make sense of the readings.
 Reading can be effective even when only a small amount of neurons are monitored.
-If a device was able to monitor entire areas at once, we would get exponentially more information.
+By thinking "big enough" thoughts there is some ability to extract boolean information.
+As the amount of neurons we can monitor at once expands the "resolution" of what is going on in the brain increases as well.
 
-As the amount of neurons we can monitor at once expands, we'll have a bigger picture of what is going on in the brain.
-Reading allows us to extract information about the state of the brain and what it is thinking in the moment.
+Even once we are able to extract information about the state of the brain we will still need to make sense of it all.
+There will be an extreme amount of data, and it will likely require compute to match.
+Similar signal processing, the raw signals extracted would need additional processing and refinement.
+The amount of computing required would effect how much latency is between measurements and results.
 
+Once the "MacroData Refinement" is complete, we would hopefully be able to extract insights that could be acted upon.
 It could enable one to determine what a person is thinking/feeling
-A person cloud keep tabs on themselves and monitor their mental outlook over time.
-It would be much easier for a therapist to help a patient if they can more directly understand what a person thinking and feeling.
+Users could monitor their mental outlook over time, and grant _temporary_ access to health professionals.
+A therapist would be able to better help a patient if they can more directly understand what a person thinking and feeling.
 This would make them a true "outside observer" that can provide more thorough and specific guidance when the patient is processing thoughts.
 
 "Personal dashboard" app that shows how your body and mind are feeling at the moment.
