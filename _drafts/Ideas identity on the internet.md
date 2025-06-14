@@ -1,18 +1,10 @@
-
-## One's Identity on the Internet
-
-What is an identity on the internet?
-How do the various identities interact?
-How do digital identities relate to actual identites?  (many to one, platos cave)
-How to physical and digital identities evolve over time, and how do they play off each other during that time? (ship of thebes)
-
-
-
-Each h2 an article
-
-## What is an Identity on the Internet?
-
-[posted 2021-05-13](_posts/2021-05-13-identity-and-internet.md)
+---
+layout: post
+title:	"One's Identity on the Internet"
+category: [Networking]
+excerpt: A short description of the article
+image: public/images/buttons/large/ahmygod.gif
+---
 
 ##
 
@@ -133,12 +125,12 @@ Because that's all the data you have access to, you have to base your impression
 
 ### Memory and the Internet
 
-Unlike a real person, internet never forgets.
-While a person slowly forgets things as new things are learned, internet does not.
+Like a real person, the internet has a "lossy" memory.
+The mind forgets inconsequential things as new things are learned; the internet preserves and archives things that are perceived as valuable.
 While you may not remember every second of every day, you still experienced it.
 In the end, it is the end-result of actions taken that matters, not the actions themselves.
 
-On the internet, both the actions (created content) and end-result (people's interactions with that content) are preserved.
+On the internet, information and user interactions and end-result (people's interactions with that content) are preserved.
 People have old content from their past self that may reflect badly on their current self.
 Even if they have developed as a person, their account persona does not.
 
