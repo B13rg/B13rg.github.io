@@ -1,4 +1,3 @@
-version: '3'
 services:
   gemini:
     # Go to 127.0.0.1:1965/filename
