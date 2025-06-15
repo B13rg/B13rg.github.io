@@ -1,15 +1,20 @@
-FROM jekyll/builder:4 as builder
+FROM ruby:3.1-alpine as builder
 # First build the static site with jekyll
 WORKDIR /srv/jekyll/
 
+RUN set -eux; \
+    apk add --no-cache --virtual build-deps \
+        build-base \
+        zlib-dev \
+    ;
+
 COPY --chown=jekyll:jekyll ./Gemfile .
 COPY --chown=jekyll:jekyll ./Gemfile.lock .
-RUN bundle install
+RUN gem install bundler && bundler install
 
 COPY --chown=jekyll:jekyll ./ .
-RUN jekyll build
+RUN bundle exec jekyll build
 RUN ls -alhn
-ENTRYPOINT [ "jekyll", "build" ]
 
 # Then place the built static site on webserver
 FROM httpd:alpine

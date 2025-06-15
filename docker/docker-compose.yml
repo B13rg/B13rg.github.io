@@ -1,0 +1,19 @@
+version: '3'
+services:
+  gemini:
+    # Go to 127.0.0.1:1965/filename
+    build:
+      context: ../
+      dockerfile: docker/Dockerfile-gemini
+    ports: 
+      - "1965:1965"
+
+  jekyll:
+    build:
+      context: ../
+      dockerfile: docker/Dockerfile
+    ports:
+      - "80:80"
+    environment:
+      - JEKYLL_UID=1000
+      - JEKYLL_GID=1000

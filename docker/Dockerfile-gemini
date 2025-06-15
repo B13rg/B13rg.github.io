@@ -1,0 +1,19 @@
+FROM python:3-alpine as builder
+
+RUN pip --no-cache install md2gemini
+
+WORKDIR /src
+
+COPY ./_posts ./posts
+
+ENV SITE_ADDRESS="gemini://b13rg.icecdn.tech"
+ENV SITE_TITLE="b13rg.icecdn.tech"
+
+RUN mkdir -p ./output && md2gemini ./posts/* -f -s -m -w -l at-end -b $SITE_ADDRESS -d ./output
+RUN echo "# B's site - post index" > ./output/index.gmi && find ./output -type f -exec echo "=> {}\t{} \n" >> ./output/index.gmi \;
+
+FROM ghcr.io/mbrubeck/agate:latest
+COPY --from=builder /src/output /gmi
+EXPOSE 1965
+
+CMD [ "agate", "--addr", "0.0.0.0:1965", "--content", "/gmi", "--certs", "/certs", "--hostname", "b13rg.icecdn.tech" ]
