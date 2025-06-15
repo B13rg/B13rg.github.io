@@ -1,6 +1,7 @@
 services:
   gemini:
     # Go to 127.0.0.1:1965/filename
+    pull_policy: build
     build:
       context: ../
       dockerfile: docker/Dockerfile-gemini
@@ -8,6 +9,7 @@ services:
       - "1965:1965"
 
   jekyll:
+    pull_policy: build
     build:
       context: ../
       dockerfile: docker/Dockerfile
