@@ -11,8 +11,42 @@ services:
     build:
       context: ../
       dockerfile: docker/Dockerfile
-    ports:
-      - "80:80"
+    expose:
+      - 80
+    networks:
+      - caddy_default
     environment:
       - JEKYLL_UID=1000
       - JEKYLL_GID=1000
+    labels:
+      caddy: "b13rg.${STACK_DOMAIN}"
+      caddy.reverse_proxy: "{{upstreams 80}}"
+    
+
+  # Caddy
+  caddy:
+    # https://github.com/lucaslorentz/caddy-docker-proxy
+    image: lucaslorentz/caddy-docker-proxy:latest
+    ports:
+      - 80:80
+      - 443:443
+    network_mode: host
+    environment:
+      - CADDY_INGRESS_NETWORKS=caddy_default
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - caddy_data:/data
+    restart: always
+    # Possible labels
+    # caddy: search.${STACK_DOMAIN}
+    # caddy.reverse_proxy: "{{upstreams 80}}"
+    # caddy.header.Access-Control-Allow-Origin: '*.${STACK_DOMAIN}'
+    # labels:
+      #caddy.acme_dns: "linode ${LINODE_PERSONAL_ACCESS_TOKEN}"
+
+
+networks:
+  caddy_default:
+
+volumes:
+  caddy_data:
