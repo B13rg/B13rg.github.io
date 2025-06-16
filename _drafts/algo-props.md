@@ -19,27 +19,3 @@ comment_id: 72374862398476
 * Data Hierarchy - CPU, Memory, disk, network
 * Bottleneck/cache/buffer awareness
 * Data scale limits
-
-
-
-<!-- Image example
-![MS-DOS Family Tree](/images/folder/filename.png){:width="700px"}
--->
-<!-- Link example -->
-[Link to full-size image](/images/buttons/large/ahmygod.gif)
-
-Footnote[^1]
-
-<details>
-  <summary>One more quick hack? 🎭</summary>
-  <div markdown="1">
-  → Easy  
-  → And simple
-  </div>
-</details>
-
-
-<!-- Separator -->
----
-
-[^1]: Further information here

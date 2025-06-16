@@ -1,28 +1,3 @@
----
-layout: post
-title:	"Title"
-category: [Games, Programming, Networking, DOS]
-excerpt: A short description of the article
-image: public/images/buttons/large/ahmygod.gif
-comment_id: 72374862398476
----
-
-
-
-### networking
-
-use latency to upstream servers as a memory buffer, similar to delay-line memory
-  * [magnetostrictive delay line memory](https://en.wikipedia.org/wiki/Delay-line_memory)
-  * optical delay line in optical computing: https://ieeexplore.ieee.org/document/10675424
-
-
-hmmm, what's cheaper, vps memory or network transit?
-
-Two nodes, primary and reflector
-maximal latency
-UDP
-
-
 ### storage
 
 Goals:
