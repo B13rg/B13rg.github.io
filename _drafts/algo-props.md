@@ -24,10 +24,13 @@ Don't solve every problem, but enough that you can get things done.
 
 Adding more resources improves performance, to a point.
 
+Power usage should also be considered in determining the efficiency of an algorithm.
+
 Parallelism, pipelining, and serialization are common design patterns to spread work across resources.
 
 * “If you’re running out of memory, you can buy more. But if you’re running out of time, you’re screwed.” - Programming Perl
 * [Simulating Time with Square-Root Space - Ryan Williams](https://arxiv.org/abs/2502.17779)
+* [Exploring the Power of Parallelized CPU architectures - meekochii](https://research.meekolab.com/exploring-the-power-of-parallelized-cpu-architectures)
 
 ## Predictable - predictable performance and behavior characteristics _over runtime_
 
@@ -66,26 +69,23 @@ While this may not matter for sorting raw values, it can be valuable when sortin
 
 * [Stable and Unstable Sorting: Why Stability Matters? - Siddharth Chandra](https://chandraji.dev/stable-and-unstable-sorting-why-stability-matters)
 
-## Data Locality - Perform Operations on Subsets of Data
+## Data Locality and Movement - Operations on Subsets of Data
 
 Algorithm should be able to perform tasks on a subset of the data.
 It should not require processing all the data to get a result (processing everything required for the result).
 
+Data should be stored in a way that's conducive to how it will be processed.
+The algorithms data access patterns should integrate cleanly with how the data stored.
+Usually, algorithms fall into either being message or stream oriented.
+Data stored with random access make it easier to batch and compartmentalize work.
 
-
+Algorithms that require random data access do _NOT_ perform well with stream-oriented data sets
 
 Memory access patterns should be optimized to minimize cache misses and maximize reuse of data in memory.
-Process the data as few times as possible, extracting what's needed for the lifetime of the algorithm.
+Individual, discrete units of data should be processed as few times as possible, extracting what's needed for the lifetime of the algorithm in minimal passes.
 
-Data stored with random access make it easier to batch and compartamentalize work.
-
-At a programming level, this means utilizing hash maps and dicts to collate data.
-Data storage-wise, this could mean s3 buckets with data spread across a folder tree.
-
-
-
-
-
+At a programming level, this could mean utilizing hash maps and dicts to group data instead of using un-indexed lists.
+Data storage-wise, this could mean s3 buckets with data spread across a folder tree that groups files on some valuable property.
 
 ## Data shapes - what data shapes are consumed and produced, pre-processing requirements/opportunities?
 
@@ -105,7 +105,9 @@ By storing the graph in a hash map, nodes can readily be hopped between.
 The data will be able to be explored as a graph by hash lookups rather than iterating through a list. 
 
 Having the raw data organized in a map is nice, but additional information about the data can be gathered to further improve task performance.
-A "[directed hypergraph](https://en.wikipedia.org/wiki/Hypergraph)" ............... ??? on top of the existing data that groups sets of nodes by some desired property.
+"Regularization" of the input data can help simplify the problem you're trying to solve.
+
+A "[undirected hypergraph](https://en.wikipedia.org/wiki/Hypergraph)" ............... ??? on top of the existing data that groups sets of nodes by some desired property.
 
 In path-finding algorithms, this can mean grouping nodes by location or travel cost.
 Group 1x1 locations into say 64x64 tiles.
@@ -126,16 +128,37 @@ Some systems can work around this, but others have hard constraints on how data 
 High-density tape drives provide large amounts of storage, but only read data sequentially.
 This makes `ZIP-64` particularly bad, as the system must first seek to the end of the tape before being able to meaningfully access an archive.
 
+## Preparation vs. Work
 
+Pre-processing, or "[regularizing](https://en.wikipedia.org/wiki/Regularization_(mathematics))" the data , but care should be taken to balance prep work over the cost of the actual task.
+Key information about the data can be extracted before the primary processing takes place to better inform and optimize the processing.
 
-## Preparation vs. work stages - 
+For example, the speed of a search algorithm on a list will vary wildly depending on if the list is sorted or not.
+Over an unsorted list, an algorithm would need to analyze each list item on it's own.
+By sorting the list beforehand, the algorithm can rely on guarantees inherent in the data being processed and utilize better algorithms.
 
+The pre-processing can take place during or outside of the algorithm's execution lifecycle.
+Lookup tables are a common example of using pre-computing to improve task performance.
+Before computers there were used to speed up calculation of complex functions in trigonometry, logarithms, statistics and more.
+
+"[Rainbow Tables](https://en.wikipedia.org/wiki/Rainbow_table)" or pre-computed chains of password hashes are another, more modern form of lookup tables.
+They help drastically improve hash cracking performance.
+Instead of storing every single plaintext and hash, "chains" of hashes are created and only the ends are stored.
+The target hash is repeatedly hashed using the same method to create the chains.
+If the result matches one of the chain "ends", the algorithm can then hash from the head of the chain to determine the input that generates the matching hash.
+
+* [Make a Faster Cryptanalytic Time-Memory TradeOff - Philippe Oechslin](https://web.archive.org/web/20230409151031/https://lasecwww.epfl.ch/pub/lasec/doc/Oech03.pdf)
+* [Hash-Based Improvements to A-Priori](http://infolab.stanford.edu/~ullman/cs345notes/cs345-7.pdf)
 
 ## Composable - ability to integrate with itself and other tools
 
 Instead of solving every problem, it is better to inter-operate with other tools.
+The algorithm and tool that encases it should readily integrate with other applications and systems.
 
-## Bottleneck Awareness
+In the *nix world, most terminal applications are line-of-text oriented.
+Tools like `awk`, `grep`, `cat`, and `find` are able to be easily chained together to solve a task by iteratively operating on lines and passing it to the next in the chain via pipe.
+
+## System Bottleneck Awareness
 
 Avoid system limitations through thoughtful design.
 
@@ -154,7 +177,11 @@ This means cross-AZ and cross-Region data movement is kept to a minimum, which h
 
 ## Fault tolerance
 
-Handle errors gracefully, through design patterns like like retries and fallbacks
+Handle errors gracefully, through design patterns like like retries and fallbacks.
+When there are issues that can't be recovered from, the algorithm should come to a graceful landing and exit instead of plowing a burning path of faults through your OS.
+
+It is often better to fail out early rather then trying to continue and create bigger issues.
+It is better to crash out early and alert the user of an issue instead of potentially causing bigger problems.
 
 ## Adaptability
 
@@ -169,7 +196,8 @@ They must be cared for and maintained like any living thing.
 Documentation should outline the use case for the algorithm and how to apply it.
 
 It should also have information on how it fails.
-Users should be able to easily determine the cause of errors, 
+Users should be able to easily determine the cause of errors, and have the tools/knowledge available to solve it themselves.
+
+Even if it is the most optimal algorithm ever constructed for a task, if it is not ergonomic to users than it will be forked or forgotten.
 
 * [The Art of README](https://github.com/hackergrrl/art-of-readme)
-
