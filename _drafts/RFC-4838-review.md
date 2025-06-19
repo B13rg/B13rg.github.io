@@ -3,8 +3,8 @@ https://datatracker.ietf.org/doc/html/rfc4838
 
 
 Close reading of RFC-4838: Delay-Tolerant Networking Architecture.
-It's a quick and relativly easy read.
-It summarizes the design decisions that go into designing and implimenting a delay-tolerant network (DTN).
+It's a quick and relatively easy read.
+It summarizes the design decisions that go into designing and implementing a delay-tolerant network (DTN).
 It also has links to many other papers and RFCs which go deeper into some of the ideas presented.
 This document is meant to be my notes from reading it.
 
@@ -13,16 +13,16 @@ Before reading, it's good to review the OSI model.
 Even though it's not entirely accurate to how things operate in practice,
 Implementing a delay-tolerant network must consider more layers than normal, internet style networking.
 
-| |Layer|Protocol|Protocol Data Unit|Function|
-|---|---|---|---|---|
-|7|Application|FTP, HTTP, Telnet, DNS|Data|High-level APIs, including resource sharing and remote file access|
-|6|Presentation|JPEG, JSON etc.|Data|Translation between networking service and application, including encoding, compression, and encryptio/decryption|
-|5|Session|NFS, SQL, QUIC|Data|Managing continuous exchange of information through multiple back-and-forth transmissions between two nodes|
-|4|Transport|TCP, UDP|Segment, Datagram|Reliable transmission of data between points on a network, including segmentation, acknowledgement and multiplexing|
-|3|Network|IPv4, IPv6|Packet|Structuring and managing a multi-node network, including addressing routing and traffic control|
-|2|Data link|MAC, ARP, LLC|Frame|Reliable transmission of data between two nodes that are connected|
-|1|Physical|Ethernet, Wi-Fi|Bit, Symbol|Transmission and reception of data through a physical medium|
-| | | | |Source: https://en.wikipedia.org/wiki/OSI_model|
+|     | Layer        | Protocol               | Protocol Data Unit | Function                                                                                                            |
+| --- | ------------ | ---------------------- | ------------------ | ------------------------------------------------------------------------------------------------------------------- |
+| 7   | Application  | FTP, HTTP, Telnet, DNS | Data               | High-level APIs, including resource sharing and remote file access                                                  |
+| 6   | Presentation | JPEG, JSON etc.        | Data               | Translation between networking service and application, including encoding, compression, and encryptio/decryption   |
+| 5   | Session      | NFS, SQL, QUIC         | Data               | Managing continuous exchange of information through multiple back-and-forth transmissions between two nodes         |
+| 4   | Transport    | TCP, UDP               | Segment, Datagram  | Reliable transmission of data between points on a network, including segmentation, acknowledgement and multiplexing |
+| 3   | Network      | IPv4, IPv6             | Packet             | Structuring and managing a multi-node network, including addressing routing and traffic control                     |
+| 2   | Data link    | MAC, ARP, LLC          | Frame              | Reliable transmission of data between two nodes that are connected                                                  |
+| 1   | Physical     | Ethernet, Wi-Fi        | Bit, Symbol        | Transmission and reception of data through a physical medium                                                        |
+|     |              |                        |                    | Source: https://en.wikipedia.org/wiki/OSI_model                                                                     |
 
 This is a guide, not a hard set of rules.
 Some protocols, like QUIC, have feet in multiple layers.
@@ -71,17 +71,82 @@ In a sentence, "the DTN architecture provides a common method for interconnectin
 
 ## 2. Why an Architecture for Delay-Tolerant Networking
 
-This sections the reasons why existing, more traditional internet protocols have some inherent design flaws that would make them unsuitable for high-delay environments.
+This section describes reasons why existing traditional internet protocols have inherent design flaws that make them unsuitable for high-delay environments.
 
 One of the biggest assumptions is that the source and destination will be connected for the duration of the session, and that they are able to communicate back and forth to find and fix errors in communication (SYN/ACK).
 It also points out how networking has been designed to be abstracted away from the application, meaning that the application doesn't need to know about or care about how data is being transported.
 Things like packet switching, routing, and retransmission are handled outside of the application, letting the application focus on it's own operations and not have to worry exactly *how* it's communicating with another host.
+
+Traditional networking protocols have fundamental assumptions about the behavior of traffic.
+By relaxing some of the constraints a protocol can better provide delay-tolerant properties to applications.
+The design principles that lead the design of DTN are described in [^KF03]
+Two key design principles that stuck out to me:
+
+* discarding unauthorized traffic _early_
+* support for store-and-forward operations over multiple paths and timescales (along with a way for applications to express their needs)
+
+Both modify the security model in different ways.
+Traffic is discarded early by utilizing public-key certificate style cryptography to verify senders.
+Routers on the traffic path are able to verify message properties and layer on their own authentication layers.
+If route is unable to verify the sender of a message, the traffic can be discarded early instead of at the destination.
+This is done in part to make denial-of-service attacks more difficult to execute.
+
+Storing data "in" the network allows buffering to take place along the traffic path.
+To properly store and secure network client data, similar cryptographic controls to verifying senders would be used.
+
+Since this RFC has been written more complex cryptographic properties like forward secrecy and certificate revocation have become more mainstream and would integrate nicely with these principles.
+
+## 3. DTN Architectural Description
+
+The architecture description is split into the following sections:
+
+- 3.1 [Virtual Message Switching Using Store-and-Forward Operation](#31-virtual-message-switching-using-store-and-forward-operation)
+- 3.2 [Nodes and Endpoints](#32-nodes-and-endpoints)
+- 3.3 [Endpoint Identifiers (EIDs) and Registrations](#33-endpoint-identifiers-eids-and-registrations)
+- 3.4 [Anycast and Multicast](#34-anycast-and-multicast)
+- 3.5 [Priority Classes](#35-priority-classes)
+- 3.6 [Postal-Style Delivery Options and Administrative Records](#36-postal-style-delivery-options-and-administrative-records)
+- 3.7 [Primary Bundle Fields](#37-primary-bundle-fields)
+- 3.8 [Routing and Forwarding](#38-routing-and-forwarding)
+- 3.9 [Fragmentation and Reassembly](#39-fragmentation-and-reassembly)
+- 3.10 [Reliability and Custody Transfer](#310-reliability-and-custody-transfer)
+- 3.11 [DTN Support for Proxies and Application Layer Gateways](#311-dtn-support-for-proxies-and-application-layer-gateways)
+- 3.12 [Timestamps and Time Synchronization](#312-timestamps-and-time-synchronization)
+- 3.13 [Congestion and Flow Control at the Bundle Layer](#313-congestion-and-flow-control-at-the-bundle-layer)
+- 3.14 [Security](#314-security)
+
+### 3.1 Virtual Message Switching Using Store-and-Forward Operation
+### 3.2 Nodes and Endpoints
+### 3.3 Endpoint Identifiers (EIDs) and Registrations
+### 3.4 Anycast and Multicast
+### 3.5 Priority Classes
+### 3.6 Postal-Style Delivery Options and Administrative Records
+### 3.7 Primary Bundle Fields
+### 3.8 Routing and Forwarding
+### 3.9 Fragmentation and Reassembly
+### 3.10 Reliability and Custody Transfer
+### 3.11 DTN Support for Proxies and Application Layer Gateways
+### 3.12 Timestamps and Time Synchronization
+### 3.13 Congestion and Flow Control at the Bundle Layer
+### 3.14 Security
+ 
+
+
+
+
+
+Discarding unauthorized traffic early is a departure from normal network behavior.
+Traditional networks labor to 
+
+
 
 
 
 ---
 
 [^CK74]: V. Cerf, R. Kahn, "A  Protocol for Packet Network Intercommunication", IEEE Trans. on Comm., COM-22(5), May 1974. - https://web.archive.org/web/20210506194430/https://www.cs.princeton.edu/courses/archive/fall06/cos561/papers/cerf74.pdf
+
+[^KF03]: K. Fall, "A Delay-Tolerant Network Architecture for Challenged Internets", Proceedings SIGCOMM, Aug 2003. - https://dl.acm.org/doi/10.1145/863955.863960
 
 
 ---
