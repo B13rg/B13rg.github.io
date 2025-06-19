@@ -60,10 +60,22 @@ Economic Resilience Through Spatial Spread: By relocating factories to Siberia, 
 This diversification allowed continued output even as German forces advanced westward.
 
 Primary areas:
-* Ukraine - moved south/southeast
-* Donets Basin (Donbass)- moved south/southeast
-* Moscow - prepped for siege and assault
-* Leningrad - prepped for siege and assault
+| Idx | Regions               | Industries | Invasion Response             |
+| --- | ---------------------- | ---------- | ----------------------------- |
+| 1   | Ukraine                |            | moved south/southeast         |
+| 2   | Donets Basin (Donbass) |            | moved south/southeast         |
+| 3   | Moscow                 |            | prepped for siege and assault |
+| 4   | Leningrad              |            | prepped for siege and assault |
+
+Donets Basin, also known as the Donbass.
+Primary source of Soviet coal mining and several industrial centres:
+
+* Dnepropetrovsk - iron and steel
+* Stalino - iron and steel
+* Kharkov - iron, steel and engineering
+
+
+
 
 Weather
 
@@ -112,40 +124,37 @@ Further towards rear mean more important.
 
 ### Scientific Industry
 
-### Worker/Population Mobilization
+## Worker/Population Mobilization
 
 In the years leading up to WWII, there was already significant amount of population movement and management.
 
-1922-1928 saw the New Economic Policy (NEP) redefine the economic policy strcutre of the soviet union.
+1922-1928 saw the New Economic Policy (NEP) redefine the economic policy structure of the soviet union.
 It fostered a mixed economy that allowed small-scale private enterprise.
 It promoted labor and trade unions to pool labor and to represent the interests of workers.
-Unfortunately, the unions were incorporated as agents of state economic policy.
-They provided a facade of supporting member interests over those of the state.
+Unfortunately, the unions were incorporated as agents of state economic policy and provided a facade of supporting member interests over those of the state.
 
 The late 1920s an ideological rise of "resettlement as a means of mitigating agrarian overpopulation in the European part of the country" [^Moiseenko].
 In 1928 a drastic change was made to Soviet economic policy: the "Great Break" (Russian: Великий перелом).
 This discarded the NEP for greater focus on collectivization of agriculture and industry under the state.
 The trade unions, which had only offered token opposition to the will and interests of the state [^Filtzer].
-In a way, they ended up being a way to collect potential enemies of the state in one place for monitoring and purging.
-
-
-Industrialization of labor.
-Additional mobility within the beauracracy provides means within the system for people to improve their place in life rather than resorting to protesting or overthrowing a rigid system.
-
-
-
-Most it was manifested in the course of an acute ideological struggle at the end of 20-ies regarding the role of resettlement as a means of mitigation agrarian overpopulation in the European part of the country, as well as labors State Colonization Institute, closed in 1930
-The social composition of the workforce changed significantly.
-"From being an old, experienced working class with log traditions o f struggle and organization it became a predominantly young, peasant-based, and unskilled workforce with little proletarian cultural tradition" [^Filtzer].
-
 
 By the end of the 1930s, planning and regulation of population movement was managed by state institutions under 
+The collectivization concentrated the workforce in industrial centers, to the detriment of foundational agricultural enterprises.
+Much of the collectivist policy was manifested over the course of an acute ideological struggle at the end of 20-ies regarding the role of resettlement as a means of mitigating agrarian overpopulation in the European part of the country.
+By integrating large peasant populations into industrial areas, the social composition of the workforce changed significantly.
+"From being an old, experienced working class with log traditions of struggle and organization it became a predominantly young, peasant-based, and unskilled workforce with little proletarian cultural tradition" [^Filtzer].
+This resulted in a fractured working class that lacked cohesion and solidarity.
+
+With industrial complexity came the need for skilled workers and middle management.
+Those promoted were more sympathetic towards the Stalinist elite.
+This new, industrial working class was still ruthlessly exploited.
+
 
 
 At the time the concept of "population migration" was not commonly used in Soviet publications.
 It was instead replaced by "territorial redistribution of population",  the party line of migration as a fundamental redistribution of labor.
 
-#### Passports and Population 
+### Passports and Population 
 
 On the eve of 1933 the Central Executive Committee of the USSR established a "Unified Passport System"[^USSR-1].
 
@@ -317,7 +326,26 @@ Things weren't exactly going well famine-wise, so there was definitely a reason 
 
 [^Shmakova]: Shmakova, N.P. КИРОВСКИЙ ЗАВОД наркомата танковой промышленности (Kirov Plant of the People's Commissariat of Tank Industry). [Archive](https://web.archive.org/web/20120317025348/http://www.book-chel.ru/ind.php?what=card&id=623) [Translation](files/soviet-factories/КИРОВСКИЙ_ЗАВОД_наркомата_танковой_промышленности-translation.md) 2012.
 
-[^Filtzer]: Filtzer, Donald. Soviet Workers and Stalinist Industrialization: The Formation of Modern Soviet Production Relations, 1928-1941. Excerpts from pg. 22-70, 255-257. 1986. 
+[^Filtzer]:
+    Filtzer, Donald. Soviet Workers and Stalinist Industrialization: The Formation of Modern Soviet Production Relations, 1928-1941. Excerpts from pg. 22-70, 255-257. 1986. 
+
+    Through their actions the Stalinist elite sought to break down the working class and remove any ability to act cohesively or collectively.
+    The demographics of existing industrial workers was flooded with peasants who had little knowledge of industrial life or collective action.
+    The harsh working and loving conditions made "the fight for individual survival take precedence over collective protests".
+
+
+    The rapid industrial expansion increased demand for skilled technicians, industrial managers and low-level supervisory personnel.
+    Additional mobility within the bureaucracy provides means within the system for people to improve their class standing rather than resorting to fighting against a rigid system.
+    Even so, the potential for upward mobility was a bigger driver than actual promotions; only a small portion (10-15%) of the workforce were promoted.
+    The *possibility* of promotion undoubtedly pacified workers, having them focus on how they could rise within the system instead of dismantling it.
+
+    There were many other policies applied to break down the working class, such as:
+
+    * Socialist Competition: "challenges" exchanged by workers of one factory or shop to another.
+    * Shock work (udarnichestvo): Workers who "volunteered" to perform extra work on "Communist Saturdays" (subbotniki), of course for bonuses and access to scarce foodstuffs and consumer goods
+    * Nationalism: Attempt to motivate workers through "socialist construction" and pride in the Socialist system and their contribution to creating it.
+    * Conspiracies: Sow suspicion among the ranks, keeping workers focused on policing each other instead of reflecting on the system. Show trials targeted class enemies and fostered distrust and resentment between social groups.
+    * Purges: Removes institutional knowledge that run incongruent to current Stalinist policy.  Benefits younger workers with less experience and tradition.  Also "frees up space" within the bureaucracy for workers to be promoted into.
 
 ---
 
