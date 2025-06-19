@@ -115,10 +115,28 @@ Further towards rear mean more important.
 ### Worker/Population Mobilization
 
 In the years leading up to WWII, there was already significant amount of population movement and management.
-The late 1920s an idealogical rise of "resettlement as a means of mitigating agrarian overpopulation in the European part of the country" [^Moiseenko].
+
+1922-1928 saw the New Economic Policy (NEP) redefine the economic policy strcutre of the soviet union.
+It fostered a mixed economy that allowed small-scale private enterprise.
+It promoted labor and trade unions to pool labor and to represent the interests of workers.
+Unfortunately, the unions were incorporated as agents of state economic policy.
+They provided a facade of supporting member interests over those of the state.
+
+The late 1920s an ideological rise of "resettlement as a means of mitigating agrarian overpopulation in the European part of the country" [^Moiseenko].
+In 1928 a drastic change was made to Soviet economic policy: the "Great Break" (Russian: Великий перелом).
+This discarded the NEP for greater focus on collectivization of agriculture and industry under the state.
+The trade unions, which had only offered token opposition to the will and interests of the state [^Filtzer].
+In a way, they ended up being a way to collect potential enemies of the state in one place for monitoring and purging.
+
+
+Industrialization of labor.
+Additional mobility within the beauracracy provides means within the system for people to improve their place in life rather than resorting to protesting or overthrowing a rigid system.
+
 
 
 Most it was manifested in the course of an acute ideological struggle at the end of 20-ies regarding the role of resettlement as a means of mitigation agrarian overpopulation in the European part of the country, as well as labors State Colonization Institute, closed in 1930
+The social composition of the workforce changed significantly.
+"From being an old, experienced working class with log traditions o f struggle and organization it became a predominantly young, peasant-based, and unskilled workforce with little proletarian cultural tradition" [^Filtzer].
 
 
 By the end of the 1930s, planning and regulation of population movement was managed by state institutions under 
@@ -158,8 +176,6 @@ the people moved along with the factories roughly fit into three groups:
 * Trained factory workers
 * Families
 * Refugees
-
-
 
 ## The Moving Process (Follow a Factory)
 
@@ -221,6 +237,10 @@ reduction of working age from 16 to 14 (still 6 hour limit)
 proportion of youth to adults before and after
 
 reduction of skilled labor
+
+[^Filtzer]
+
+
 
 ### Insufficient Supplies
 
@@ -295,7 +315,9 @@ Things weren't exactly going well famine-wise, so there was definitely a reason 
 
 [^KV-Tank]: The KV tank: Bunker buster and ugly duckling [Source](https://www.rbth.com/defence/2015/01/05/the_kv_tank_bunker_buster_and_ugly_duckling_42741.html)
 
-[^Shmakova]:Shmakova, N.P. КИРОВСКИЙ ЗАВОД наркомата танковой промышленности (Kirov Plant of the People's Commissariat of Tank Industry). [Archive](https://web.archive.org/web/20120317025348/http://www.book-chel.ru/ind.php?what=card&id=623) [Translation](files/soviet-factories/КИРОВСКИЙ_ЗАВОД_наркомата_танковой_промышленности-translation.md) 2012.
+[^Shmakova]: Shmakova, N.P. КИРОВСКИЙ ЗАВОД наркомата танковой промышленности (Kirov Plant of the People's Commissariat of Tank Industry). [Archive](https://web.archive.org/web/20120317025348/http://www.book-chel.ru/ind.php?what=card&id=623) [Translation](files/soviet-factories/КИРОВСКИЙ_ЗАВОД_наркомата_танковой_промышленности-translation.md) 2012.
+
+[^Filtzer]: Filtzer, Donald. Soviet Workers and Stalinist Industrialization: The Formation of Modern Soviet Production Relations, 1928-1941. Excerpts from pg. 22-70, 255-257. 1986. 
 
 ---
 
