@@ -26,7 +26,7 @@ This post explores foundational patterns in system design that ensure algorithms
   - [Simplicity: Minimize Complexity](#simplicity-minimize-complexity)
   - [Performance: Balance Efficiency \& Resources](#performance-balance-efficiency--resources)
   - [Predictability: Consistent Behavior Over Time](#predictability-consistent-behavior-over-time)
-  - [Correctness: Reliable Output Under All Conditions](#correctness-reliable-output-under-all-conditions)
+  - [Correctness: Accuracy \& Precision](#correctness-accuracy--precision)
 - [Data Handling Strategies](#data-handling-strategies)
   - [Data Locality and Movement](#data-locality-and-movement)
   - [Data Shapes and Structure](#data-shapes-and-structure)
@@ -55,18 +55,24 @@ This post explores foundational patterns in system design that ensure algorithms
 ### Simplicity: Minimize Complexity
 
 Avoid unnecessary features, but balance the minimalism with practicality.
-Don't solve every problem, but enough that you can get things done.
+Systems should have a narrow scope of problems to solve.
+Feature and scope creep pull attention away and introduce additional "error-surface" for bugs and issues.
 
 Minimize the amount of stateful components in the system.
 [If you’re storing any kind of information for any amount of time, you have a lot of tricky decisions to make about how you save, store and serve it.](https://www.seangoedecke.com/good-system-design/)
 Stateless systems can more easily be tested and verified.
-The fewer edge cases, the easier it is to reason about functionality.
+The fewer edge cases present, the easier it is to reason about and extend functionality.
 
 ### Performance: Balance Efficiency & Resources
 
 Adding more resources improves performance, to a point.
 The various limits of hardware and software all scale differently from each other, so performance characteristics will differ across scales.
 Properly accounting for the the complexity of changes is difficult, but helps extract additional performance from slack in the system.
+
+It's important to preserve some slack in the system, relational to how controlled the input into the system is.
+If resources are saturated and there is a surge in input, there will be an impact to performance.
+There may be ways to manage and control the impact within the system, such as discarding or re-prioritization.
+In my experience across computing applications, 80-90% utilization is around the sweet spot
 
 Power usage should also be considered in determining the efficiency of an algorithm.
 
@@ -89,18 +95,28 @@ Algorithms may also perform differently on different scales of input data.
 
 Despite this, a program could utilize both algorithms by detecting properties of the data before processing and using the right algorithm for the job.
 
-### Correctness: Reliable Output Under All Conditions
+### Correctness: Accuracy & Precision
 
-Algorithms should produce accurate results under all valid inputs and adhere to specific constraints such as idempotency.
+Algorithms should produce accurate results under all valid inputs.
+They should adhere to specific constraints such as idempotency.
+For simple problems math, a calculator would be useless if it performed carries on a portion of the time.
+Problems modeled by systems need to have measurable outcomes.
 
 Outputs derived from data should be factually correct (see LLMs)
 Processing the same set of data twice should result in the same output.
 
-In sorting algorithms, there is the idea of stable vs unstable sort.
+In sorting algorithms, there is the concept of stable vs unstable sorting algorithms.
 A stable algorithm will preserve the relative order of **equal elements**, while an unstable one may _or may not_ shuffle the order of equal elements.
 While this may not matter for sorting raw values, it can be valuable when sorting data structures on a field.
+More entropy is introduced into the system but it is up to the goals of the system to determine if it's relevant or not.
 
-Accuracy vs. precision
+LLMs are an interesting case.
+From a high level, they are deterministic.
+Provided the same seed and a 0 temperature, any model _should_ provide
+What is not deterministic is the system operating the LLM.
+Differences in hardware, scheduling, and parallelism can shuffle the order of operations in a non-deterministic (from our perspective) way.
+
+random error vs. systematic error.
 
 ## Data Handling Strategies
 
@@ -165,7 +181,7 @@ Instead of solving every problem, it is better to inter-operate with other tools
 The algorithm and tool that encases it should readily integrate with other applications and systems.
 
 In the *nix world, most terminal applications are line-of-text oriented.
-Tools like `awk`, `grep`, `cat`, and `find` are able to be easily chained together to solve a task by iteratively operating on lines and passing it to the next in the chain via pipe.
+By following the "Unix Philosophy" of managing data as files and text streams, tools like `awk`, `grep`, `cat`, and `find` can be combined to solve a task.
 
 ### Data Hierarchy and Latency Reduction Scalability
 
@@ -248,13 +264,7 @@ The questions of how to design a computing system have been asked and answered i
 Most of the problems we strive to solve are echoes of those faced by our computing progenitors.
 We as engineers face physical and digital constraints that design is bound to.
 
-
-
-
 "Be vicariously lazy." - [Programming Perl 1991](https://archive.org/details/programmingperl000wall/page/374/)
-
-
-
 
 ---
 
@@ -306,6 +316,7 @@ If the result matches one of the chain "ends", the algorithm can then hash from 
 * [Simplicity of IRC - Susam Pal](https://web.archive.org/web/20220815032635/https://susam.net/maze/wall/simplicity-of-irc.html)
 * [htmx sucks - Carson Gross](https://htmx.org/essays/htmx-sucks/)
 * [Great software design looks underwhelming - Sean Goedecke](https://www.seangoedecke.com/great-software-design/)
+* [The Architecture of Serverless Data Systems - Jack Vanlightly](https://jack-vanlightly.com/blog/2023/11/14/the-architecture-of-serverless-data-systems)
 
 #### Performance
 
@@ -326,10 +337,8 @@ If the result matches one of the chain "ends", the algorithm can then hash from 
 * [Make a Faster Cryptanalytic Time-Memory TradeOff - Philippe Oechslin](https://web.archive.org/web/20230409151031/https://lasecwww.epfl.ch/pub/lasec/doc/Oech03.pdf)
 * [Hash-Based Improvements to A-Priori](http://infolab.stanford.edu/~ullman/cs345notes/cs345-7.pdf)
 * [Regularization - ](https://cscheid.net/writing/data_science/regularization/index.html)
-* [undirected hypergraph](https://en.wikipedia.org/wiki/Hypergraph) ............... ??? on top of the existing data that groups sets of nodes by some desired property.
-
-
-* [The Architecture of Serverless Data Systems - Jack Vanlightly](https://jack-vanlightly.com/blog/2023/11/14/the-architecture-of-serverless-data-systems)
+* [Using Obscure Graph Theory to solve PL Problems - Sandy Maguire](https://reasonablypolymorphic.com/blog/solving-lcsa/)
+* [Hypergraphs](https://en.wikipedia.org/wiki/Hypergraph), in the context of index and metadata creation.
 
 ### Adaptability and Usability
 
