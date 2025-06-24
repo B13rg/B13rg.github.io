@@ -51,7 +51,10 @@ This post explores foundational patterns in system design that ensure algorithms
 
 ## Core Principles of System Design
 
-Links for additional consideration: [Core Principles](#core-principles)
+Everything old is new again.
+These questions have been asked and answered many different ways over the decades.
+Each programmer faces constraints that design is bound to.
+
 
 ### Simplicity: Minimize Complexity
 
@@ -228,8 +231,6 @@ It should also have information on how it fails.
 Users should be able to easily determine the cause of errors, and have the tools/knowledge available to solve it themselves.
 
 Even if it is the most optimal algorithm ever constructed for a task, if it is not ergonomic to users than it will be forked or forgotten.
-
-More information:
 
 ## Conclusion: Building Elegant Systems
 
