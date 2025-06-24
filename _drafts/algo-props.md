@@ -10,11 +10,17 @@ Algorithms exist within a system, and usually process one or more inputs to prod
 These principles can be applied across all levels of computing abstraction, from hardware and software to cloud and .
 This post explores foundational patterns in system design that ensure algorithms and architectures are efficient, predictable, and scalable.
 
+---
+
+> [[流れ](https://www.japandict.com/%E6%B5%81%E3%82%8C#entry-1552130)]
+>
 > Data flows through space
 >
 > Systems revel in balance
 > 
 > The enmeshed gates sing
+
+---
 
 - [Core Principles of System Design](#core-principles-of-system-design)
   - [Simplicity: Minimize Complexity](#simplicity-minimize-complexity)
@@ -26,21 +32,26 @@ This post explores foundational patterns in system design that ensure algorithms
   - [Data Shapes and Structure](#data-shapes-and-structure)
   - [Pre-Processing for Efficiency](#pre-processing-for-efficiency)
   - [Composable Across systems](#composable-across-systems)
+  - [Data Hierarchy and Latency Reduction Scalability](#data-hierarchy-and-latency-reduction-scalability)
 - [Scalability \& Performance Optimization](#scalability--performance-optimization)
   - [Cost Awareness: Balancing Tradeoffs](#cost-awareness-balancing-tradeoffs)
   - [System Bottlenecks and Design Avoidance](#system-bottlenecks-and-design-avoidance)
-  - [Data Hierarchy and Latency Reduction Scalability](#data-hierarchy-and-latency-reduction-scalability)
 - [Adaptability and Usability](#adaptability-and-usability)
   - [Graceful Failure: Handling Errors](#graceful-failure-handling-errors)
   - [Documentation \& User Experience](#documentation--user-experience)
 - [Conclusion: Building Elegant Systems](#conclusion-building-elegant-systems)
-- [Case Studies \& Practical Examples](#case-studies--practical-examples)
+- [Appendix I - Case Studies \& Practical Examples](#appendix-i---case-studies--practical-examples)
   - [Factorio's Pathfinding Algorithm](#factorios-pathfinding-algorithm)
   - [Zip-64 and Tape Storage Limitations](#zip-64-and-tape-storage-limitations)
   - [Rainbow Tables in Cryptoanalysis](#rainbow-tables-in-cryptoanalysis)
-
+- [Appendix II - Further Information](#appendix-ii---further-information)
+  - [Core Principles](#core-principles)
+  - [Data Handling](#data-handling)
+  - [Adaptability and Usability](#adaptability-and-usability-1)
 
 ## Core Principles of System Design
+
+Links for additional consideration: [Core Principles](#core-principles)
 
 ### Simplicity: Minimize Complexity
 
@@ -52,12 +63,6 @@ Minimize the amount of stateful components in the system.
 Stateless systems can more easily be tested and verified.
 The fewer edge cases, the easier it is to reason about functionality.
 
-Further Information:
-
-* [Simplicity of IRC - Susam Pal](https://web.archive.org/web/20220815032635/https://susam.net/maze/wall/simplicity-of-irc.html)
-* [htmx sucks - Carson Gross](https://htmx.org/essays/htmx-sucks/)
-* [Great software design looks underwhelming - Sean Goedecke](https://www.seangoedecke.com/great-software-design/)
-
 ### Performance: Balance Efficiency & Resources
 
 Adding more resources improves performance, to a point.
@@ -65,12 +70,6 @@ Adding more resources improves performance, to a point.
 Power usage should also be considered in determining the efficiency of an algorithm.
 
 Parallelism, pipelining, and serialization are common design patterns to spread work across resources.
-
-
-Further Information:
-
-* [Simulating Time with Square-Root Space - Ryan Williams](https://arxiv.org/abs/2502.17779)
-* [Exploring the Power of Parallelized CPU architectures - meekochii](https://research.meekolab.com/exploring-the-power-of-parallelized-cpu-architectures)
 
 ### Predictability: Consistent Behavior Over Time
 
@@ -89,11 +88,6 @@ Algorithms may also perform differently on different scales of input data.
 
 Despite this, a program could utilize both algorithms by detecting properties of the data before processing and using the right algorithm for the job.
 
-Obversely, it may be advantageous to use a poorer-performing algorithm if it has other desirable qualities.
-
-* [Best-Worst-Avg.: Sorting Algorithms](https://en.wikipedia.org/wiki/Best%2C_worst_and_average_case#Sorting_algorithms)
-* [Quick Sort vs Merge Sort](https://www.geeksforgeeks.org/quick-sort-vs-merge-sort/)
-
 ### Correctness: Reliable Output Under All Conditions
 
 Algorithms should produce accurate results under all valid inputs and adhere to specific constraints such as idempotency.
@@ -105,7 +99,7 @@ In sorting algorithms, there is the idea of stable vs unstable sort.
 A stable algorithm will preserve the relative order of **equal elements**, while an unstable one may _or may not_ shuffle the order of equal elements.
 While this may not matter for sorting raw values, it can be valuable when sorting data structures on a field.
 
-* [Stable and Unstable Sorting: Why Stability Matters? - Siddharth Chandra](https://chandraji.dev/stable-and-unstable-sorting-why-stability-matters)
+Accuracy vs. precision
 
 ## Data Handling Strategies
 
@@ -168,11 +162,6 @@ The pre-processing can take place during or outside of the algorithm's execution
 Lookup tables are a common example of using pre-computing to improve task performance.
 Before computers there were used to speed up calculation of complex functions in trigonometry, logarithms, statistics and more.
 
-
-* [Make a Faster Cryptanalytic Time-Memory TradeOff - Philippe Oechslin](https://web.archive.org/web/20230409151031/https://lasecwww.epfl.ch/pub/lasec/doc/Oech03.pdf)
-* [Hash-Based Improvements to A-Priori](http://infolab.stanford.edu/~ullman/cs345notes/cs345-7.pdf)
-* [Regularization - ](https://cscheid.net/writing/data_science/regularization/index.html)
-
 ### Composable Across systems
 
 Instead of solving every problem, it is better to inter-operate with other tools.
@@ -181,6 +170,23 @@ The algorithm and tool that encases it should readily integrate with other appli
 In the *nix world, most terminal applications are line-of-text oriented.
 Tools like `awk`, `grep`, `cat`, and `find` are able to be easily chained together to solve a task by iteratively operating on lines and passing it to the next in the chain via pipe.
 
+### Data Hierarchy and Latency Reduction Scalability
+
+Performance should be maintained across orders of magnitude of input.
+The varying data sizes should be able to be handled with sacrificing efficiency (linear vs. quadratic growth).
+
+Algorithms should have a clear model for describing how data moves through the system and utilizes awareness of caching, buffers, network and physical location.
+
+Compute should be placed near the input data.
+Data should be processed near where it is stored to minimize latency side-effects.
+
+In a cloud architecture settings, this looks like cross-AZ and cross-Region data movement.
+In machine code this could be optimizing data slices for L1 and L2 processor cache.
+Each layer from the processor doing the work is a magnitude of difference
+
+The more copies of the data that exist makes it easier for them to become out of sync.
+Cache layers can solve problems, but also create potential for many more.
+Data Lifetimes
 
 ## Scalability & Performance Optimization
 
@@ -197,24 +203,6 @@ Resources should optimize for cost per operation.
 
 Avoid system limitations through thoughtful design.
 
-### Data Hierarchy and Latency Reduction Scalability
-
-Performance should be maintained across orders of magnitude of input.
-The varying data sizes should be able to be handled with sacrificing efficiency (linear vs. quadratic growth).
-
-Algorithms should have a clear model for describing how data moves through the system and utilizes awareness of caching, buffers, network and physical location.
-
-Compute should be placed near the input data.
-Data should be processed near where it is stored to minimize latency side-effects.
-This means cross-AZ and cross-Region data movement is kept to a minimum, which helps lessen monetary costs as well.
-
-the more copies of the data that exist makes it easier for them to become out of sync.
-Cache layers can solve problems, but also create potential for many more.
-Data Lifetimes
-
-* [The Architecture of Serverless Data Systems - Jack Vanlightly](https://jack-vanlightly.com/blog/2023/11/14/the-architecture-of-serverless-data-systems)
-
-
 ## Adaptability and Usability
 
 Able to easily adjust to changing inputs and environments.
@@ -224,6 +212,8 @@ This doesn't need to happen "on the fly", but the code describing the algorithm 
 ### Graceful Failure: Handling Errors
 
 When there are issues that can't be recovered from, the algorithm should come to a graceful landing and exit instead of plowing a burning path of faults through your OS.
+
+Errors will always happen.
 
 It is often better to fail out early rather then trying to continue and create bigger issues.
 It is better to crash out early and alert the user of an issue instead of potentially causing bigger problems.
@@ -239,9 +229,7 @@ Users should be able to easily determine the cause of errors, and have the tools
 
 Even if it is the most optimal algorithm ever constructed for a task, if it is not ergonomic to users than it will be forked or forgotten.
 
-More information: 
-* [The Art of README](https://github.com/hackergrrl/art-of-readme)
-
+More information:
 
 ## Conclusion: Building Elegant Systems
 
@@ -249,18 +237,20 @@ More information:
 
 ---
 
-## Case Studies & Practical Examples
+## Appendix I - Case Studies & Practical Examples
 
 ### Factorio's Pathfinding Algorithm
+
+[Factorio Friday Facts #317 - New pathfinding algorithm](https://factorio.com/blog/post/fff-317) describes their process in developing an npc algorithm.
 
 In path-finding algorithms, this can mean grouping nodes by location or travel cost.
 Group 1x1 locations into say 64x64 tiles.
 the algorithm can then first process the large tiles to get a rough estimate of a path, then explore more likely tiles before less likely ones resulting in less data processing overall.
 
-[Factorio Friday Facts #317 - New pathfinding algorithm](https://factorio.com/blog/post/fff-317) describes their process in developing an npc algorithm.
-
-
 ### Zip-64 and Tape Storage Limitations
+
+![ZIP-64 Internal Layout](/images/algo-props/zip-64-layout.png)
+[Original](https://en.wikipedia.org/wiki/ZIP_(file_format)#/media/File:ZIP-64_Internal_Layout.svg)
 
 The [ZIP-64](https://en.wikipedia.org/wiki/ZIP_(file_format)#Structure) internal layout places the index of stored files or "General Directory" at the end of the archive structure.
 This is advantageous for _writing_ a zip file, as the client only knows the data of the General Directory once all files are written.
@@ -275,11 +265,50 @@ This makes `ZIP-64` particularly bad, as the system must first seek to the end o
 
 ### Rainbow Tables in Cryptoanalysis
 
-_[Rainbow Tables](https://en.wikipedia.org/wiki/Rainbow_table)_ are pre-computed chains of password hashes.
+![Rainbow Table illustration presented at Crypto 2003](/images/algo-props/rainbow-tables.png)
+[Original](https://en.wikipedia.org/wiki/Rainbow_table#/media/File:Dr._Oechslin_Rainbow_Table_Crypto_2003_Illustration.png)
 
- are another, more modern form of lookup tables.
+[Rainbow Tables](https://en.wikipedia.org/wiki/Rainbow_table) are pre-computed chains of password hashes.
+
+are another, more modern form of lookup tables.
 They help drastically improve hash cracking performance.
 Instead of storing every single plaintext and hash, "chains" of hashes are created and only the ends are stored.
 The target hash is repeatedly hashed using the same method to create the chains.
 If the result matches one of the chain "ends", the algorithm can then hash from the head of the chain to determine the input that generates the matching hash.
+
+## Appendix II - Further Information
+
+### Core Principles
+
+#### Simplicity
+
+* [Simplicity of IRC - Susam Pal](https://web.archive.org/web/20220815032635/https://susam.net/maze/wall/simplicity-of-irc.html)
+* [htmx sucks - Carson Gross](https://htmx.org/essays/htmx-sucks/)
+* [Great software design looks underwhelming - Sean Goedecke](https://www.seangoedecke.com/great-software-design/)
+
+#### Performance
+
+* [Simulating Time with Square-Root Space - Ryan Williams](https://arxiv.org/abs/2502.17779)
+* [Exploring the Power of Parallelized CPU architectures - meekochii](https://research.meekolab.com/exploring-the-power-of-parallelized-cpu-architectures)
+
+#### Predicatability
+
+* [Best-Worst-Avg.: Sorting Algorithms](https://en.wikipedia.org/wiki/Best%2C_worst_and_average_case#Sorting_algorithms)
+* [Quick Sort vs Merge Sort](https://www.geeksforgeeks.org/quick-sort-vs-merge-sort/)
+
+#### Correctness
+
+* [Stable and Unstable Sorting: Why Stability Matters? - Siddharth Chandra](https://chandraji.dev/stable-and-unstable-sorting-why-stability-matters)
+
+### Data Handling
+
+* [Make a Faster Cryptanalytic Time-Memory TradeOff - Philippe Oechslin](https://web.archive.org/web/20230409151031/https://lasecwww.epfl.ch/pub/lasec/doc/Oech03.pdf)
+* [Hash-Based Improvements to A-Priori](http://infolab.stanford.edu/~ullman/cs345notes/cs345-7.pdf)
+* [Regularization - ](https://cscheid.net/writing/data_science/regularization/index.html)
+* [The Architecture of Serverless Data Systems - Jack Vanlightly](https://jack-vanlightly.com/blog/2023/11/14/the-architecture-of-serverless-data-systems)
+
+### Adaptability and Usability
+
+* [The Art of README](https://github.com/hackergrrl/art-of-readme)
+
 
