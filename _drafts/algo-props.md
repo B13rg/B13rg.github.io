@@ -44,7 +44,7 @@ This post explores foundational patterns in system design that ensure algorithms
   - [Factorio's Pathfinding Algorithm](#factorios-pathfinding-algorithm)
   - [Zip-64 and Tape Storage Limitations](#zip-64-and-tape-storage-limitations)
   - [Rainbow Tables in Cryptoanalysis](#rainbow-tables-in-cryptoanalysis)
-- [Appendix II - Further Information](#appendix-ii---further-information)
+- [Appendix II - Links to More](#appendix-ii---links-to-more)
   - [Core Principles](#core-principles)
   - [Data Handling](#data-handling)
   - [Adaptability and Usability](#adaptability-and-usability-1)
@@ -65,6 +65,8 @@ The fewer edge cases, the easier it is to reason about functionality.
 ### Performance: Balance Efficiency & Resources
 
 Adding more resources improves performance, to a point.
+The various limits of hardware and software all scale differently from each other, so performance characteristics will differ across scales.
+Properly accounting for the the complexity of changes is difficult, but helps extract additional performance from slack in the system.
 
 Power usage should also be considered in determining the efficiency of an algorithm.
 
@@ -132,8 +134,7 @@ Analogy to min-maxing surface area and volume of a square.
 Indexing shouldn't be overly specific.
 Meaningful clustering of data.
 
-Example: Graph Traversal
-
+Graph traversal is a core computing problem where storage structure can drastically reduce work.
 With just a raw list of nodes and edges, it can be expensive to determine paths between two nodes.
 
 By storing the graph in a hash map, nodes can readily be hopped between.
@@ -296,7 +297,7 @@ Instead of storing every single plaintext and hash, "chains" of hashes are creat
 The target hash is repeatedly hashed using the same method to create the chains.
 If the result matches one of the chain "ends", the algorithm can then hash from the head of the chain to determine the input that generates the matching hash.
 
-## Appendix II - Further Information
+## Appendix II - Links to More
 
 ### Core Principles
 
