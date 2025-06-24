@@ -51,10 +51,6 @@ This post explores foundational patterns in system design that ensure algorithms
 
 ## Core Principles of System Design
 
-Everything old is new again.
-These questions have been asked and answered many different ways over the decades.
-Each programmer faces constraints that design is bound to.
-
 
 ### Simplicity: Minimize Complexity
 
@@ -146,9 +142,6 @@ The data will be able to be explored as a graph by hash lookups rather than iter
 Having the raw data organized in a map is nice, but additional information about the data can be gathered to further improve task performance.
 "Regularization" of the input data can help simplify the problem you're trying to solve.
 
-An "[undirected hypergraph](https://en.wikipedia.org/wiki/Hypergraph)" ............... ??? on top of the existing data that groups sets of nodes by some desired property.
-
-
 Structure decisions control the way in which data is processed and interpreted.
 
 
@@ -212,14 +205,29 @@ Able to easily adjust to changing inputs and environments.
 
 This doesn't need to happen "on the fly", but the code describing the algorithm should be contained enough to be easily applied to other problems.
 
+Many advances in science and engineering have been made by applying an old tool to a new problem.
+By 
+
 ### Graceful Failure: Handling Errors
 
-When there are issues that can't be recovered from, the algorithm should come to a graceful landing and exit instead of plowing a burning path of faults through your OS.
-
 Errors will always happen.
+Even if all inputs, states and outputs are accounted for, there are factors outside of the system.
+Links go down, hardware fails, and cosmic rays love flipping bits.
+When encountering unrecoverable issues, plan for a graceful landing and exit instead of plowing a burning path of faults, errors, and corruptions.
 
 It is often better to fail out early rather then trying to continue and create bigger issues.
-It is better to crash out early and alert the user of an issue instead of potentially causing bigger problems.
+In databases, design patterns like transactions and Write-Ahead-Logging (WAL) help minimize erroneous writes from failing clients and servers.
+By taking steps to preserve state before work is done the system can guarantee (to a degree) the atomicity of actions taken.
+
+User-facing errors should be actionable and explain what went wrong.
+They should communicate what the system was doing and what input was being operated on.
+The message should cover the "who what when where" parts of the problem, the "why" and "how" are usually left to the user to solve.
+
+Error codes and the like are valuable as an index, but they require external resources to index against.
+Most systems aren't constrained by bits and bytes so messages can be more verbose.
+In programming I prefer to return errors instead of exception-ing out of the main control flow.
+Exceptions are expensive, and forces core parts of the system to be ready to "play catch" from potentially disparate sub-systems.
+
 
 ### Documentation & User Experience
 
@@ -234,7 +242,18 @@ Even if it is the most optimal algorithm ever constructed for a task, if it is n
 
 ## Conclusion: Building Elegant Systems
 
+Everything old is new again.
+The questions of how to design a computing system have been asked and answered innumerable ways over the decades.
+Most of the problems we strive to solve are echoes of those faced by our computing progenitors.
+We as engineers face physical and digital constraints that design is bound to.
+
+
+
+
 "Be vicariously lazy." - [Programming Perl 1991](https://archive.org/details/programmingperl000wall/page/374/)
+
+
+
 
 ---
 
@@ -306,6 +325,9 @@ If the result matches one of the chain "ends", the algorithm can then hash from 
 * [Make a Faster Cryptanalytic Time-Memory TradeOff - Philippe Oechslin](https://web.archive.org/web/20230409151031/https://lasecwww.epfl.ch/pub/lasec/doc/Oech03.pdf)
 * [Hash-Based Improvements to A-Priori](http://infolab.stanford.edu/~ullman/cs345notes/cs345-7.pdf)
 * [Regularization - ](https://cscheid.net/writing/data_science/regularization/index.html)
+* [undirected hypergraph](https://en.wikipedia.org/wiki/Hypergraph) ............... ??? on top of the existing data that groups sets of nodes by some desired property.
+
+
 * [The Architecture of Serverless Data Systems - Jack Vanlightly](https://jack-vanlightly.com/blog/2023/11/14/the-architecture-of-serverless-data-systems)
 
 ### Adaptability and Usability
