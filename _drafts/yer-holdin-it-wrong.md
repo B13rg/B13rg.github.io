@@ -7,6 +7,6 @@ Human problems vs llm problems.
 
 Rubber ducking.
 
+Reading vs. Writing code
 
-
-Reading vs. Writing code.
+task size and complexity
