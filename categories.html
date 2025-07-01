@@ -23,36 +23,7 @@ title: Categories
   <ul style="list-style: none; padding-left: 20px">
     {% for post in category[1] %}
 		<li>
-				{% case randomNumber %}
-				{% when 0 %}
-				<img class="titlecon" src="{{ site.baseurl }}/public/images/VBONLINE.ICO"></img>
-				{% when 1 %}
-				<img class="titlecon" src="{{ site.baseurl }}/public/images/TPX.ICO"></img>
-				{% when 2 %}
-				<img class="titlecon" src="{{ site.baseurl }}/public/images/TURBO.ICO"></img>
-				{% when 3 %}
-				<img class="titlecon" src="{{ site.baseurl }}/public/images/computer.png"></img>
-				{% when 4 %}
-				<img class="titlecon" src="{{ site.baseurl }}/public/images/file.png"></img>
-				{% when 5 %}
-				<img class="titlecon" src="{{ site.baseurl }}/public/images/globe.png"></img>
-				{% when 6 %}
-				<img class="titlecon" src="{{ site.baseurl }}/public/images/magnifying.png"></img>
-				{% when 7 %}
-				<img class="titlecon" src="{{ site.baseurl }}/public/images/microchip.png"></img>
-				{% when 8 %}
-				<img class="titlecon" src="{{ site.baseurl }}/public/images/recorder_icon.png"></img>
-				{% when 9 %}
-				<img class="titlecon" src="{{ site.baseurl }}/public/images/os2_text.png"></img>
-				{% when 10 %}
-				<img class="titlecon" src="{{ site.baseurl }}/public/images/os2_settings.png"></img>
-				{% when 11 %}
-				<img class="titlecon" src="{{ site.baseurl }}/public/images/os2_dos.png"></img>
-				{% when 12 %}
-				<img class="titlecon" src="{{ site.baseurl }}/public/images/os2_computer.png"></img>
-				{% when 13 %}
-				<img class="titlecon" src="{{ site.baseurl }}/public/images/os2.png"></img>
-				{% endcase %}
+			<img class="titlecon" src="{{ site.baseurl }}/public/images/icons/{{ site.data.icons[randomNumber].filename}}"></img>
 				{% assign randomNumber = randomNumber | plus: 4 | modulo: diff %}
 			
 			<a href="{{ post.url }}">{{ post.title }}</a>

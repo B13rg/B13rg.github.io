@@ -1,0 +1,17 @@
+version: 3
+tasks:
+  setup:
+    cmds:
+      - gem install --user jekyll bundler
+      - bundler install
+  build:
+    desc: build data
+    aliases: ['b']
+    cmds:
+      - bundle exec jekyll b
+
+  server:
+    desc: server locally
+    aliases: ['s']
+    cmds:
+      - bundle exec jekyll s
