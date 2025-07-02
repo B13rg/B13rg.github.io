@@ -116,6 +116,22 @@ The architecture description is split into the following sections:
 - 3.14 [Security](#314-security)
 
 ### 3.1 Virtual Message Switching Using Store-and-Forward Operation
+
+Message based architecture.
+The top level message abstraction is an Application Data Unit (ADU), present at the application layer.
+Some ADU properties:
+
+* Arbitrary length
+* Order of messages in not preserved
+* typically handled/transferred in complete units
+
+An ADU "transformed by the bundle layer into one or more protocol data units called 'bundles', which are forwarded by DTN nodes".
+Bundles then consist of two or more "blocks" of data, which contain either application data, or data used to properly deliver the bundle to destinations.
+They serve a similar purpose to the header-payload design of traditional protocols, except order is not controlled.
+
+
+
+
 ### 3.2 Nodes and Endpoints
 ### 3.3 Endpoint Identifiers (EIDs) and Registrations
 ### 3.4 Anycast and Multicast
