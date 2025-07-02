@@ -126,8 +126,25 @@ Some ADU properties:
 * typically handled/transferred in complete units
 
 An ADU "transformed by the bundle layer into one or more protocol data units called 'bundles', which are forwarded by DTN nodes".
+Bundles are the basic transport block, akin to packets in IP protocols.
 Bundles then consist of two or more "blocks" of data, which contain either application data, or data used to properly deliver the bundle to destinations.
 They serve a similar purpose to the header-payload design of traditional protocols, except order is not controlled.
+
+Bundles can be split up into multiple constituent bundles or "bundle fragments" while being transmitted.
+
+All bundles contain information about:
+* Source + Destination Endpoint Identifiers (EID) (3.3)
+* "Report-to" EID: command/control endpoint
+* Originating timestamp
+* Useful life indicator
+* class of service designator
+* length
+
+
+Traditional networks are based on the 
+store-and-forward" operation, but typical expectations are in the order of a few seconds at best.
+Bundles are integrated closer to the application layer than packets, allowing network nodes to make more informed routing decisions, based on the resource requirements of the bundle and application.
+
 
 
 
