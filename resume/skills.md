@@ -9,7 +9,7 @@
 * Physical Datacenter
 * Multi-cloud experience
 * IPv4 + IPv6
-* Own ::/48 netblock
+* Own `2620:C7:6000::/48` netblock
 
 ### Infrastructure as Code (IaC)
 
@@ -33,13 +33,13 @@
 | Language | Skill Level | Projects                                           |
 | -------- | ----------- | -------------------------------------------------- |
 | Go       | 9           | API service, jsonnet configuration templating tool |
-| Python   | 8           |                                                    |
-| Jsonnet  | 7           |                                                    |
+| Python   | 7           | Gamestate inegration tool, Micropython on Pi       |
+| Jsonnet  | 7           | 20+ kube clusters                                  |
 | Bash     | 7           | CI/CD automation                                   |
-| C        | 5           |                                                    |
-| C#       | 6           |                                                    |
-| PHP      | 6           |                                                    |
-| HTML/JS  | 6           |                                                    |
+| C        | 5           | ESP32 Warwalker                                    |
+| C#       | 6           | Dental Practice software                           |
+| PHP      | 6           | Self-service portal                                |
+| HTML/JS  | 6           | Personal blog,                                     |
 
 ## Automation & Tooling
 
@@ -54,8 +54,13 @@
 ### Monitoring & Observability
 
 * Prometheus - funnel and manage existing flows, integrate metrics into applications
-* Grafana - Experience creating and managing dashboards, both dynamic and declaratively.
 * OTel - Experience managing metrics and integrating tooling into existing tools/applications
+* Grafana - Experience creating and managing dashboards, both dynamic and declaratively.
+* Datadog
+* Splunk
+* Pagerduty
+* Slack-ops - Integrated alerts with slack to improve issue visibility and runbooks.
+* Finops - Using cost metrics to guide architecture decisions.
 * Chaos engineering
 
 ### Incident Response Automation
@@ -96,7 +101,7 @@
 ### Documentation
 
 * Develop documentation alongside code
-* 
+* Production Readiness Review - Formulated core properties to verify software against to ensure readiness for a production environment.
 
 ### Knowledge Sharing
 
