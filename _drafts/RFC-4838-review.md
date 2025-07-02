@@ -145,11 +145,19 @@ Traditional networks are based on the
 store-and-forward" operation, but typical expectations are in the order of a few seconds at best.
 Bundles are integrated closer to the application layer than packets, allowing network nodes to make more informed routing decisions, based on the resource requirements of the bundle and application.
 
-
-
-
-
 ### 3.2 Nodes and Endpoints
+
+DTN nodes implement the bundle layer and are utilized by applications to send and receive ADUs.
+Nodes may be members of one or more groups called "DTN endpoints", which coordinate storage of bundles.
+These groups consider a message successfully delivered once the "minimum receptive group" (MRG) of the endpoint has been met.
+An MRG can be:
+
+* one node (unicast)
+* one of a group (anycast)
+* all of a group (multicast / broadcast)
+
+One question is whether an MRG can be more specific, such as a minimum of `n` nodes or a minimum percentage of nodes in a group.
+
 ### 3.3 Endpoint Identifiers (EIDs) and Registrations
 ### 3.4 Anycast and Multicast
 ### 3.5 Priority Classes
@@ -169,7 +177,7 @@ Bundles are integrated closer to the application layer than packets, allowing ne
 
 
 Discarding unauthorized traffic early is a departure from normal network behavior.
-Traditional networks labor to 
+Traditional networks labor to maintain continuous connectivity and low queuing and transmission delay.
 
 
 
