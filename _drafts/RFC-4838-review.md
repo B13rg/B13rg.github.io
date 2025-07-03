@@ -259,8 +259,8 @@ The spec groups contacts into the following categories:
 ### 3.9 Fragmentation and Reassembly
 
 Proactive and reactive!
-Because of the wealth of information available to make transfer decisions between nodes, there are opportunities fragment and re-assemble bundles.
-When the amount of bundles to transfer is greater than the contact volume nodes can take actions to better pack the communication.
+Because of the wealth of information available to make transfer decisions between nodes, there are opportunities fragment and re-assemble bundles for more-efficient transmission.
+When the amount of bundles to transfer is greater than the contact volume, nodes can take actions to best use the communication medium.
 
 Proactive fragmentation is performed by the sender to split application data into multiple smaller blocks that are transmitted as bundles independently.
 When performed, it is the responsibility of the *final destination(s)* to reassemble them into the original ADU.
@@ -371,6 +371,7 @@ Simple lookup of terms
 * Fragmentation
   * Reactive
   * Proactive
+* Convergence layer
 
 ---
 
