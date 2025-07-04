@@ -15,7 +15,7 @@ Concept: Use latency between servers as a memory buffer, similar to delay-line m
 It would require two or more nodes, a primary "terminal" node for interacting with the data and reflector nodes to bounce it around.
 The amount of data able to be stored is directly proportional to latency of the data path.
 
-> Bandwidth (Gb/s) * latency (s)
+> Bandwidth (Gb/s) * Latency (s) == Storage Volume (Gb/s²)
 
 UDP has better bandwidth, and we 
 Encoding of UDP datastream should handle data integrity a la QUIC.

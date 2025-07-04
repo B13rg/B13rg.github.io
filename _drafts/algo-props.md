@@ -125,13 +125,37 @@ A stable algorithm will preserve the relative order of **equal elements**, while
 While this may not matter for sorting raw values, it can be valuable when sorting data structures on a field.
 More entropy is introduced into the system but it is up to the goals of the system to determine if it's relevant or not.
 
-LLMs are an interesting case.
+A concept from physical sciences is systematic error vs. random error.
+Systematic error is a consistent, reproducible error that stem from within the system.
+This error can be:
+
+* Clock drift
+* Floating-point arithmetic
+* Resource contention
+* Outright error (2+2=5)
+* Unchecked expiration
+
+Random error causes include instrument limitations, minor variations in measuring techniques, and environmental factors.
+
+* Input issues/fidelity
+* Security
+* Upstream outages
+* Weather events
+* Interstellar rays
+* System just didn't feel like it
+
+Systematic errors can mostly be solved.
+Because they arise from the architecture and design of the system they can more directly be confronted.
+Random errors can be mitigated but not eradicated.
+The system exists within reality, but steps can be taken to minimize and compartmentalize the error.
+"Swiss-hole" security allows individual layers to have failures/issues that can be covered by other layers.
+Of course, if the holes line up you're gonna have a bad time.
+
+LLMs take an interesting approach by often being incorrect _and_ confident.
 From a high level, they are deterministic.
 Provided the same seed and a 0 temperature, any model _should_ provide
 What is not deterministic is the system operating the LLM.
 Differences in hardware, scheduling, and parallelism can shuffle the order of operations in a non-deterministic (from our perspective) way.
-
-random error vs. systematic error.
 
 ## Data Handling Strategies
 
