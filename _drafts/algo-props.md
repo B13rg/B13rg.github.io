@@ -3,7 +3,8 @@ layout: post
 title:	"Properties and Patterns of Elegant Systems"
 category: [Programming]
 excerpt: A short description of the article
-image: public/images/buttons/large/ahmygod.gif
+image: /images/algo-props/merville-garden-stanley-spencer.png
+image_alt: Merville Garden Village Near Belfast - Stanley Spencer - 1951 
 ---
 
 Algorithms exist within a system, and usually process one or more inputs to produce an output.
@@ -86,7 +87,7 @@ To illustrate, sorting algorithms are simple to reason about.
 Quick sort first partitions the array and then make two recursive calls.
 Merge sort first makes recursive calls for the two halves, and then merges the two sorted halves.
 
-| **Algorithm**              | **Quicksort** | **Merge Sort** |
+| Algorithm              | Quicksort | Merge Sort |
 | -------------------------- | ------------- | -------------- |
 | Time Complexity (Best)     | O(n log n)    | O(n log n)     |
 | Time Complexity (Average)  | O(n log n)    | O(n log n)     |
