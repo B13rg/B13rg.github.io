@@ -56,7 +56,7 @@ This post explores foundational patterns in system design that ensure algorithms
 
 Avoid unnecessary features, but balance the minimalism with practicality.
 Systems should have a narrow scope of problems to solve.
-Feature and scope creep pull attention away and introduce additional "error-surface" for bugs and issues.
+Feature and scope creep pull attention away from the central purpose of a system and introduce additional "error-surface" for bugs and issues to grow from.
 
 Minimize the amount of stateful components in the system.
 [If you’re storing any kind of information for any amount of time, you have a lot of tricky decisions to make about how you save, store and serve it.](https://www.seangoedecke.com/good-system-design/)
@@ -65,35 +65,45 @@ The fewer edge cases present, the easier it is to reason about and extend functi
 
 ### Performance: Balance Efficiency & Resources
 
-Adding more resources improves performance, to a point.
-The various limits of hardware and software all scale differently from each other, so performance characteristics will differ across scales.
-Properly accounting for the the complexity of changes is difficult, but helps extract additional performance from slack in the system.
-
-It's important to preserve some slack in the system, relational to how controlled the input into the system is.
-If resources are saturated and there is a surge in input, there will be an impact to performance.
-There may be ways to manage and control the impact within the system, such as discarding or re-prioritization.
-In my experience across computing applications, 80-90% utilization is around the sweet spot
-
-Power usage should also be considered in determining the efficiency of an algorithm.
-
+Adding more resources improves performance of a system, to a point.
+The various limits of hardware and software all scale differently from each other, so performance characteristics end up differing across scales of operation.
 Parallelism, pipelining, and serialization are common design patterns to spread work across resources.
+The scaling structure used should be derived from the structure and behaviors of the input data.
+
+While compute and memory are usually the primary focus, all aspects of the system should be considered.
+Financial, network, disk, data speed/latency and power usage are all considerations in improving efficiency.
+
+For best performance the system should exist in a balance of input and processing resources.
+There should exist slack in the system, relational to the volume and processing cost of the system input.
+If resources are saturated and there is a surge in input, there will be an greater impact to performance than if there is space for the system to accommodate the additional load.
+In my experience across computing applications, 80-85% utilization is around the sweet spot.
 
 ### Predictability: Consistent Behavior Over Time
 
 Best / Average / Worst performance of the algorithm should be similar over the range of possible inputs.
+To illustrate, sorting algorithms are simple to reason about.
+
+Quick sort first partitions the array and then make two recursive calls.
+Merge sort first makes recursive calls for the two halves, and then merges the two sorted halves.
+
+| **Algorithm**              | **Quicksort** | **Merge Sort** |
+| -------------------------- | ------------- | -------------- |
+| Time Complexity (Best)     | O(n log n)    | O(n log n)     |
+| Time Complexity (Average)  | O(n log n)    | O(n log n)     |
+| Time Complexity (Worst)    | O(n²)         | O(n log n)     |
+| Space Complexity (Best)    | O(log n)      | O(n)           |
+| Space Complexity (Average) | O(log n)      | O(n)           |
+| Space Complexity (Worst)   | O(n)          | O(n)           |
+
+They are roughly comparable in the best and average case, there is a drastic difference on worst case performance.
+Algorithms may also perform differently on different scales of input data.
+
+Despite this, a program could utilize both algorithms by detecting properties of the data before processing and using the right algorithm for the job.
 
 While processing the data, resource usage should be stable.
 There shouldn't be choppy CPU usage, and 
 Expensive operations like memory allocation and disk/network requests should be performed up front.
 They should make data available to the core algorithm without hoarding CPU.
-
-Quick sort first partitions the array and then make two recursive calls.
-Merge sort first makes recursive calls for the two halves, and then merges the two sorted halves.
-
-While their performance may be comparable in the best and average case, there is a drastic difference on worst case performance.
-Algorithms may also perform differently on different scales of input data.
-
-Despite this, a program could utilize both algorithms by detecting properties of the data before processing and using the right algorithm for the job.
 
 ### Correctness: Accuracy & Precision
 
@@ -164,6 +174,8 @@ Structure decisions control the way in which data is processed and interpreted.
 
 ### Pre-Processing for Efficiency
 
+https://en.wikipedia.org/wiki/Predictor%E2%80%93corrector_method
+
 Pre-processing data before it enters parts of the subsystem.
 Key information about the data can be extracted before the primary processing takes place to better inform and optimize the processing.
 
@@ -188,7 +200,8 @@ By following the "Unix Philosophy" of managing data as files and text streams, t
 Performance should be maintained across orders of magnitude of input.
 The varying data sizes should be able to be handled with sacrificing efficiency (linear vs. quadratic growth).
 
-Algorithms should have a clear model for describing how data moves through the system and utilizes awareness of caching, buffers, network and physical location.
+Algorithms should have a clear model for describing how data moves through the system.
+It should also be aware of the transport of data as it passes through caches, buffers, networks, and physical locations.
 
 Compute should be placed near the input data.
 Data should be processed near where it is stored to minimize latency side-effects.
