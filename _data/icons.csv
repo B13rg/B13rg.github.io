@@ -41,9 +41,8 @@ index,name,filename
 40,install,install-3.ico
 41,install,install-4.ico
 42,install,install-5.ico
-43,install,install-6.ico
 44,install,install-7.ico
-45,install,install-8.ico
+45,install,install-8.png
 46,laptop,laptop.ico
 47,lb,LIGHTBLB.BMP
 48,link,LINK.BMP
@@ -53,6 +52,6 @@ index,name,filename
 52,network,NETWORK.bmp
 53,note,NOTE1.BMP
 54,phone,PHONE.BMP
-55,SAFE,BMP
+55,SAFE,SAFE.BMP
 56,settings,settings.ico
 57,win-sys,win-sys.ico
