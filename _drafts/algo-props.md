@@ -2,7 +2,7 @@
 layout: post
 title:	"Properties and Patterns of Elegant Systems"
 category: [Programming]
-excerpt: A short description of the article
+excerpt: Algorithms exist within a system, and usually process one or more inputs to produce an output. This post explores foundational patterns in system design that ensure algorithms and architectures are efficient, predictable, and scalable.
 image: /images/algo-props/merville-garden-stanley-spencer.png
 image_alt: Merville Garden Village Near Belfast - Stanley Spencer - 1951 
 ---
@@ -35,9 +35,10 @@ This post explores foundational patterns in system design that ensure algorithms
   - [Composable Across systems](#composable-across-systems)
   - [Data Hierarchy and Latency Reduction Scalability](#data-hierarchy-and-latency-reduction-scalability)
 - [Scalability \& Performance Optimization](#scalability--performance-optimization)
-  - [Cost Awareness: Balancing Tradeoffs](#cost-awareness-balancing-tradeoffs)
   - [System Bottlenecks and Design Avoidance](#system-bottlenecks-and-design-avoidance)
+  - [Cost Awareness: Balancing Tradeoffs](#cost-awareness-balancing-tradeoffs)
 - [Adaptability and Usability](#adaptability-and-usability)
+  - [Layers of Levers: Configuration](#layers-of-levers-configuration)
   - [Graceful Failure: Handling Errors](#graceful-failure-handling-errors)
   - [Documentation \& User Experience](#documentation--user-experience)
 - [Conclusion: Building Elegant Systems](#conclusion-building-elegant-systems)
@@ -61,8 +62,11 @@ Feature and scope creep pull attention away from the central purpose of a system
 
 Minimize the amount of stateful components in the system.
 [If you’re storing any kind of information for any amount of time, you have a lot of tricky decisions to make about how you save, store and serve it.](https://www.seangoedecke.com/good-system-design/)
-Stateless systems can more easily be tested and verified.
-The fewer edge cases present, the easier it is to reason about and extend functionality.
+Stateless systems are simpler to test and verify.
+By pushing stateful to the edges of the system, it removes complexity from 
+
+The design should minimize edge cases in applied logic.
+This makes it easier to mentally model the system and reason about functionality.
 
 ### Performance: Balance Efficiency & Resources
 
@@ -76,8 +80,8 @@ Financial, network, disk, data speed/latency and power usage are all considerati
 
 For best performance the system should exist in a balance of input and processing resources.
 There should exist slack in the system, relational to the volume and processing cost of the system input.
-If resources are saturated and there is a surge in input, there will be an greater impact to performance than if there is space for the system to accommodate the additional load.
-In my experience across computing applications, 80-85% utilization is around the sweet spot.
+If resources are saturated and there is a surge in input, there will be an greater impact to performance than if there are unused resources able to accommodate the additional load.
+In my experience across computing applications 80-85% utilization is around the sweet spot.
 
 ### Predictability: Consistent Behavior Over Time
 
@@ -87,14 +91,14 @@ To illustrate, sorting algorithms are simple to reason about.
 Quick sort first partitions the array and then make two recursive calls.
 Merge sort first makes recursive calls for the two halves, and then merges the two sorted halves.
 
-| Algorithm              | Quicksort | Merge Sort |
-| -------------------------- | ------------- | -------------- |
-| Time Complexity (Best)     | O(n log n)    | O(n log n)     |
-| Time Complexity (Average)  | O(n log n)    | O(n log n)     |
-| Time Complexity (Worst)    | O(n²)         | O(n log n)     |
-| Space Complexity (Best)    | O(log n)      | O(n)           |
-| Space Complexity (Average) | O(log n)      | O(n)           |
-| Space Complexity (Worst)   | O(n)          | O(n)           |
+| Algorithm                  | Quicksort  | Merge Sort |
+| -------------------------- | ---------- | ---------- |
+| Time Complexity (Best)     | O(n log n) | O(n log n) |
+| Time Complexity (Average)  | O(n log n) | O(n log n) |
+| Time Complexity (Worst)    | O(n²)      | O(n log n) |
+| Space Complexity (Best)    | O(log n)   | O(n)       |
+| Space Complexity (Average) | O(log n)   | O(n)       |
+| Space Complexity (Worst)   | O(n)       | O(n)       |
 
 They are roughly comparable in the best and average case, there is a drastic difference on worst case performance.
 Algorithms may also perform differently on different scales of input data.
@@ -217,18 +221,24 @@ Data Lifetimes
 
 ## Scalability & Performance Optimization
 
+
+### System Bottlenecks and Design Avoidance
+
+Choosing the right abstraction layer to solve problems.
+
+Avoid system limitations through thoughtful design.
+
 ### Cost Awareness: Balancing Tradeoffs
 
 Computing costs money.
 Every layer of abstraction has it's own costs and benefits.
 
+Our capitalist system uses cost as a driver, the financial aspects are also a driver in resource decisions.
+With the rise of [SaaS, PaaS, *aaS] it can often be cheaper to outsource functions to achieve "good-enough" functionality in a short timeframe.
 
-
-Resources should optimize for cost per operation.
-
-### System Bottlenecks and Design Avoidance
-
-Avoid system limitations through thoughtful design.
+The system should optimize for cost per operation within itself.
+Of course, "cost" needs to be defined by the hopefully benevolent entity managing the system.
+Time is a large factor, not just of the operations performed but the time-effort cost of constructing, managing and deconstructing the system over it's lifetime.
 
 ## Adaptability and Usability
 
@@ -238,6 +248,12 @@ This doesn't need to happen "on the fly", but the code describing the algorithm 
 
 Many advances in science and engineering have been made by applying an old tool to a new problem.
 By 
+
+### Layers of Levers: Configuration
+
+Tree structure, grouped by function.
+Keep it simple and self-explanatory.
+
 
 ### Graceful Failure: Handling Errors
 
@@ -266,7 +282,11 @@ Algorithms do not operate in a vacuum.
 They must be cared for and maintained like any living thing.
 Documentation should outline the use case for the algorithm and how to apply it.
 
-It should also have information on how it fails.
+The complexities of the system should be described in an understandable way.
+It should use ideas and references familiar with the target audience.
+Having a "system vocabulary" of concepts and modules gives users a scaffold to construct understanding upon.
+
+There should also information on how the system fails.
 Users should be able to easily determine the cause of errors, and have the tools/knowledge available to solve it themselves.
 
 Even if it is the most optimal algorithm ever constructed for a task, if it is not ergonomic to users than it will be forked or forgotten.
