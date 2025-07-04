@@ -1,15 +1,11 @@
 ---
 layout: post
-title:	"Application vs. System"
-category: [Games, Programming, Networking, DOS]
-excerpt: A short description of the article
-image: public/images/buttons/large/ahmygod.gif
-comment_id: 72374862398476
+title:	"Applications vs. Systems"
+category: [Programming]
+excerpt: An exploration of applications, systems, and a secret third option
 ---
 
-Applications, Systems, secret third?
-
-Both describe aspects of modern "computer-ing".
+Applications and systems both describe aspects of modern "computer-ing".
 Application are usually user-facing programs designed to perform specific tasks while systems focus on the foundational infrastructure that enables applications to operate.
 
 ## Applications - The System-User Interface
@@ -21,9 +17,9 @@ Provide a varied interface to interact with systems.
 
 ### Key Properties of Applications
 
-* User-centric: Focuses on interaction with users
+* User-centric: Focuses on direct interaction with users through GUIs, APIs, CLIs, etc.
 * Task-specific: Often aimed at solving a particular problem
-* Integration focused: Relies on downstream systems (web browser, operating systems, databases) to function
+* External Dependencies: Relies on systems such as web browsers, operating systems, databases, etc. to function.
 * Modular: Often composed of small components such as plugins or libraries that can be updated or replaced.
 
 ## Systems - Infrastructure at large
@@ -44,6 +40,7 @@ Rules governing how applications and systems interact with each other.
 Ensure interoperability, security, and efficiency across networks.
 
 Provide guarantees that applications and systems can rely to communicate information.
+Span multiple layers
 
 ## Key properties of Protocols
 
