@@ -154,9 +154,11 @@ The bundle format is expounded upon in section 3.7, and formally defined in [RFC
 Bundles can be split up into multiple constituent bundles or "bundle fragments" while being transmitted.
 
 
-Traditional networks are based on the 
-store-and-forward" operation, but typical expectations are in the order of a few seconds at best.
-Bundles are integrated closer to the application layer than packets, allowing network nodes to make more informed routing decisions, based on the resource requirements of the bundle and application.
+Traditional networks are based on the store-and-forward" operation, but typical expectations of traffic lifetime is in the order of a few seconds at best.
+In [Bundle Version 7](https://www.rfc-editor.org/rfc/rfc9171.html#section-4.2.6-1), a DTN time is an unsigned integer indicating the number of milliseconds that have elapsed since the DTN Epoch, `2000-01-01 00:00:00 +0000 (UTC)`.
+Structures are encoded in CBOR format for transmission, which has a max `uint` of 2<sup>64</sup>−1 or about 584.9 million years worth of milliseconds.
+
+Bundles are integrated closer to the application layer than packets, allowing network nodes to make more informed routing decisions based on the resource requirements of the bundle and application.
 
 #### 3.3.1 URI Schemes
 
