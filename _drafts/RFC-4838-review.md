@@ -1,3 +1,10 @@
+---
+layout: post
+title:	"Notes on RFC-4838: Delay-Tolerant Networking Architecture"
+category: [Networking]
+excerpt: A short description of the article
+---
+
 https://datatracker.ietf.org/doc/html/rfc4838
 
 
@@ -150,15 +157,7 @@ Bundles consist of a mandatory primary block, a payload block containing the ADU
 They serve a similar purpose to the header-payload design of traditional protocols, except order is not controlled.
 The bundle format is expounded upon in section 3.7, and formally defined in [RFC9171: Bundle Protocol Version 7](https://www.rfc-editor.org/rfc/rfc9171.html).
 
-
 Bundles can be split up into multiple constituent bundles or "bundle fragments" while being transmitted.
-
-
-Traditional networks are based on the store-and-forward" operation, but typical expectations of traffic lifetime is in the order of a few seconds at best.
-In [Bundle Version 7](https://www.rfc-editor.org/rfc/rfc9171.html#section-4.2.6-1), a DTN time is an unsigned integer indicating the number of milliseconds that have elapsed since the DTN Epoch, `2000-01-01 00:00:00 +0000 (UTC)`.
-Structures are encoded in CBOR format for transmission, which has a max `uint` of 2<sup>64</sup>−1 or about 584.9 million years worth of milliseconds.
-
-Bundles are integrated closer to the application layer than packets, allowing network nodes to make more informed routing decisions based on the resource requirements of the bundle and application.
 
 #### 3.3.1 URI Schemes
 
@@ -356,6 +355,13 @@ By overlapping what source bundles are placed in encapsulating bundles we can en
 
 One question I have is whether an MRG can be more specific, such as a minimum of `n` nodes or a minimum percentage of nodes in a group.
 Performing a bunch of group-destination logic could partition a bigger group into "striped" subgroups, al la RAID, 
+
+Traditional networks are based on the store-and-forward" operation, but typical expectations of traffic lifetime is in the order of a few seconds at best.
+In [Bundle Version 7](https://www.rfc-editor.org/rfc/rfc9171.html#section-4.2.6-1), a DTN time is an unsigned integer indicating the number of milliseconds that have elapsed since the DTN Epoch, `2000-01-01 00:00:00 +0000 (UTC)`.
+Structures are encoded in CBOR format for transmission, which has a max `uint` of 2<sup>64</sup>−1 or about 584.9 million years worth of milliseconds.
+
+Bundles are integrated closer to the application layer than packets, allowing network nodes to make more informed routing decisions based on the resource requirements of the bundle and application.
+
 
 ## Glossary
 
