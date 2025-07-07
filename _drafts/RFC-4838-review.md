@@ -223,7 +223,7 @@ The priority is meant to relate to all bundles sent by a single sender, so they 
 ### 3.6 Postal-Style Delivery Options and Administrative Records
 ### 3.7 Primary Bundle Fields
 
-The bundle protocol is defined in [RFC9171: Bundle Protocol Version 7](https://www.rfc-editor.org/rfc/rfc9171.html)
+The current (as of 2025) bundle protocol is defined in [RFC9171: Bundle Protocol Version 7](https://www.rfc-editor.org/rfc/rfc9171.html)
 
 All bundles contain information about:
 
@@ -316,6 +316,22 @@ The controller could dynamically spin up and and down applications based on DTN 
 
 ### 4.2 Custody Transfer State
 
+Custody transfer state is used to manage transmission of bundles across the network.
+Nodes have to store bundles they have custody of, with custody being transferred on successful receipt.
+
+In version 6 custody was defined as part of the protocol.
+In version 7 it was excluded, instead choosing to define it as part of a convergence layer, Bundle-in-Bundle Encapsulation spec[^BiBE].
+This intentionally made custody functionality optional but available.
+
+In practice custody management was found to have a few issues.
+First, they realized reliable transmission should be realized in a convergence
+layer"[^MBeyer].
+There were issues with properly relaying custody in cases of partial transmission.
+The entire bundle must be re-transmitted to properly transfer custody (no fragmentation allowed).
+Additionally, there is no way for custody information to be transmitted back to the sender within the custody framework.
+
+
+
 ### 4.3 Bundle Routing and Forwarding State
 
 ### 4.4 Security-related State
@@ -362,7 +378,9 @@ Structures are encoded in CBOR format for transmission, which has a max `uint` o
 
 Bundles are integrated closer to the application layer than packets, allowing network nodes to make more informed routing decisions based on the resource requirements of the bundle and application.
 
-## Implementations
+## Links
+
+### Implementations
 
 * [dtn7/dtn7-go](https://github.com/dtn7/dtn7-go) - [https://dtn7.github.io/](https://dtn7.github.io/)
 * [dtn7/dtn7-rs](https://github.com/dtn7/bp7-rs)
@@ -388,6 +406,17 @@ Simple lookup of terms
 * Convergence layer
 
 ---
+
+
+[^RFC4838]: [RFC 4838 Delay-Tolerant Networking Architecture](https://www.rfc-editor.org/rfc/rfc4838.html)
+
+[^RFC5050]: [RFC 5050 Bundle Protocol Specification](https://www.rfc-editor.org/rfc/rfc5050.html)
+
+[^RFC9171]: [RFC 9171 Bundle Protocol Version 7](https://www.rfc-editor.org/rfc/rfc9171.html)
+
+[^BiBE]: [Bundle-in-Bundle Encapsulation](https://datatracker.ietf.org/doc/html/draft-ietf-dtn-bibect-05)
+
+[^MBeyer]: [Comparison of Bundle Protocol version 6 and 7 - Marcel Beyer](https://beyerm.de/publications/bundleprotocol67/bp.pdf)
 
 [^CK74]: V. Cerf, R. Kahn, "A  Protocol for Packet Network Intercommunication", IEEE Trans. on Comm., COM-22(5), May 1974. - https://web.archive.org/web/20210506194430/https://www.cs.princeton.edu/courses/archive/fall06/cos561/papers/cerf74.pdf
 
