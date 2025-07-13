@@ -316,7 +316,7 @@ The controller could dynamically spin up and and down applications based on DTN 
 
 ### 4.2 Custody Transfer State
 
-Custody transfer state is used to manage transmission of bundles across the network.
+Custody transfer state is used to manage ownership of delivery of bundles.
 Nodes have to store bundles they have custody of, with custody being transferred on successful receipt.
 
 In version 6 custody was defined as part of the protocol.
