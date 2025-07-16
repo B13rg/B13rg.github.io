@@ -101,6 +101,17 @@ Dataset management. tools and platforms integrate croissant as plugins to the sy
 A croissant file is not the primary dataset management or export format for for applications.
 Instead, it is positioned as an "interchange format" for datasets.
 
+Potential changes:
+
+* how to use with homophoric encryption 
+
+Planned changes: https://github.com/orgs/mlcommons/projects/44/views/1
+
+* Make spec encompass the lifetime of the dataset instead of a snapshot.
+* defining and using custom "data-level annotations" 
+* Reference other  downstream/upstream datasets
+* Add additional dataset structure vocabulary (n-dimensional arrays, geo-spacial, AV)
+
 
 
 
