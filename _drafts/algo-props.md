@@ -275,8 +275,14 @@ By
 
 ### Layers of Levers: Configuration
 
-Tree structure, grouped by function.
+Configuration is an additional way of communicating intent to the system separate from the input data.
+
+
+grouped by function and breadth of changes.
+Is meant to abstract away complexities from the user, providing an ergonomic way to "steer the ship"
 Keep it simple and self-explanatory.
+
+Minimize side affects, provide clear
 
 
 ### Graceful Failure: Handling Errors

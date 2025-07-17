@@ -13,8 +13,15 @@ Website: https://mlcommons.org/working-groups/data/croissant/
 
 TRTL Lang Definition: [github.com/mlcommons/croissant/docs/croissant.ttl](https://github.com/mlcommons/croissant/blob/main/docs/croissant.ttl)
 
-The croissant spec is designed to provide a standard way to describe datasets properties, raw file relationships, and derived dataset attributes.
-The croissant format roughly consists of 3 parts:
+The Croissant spec is designed to provide a standard way to describe datasets properties, raw file relationships, and derived dataset attributes.
+
+> The Croissant metadata format simplifies how data is used by ML models.
+> It provides a vocabulary for dataset attributes, streamlining how data is loaded [...]
+> Croissant enables the interchange of datasets between ML frameworks and beyond, tackling a variety of **discoverability**, **portability & reproducibility**, and **responsible AI** challenges.
+
+For this post I mostly analyzed version 1.0
+
+The Croissant format roughly consists of 3 parts:
 
 | Type                | Desc.                                                                                 | Objects                            |
 | ------------------- | ------------------------------------------------------------------------------------- | ---------------------------------- |
@@ -23,21 +30,26 @@ The croissant format roughly consists of 3 parts:
 | structure+semantics | data structure and resource processing guides                                         | `RecordSet`, `Field`, `DataSource` |
 
 
-![A simplified diagram of the croissant spec](images/croissant/croissant-1-spec.png)
-> A simplified diagram of the croissant spec
+![A simplified diagram of the Croissant spec](images/croissant/croissant-1-spec.png)
+> A simplified diagram of the Croissant spec
 
 
 ## Metadata
 
 
 Builds on [schema.org/Dataset](https://docs.mlcommons.org/croissant/docs/croissant-spec.html#schemaorgdataset).
+<details>
+  <summary>Croissant 1.0 Required Metadata Properties</summary>
+  <div markdown="1">
+
+>[Source](https://docs.mlcommons.org/croissant/docs/croissant-spec.html#required)
 
 The following list of properties from schema.org must be specified for every Croissant dataset.
 
 | Property       | ExpectedType         | Cardinality | Comments                                                                                                                                              |
 | -------------- | -------------------- | ----------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
 | @context       | URL                  | ONE         | A set of JSON-LD context definitions that make the rest of the Croissant description less verbose. See the recommended JSON-LD context in Appendix 1. |
-| @type          | Text                 | ONE         | The type of a croissant dataset must be schema.org/Dataset.                                                                                           |
+| @type          | Text                 | ONE         | The type of a Croissant dataset must be schema.org/Dataset.                                                                                           |
 | dct:conformsTo | URL                  | ONE         | Croissant datasets must declare that they conform to the versioned schema: http://mlcommons.org/croissant/1.0                                         |
 | description    | Text                 | ONE         | Description of the dataset.                                                                                                                           |
 | license        | CreativeWork, URL    | MANY        | The license of the dataset. Croissant recommends using the URL of a known license, e.g., one of the licenses listed at https://spdx.org/licenses/.    |
@@ -46,9 +58,10 @@ The following list of properties from schema.org must be specified for every Cro
 | creator        | Organization, Person | MANY        | The creator(s) of the dataset.                                                                                                                        |
 | datePublished  | Date, DateTime       | ONE         | The date the dataset was published.                                                                                                                   |
 
->[Source](https://docs.mlcommons.org/croissant/docs/croissant-spec.html#required)
+  </div>
+</details>
 
-The metadata for the dataset is stored in the root of the croissant file.
+The metadata for the dataset is stored in the root of the Croissant file.
 A URL is required to link to where the dataset can be found.
 While only one can be set, there is also a `sameAs` field that allows pointing to matching datasets with different URLs (http, s3, ipfs, onion, etc). 
 
@@ -68,7 +81,7 @@ A `FileObject` is a single item, and `FileSet` is one or more items matching a g
 They are able to reference each other via the `containedIn` property.
 This is useful for referencing compressed files like `.zip` and `.tar.gz`.
 A `Fileset` entry and be created for the contents of a `.zip`, which is stored as a `FileObject`.
-This allows for storing the dataset compressed with the croissant file guiding individual file extraction.
+This allows for storing the dataset compressed with the Croissant file guiding individual file extraction.
 
 ## RecordSets
 
@@ -92,18 +105,19 @@ There is of course the [spec repository](https://github.com/mlcommons/croissant/
 
 * [mlcroissant](https://github.com/mlcommons/croissant/tree/main/python/mlcroissant) Python library, with [cli tool](https://github.com/mlcommons/croissant/blob/main/python/mlcroissant/mlcroissant/scripts/validate.py)
 * [web editor](https://github.com/mlcommons/croissant/tree/main/editor), which is live at [huggingface.co/spaces/MLCommons/croissant-editor](https://huggingface.co/spaces/MLCommons/croissant-editor) with login
-* links to croissant [tools integrations](https://github.com/mlcommons/croissant#integrations)
+* links to Croissant [tools integrations](https://github.com/mlcommons/croissant#integrations)
 
 ## Conclusion
 
-Most of what I found focused on using croissant files in data pipelines, not creating them.
-Dataset management. tools and platforms integrate croissant as plugins to the system instead of creating distinct croissant tools.
-A croissant file is not the primary dataset management or export format for for applications.
-Instead, it is positioned as an "interchange format" for datasets.
+Most of what I found focused on using Croissant files in data pipelines, not creating them.
+Dataset management. tools and platforms integrate Croissant as plugins to the system instead of creating distinct Croissant tools.
+A Croissant file is not the primary dataset management format for applications.
+Instead, it is positioned as an interchange format for datasets. 
+
 
 Potential changes:
 
-* how to use with homophoric encryption 
+* how to use with homomorphic encryption 
 
 Planned changes: https://github.com/orgs/mlcommons/projects/44/views/1
 
