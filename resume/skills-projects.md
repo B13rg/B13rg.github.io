@@ -1,4 +1,33 @@
 
+## Projects
+
+### Erasure encoding
+
+### GTN
+
+
+
+### AWS IPAM
+
+### PingIdentity
+
+### Netblock registration / management
+
+### kr8+
+
+Open source tool to generate static cluster config from jsonnet.
+Allows combining manifests from multiple sources (templates, compose, helm, raw) to idempotent generate files to be consumed by automation.
+
+### C# login auth
+
+
+### DC Smarthands
+
+### 
+
+
+
+
 
 ## Technical Skills & System Design
 
