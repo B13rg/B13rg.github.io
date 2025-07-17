@@ -8,6 +8,10 @@ comment_id: 72374862398476
 ---
 <!-- Kramdown syntax: https://kramdown.gettalong.org/syntax.html -->
 
+Why are you not working on and thinking about the important problems in your area?
+
+* Vision of excellence
+
 <!-- Image example
 ![MS-DOS Family Tree](/images/folder/filename.png){:width="700px"}
 -->
