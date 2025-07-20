@@ -7,13 +7,13 @@ image: public/images/buttons/large/ahmygod.gif
 comment_id: 72374862398476
 ---
 
-“Operation Barbarossa” was an invasion executed by the Nazi Germany June-December 1941.
+“Operation Barbarossa” was an invasion executed by the Nazi Germany June 22 - December 5 1941.
 Its purpose was to exterminate the slavic people and repopulate it under “Generalplan Ost”.
 The operation caught the Soviet Union grossly unaware, and quickly thrust the republic into a fight for survival.
 
 ## Definitions
 
-* `Zavod` - "plant" or "factory"
+* `завод - Zavod` - "plant", "works" or "factory".  Often transliterated.
 * `-grad-` - 
 * `-sky`
 
@@ -28,6 +28,9 @@ Leading up to the invasion:
     • Mobilization Plan 1941 (MP-41)
 
 ### Evacuation council - 24 June 1941 - committee creation
+
+Two days after the attack, the Committee for Evacuation was created, lead by Lazar Kaganovich.
+Unable to cope with the stress he was replaced in less than a month later by the trade union leader N. M. Shvernik.
 
 * Committee for Evacuation
 * Civilian Evacuation Committee
@@ -55,6 +58,9 @@ Amount of success and failure in communications
 
 
 ## Geographic Diversification of Production 
+
+Most of the existing industrial capacity was centralized in the Donbass/Ukraine regions.
+
 
 Economic Resilience Through Spatial Spread: By relocating factories to Siberia, Central Asia, and the Urals (regions rich in resources like oil, coal, and metals), the USSR avoided over-concentration of production in vulnerable areas.
 This diversification allowed continued output even as German forces advanced westward.
@@ -84,6 +90,7 @@ Weather
 Railway resource leading up to and during.
 Railway management, engine types, track types, upkeep.
 
+
 Required massive amounts of coordination, including temporary rail line expansions, prioritization of freight routes, and the use of "mobile workshops" to repair equipment en route.
 
 Scale of evacuation
@@ -95,6 +102,7 @@ Management of railroads and dependent resources
 
 
 ## Scale of Evacuation Logistics and Resources
+
 
 Evacuation Priorities
 
@@ -108,18 +116,25 @@ Moving priorities by industry
 
 Further towards rear mean more important.
 
-
 ### Defense Industry
 
-  * Factories
   * Tank + Tank Engine Enterprises
-  * Metallurgical
+  * Aircraft
+  * Large/Small Arms
+  * Ammunition and explosives
+
+### Civilian Industry
+
+  * Metallurgical products such as iron, steel, and nonferrous metals
   * Machine Tooling
-  * important 
+  * Fuels
+  * Chemicals
+  * Construction Materials
+  * Electricity production
 
 ### Agricultural Industry
 
-  * Products
+  * Food Products
   * Livestock
 
 ### Scientific Industry
@@ -201,6 +216,8 @@ Initial communication and plan
 
 ### Disassembly
 
+Workers and engineers swarmed over their factories, disassembling and transporting machinery and equipment to the nearest railhead where it was loaded into flatcars or boxcars for their journey east.
+
 What is disassembled by whom
 How long it takes
 
@@ -212,6 +229,8 @@ How and where it was transported
 Rail-focused preparation and requirements
 
 Alternative transport (road, boat?)
+
+Workers were moved alongside the factories in cars outfitted with beds and stoves.
 
 "Mobile Workshops" and working conditions
 
@@ -288,7 +307,304 @@ Many documents remain unpublished and are under the control of organizations lik
 Many terms and phrases are translated from russian, and often lose much of the cultural context around words and phrases.
 
 Statistical census data: mis-reported or mis-represent reality.
-Things weren't exactly going well famine-wise, so there was definitely a reason to 
+The Soviet Government placed an extreme importance on quantification and statistics.
+Mark Harrison points out [^MHarrison]:
+
+> Its [Soviet government regime] control of society and the economy rested upon the administrative capacity to allocate resources in physical quantities from the centre. 
+> The regime's legitimacy rested upon claims about the level and rate of growth of national output, productivity, and living standards. 
+> Not only were figures the stuff of policy, but the practice of statistics was rendered largely subservient to political ends.
+
+
+
+
+---
+
+## Appendix I: Plants and Factories
+
+https://ru.wikipedia.org/wiki/%D0%9F%D1%80%D0%BE%D0%B8%D0%B7%D0%B2%D0%BE%D0%B4%D1%81%D1%82%D0%B2%D0%BE_%D0%B1%D1%80%D0%BE%D0%BD%D0%B5%D1%82%D0%B5%D1%85%D0%BD%D0%B8%D0%BA%D0%B8_%D0%B2_%D0%A1%D0%A1%D0%A1%D0%A0_%D0%B2%D0%BE_%D0%B2%D1%80%D0%B5%D0%BC%D1%8F_%D0%92%D1%82%D0%BE%D1%80%D0%BE%D0%B9_%D0%BC%D0%B8%D1%80%D0%BE%D0%B2%D0%BE%D0%B9_%D0%B2%D0%BE%D0%B9%D0%BD%D1%8B
+
+https://en.wikipedia.org/wiki/List_of_Soviet_tank_factories
+
+
+
+### Leningrad Kirovsky Zavod (LKZ - gr. Leningrad)
+
+Known as:
+
+* ЛКЗ (г. Ленинград)
+* Treasury Iron Foundry (1801)
+* Putilov Factory (1868)
+* Red Putilovite Plant (1922)
+* Kirov Plant (1934)
+* Factory No. 100 (pre-1941)
+
+
+Also known as the Kirov Plant, it was originally established in 1801 as a cannonball foundry.
+A majority of the plant's capacities were evacuated to Chelyabinsk, where it was combined to for "Tankograd".
+Some capacity remained in Leningrad, where it continued to repair and assemble tanks and other armored vehicles.
+
+Following the war much of the plant was returned from Chelyabinsk and industrial production continued.
+It remained the primary location of Soviet tank building, along with production of non-war machinery like tractors.
+
+https://ru.wikipedia.org/wiki/%D0%9A%D0%B8%D1%80%D0%BE%D0%B2%D1%81%D0%BA%D0%B8%D0%B9_%D0%B7%D0%B0%D0%B2%D0%BE%D0%B4#%D0%92_%D0%B3%D0%BE%D0%B4%D1%8B_%D0%92%D0%B5%D0%BB%D0%B8%D0%BA%D0%BE%D0%B9_%D0%9E%D1%82%D0%B5%D1%87%D0%B5%D1%81%D1%82%D0%B2%D0%B5%D0%BD%D0%BD%D0%BE%D0%B9_%D0%B2%D0%BE%D0%B9%D0%BD%D1%8B_(1941%E2%80%941945_%D0%B3%D0%BE%D0%B4%D1%8B)
+
+Designed:
+
+* SMK
+* KV
+* IS-2
+* IS-3 hull
+* T-10
+
+Built:
+
+* KV-1, KV-2
+* T-28
+* T-34
+* IS, IS-2
+* IS-4
+* ISU-152
+* T-10
+* T-80
+* PT-76
+
+### ChTZ/ChKZ (d. Chelyabinsk)
+
+ЧТЗ/ЧКЗ (г. Челябинск)
+
+
+
+Built:
+
+* KW-1, KW-1S
+* KV-85, KV-8
+* IS-1, IS-2
+* I-3
+* SU-152
+* ISU-152
+* ICE-122
+* ISU-122S
+* T-34
+
+### Plant No. 183 (G. Kharkov)
+
+Known as:
+
+* Завод № 183 (г. Харьков)
+* "Kharkov Locomotive Factory" (1895)
+* "Kharkov Komintern Locomotive Factory" (1928)
+* Factory No. 183 (1936)
+
+https://en.wikipedia.org/wiki/Malyshev_Factory
+
+It was moved to Nizhny Tagil and merged with Uralvagonzavod to form Factory No. 183 to become the world's largest tank factory.
+Following the war, parts were moved back to Kharkov to form Diesel Plant No. 75.
+
+Designed:
+
+* T-24
+* BT Tanks
+* T-34
+* T-44
+* T-54
+* T-64
+* T-80 turret, T-80UD, T-84
+
+Built:
+
+* T-26
+* BT Tanks
+* T-28
+* T-34, T-35
+
+### Plant No. 75 (d. Kharkov)
+
+* Завод № 75 (г. Харьков)
+* Diesel Factory No. 75 (1945)
+* Malyshev Factory (1957)
+
+
+Moved to Chelyabinsk to join "Tankograd" in 1941.
+Restored as Kharkov Diesel Factory No. 75 by moving Factory No. 183 from Nizhny Tagil 1944-1952.
+
+Designed:
+
+* T-24
+* BT Tanks
+* T-34
+* T-44
+* T-54
+* T-64
+* T-80 turret, T-80UD, T-84
+
+Built:
+
+* T-34 Engine
+* T-44
+* T-54/55
+* T-64
+* T-80UD, T-84
+
+### Plant No. 183 (G. Nizhniy Tagil)
+
+* Завод № 183 (г. Нижний Тагил)
+* Dzerzhinsky Ural Railroad Car Factory, Uralvagonzavod, (UVZ or Vagonka) (1936)
+* Ural Tank Factory No. 183 (I.V. Stalin) (1941)
+
+Was originally constructed during 1931-1936 during the second 5-year plan and manufactured freight cars.
+
+Following the war tank production was scaled down, with manufacturing and design assets being transferred back to Kharkiv's Diesel Factory No. 75 between 1945-1951.
+The factoring was expanded to produce other kinds of machinery such as agricultural, construction, aviation and space.
+
+
+Designed:
+
+* T-54A, T-55
+* T-62
+* T-72
+* T-90, T-95 prototype
+* T-14
+
+Built:
+
+* T-34
+* T-44
+* T-54/55
+* T-62
+* T-72
+* T-90
+* T-14
+
+### Plant No. 112 (d. Bitter)
+
+Завод № 112 (г. Горький)
+
+
+### Bolshevik Plant No. 232
+
+Leningrad / St. Petersburg
+
+https://en.wikipedia.org/wiki/Obukhov_State_Plant
+
+* Obukhov-Putilov-Kudryavzev Factory (1863)
+* Factory No. 185 (S.M. Kirov) (1935)
+
+Became one of two primary tank factories in late 1920s, producing the T-18.
+In 1932 the tank department was split off and became Factory No. 174 (K.E. Voroshilov), which was dedicated to production of the T-26.
+In 1935 it became a base for the new "Factory No. 185 (S.M. Kirov)", which is often confused with the Leningrad Kirovsky Zavod.
+
+It was partially move to "Tankograd" in Chelyabinsk in 1941.
+
+Designed:
+
+* T-26
+* T-35
+
+Build:
+
+* T-34
+
+
+### Plant No. 174 (d.Leningrad)
+
+* Завод № 174 (г. Ленинград)
+* K. E. Voroshilov (1932)
+* Factory No. 174
+* Omsk Lenin Factory No. 174 (1942)
+* Omsk Transmash
+
+Created by splitting off part of Bolshevik Factory No. 232 in 1932.
+Moved to  Chkalov in 1941.
+Moved again to Omsk in 1942.
+
+Post-war switched to engine construction.
+
+Designed:
+
+* T-50
+* T-80 hull
+* BTR-T
+* TOS-1
+
+Built:
+
+* T-26
+* T-50
+* T-34
+* T-10
+* T-80
+
+### UZTM (d. Sverdlovsk)
+
+* УЗТМ (г. Свердловск)
+* Ordzhonikidze Ural Heavy Machine Building Plant (UZTM) (1933)
+
+Built:
+
+* T-34
+* SU-85
+* SU-122
+* SU-100
+* T-54
+
+### SCT (G. Stalingrad)
+
+СТЗ (г. Сталинград)
+
+### Plant No. 38 (d. Kirov)
+
+Завод № 38 (г. Киров)
+
+### Plant No. 37 (d. Moscow)
+
+Завод № 37 (г. Москва)
+
+### Plant No. 37 (d. Sverdlovsk)
+
+Завод № 37 (г. Свердловск)
+
+### Plant No. 264 (Stalingrad)
+
+Завод № 264 (район Сталинграда)
+
+Shipbuilding factory, but also produced 
+
+### GAZ (G. Bitter)
+
+* ГАЗ (г. Горький)
+* Nizhny Novgorod Automobile Plant (1932)
+* Gorkovsky avtomobilny zavod, GAZ (1933)
+
+https://en.wikipedia.org/wiki/GAZ
+
+Founded as an automobile plant following the Soviet Union purchasing $13 million worth of automobiles and parts.
+Constructed with the help of Ford.
+Production strarted on January 1 1932.
+
+Built:
+
+* Chevrolet G7107, G7117, G7107
+
+### Factory No. 40 (The Butchigs Year)
+
+Завод № 40 (г. Мытищи)
+
+### HTZ (g. Kharkov)
+
+ХТЗ (г. Харьков)
+
+### No. 371 LMZ (d. Leningrad)
+
+№ 371 ЛМЗ (г. Ленинград)
+
+### Plant No. 113 (d. Bitter)
+
+Завод № 113 (г. Горький)
+
+### The Aut
+
+Итого
+
 
 ---
 
@@ -347,7 +663,14 @@ Things weren't exactly going well famine-wise, so there was definitely a reason 
     * Conspiracies: Sow suspicion among the ranks, keeping workers focused on policing each other instead of reflecting on the system. Show trials targeted class enemies and fostered distrust and resentment between social groups.
     * Purges: Removes institutional knowledge that run incongruent to current Stalinist policy.  Benefits younger workers with less experience and tradition.  Also "frees up space" within the bureaucracy for workers to be promoted into.
 
+[^MHarrison]: Harrison, Mark. Accounting For War: Soviet production, employment, and the defence burden, 1940-1945. Cambridge University Press. 1996. [DOI](https://doi.org/10.1017/CBO9780511523625)
+
+[]
+
+[^FKagan]: F. Kagan. The Evacuation of Soviet Industry in the Wake of "Barbarossa": A Key to Soviet Victory. Journal of Slavic Military Studies 8 pp. 389-96. 1995.
+
 ---
+
 
 <!-- Image example
 ![MS-DOS Family Tree](/images/folder/filename.png){:width="700px"}
