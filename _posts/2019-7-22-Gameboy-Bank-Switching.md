@@ -299,9 +299,10 @@ ret
 [1]: https://gbhwdb.gekkio.fi/cartridges/DMG-TRA-1/gekkio-1.html
 [2]: https://gbhwdb.gekkio.fi/cartridges/DMG-APEE-0/gekkio-1.html
 
-[Pan Docs](https://problemkaputt.de/pandocs.htm#memorybankcontrollers)
+* A really good article by [Allison Parrish](https://www.decontextualize.com/) that analyzes Gameboy cart operation from a hardware perspective: [More than you wanted to know about how Game Boy cartridges work](https://abc.decontextualize.com/more-than-you-wanted-to-know/)
 
-[GB Dev Wiki: Memory Bank Controllers](http://gbdev.gg8.se/wiki/articles/Memory_Bank_Controllers)
-
-[Gameboy CPU Manual](http://marc.rawer.de/Gameboy/Docs/GBCPUman.pdf)
-[Example of bank switching used in ROM dumping script](https://gitlab.com/InfiniteNesLives/INL-retro-progdump/-/issues/59#note_461096509)
+* [Pan Docs](https://problemkaputt.de/pandocs.htm#memorybankcontrollers)
+* [GB Dev Wiki: Memory Bank Controllers](http://gbdev.gg8.se/wiki/articles/Memory_Bank_Controllers)
+* [Gameboy CPU Manual](http://marc.rawer.de/Gameboy/Docs/GBCPUman.pdf)
+* [Example of bank switching used in ROM dumping script](https://gitlab.com/InfiniteNesLives/INL-retro-progdump/-/issues/59#note_461096509)
+* 
