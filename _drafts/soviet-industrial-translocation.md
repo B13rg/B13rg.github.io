@@ -216,8 +216,7 @@ Initial communication and plan
 
 ### Disassembly
 
-Workers and engineers swarmed over their factories, disassembling and transporting machinery and equipment to the nearest railhead where it was loaded into flatcars or boxcars for their journey east.
-
+Workers and engineers swarmed over their factories, disassembling and transporting machinery and equipment to the nearest railhead where it was loaded into flatcars or boxcars for their journey east [^ABeevor].
 What is disassembled by whom
 How long it takes
 
@@ -665,7 +664,7 @@ Built:
 
 [^MHarrison]: Harrison, Mark. Accounting For War: Soviet production, employment, and the defence burden, 1940-1945. Cambridge University Press. 1996. [DOI](https://doi.org/10.1017/CBO9780511523625)
 
-[]
+[^ABeevor]: Beevor, Antony. Stalingrad. Penguin Books. 1999.
 
 [^FKagan]: F. Kagan. The Evacuation of Soviet Industry in the Wake of "Barbarossa": A Key to Soviet Victory. Journal of Slavic Military Studies 8 pp. 389-96. 1995.
 
