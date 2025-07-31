@@ -1,10 +1,9 @@
 ---
 layout: post
-title:	"Title"
-category: [Games, Programming, Networking, DOS]
-excerpt: A short description of the article
-image: public/images/buttons/large/ahmygod.gif
-comment_id: 72374862398476
+title:	"Notes on the Croissant 1.0 Dataset Spec"
+category: [Programming]
+excerpt: The croissant spec is designed to provide a standard way to describe datasets properties, raw file relationships, and derived dataset attributes.
+
 ---
 
 Spec: https://docs.mlcommons.org/croissant/docs/croissant-spec.html
@@ -125,32 +124,3 @@ Planned changes: https://github.com/orgs/mlcommons/projects/44/views/1
 * defining and using custom "data-level annotations" 
 * Reference other  downstream/upstream datasets
 * Add additional dataset structure vocabulary (n-dimensional arrays, geo-spacial, AV)
-
-
-
-
-
-
-<!-- Kramdown syntax: https://kramdown.gettalong.org/syntax.html -->
-
-<!-- Image example
-![MS-DOS Family Tree](/images/folder/filename.png){:width="700px"}
--->
-<!-- Link example -->
-[Link to full-size image](/images/buttons/large/ahmygod.gif)
-
-Footnote[^1]
-
-<details>
-  <summary>One more quick hack? 🎭</summary>
-  <div markdown="1">
-  → Easy  
-  → And simple
-  </div>
-</details>
-
-
-<!-- Separator -->
----
-
-[^1]: Further information here
