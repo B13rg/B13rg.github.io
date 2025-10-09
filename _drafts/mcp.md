@@ -203,11 +203,13 @@ codify way for software/other people to act in your stead.
 `agent.json`: https://docs.wild-card.ai/agentsjson/introduction
 
 
+### Changes
 
+Since I started writing this article there was an update to the specification, `2025-06-18`.
 
+Changelog: https://github.com/modelcontextprotocol/modelcontextprotocol/blob/main/docs/specification/2025-06-18/changelog.mdx
 
-
-
+Security Best Practices: https://github.com/modelcontextprotocol/modelcontextprotocol/blob/main/docs/specification/2025-06-18/basic/security_best_practices.mdx
 
 ## References
 
