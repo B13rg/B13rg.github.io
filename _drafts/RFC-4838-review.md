@@ -493,6 +493,9 @@ Simple lookup of terms
 * Delivery
   * Anycast
   * Multicast (Broadcast)
+  * Custody
+  * Flow Control - A means of assuring that the average rate at which a sending node transmits data to a receiving node does not exceed the average rate at which the receiving node is prepared to receive data from that sender. [3.13](https://www.rfc-editor.org/rfc/rfc4838#section-3.13)
+  * Congestion Control - A means of assuring that the aggregate rate at which all traffic sources inject data into a network does not exceed the maximum aggregate rate at which the network can deliver data to destination nodes over time. [3.13](https://www.rfc-editor.org/rfc/rfc4838#section-3.13)
 * Contact
 * Contact Volume
 * Fragmentation
