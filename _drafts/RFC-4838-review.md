@@ -122,7 +122,7 @@ Since this RFC has been written more complex cryptographic properties like forwa
 |                     |                     |                     |
 ```
 > Figure 1: The Bundle Protocol in the Protocol Stack Model 
-> https://www.rfc-editor.org/rfc/rfc9171.html#section-1-7
+> https://datatracker.ietf.org/doc/html/rfc9171.html#section-1-7
 
 The architecture description is split into the following sections:
 
@@ -155,37 +155,10 @@ An ADU "transformed by the bundle layer into one or more protocol data units cal
 Bundles are the basic transport block, akin to packets in IP protocols.
 Bundles consist of a mandatory primary block, a payload block containing the ADU data, and a set of optional extension blocks.
 They serve a similar purpose to the header-payload design of traditional protocols, except order is not controlled.
-The bundle format is expounded upon in section 3.7, and formally defined in [RFC9171: Bundle Protocol Version 7](https://www.rfc-editor.org/rfc/rfc9171.html).
+The bundle format is expounded upon in section 3.7, and formally defined in [RFC9171: Bundle Protocol Version 7](https://datatracker.ietf.org/doc/html/rfc9171.html).
 
 Bundles can be split up into multiple constituent bundles or "bundle fragments" while being transmitted.
 
-#### 3.3.1 URI Schemes
-
-Each endpoint identifier is expressed using a [RFC3986](https://www.rfc-editor.org/rfc/rfc3986.html) URI.
-The [IANA URI scheme](https://www.iana.org/assignments/uri-schemes/uri-schemes.xhtml) `dtn` is registered as a permanent scheme.
-This is defined more specifically in [RFC9171](https://www.rfc-editor.org/rfc/rfc9171.html).
-
-> dtn-uri = "dtn:" ("none" / dtn-hier-part)
-> dtn-hier-part = "//" node-name name-delim demux ; a path-rootless
-> node-name = reg-name
-> name-delim = "/"
-> demux = *VCHAR
->
-> https://www.rfc-editor.org/rfc/rfc9171.html#section-4.2.5.1.1-2.2
-
-#### 3.3.2 Late Binding
-
-Binding refers to linking a EID to a lower-layer (network transport) addresses.
-In HTTP land, DNS is used to create a binding between a URL and an IP address.
-
-Late binding allows resolving a bundle destination EID to a lower-layer address during transport of the bundle.
-
-Unlike with traditional protocols (http) where a URI is only resolved to an IP address during initial transmission, DTN allows each hop to resolve the binding separately.
-
-The RFC references two primary reasons:
-
-* In frequently disconnected network, the transit time of a message may be greater than the validity time of the binding
-* Limits the amount of mapping and synchronization info that needs to be shared across the network
 
 ### 3.2 Nodes and Endpoints
 
@@ -209,7 +182,39 @@ This application registration information is stored on the node, independent of 
 
 A DTN endpoint identifier is expressed as a URI ([RFC3986](https://datatracker.ietf.org/doc/html/rfc3986)).
 It it up to the creator to choose the format of the EID.
-Through IANA, the schema identifier `dtn` has been assigned.
+Through IANA, the schema identifiers `dtn` and `ipn` have been assigned.
+[dtn](https://datatracker.ietf.org/doc/html/rfc9171.html#name-the-dtn-uri-scheme) enabled identification with character strings.
+[ipn](https://datatracker.ietf.org/doc/html/rfc9171.html#name-the-ipn-uri-scheme) enabled the same identification with unsigned integer pairs for compact representation.
+
+
+#### 3.3.1 URI Schemes
+
+Each endpoint identifier is expressed using a [RFC3986](https://datatracker.ietf.org/doc/html/rfc3986.html) URI.
+The [IANA URI scheme](https://www.iana.org/assignments/uri-schemes/uri-schemes.xhtml) `dtn` is registered as a permanent scheme.
+This is defined more specifically in [RFC9171](https://datatracker.ietf.org/doc/html/rfc9171.html).
+
+> dtn-uri = "dtn:" ("none" / dtn-hier-part)
+> dtn-hier-part = "//" node-name name-delim demux ; a path-rootless
+> node-name = reg-name
+> name-delim = "/"
+> demux = *VCHAR
+>
+> https://datatracker.ietf.org/doc/html/rfc9171.html#section-4.2.5.1.1-2.2
+
+#### 3.3.2 Late Binding
+
+Binding refers to linking a EID to a lower-layer (network transport) addresses.
+In HTTP land, DNS is used to create a binding between a URL and an IP address.
+
+Late binding allows resolving a bundle destination EID to a lower-layer address during transport of the bundle.
+
+Unlike with traditional protocols (http) where a URI is only resolved to an IP address during initial transmission, DTN allows each hop to resolve the binding separately.
+
+The RFC references two primary reasons:
+
+* In frequently disconnected network, the transit time of a message may be greater than the validity time of the binding
+* Limits the amount of mapping and synchronization info that needs to be shared across the network
+
 
 ### 3.4 Anycast and Multicast
 
@@ -239,7 +244,7 @@ The priority is meant to relate to all bundles sent by a single sender, so they 
 ### 3.6 Postal-Style Delivery Options and Administrative Records
 ### 3.7 Primary Bundle Fields
 
-The current (as of 2025) bundle protocol is defined in [RFC9171: Bundle Protocol Version 7](https://www.rfc-editor.org/rfc/rfc9171.html)
+The current (as of 2025) bundle protocol is defined in [RFC9171: Bundle Protocol Version 7](https://datatracker.ietf.org/doc/html/rfc9171.html)
 
 All bundles contain information about:
 
@@ -258,7 +263,7 @@ All bundles contain information about:
 > at the bundle layer for unicast, anycast, and multicast messages.
 
 The nodes in a DTN network can use a variety of protocols to communicate, potentially more than one at a time, so a *multigraph* (a graph where vertices may be interconnected with more than one edge) model is used.
-The edge weight is determined by delay, capacity, and direction (support for DTN [over Avian Carriers](https://www.rfc-editor.org/rfc/rfc1149)!).
+The edge weight is determined by delay, capacity, and direction (support for DTN [over Avian Carriers](https://datatracker.ietf.org/doc/html/rfc1149)!).
 
 Nodes may come in and out of connectivity.
 The time period where two nodes are connected is called a "contact".
@@ -389,7 +394,7 @@ One question I have is whether an MRG can be more specific, such as a minimum of
 Performing a bunch of group-destination logic could partition a bigger group into "striped" subgroups, al la RAID, 
 
 Traditional networks are based on the store-and-forward" operation, but typical expectations of traffic lifetime is in the order of a few seconds at best.
-In [Bundle Version 7](https://www.rfc-editor.org/rfc/rfc9171.html#section-4.2.6-1), a DTN time is an unsigned integer indicating the number of milliseconds that have elapsed since the DTN Epoch, `2000-01-01 00:00:00 +0000 (UTC)`.
+In [Bundle Version 7](https://datatracker.ietf.org/doc/html/rfc9171.html#section-4.2.6-1), a DTN time is an unsigned integer indicating the number of milliseconds that have elapsed since the DTN Epoch, `2000-01-01 00:00:00 +0000 (UTC)`.
 Structures are encoded in CBOR format for transmission, which has a max `uint` of 2<sup>64</sup>−1 or about 584.9 million years worth of milliseconds.
 
 Bundles are integrated closer to the application layer than packets, allowing network nodes to make more informed routing decisions based on the resource requirements of the bundle and application.
@@ -424,11 +429,11 @@ Simple lookup of terms
 ---
 
 
-[^RFC4838]: [RFC 4838 Delay-Tolerant Networking Architecture](https://www.rfc-editor.org/rfc/rfc4838.html)
+[^RFC4838]: [RFC 4838 Delay-Tolerant Networking Architecture](https://datatracker.ietf.org/doc/html/rfc4838.html)
 
-[^RFC5050]: [RFC 5050 Bundle Protocol Specification](https://www.rfc-editor.org/rfc/rfc5050.html)
+[^RFC5050]: [RFC 5050 Bundle Protocol Specification](https://datatracker.ietf.org/doc/html/rfc5050.html)
 
-[^RFC9171]: [RFC 9171 Bundle Protocol Version 7](https://www.rfc-editor.org/rfc/rfc9171.html)
+[^RFC9171]: [RFC 9171 Bundle Protocol Version 7](https://datatracker.ietf.org/doc/html/rfc9171.html)
 
 [^BiBE]: [Bundle-in-Bundle Encapsulation](https://datatracker.ietf.org/doc/html/draft-ietf-dtn-bibect-05)
 
