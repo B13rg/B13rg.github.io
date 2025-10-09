@@ -161,6 +161,10 @@ Bundles can be split up into multiple constituent bundles or "bundle fragments" 
 
 #### 3.3.1 URI Schemes
 
+Each endpoint identifier is expressed using a [RFC3986](https://www.rfc-editor.org/rfc/rfc3986.html) URI.
+The [IANA URI scheme](https://www.iana.org/assignments/uri-schemes/uri-schemes.xhtml) `dtn` is registered as a permanent scheme.
+This is defined more specifically in [RFC9171](https://www.rfc-editor.org/rfc/rfc9171.html).
+
 > dtn-uri = "dtn:" ("none" / dtn-hier-part)
 > dtn-hier-part = "//" node-name name-delim demux ; a path-rootless
 > node-name = reg-name
@@ -170,6 +174,18 @@ Bundles can be split up into multiple constituent bundles or "bundle fragments" 
 > https://www.rfc-editor.org/rfc/rfc9171.html#section-4.2.5.1.1-2.2
 
 #### 3.3.2 Late Binding
+
+Binding refers to linking a EID to a lower-layer (network transport) addresses.
+In HTTP land, DNS is used to create a binding between a URL and an IP address.
+
+Late binding allows resolving a bundle destination EID to a lower-layer address during transport of the bundle.
+
+Unlike with traditional protocols (http) where a URI is only resolved to an IP address during initial transmission, DTN allows each hop to resolve the binding separately.
+
+The RFC references two primary reasons:
+
+* In frequently disconnected network, the transit time of a message may be greater than the validity time of the binding
+* Limits the amount of mapping and synchronization info that needs to be shared across the network
 
 ### 3.2 Nodes and Endpoints
 
