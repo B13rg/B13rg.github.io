@@ -326,6 +326,8 @@ As such, it's not _required_ to be available.
 It also notes complexities with handling security properties of bundles and fragments.
 
 ### 3.10 Reliability and Custody Transfer
+TODO
+
 ### 3.11 DTN Support for Proxies and Application Layer Gateways
 
 This section describes integrating DTN with traditional application layer gateways and proxies.
@@ -370,13 +372,86 @@ As an example they describe how a node using TCP/IP as transport could intention
 They note that this can create other (harder to troubleshoot) issues, and other protocols may provide better efficiency and efficacy.
 
 ### 3.14 Security
+TODO
 
 Discarding unauthorized traffic early is a departure from normal network behavior.
 Traditional networks labor to maintain continuous connectivity and low queuing and transmission delay.
 
 ## 4. State Management Considerations
+TODO
 
 This section considers state managed at the bundle layer.
+
+```mermaid
+stateDiagram-v2
+  direction TB
+
+  [*] --> AppReg : Request from Application
+  [*] --> Custody : Received bundle requesting custody accounting
+  state AppReg {
+    B : Idle
+    C : Remove
+    [*]  --> B: App Registered
+    B --> C : Explicit Unregister
+    B --> C : Timer Expired
+    C --> [*]
+  }
+  AppReg: Application Registration 
+
+  state Custody {
+    F : Create
+    H : Remove
+
+    [*] --> F
+  }
+
+```
+
+  E[Custody Transfer State] -->|Bundle Received| F[Create]
+  E -->|Initiate Custody Transfer| G[Create]
+  E -->|Custody Succeeded| H[Remove]
+  E -->|Expiration| I[Remove]
+
+  J(Bundle Routing/Forwarding State) -->|Routing Algorithm| K[RIB Update]
+  J -->|Bundle Arrival| L[FIB Update]
+  J -->|Expiry| M[Remove]
+
+  N[Security-Related State] -->|Authentication| O[Create]
+  N -->|ACL Setup| P[Create]
+  N -->|Revocation| Q[Remove]
+  N -->|Expiration| R[Remove]
+
+  S(Policy & Config State) -->|Config Load| T[Create]
+  S -->|Reconfiguration| U[Update]
+  S -->|Policy Change| V[Remove]
+```
+
+---
+
+### **Explanation of States and Transitions:**
+1. **Application Registration State**  
+   - Created by **App Register** (application registration request).  
+   - Removed via **Explicit Unregister** or **Timer Expired**.
+
+2. **Custody Transfer State**  
+   - Created when a bundle is received (**Bundle Received**) or during custody transfer initiation (**Initiate Custody Transfer**).  
+   - Removed upon successful custody transfer (**Custody Succeeded**) or expiration (**Expiration**).
+
+3. **Bundle Routing/Forwarding State**  
+   - Managed through routing algorithms (RIB updates) and forwarding decisions (FIB updates).  
+   - Removed when bundles expire.
+
+4. **Security-Related State**  
+   - Created for authentication, ACLs, and revocation lists.  
+   - Removed upon expiration or revocation events.
+
+5. **Policy & Configuration State**  
+   - Created during configuration loads.  
+   - Updated dynamically via reconfiguration or policy changes.
+
+---
+
+This diagram visually separates the key states in DTN architecture and their lifecycle events, showing how they are managed through explicit requests, timers, or protocol signals.
 
 
 ### 4.1 Application Registration State
