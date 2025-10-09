@@ -332,7 +332,7 @@ This fragmentation takes place when communication of a bundle is unexpectedly te
 It provides a way for the receiver to continue delivery of a portion of a bundle instead of discarding it.
 
 The original sender may or may not be aware of the fragmentation.
-If it is, it can form a smaller bundle fragment of the untransmitted data to forward when appropriate.
+If it is, the sender can preemptively form a smaller bundle fragment of the untransmitted data to forward when appropriate.
 
 This behavior is pointed out as extra complex, and partially reliant on the properties of the underlying transport protocol.
 As such, it's not _required_ to be available.
@@ -340,8 +340,48 @@ It also notes complexities with handling security properties of bundles and frag
 
 ### 3.10 Reliability and Custody Transfer
 ### 3.11 DTN Support for Proxies and Application Layer Gateways
+
+This section describes integrating DTN with traditional application layer gateways and proxies.
+Traffic can be encapsulated or proxied by DTN, providing loose guidance around utilizing multiple protocols to transmit data. 
+
+The "Acknowledged by Application" report provides a way to verify successful application-level delivery.
+By enabling the integration at the gateway level, the application can benefit from DTN without having to individually implement.
+Of course, this depends on the application being able to tolerate potential long delays.
+
 ### 3.12 Timestamps and Time Synchronization
+
+Time synchronization (supported by other protocols) is an important aspect of DTN node operation.
+Without having rough time synchronization across a network, the guarantees provided by DTN start to break down.
+
+The 4 primary purposes described:
+
+* Bundle Identification: Uniquely identify a bundle by it's EID, timestamp, and data offset/length information.
+* Routing: Planning for scheduled or predicted contacts.
+* Bundle Expiration: Determining when a bundle should be discarded.
+* Application Reg. Expiration: Enable applications to register to receive ADUs destined for an EID for a limited time interval.
+
 ### 3.13 Congestion and Flow Control at the Bundle Layer
+
+At the time this was written there was no consensus on congestion and flow control behaviors.
+The writer had "unresolved concerns about the efficiency and efficacy of congestion and flow control schemes implemented across long and/or highly variable delay environments".
+Bundle custody requirement complicate things further.
+Despite this, they still make solid recommendations of what sort of form congestion and flow control methods should take.
+
+Flow control decisions MUST be made within the bundle layer, based on node resource availability.
+They specifically call out storage scarcity and management, and various issues a node can face.
+When facing storage pressure a node can perform actions like:
+
+* Discard expired bundles
+* Cease accepting custody
+* Transfer bundles to be stored elsewhere on the network
+* Discard non-expired, non-custody-accepted bundles
+* As a last resort, discard bundles with accepted custody
+
+In addition to resource limits, a node may also utilize lower-layer protocol properties to manage it's own performance.
+
+As an example they describe how a node using TCP/IP as transport could intentionally slow down it's receiving rate to reduce load.
+They note that this can create other (harder to troubleshoot) issues, and other protocols may provide better efficiency and efficacy.
+
 ### 3.14 Security
 
 Discarding unauthorized traffic early is a departure from normal network behavior.
