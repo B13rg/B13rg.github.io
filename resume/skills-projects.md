@@ -3,13 +3,23 @@
 
 ### Erasure encoding
 
+Investigate and tested storage encoding, determining performance characteristics of various encoding types.
+Improved storage density by moving from 3x triplicate to 5+2 erasure encoding that improved storage efficiency without greatly impacting platform services.
+
 ### GTN
 
-
+Global IPSec mesh network.
+Unified 3 clouds, 9 regions, bridged multiple corporate/gov networks.
 
 ### AWS IPAM
 
+Manage platform IP allocations centrally, and enable automatic management and deployment of ranges to team cloud accounts.
+
 ### PingIdentity
+
+Architected, deployed and managed customer / internal product SSO.
+Created an active-active multi-region deployment with automatic failover.
+Ensured clean migration and enabled updates with no downtime.
 
 ### Netblock registration / management
 
@@ -20,14 +30,13 @@ Allows combining manifests from multiple sources (templates, compose, helm, raw)
 
 ### C# login auth
 
+Updated legacy auth system built on MD5, applying modern ciphers and practices to password hash management.
 
 ### DC Smarthands
 
+Performed smart-hands activities in a variety of datacenters.  Managed physical resources, replaced failed parts, and worked with RMA services.
+
 ### 
-
-
-
-
 
 ## Technical Skills & System Design
 
@@ -68,7 +77,7 @@ Allows combining manifests from multiple sources (templates, compose, helm, raw)
 | C        | 5           | ESP32 Warwalker                                    |
 | C#       | 6           | Dental Practice software                           |
 | PHP      | 6           | Self-service portal                                |
-| HTML/JS  | 6           | Personal blog,                                     |
+| HTML/JS  | 6           | Personal blog, various tool websites               |
 
 ## Automation & Tooling
 
