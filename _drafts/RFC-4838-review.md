@@ -20,19 +20,6 @@ Before reading, it's good to review the OSI model.
 Even though it's not entirely accurate to how things operate in practice,
 Implementing a delay-tolerant network must consider more layers than normal, internet style networking.
 
-|     | Layer        | Protocol               | Protocol Data Unit | Function                                                                                                            |
-| --- | ------------ | ---------------------- | ------------------ | ------------------------------------------------------------------------------------------------------------------- |
-| 7   | Application  | FTP, HTTP, Telnet, DNS | Data               | High-level APIs, including resource sharing and remote file access                                                  |
-| 6   | Presentation | JPEG, JSON etc.        | Data               | Translation between networking service and application, including encoding, compression, and encryptio/decryption   |
-| 5   | Session      | NFS, SQL, QUIC         | Data               | Managing continuous exchange of information through multiple back-and-forth transmissions between two nodes         |
-| 4   | Transport    | TCP, UDP               | Segment, Datagram  | Reliable transmission of data between points on a network, including segmentation, acknowledgement and multiplexing |
-| 3   | Network      | IPv4, IPv6             | Packet             | Structuring and managing a multi-node network, including addressing routing and traffic control                     |
-| 2   | Data link    | MAC, ARP, LLC          | Frame              | Reliable transmission of data between two nodes that are connected                                                  |
-| 1   | Physical     | Ethernet, Wi-Fi        | Bit, Symbol        | Transmission and reception of data through a physical medium                                                        |
-|     |              |                        |                    | Source: https://en.wikipedia.org/wiki/OSI_model                                                                     |
-
-This is a guide, not a hard set of rules.
-Some protocols, like QUIC, have feet in multiple layers.
 
 
 ---
@@ -478,16 +465,24 @@ Structures are encoded in CBOR format for transmission, which has a max `uint` o
 
 Bundles are integrated closer to the application layer than packets, allowing network nodes to make more informed routing decisions based on the resource requirements of the bundle and application.
 
-## Links
+## Appendix A: OSI Model
 
-### Implementations
+|     | Layer        | Protocol               | Protocol Data Unit | Function                                                                                                            |
+| --- | ------------ | ---------------------- | ------------------ | ------------------------------------------------------------------------------------------------------------------- |
+| 7   | Application  | FTP, HTTP, Telnet, DNS | Data               | High-level APIs, including resource sharing and remote file access                                                  |
+| 6   | Presentation | JPEG, JSON etc.        | Data               | Translation between networking service and application, including encoding, compression, and encryptio/decryption   |
+| 5   | Session      | NFS, SQL, QUIC         | Data               | Managing continuous exchange of information through multiple back-and-forth transmissions between two nodes         |
+| 4   | Transport    | TCP, UDP               | Segment, Datagram  | Reliable transmission of data between points on a network, including segmentation, acknowledgement and multiplexing |
+| 3   | Network      | IPv4, IPv6             | Packet             | Structuring and managing a multi-node network, including addressing routing and traffic control                     |
+| 2   | Data link    | MAC, ARP, LLC          | Frame              | Reliable transmission of data between two nodes that are connected                                                  |
+| 1   | Physical     | Ethernet, Wi-Fi        | Bit, Symbol        | Transmission and reception of data through a physical medium                                                        |
 
-* [dtn7/dtn7-go](https://github.com/dtn7/dtn7-go) - [https://dtn7.github.io/](https://dtn7.github.io/)
-* [dtn7/dtn7-rs](https://github.com/dtn7/bp7-rs)
-* [nasa-jpl/ION-DTN](https://github.com/nasa-jpl/ION-DTN) - [https://ion-dtn.readthedocs.io/](https://ion-dtn.readthedocs.io/)
-* [huettner94/dtn](https://github.com/huettner94/dtn)
+> Source: https://en.wikipedia.org/wiki/OSI_model                                                                     |
 
-## Glossary
+This is rough guide, not a hard set of rules.
+Some protocols, like QUIC, operate across in multiple layers.
+
+## Appendix B: Glossary
 
 Simple lookup of terms
 
@@ -504,6 +499,13 @@ Simple lookup of terms
   * Reactive
   * Proactive
 * Convergence layer
+
+## Appendix C: Implementations
+
+* [dtn7/dtn7-go](https://github.com/dtn7/dtn7-go) - [https://dtn7.github.io/](https://dtn7.github.io/)
+* [dtn7/dtn7-rs](https://github.com/dtn7/bp7-rs)
+* [nasa-jpl/ION-DTN](https://github.com/nasa-jpl/ION-DTN) - [https://ion-dtn.readthedocs.io/](https://ion-dtn.readthedocs.io/)
+* [huettner94/dtn](https://github.com/huettner94/dtn)
 
 ---
 
