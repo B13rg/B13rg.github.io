@@ -326,11 +326,19 @@ As such, it's not _required_ to be available.
 It also notes complexities with handling security properties of bundles and fragments.
 
 ### 3.10 Reliability and Custody Transfer
-TODO
+
+Custody transfer enables nodes to coordinate responsibility for delivering bundles
+The obligation to ensure successful delivery can be transferred between nodes in a network, hopefully moving the bundle closer to it's final destination.
+
+Nodes may or may not assume custody of a bundle depending on resources or conditions.
+Non-custodial nodes are able to hold and forward a bundle without assuming long-term accountability for delivery.
+
+To assume custody of a bundle, a custodial node communicates back to the current custodian to perform a handoff.
+Additionally, applications and nodes can configure delivery options to "subscribe" to event reports when custody actions take place.
 
 ### 3.11 DTN Support for Proxies and Application Layer Gateways
 
-This section describes integrating DTN with traditional application layer gateways and proxies.
+This section briefly describes integrating DTN with traditional application layer gateways and proxies.
 Traffic can be encapsulated or proxied by DTN, providing loose guidance around utilizing multiple protocols to transmit data. 
 
 The "Acknowledged by Application" report provides a way to verify successful application-level delivery.
@@ -396,7 +404,7 @@ stateDiagram-v2
 
     [*] --> R
     R --> S
-    R --> C : Custody Requested
+    R --> C : Custodial Node + Custody Requested
     C --> S
     S --> Rm : Expiration
     S --> L : Next Hop Available
