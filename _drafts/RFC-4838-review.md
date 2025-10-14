@@ -386,9 +386,9 @@ Discarding unauthorized traffic early is a departure from normal network behavio
 Traditional networks labor to maintain continuous connectivity and low queuing and transmission delay.
 
 ## 4. State Management Considerations
-TODO
 
-This section considers state managed at the bundle layer.
+This section describes the various types of state throughout the bundler protocol.
+It also provides general guidance on implementation details.
 
 ```mermaid
 stateDiagram-v2
@@ -420,25 +420,10 @@ stateDiagram-v2
 
 ### 4.1 Application Registration State
 
-The spec suggests an asynchronous application interface.
-To initiate a registration the application specifies an Endpoint ID for which it wishes to receive ADUs and a optional registration timeout value.
-
-The process to the application is similar "to the bind() operation in the common sockets API".
+For integration with applications the spec suggests an asynchronous application interface.
+Applications register with a DTN node by specifying an EID and optional timeout value.
 Applications _should_ register and remove themselves, but the state is managed by the DTN node.
-That isn't to say an application can't also be a node.
-The protocol could be integrated directly into the application or provided by resources outside the application.
 
-> In cases where applications are not
-> automatically restarted but application registration state remains
-> persistent, a method must be provided to indicate to the system what
-> action to perform when the triggering event occurs (e.g., restarting
-> some application, ignoring the event, etc.)
-
-It doesn't specify what exactly the application is registering with.
-The system managing the DTN state could be beside (another application) or below (managed by host system).
-I could see this extended where DTN protocols are integrated with application platforms to dynamically manage applications based on requests.
-In a kubernetes the local DTN group would be a part of the core system and provide bindings to deployed applications.
-The controller could dynamically spin up and and down applications based on DTN events.
 
 ### 4.2 Custody Transfer State
 
@@ -462,11 +447,16 @@ Additionally, there is no way for custody information to be transmitted back to 
 
 ### 4.4 Security-related State
 
-### 4.5 Policy and configuration State
+### 4.5 Policy and Configuration State
 
 ## 5. Application Structuring Issues
 
+Applications that use delay-tolerant networks should themselves be delay-tolerant.
+
+Includes "batching" operations, 
+
 ## 6. Convergence Layer Considerations for Use of Underlying Protocols
+
 
 
 ---
@@ -525,6 +515,7 @@ Some protocols, like QUIC, operate across in multiple layers.
 
 Simple lookup of terms
 
+* Application
 * Application Data Unit (ADU)
 * Bundle
 * Endpoint ID (EID)
