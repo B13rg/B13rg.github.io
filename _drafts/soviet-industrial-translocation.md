@@ -16,10 +16,34 @@ The operation caught the Soviet Union grossly unaware, and quickly thrust the re
 * `завод - Zavod` - "plant", "works" or "factory".  Often transliterated.
 * `-grad-` - 
 * `-sky`
+* valstietis
+* krest'ianin
+
+## Objectives of Evacuation
+
+Incoming germans
+Move industry to the rear
+
+### Destination locations
+
+Need to raw materials/resurces, electrivity, and housing for workers.
+
+### Timeline
+
+1941 June 22 - Attack begins
+1941 June 23 - Military railway schedule introduced, prioritizing 
+1941 June 24 - Committee for Evacuation created
+1941 June 29 - Directive calling for mobilization and evacuation
+1941 July - Aug. - ~1,350 enterprises evacuated [^Teryoshina]
+1941 Sep - Nov - ~1,243 enterprises evacuated [^Teryoshina]
+1941 Oct 15 - Various high-level councils and committees evacuated to Kuibibyshev
+
 
 ## Government Policy, Organization and Planning
 
 State of Industrial resources and planning before
+
+Movement of factories during WWI 1915 from Warsaw and Valtic industrial hibs were moved to the read.
 
 1930s contingency plans
 
@@ -89,6 +113,20 @@ Weather
 
 Railway resource leading up to and during.
 Railway management, engine types, track types, upkeep.
+The first railway was built in Russia in 1837, as a 17km experimental line connecting St. Petersburg and  Tsarskoye Selo.
+The "modern" railway network was formed around the St. Petersburg-Moscow railway in 1842 [^RHaywood].
+The railway was standardized on 5 ft (1,524 mm) / 1520mm broad gauge.
+This is not to say no other gauges existed; railway lines connecting the Russian Empire to it's Prussian and Austrian neighbors would often be in gauges local to those destinations.
+
+As a result of it's development independent of central Europe, engines and cars were incompatible between the two systems.
+Much of Europe ended up standardizing on Stephenson gauge, 1,435 mm (4ft 8.5 in) by around 1849.
+
+When the invasion began, a military rail schedule was quickly instituted.
+It prioritized transport of military troops and cargo,
+To increase throughput, trains were ran also closer together on the track, 
+
+Train engineers and crew would also travel with the trains to their final destination, often thousands of kilometers and many months from home.
+This differs from peacetime, where crew would usually work local sections of track.  
 
 
 Required massive amounts of coordination, including temporary rail line expansions, prioritization of freight routes, and the use of "mobile workshops" to repair equipment en route.
@@ -668,7 +706,16 @@ Built:
 
 [^FKagan]: F. Kagan. The Evacuation of Soviet Industry in the Wake of "Barbarossa": A Key to Soviet Victory. Journal of Slavic Military Studies 8 pp. 389-96. 1995.
 
+[^Teryoshina]: Teryoshina N.P., Flyagina T.A. History of transport economy / Sheremet, N.M.. — Training manual. — Moscow: MIIT, 2011. — S. 56–57. – 195 p. — [Archied on 10 January 2021]
+
+[^RHaywood]: The beginnings of railway development in Russia in the reign of Nicholas I, 1835-1842
+Richard Mowbray Haywood
+Durham, N.C., Duke University Press, Durham, N.C, 1969
+xvii, 270 pages 23 cm Includes bibliographical references (pages 247-258)
+
 ---
+
+
 
 
 <!-- Image example
