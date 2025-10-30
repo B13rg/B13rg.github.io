@@ -29,7 +29,7 @@ The Croissant format roughly consists of 3 parts:
 | structure+semantics | data structure and resource processing guides                                         | `RecordSet`, `Field`, `DataSource` |
 
 
-![A simplified diagram of the Croissant spec](images/croissant/croissant-1-spec.png)
+![A simplified diagram of the Croissant spec](/images/croissant/croissant-1-spec.png)
 > A simplified diagram of the Croissant spec
 
 
